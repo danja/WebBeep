@@ -1,0 +1,15 @@
+#! /bin/bash
+# Belt & braces backup
+
+# local tar first
+# mkdir /mnt/usbdrive/backups/`date +%Y%m%d`
+tar -czf backups/utone_`date +%Y-%m-%d`.tar.gz ./
+
+# nearby copy
+cp backups/utone_`date +%Y-%m-%d`.tar.gz /home/backups/
+
+# shove everything to server
+rsync --verbose  --progress --stats --compress \
+      --recursive --times --perms --links --delete \
+      --exclude "*bak" --exclude "*~" \
+      ./ root@hyperdata.org:/home/utone/

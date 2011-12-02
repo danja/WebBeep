@@ -1,0 +1,23 @@
+NEED A CHECKSUM?
+acknowledge receipt?
+
+pre-process with bp filters (one high, one low?)
+
+pitch detection options:
+1. zero-crossing
+2. (cross-) correlate with pre-recorded samples
+3. bp filter per note
+4. Pisarenko
+
+
+
+
+http://en.wikipedia.org/wiki/Frequency_estimation
+http://en.wikipedia.org/wiki/Pisarenko_harmonic_decomposition
+
+http://en.wikipedia.org/wiki/Cross-correlation
+
+http://www.mathworks.com/matlabcentral/fileexchange/74
+http://www.groupsrv.com/computers/about610482.html
+
+http://www.google.it/search?num=100&hl=en&safe=off&q=Pisarenko+octave+matlab&oq=Pisarenko+octave+matlab&aq=f&aqi=&aql=&gs_sm=e&gs_upl=79027l80668l0l80849l7l7l0l5l0l1l487l903l4-2l2l0

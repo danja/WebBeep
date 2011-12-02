@@ -1,0 +1,66 @@
+URI2Tone/Tone2URI
+
+Punycode : http://tools.ietf.org/html/rfc3492
+
+java.net.IDN - punycode converters
+
+ASCII 00-7F
+
+http://introcs.cs.princeton.edu/java/15inout/
+
+PENTATONIC SCALE : C D E G A C
+with rhythm : 
+0001 - 1111?
+
+attack/decay needed - too clicky without
+
+use ABC notation as intermediate step:
+http://abcnotation.com/blog/2010/01/31/how-to-understand-abc-the-basics/
+http://abcnotation.com/examples#Chords
+
+Musical variant of DTFM
+
+http://en.wikipedia.org/wiki/Dual-tone_multi-frequency
+(has freqs from 440 - 1633Hz, ~2 octaves)
+http://sourceforge.net/projects/java-dtmf/
+
+http://www.eetimes.com/design/embedded/4024443/The-Goertzel-Algorithm
+http://en.wikipedia.org/wiki/Goertzel_algorithm
+
+fixed tempo
+widely-spaced freqs if possible
+
+(e.g. http://www.w3.org/2005/Incubator/lld/wiki/DraftReportWithTransclusion)
+
+http:// - ignored
+
+com/org/net... major, minor...
+problem - what if values generated don't include a minor note?
+
+w3 of domain - bass notes, repeated
+
+/ - pauses
+
+www - ???
+?, # etc - ???
+
+"2005"... map to notes, 
+
+how many layered tones? try 3 : 1 for bass [domain], 2 for path
+
+how many chars are there? - 95 printable ASCII chars (inc space etc), call it 99
+
+so how many octaves?  , 9 octaves - too many!
+
+bass-ish note splits ASCII hi/lo?
+
+how many sequential tones per char?
+
+
+
+
+
+
+
+
+

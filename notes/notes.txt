@@ -1,0 +1,16 @@
+Install
+octave
+cantor 
+cantor backend for cantor
+addpath("/home/danny/workspace/UTone/octave/lib")
+
+related patent: http://www.freepatentsonline.com/y2002/0107596.html
+http://en.wikipedia.org/wiki/Inventive_step_and_non-obviousness
+
+Prior art : http://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling
+
+Differences between pat. app. and prior art : encoding URIs, musical tones
+given the idea of DTMF, the step to musical is obvious
+Encoding a link is obvious, c.f. QR Codes
+
+my version is *any* text

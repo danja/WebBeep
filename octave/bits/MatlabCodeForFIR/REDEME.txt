@@ -1,0 +1,41 @@
+1) How to Run the Code:
+% Direct the matlab working path into the folder where is following code is saved.
+% Then, enter the following command:
+FIR_Filter_WindowingMethod
+% You will be prompt with necessary information for specifying the filter.
+% Band Stop filter is taken as an example for understanding, and the interactice process is recored at 2).
+
+
+
+2) Interactive Process:
+
+>> FIR_Filter_WindowingMethod
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Please specify the filter type
+Here is the filter option:
+1:    Low Pass Filter 
+2:    High Pass Filter
+3:    Band Pass Filter
+4:    Band Stop Filter
+You only need enter number. EX. 4 means Band Stop filter
+FilterOption=4
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Enter the order of the filter(Must be a positive even number, should be less than 100
+FilterOrder=16
+Here is all the frequency infromation in this experiment:Fs=8000;    f1=500;  f2=1500;  f3=2000;  f4=3000;
+Enter the Edge Freq. in Hz. Note: the value should be within 0~Fs
+omega cutoff1=1000
+omega cutoff2=2500
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Here is the Windowing option:
+1:    hamming
+2:    kaiser
+3:    rectwin
+WindowOption=1
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Checking the Zero-Phase Response of the designed filter, enter any key to continue
+Checking the Freq. Response of the designed filter, enter any key to continue
+Checking the Filtering Effect of the designed filter in time domain, enter any key to continue

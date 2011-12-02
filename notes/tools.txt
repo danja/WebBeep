@@ -1,0 +1,11 @@
+ScalaCheck (http://code.google.com/p/scalacheck/) 
+
+sbt (build)
+
+specs2?
+
+http://www.assembla.com/wiki/show/scala-ide/Using_Unit_Testing_Frameworks
+
+http://thoughts.inphina.com/2011/05/19/creating-a-scala-project-with-sbt-and-working-in-eclipse/
+
+http://vasilrem.com/blog/software-development/sbt-falling-in-love-again/
