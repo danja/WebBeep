@@ -26,9 +26,9 @@ import java.util.List;
 
 public class Plotter extends JPanel {
 
-	private static int WINDOW_WIDTH=1000;
+	private static int WINDOW_WIDTH = 1000;
 
-	private static int WINDOW_HEIGHT=200;
+	private static int WINDOW_HEIGHT = 200;
 
 	private List<Double> data = new ArrayList<Double>();
 
@@ -44,6 +44,8 @@ public class Plotter extends JPanel {
 	private double offset = 0;
 	private double xStep = 0;
 	private double scale = 0;
+
+	private int pointSize = 2;
 
 	/**
 	 * @param string
@@ -112,12 +114,13 @@ public class Plotter extends JPanel {
 
 		for (int i = 0; i < data.size(); i++) {
 			double x = PAD + i * xStep;
-			double y = getHeight() - PAD - scale * (data.get(i)+offset/2);
+			double y = getHeight() - PAD - scale * (data.get(i) + offset / 2);
 			g2.setPaint(Color.red);
-			g2.fill(new Ellipse2D.Double(x - 1, y - 1, 2, 2)); // point?
-			if(i>0){
-			g2.setPaint(Color.green);
-			g2.draw(new Line2D.Double(previousX, previousY, x, y));
+			g2.fill(new Ellipse2D.Double(x -  pointSize/2, y -  pointSize/2,  pointSize,  pointSize)); // point?
+			//System.out.println(data.get(i)+"   x="+x+"   y="+y);
+			if (i > 0) {
+				g2.setPaint(Color.green);
+				g2.draw(new Line2D.Double(previousX, previousY, x, y));
 			}
 			previousX = x;
 			previousY = y;
@@ -131,8 +134,8 @@ public class Plotter extends JPanel {
 		// Draw Y-Axis
 		g2.draw(new Line2D.Double(PAD, PAD, PAD, getHeight() - PAD));
 		// Draw X-Axis
-		g2.draw(new Line2D.Double(PAD, getHeight() / 2 - PAD, getWidth() - PAD,
-				getHeight() / 2 - PAD));
+		g2.draw(new Line2D.Double(PAD, getHeight() / 2, getWidth() - PAD,
+				getHeight() / 2));
 	}
 
 	private void drawLabels(Graphics2D g2) {
@@ -186,27 +189,39 @@ public class Plotter extends JPanel {
 
 	public static void main(String[] args) {
 		List<Double> data = new ArrayList<Double>();
-		int nPoints = 100;
-		for(int i=0;i<nPoints;i++){
-			double x = i*2*Math.PI/nPoints;
+		int nPoints = 20;
+		for (int i = 0; i < nPoints; i++) {
+			double x = i * 2 * Math.PI / nPoints;
 			double y = Math.sin(x);
-			System.out.println(x+"  "+y);
+			// System.out.println(x + "  " + y);
 			data.add(y);
 		}
-//		List<Double> data = Arrays.asList(-0.9, -0.8, -0.7, -0.6, -0.5,
-//				-0.4, -0.3, -0., -0.54, -0.77, 0.61, 0.55, 0.48, 0.60,
-//				0.49, 0.36, 0.38, 0.27, 0.20, 0.18);
+		// List<Double> data = Arrays.asList(-0.9, -0.8, -0.7, -0.6, -0.5,
+		// -0.4, -0.3, -0., -0.54, -0.77, 0.61, 0.55, 0.48, 0.60,
+		// 0.49, 0.36, 0.38, 0.27, 0.20, 0.18);
 
 		Plotter.plot("This", data);
 	}
 
 	public static void plot(String title, List<Double> data) {
+		plot(title,data,8);
+	}
+	
+	public static void plot(String title, List<Double> data, int pointSize) {
 		Plotter plotter = new Plotter(title, data);
+		plotter.setPointSize(pointSize);
 		JFrame f = new JFrame(plotter.getTitle());
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.add(plotter);
 		f.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		f.setLocation(200, 200);
 		f.setVisible(true);
+	}
+
+	/**
+	 * @param pointSize
+	 */
+	public void setPointSize(int pointSize) {
+		this.pointSize  = pointSize;
 	}
 }
