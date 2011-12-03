@@ -231,9 +231,25 @@ public class Plotter extends JPanel {
 			g2.setPaint(Color.green);
 			g2.fill(new Ellipse2D.Double(x - pointSize / 2, y - pointSize / 2,
 					pointSize, pointSize)); // point?
+			
+			for(int n=0;n<xPoints.size();n++){
+				double nx = PAD + xPoints.get(n) * xStep;
+				double ny = getHeight()/2 - scale * (yPoints.get(n) - offset); // - offset
+				g2.setPaint(Color.red);
+				g2.fill(new Ellipse2D.Double(nx - pointSize / 2, ny - pointSize / 2,
+						pointSize, pointSize)); // point?
+			}
 			previousX = x;
 			previousY = y;
 		}
+	}
+	
+	List<Integer> xPoints = new ArrayList<Integer>();
+	List<Double> yPoints = new ArrayList<Double>();
+	public void addPoint(int x, double y){
+		xPoints.add(x);
+		yPoints.add(y);
+		repaint();
 	}
 	
 	private void doCalcs() {
@@ -299,25 +315,29 @@ public class Plotter extends JPanel {
 		g2.drawString(xValue, getWidth() - sw - PAD, labelY);
 	}
 
-	public static void plot(List<Double> data) {
+	public static Plotter plot(List<Double> data) {
 		Plotter plotter = new Plotter(data);
 		makeFrame(plotter);
+		return plotter;
 	}
 
-	public static void plot(List<Double> data, String title) {
+	public static Plotter plot(List<Double> data, String title) {
 		Plotter plotter = new Plotter(data, title);
 		makeFrame(plotter);
+		return plotter;
 	}
 
-	public static void plot(List<Double> data, String title, int pointSize) {
+	public static Plotter plot(List<Double> data, String title, int pointSize) {
 		Plotter plotter = new Plotter(data, title, pointSize);
 		makeFrame(plotter);
+		return plotter;
 	}
 
-	public static void plot(List<Double> data, String title, int pointSize,
+	public static Plotter plot(List<Double> data, String title, int pointSize,
 			boolean drawLines) {
 		Plotter plotter = new Plotter(data, title, pointSize, drawLines);
 		makeFrame(plotter);
+		return plotter;
 	}
 
 	private static void makeFrame(Plotter plotter) {
@@ -327,7 +347,7 @@ public class Plotter extends JPanel {
 		f.setSize(plotter.getWindowWidth(), plotter.getWindowHeight());
 		f.setLocation(plotter.getScreenX(), plotter.getScreenY());
 		f.setTitle(plotter.getTitle() + "   ("
-				+ plotter.getData().size()+" samples)");
+				+ plotter.getData().size()+" points)");
 		f.setVisible(true);
 	}
 
