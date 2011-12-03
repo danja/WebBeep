@@ -4,10 +4,15 @@ NOT YET TESTED!!!
  */
 package org.hyperdata.urltone.decode;
 
-import java.util.List;
+import java.util.*;
 
+import org.hyperdata.urltone.common.Constants;
+import org.hyperdata.urltone.common.Plotter;
 import org.hyperdata.urltone.filters.IIRLowpassFilter;
 import org.hyperdata.urltone.filters.IIRLowpassFilterDesign;
+import org.hyperdata.urltone.filters.RunningAverage;
+
+
 
 /**
  * @author danny
@@ -15,6 +20,18 @@ import org.hyperdata.urltone.filters.IIRLowpassFilterDesign;
  */
 public class PreProcess {
 
+	public static void main(String[] args) {
+		List<Double> data = new ArrayList<Double>();
+		int nPoints = 20;
+		for (int i = 0; i < nPoints; i++) {
+			double x = i * 2 * Math.PI / nPoints;
+			double y = Math.sin(x)/3+1;
+		//	System.out.println(i + "  " + y);
+			data.add(y);
+		}
+		Plotter.plot(data, "Raw", 8, true);
+		Plotter.plot(normalise(data, true, true),"Normalised", 8, true);
+	}
 	/**
 	 * Normalises values in List scaling to peak value = +/- 1 and/or removing
 	 * zero offset)
@@ -25,12 +42,13 @@ public class PreProcess {
 	 */
 	public static List<Double> normalise(List<Double> tones,
 			boolean normaliseScale, boolean normaliseOffset) {
+		List<Double> normals = new ArrayList<Double>();
 		if (!normaliseScale && !normaliseOffset) {
 			return tones; // silly caller
 		}
-		double min = 0;
-		double max = 0;
-		for (int i = 0; i < tones.size(); i++) {
+		double min = tones.get(0);
+		double max = tones.get(0);
+		for (int i = 1; i < tones.size(); i++) {
 			if (tones.get(i) < min) {
 				min = tones.get(i);
 			}
@@ -39,24 +57,58 @@ public class PreProcess {
 			}
 		}
 		double peakAmplitude = max - min;
-
+//		System.out.println("min="+min);
+//		System.out.println("max="+max);
+//		System.out.println("peakAmplitude="+peakAmplitude);
+		
 		double offset = 0;
 		double scale = 1;
+		
 		if (normaliseOffset) {
-			offset = peakAmplitude / 2 - min;
-			if (normaliseScale) {
-				scale = 1 / peakAmplitude;
-			}
-		} else {
-			if (normaliseScale) {
-				double absmax = max > min ? max : min;
-				scale = 1 / absmax;
-			}
+			offset = (max+min) / 2;
+		} 
+		if (normaliseScale) {
+			scale = 2 / peakAmplitude;
 		}
+//		System.out.println("offset="+offset);
+//		System.out.println("scale="+scale);
+//		System.out.println("(max-min)/2="+(max-min)/2);
+		
 		for (int i = 0; i < tones.size(); i++) {
-			tones.set(i, tones.get(i) - offset);
+			normals.add((tones.get(i) - offset)*scale);
 		}
-		return tones;
+		return normals;
+	}
+	
+	public static List<Integer> findPeaks(List<Double> signal){
+		signal = RunningAverage.filter(signal, 10);
+		List<Integer> peaks = new ArrayList<Integer>();
+		for(int i=2;i<signal.size();i++){
+			double s1 = roundToSignificantFigures(signal.get(i-2), 2);
+			double s2 = roundToSignificantFigures(signal.get(i-1), 2);
+			double s3 = roundToSignificantFigures(signal.get(i), 2);
+			double diff1 = s2-s1;
+			double diff2 = s3-s2;
+			if(diff1>0 && diff2<0){
+				System.out.println("peak at "+(i-1));
+			//	System.out.println(signal.get(i));
+			//	System.out.println((i-1)/Constants.SAMPLE_RATE);
+			}
+		}
+		return peaks;
+	}
+	
+	public static double roundToSignificantFigures(double num, int n) {
+	    if(num == 0) {
+	        return 0;
+	    }
+
+	    final double d = Math.ceil(Math.log10(num < 0 ? -num: num));
+	    final int power = n - (int) d;
+
+	    final double magnitude = Math.pow(10, power);
+	    final long shifted = Math.round(num*magnitude);
+	    return shifted/magnitude;
 	}
 	
 	// TODO

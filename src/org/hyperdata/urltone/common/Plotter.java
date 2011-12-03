@@ -57,8 +57,8 @@ public class Plotter extends JPanel {
 	final int PAD = 20; // border padding
 
 	// will be calculated in doCalcs
-	private double max = 0;
-	private double min = 0;
+	private double max;
+	private double min;
 	private double offset = 0;
 	private double xStep = 0;
 	private double scale = 0;
@@ -222,8 +222,7 @@ public class Plotter extends JPanel {
 
 		for (int i = 0; i < data.size(); i++) {
 			double x = PAD + i * xStep;
-			double y = getHeight() - PAD - scale * (data.get(i) + offset / 2);
-
+			double y = getHeight()/2 - scale * (data.get(i) - offset); // - offset
 			// System.out.println(data.get(i)+"   x="+x+"   y="+y);
 			if (drawLines && i > 0) {
 				g2.setPaint(Color.blue);
@@ -235,6 +234,20 @@ public class Plotter extends JPanel {
 			previousX = x;
 			previousY = y;
 		}
+	}
+	
+	private void doCalcs() {
+		this.max = data.get(0);
+		this.min = data.get(0);
+		for (int i = 1; i < data.size(); i++) {
+			if (data.get(i) > this.max)
+				this.max = data.get(i);
+			if (data.get(i) < this.min)
+				this.min = data.get(i);
+		}
+		this.offset = (max+min)/2;
+		this.xStep = (double) (getWidth() - 2 * PAD) / (data.size() - 1);
+		this.scale = (double) (getHeight())/(max-min);
 	}
 
 	/**
@@ -286,19 +299,6 @@ public class Plotter extends JPanel {
 		g2.drawString(xValue, getWidth() - sw - PAD, labelY);
 	}
 
-	private void doCalcs() {
-		for (int i = 0; i < data.size(); i++) {
-			if (data.get(i) > this.max)
-				this.max = data.get(i);
-			if (data.get(i) < this.min)
-				this.min = data.get(i);
-		}
-		this.offset = max - min;
-
-		this.xStep = (double) (getWidth() - 2 * PAD) / (data.size() - 1);
-		this.scale = (double) (getHeight() - 2 * PAD) / offset;
-	}
-
 	public static void plot(List<Double> data) {
 		Plotter plotter = new Plotter(data);
 		makeFrame(plotter);
@@ -314,7 +314,7 @@ public class Plotter extends JPanel {
 		makeFrame(plotter);
 	}
 
-	public static void plot(String title, List<Double> data, int pointSize,
+	public static void plot(List<Double> data, String title, int pointSize,
 			boolean drawLines) {
 		Plotter plotter = new Plotter(data, title, pointSize, drawLines);
 		makeFrame(plotter);
@@ -336,10 +336,10 @@ public class Plotter extends JPanel {
 		int nPoints = 20;
 		for (int i = 0; i < nPoints; i++) {
 			double x = i * 2 * Math.PI / nPoints;
-			double y = Math.sin(x);
+			double y = Math.sin(x)/3+1;
 			// System.out.println(x + "  " + y);
 			data.add(y);
 		}
-		Plotter.plot("Sine Wave", data, 8, true);
+		Plotter.plot(data, "Sine Wave", 8, true);
 	}
 }

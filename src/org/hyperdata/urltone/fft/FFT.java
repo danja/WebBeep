@@ -6,20 +6,21 @@
 
 package org.hyperdata.urltone.fft;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FFT {
 
 	private static final double TWOPI = 2.0 * Math.PI;
-	
+
 	// Limits on the number of bits this algorithm can utilize
-	private static final int LOG2_MAXFFTSIZE = 15;
+	private static final int LOG2_MAXFFTSIZE = 15; // was 15
 	private static final int MAXFFTSIZE = 1 << LOG2_MAXFFTSIZE;
 
 	/**
-	 * FFT class constructor
-	 * Initializes code for doing a fast Fourier transform
-	 *
-	 * @param int bits is a power of two such that 2^b is the number
-	 * of samples.
+	 * FFT class constructor Initializes code for doing a fast Fourier transform
+	 * 
+	 * @param int bits is a power of two such that 2^b is the number of samples.
 	 */
 	public FFT(int bits) {
 
@@ -40,16 +41,42 @@ public class FFT {
 		}
 	}
 
+	public List<Double> doPowerFFT(List<Double> xrL, boolean invFlag) {
+		// int size = xrL.size();
+		int size = (int) Math.pow(2, bits);
+		System.out.println("size="+size);
+		System.out.println("xrl size="+xrL.size());
+		double[] xr = new double[size];
+		double[] xi = new double[size];
+		for (int i = 0; i < xrL.size(); i++) {
+			xr[i] = xrL.get(i).doubleValue();
+			xi[i] = 0;
+		}
+		for (int i = xrL.size(); i < size; i++) {
+			xr[i] = 0;
+			xi[i] = 0;
+		}
+		System.out.println("xr length="+xr.length);
+		doFFT(xr, xi, invFlag);
+
+		List<Double> powers = new ArrayList<Double>();
+		for (int i = 0; i < size; i++) {
+			double power = xr[i] * xr[i] + xi[i] * xi[i];
+			powers.add(new Double(power));
+		}
+		return powers;
+	}
+
 	/**
 	 * A fast Fourier transform routine
-	 *
+	 * 
 	 * @param double [] xr is the real part of the data to be transformed
 	 * @param double [] xi is the imaginary part of the data to be transformed
-	 * (normally zero unless inverse transofrm is effect).
+	 *        (normally zero unless inverse transofrm is effect).
 	 * @param boolean invFlag which is true if inverse transform is being
-	 * applied. false for a forward transform.
+	 *        applied. false for a forward transform.
 	 */
-	public void doFFT(double [] xr, double [] xi, boolean invFlag) {
+	public void doFFT(double[] xr, double[] xi, boolean invFlag) {
 		int n, n2, i, k, kn2, l, p;
 		double ang, s, c, tr, ti;
 
@@ -63,7 +90,7 @@ public class FFT {
 					c = Math.cos(ang);
 					s = Math.sin(ang);
 					kn2 = k + n2;
-					
+
 					if (invFlag)
 						s = -s;
 
@@ -96,13 +123,14 @@ public class FFT {
 		if (!invFlag) {
 			double f = 1.0 / n;
 
-			for (i = 0; i < n ; i++) {
+			for (i = 0; i < n; i++) {
 				xr[i] *= f;
 				xi[i] *= f;
 			}
 		}
 	}
+
 	// Private class data
 	private int bits;
-	private int [] bitreverse = new int[MAXFFTSIZE];
+	private int[] bitreverse = new int[MAXFFTSIZE];
 }

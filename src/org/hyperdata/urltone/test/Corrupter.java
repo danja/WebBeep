@@ -6,7 +6,7 @@ package org.hyperdata.urltone.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.urltone.decode.Detector;
+import org.hyperdata.urltone.decode.ChunkDetector;
 
 /**
  * @author danny

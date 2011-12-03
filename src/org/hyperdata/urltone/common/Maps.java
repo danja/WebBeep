@@ -27,4 +27,25 @@ public class Maps {
 
 	public static double[] LOW_FREQ = { 261.63, 293.66, 329.63, 392, 440,
 			261.63, 293.66, 392 };
+	
+	public static double MIN_LOW_FREQ = LOW_FREQ[0];
+	public static double MAX_LOW_FREQ = LOW_FREQ[0];
+	public static double MIN_HIGH_FREQ = HIGH_FREQ[0];
+	public static double MAX_HIGH_FREQ = HIGH_FREQ[0];
+	
+	static{
+		for(int i=0;i<LOW_FREQ.length;i++){
+			if(LOW_FREQ[i]<MIN_LOW_FREQ) MIN_LOW_FREQ = LOW_FREQ[i];
+			if(LOW_FREQ[i]>MAX_LOW_FREQ) MAX_LOW_FREQ = LOW_FREQ[i];
+			if(HIGH_FREQ[i]<MIN_HIGH_FREQ) MIN_HIGH_FREQ = HIGH_FREQ[i];
+			if(HIGH_FREQ[i]>MAX_HIGH_FREQ) MAX_HIGH_FREQ = HIGH_FREQ[i];
+		}
+	}
+	
+	public static void main(String args[]){
+		System.out.println(MIN_LOW_FREQ);
+		System.out.println(MAX_LOW_FREQ);
+		System.out.println(MIN_HIGH_FREQ);
+		System.out.println(MAX_HIGH_FREQ);
+	}
 }

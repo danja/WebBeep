@@ -35,6 +35,12 @@ public final class WaveMaker {
 		List<Double> dataLow = null;
 		List<Double> dataHigh = null;
 
+		System.out.println();
+		System.out.println("Maps.LOW_BEATS[noteLow]="+Maps.LOW_BEATS[noteLow]);
+		System.out.println("Maps.HIGH_BEATS[noteHigh]="+Maps.HIGH_BEATS[noteHigh]);
+		System.out.println("Maps.LOW_FREQ[noteLow]="+Maps.LOW_FREQ[noteLow]);
+		System.out.println("Maps.HIGH_FREQ[noteHigh]="+Maps.HIGH_FREQ[noteHigh]);
+		
 		if (Maps.LOW_BEATS[noteLow] == 1) {
 			dataLow = makeWaveform(noteLow, duration, Maps.LOW_FREQ);
 		} else {

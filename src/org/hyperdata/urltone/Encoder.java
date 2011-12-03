@@ -9,6 +9,8 @@ import java.util.*;
 import org.hyperdata.urltone.common.Constants;
 import org.hyperdata.urltone.common.Plotter;
 import org.hyperdata.urltone.common.WavCodec;
+import org.hyperdata.urltone.decode.PreProcess;
+import org.hyperdata.urltone.fft.FFT;
 
 /**
  * @author danny
@@ -29,7 +31,18 @@ public class Encoder {
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 		List<Double> tones = encode(IRI);
 		Plotter.plot(tones, "Tones");
-		WavCodec.save(filename, tones);
+		System.out.println("tones="+tones.size());
+		// WavCodec.save("/home/danny/workspace/WebBeep/data/beeps1.wav", tones);
+		FFT fft = new FFT(15);
+		List<Double> freqs = fft.doPowerFFT(tones, false).subList(0,1000);
+		freqs = PreProcess.normalise(freqs, true, true);
+		freqs = freqs.subList(300,500);
+		// plot(String title, List<Double> data, int pointSize, boolean drawLines)
+		Plotter.plot(freqs, "Freqs", 4, true);
+		PreProcess.findPeaks(freqs);
+
+		
+		
 	}
 	
 	/**
