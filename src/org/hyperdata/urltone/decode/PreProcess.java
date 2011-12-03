@@ -6,6 +6,9 @@ package org.hyperdata.urltone.decode;
 
 import java.util.List;
 
+import org.hyperdata.urltone.filters.IIRLowpassFilter;
+import org.hyperdata.urltone.filters.IIRLowpassFilterDesign;
+
 /**
  * @author danny
  * 
@@ -54,5 +57,21 @@ public class PreProcess {
 			tones.set(i, tones.get(i) - offset);
 		}
 		return tones;
+	}
+	
+	// TODO
+	public static void filter(){
+//		// Determine cutoff frequency for filters.
+//		int cutoffFrequency = (int) (noteTable[noteTable.length - 1] * 1.1);	
+//
+//		// Design the low pass filter. Cutoff is 2 * 12 db/octave when
+//		// two filter sections are used.
+//		IIRLowpassFilterDesign lpfd = 
+//			new IIRLowpassFilterDesign(cutoffFrequency, DEFAULTSAMPLERATE, 1);
+//		lpfd.doFilterDesign();
+//
+//		// Implement the filter design
+//		lowPassShelf = new IIRLowpassFilter(lpfd);
+		
 	}
 }

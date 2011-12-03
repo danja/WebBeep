@@ -16,7 +16,7 @@ public class Corrupter {
 
 	public static List<Double> CorruptLF(List<Double> tones) {
 		List<Double> noisy = makeNoise(tones.size());
-		noisy = Detector.filter(noisy);
+		// noisy = FILTER IT
 		for(int i=0;i<noisy.size();i++){
 			noisy.set(i, noisy.get(i) * tones.get(i));
 		}

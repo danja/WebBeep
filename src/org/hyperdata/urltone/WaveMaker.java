@@ -9,7 +9,7 @@ import org.hyperdata.urltone.encode.EnvelopeShaper;
 
 public final class WaveMaker {
 
-	//private static final int SAMPLE_BUFFER_SIZE = 4096;
+	// private static final int SAMPLE_BUFFER_SIZE = 4096;
 
 	static byte[] buffer; // our internal buffer
 	static int bufferSize = 0; // number of samples currently in
@@ -31,24 +31,24 @@ public final class WaveMaker {
 
 	public static List<Double> makeDualtone(int noteLow, int noteHigh,
 			double duration) {
-		
+
 		List<Double> dataLow = null;
 		List<Double> dataHigh = null;
-		
-		if(Maps.LOW_BEATS[noteLow]==1){
+
+		if (Maps.LOW_BEATS[noteLow] == 1) {
 			dataLow = makeWaveform(noteLow, duration, Maps.LOW_FREQ);
 		} else {
-			dataLow = makeWaveform(noteLow, duration/2, Maps.LOW_FREQ);
-			dataLow.addAll(makeSilence(duration/2));
+			dataLow = makeWaveform(noteLow, duration / 2, Maps.LOW_FREQ);
+			dataLow.addAll(makeSilence(duration / 2));
 		}
-		if(Maps.HIGH_BEATS[noteHigh]==1){
-		dataHigh = makeWaveform(noteHigh, duration, Maps.HIGH_FREQ);
-		}else {
-			dataHigh = makeWaveform(noteHigh, duration/2, Maps.HIGH_FREQ);
-			dataHigh.addAll(makeSilence(duration/2));
+		if (Maps.HIGH_BEATS[noteHigh] == 1) {
+			dataHigh = makeWaveform(noteHigh, duration, Maps.HIGH_FREQ);
+		} else {
+			dataHigh = makeWaveform(noteHigh, duration / 2, Maps.HIGH_FREQ);
+			dataHigh.addAll(makeSilence(duration / 2));
 		}
 		for (int i = 0; i < Constants.N_SAMPLES * duration; i++) { // merge/mix
-			dataLow.set(i, dataLow.get(i) + dataHigh.get(i)); //////////////////////////////////////
+			dataLow.set(i, dataLow.get(i) + dataHigh.get(i)); // ////////////////////////////////////
 		}
 		return dataLow;
 	}
@@ -72,7 +72,6 @@ public final class WaveMaker {
 		}
 		return data;
 	}
-
 
 	public static void main(String[] args) {
 

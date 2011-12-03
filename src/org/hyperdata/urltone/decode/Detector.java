@@ -35,12 +35,12 @@ public class Detector {
  * @param breakLevel amplitude of smoothed output that will cause method to return
  * @return smoothed amplitude of input
  */
-	public static List<Double> filter(List<Double> tones, double breakLevel) {
+	public static List<Double> rectify(List<Double> tones, double breakLevel) {
 
 		List<Double> filtered = new ArrayList<Double>();
 
 		int WINDOW_LENGTH = (int) ((double) Constants.SAMPLE_RATE * WINDOW_TIME);
-		System.out.println(WINDOW_LENGTH);
+		// System.out.println(WINDOW_LENGTH);
 		double max = 0;
 		double total = 0;
 
@@ -50,7 +50,7 @@ public class Detector {
 				sum += Math.abs(tones.get(i + j))/WINDOW_LENGTH;
 			}
 			sum *= 2; // not sure if/why this is needed
-			System.out.println(sum);
+			// System.out.println(sum);
 			
 			if (sum > max)
 				max = sum;
@@ -72,8 +72,38 @@ public class Detector {
  * @param breakLevel amplitude of smoothed output that will cause method to return
  * @return smoothed amplitude of input
 	 */
-	public static List<Double> filter(List<Double> tones) {
-		return filter(tones, -1);
+	public static List<Double> rectify(List<Double> tones) {
+		return rectify(tones, -1);
+	}
+	
+	/**
+	 * Find point at which amplitude crosses threshold
+	 * 
+	 * @param tones input signal
+	 * @param breakLevel amplitude threshold
+	 * @return point in time (samples) where threshold is reached
+	 */
+	public static int locateStart(List<Double> tones, double breakLevel) {
+		return rectify(tones, breakLevel).size();
+	}
+	
+	
+	/**
+	 * Splits up continuous series into separate (per-char) blocks
+	 * 
+	 * @param tones
+	 * @return
+	 */
+	public static List<List<Double>> chunk(List<Double> tones, int startTime, int cropLength){
+		List<List<Double>> chunks = new ArrayList<List<Double>>();
+		int chunkStart = startTime;
+		do {
+			int chunkEnd = chunkStart + (int)(Constants.TONE_DURATION * Constants.SAMPLE_RATE);
+			List<Double> chunk = tones.subList(chunkStart, chunkStart+cropLength); // without decay section
+			chunks.add(chunk);
+			chunkStart = chunkEnd + 1;
+		} while(chunkStart < tones.size());
+		return chunks;
 	}
 
 	
@@ -81,9 +111,9 @@ public class Detector {
 	static String filename = "/home/danny/workspace/UTone/data/filtered.wav";
 
 	public static void main(String[] args) {
-		List<Double> tones = Encoder.makeTones(IRI);
-		tones = filter(tones, 0.75);
-		System.out.println(tones.size());
+		List<Double> tones = Encoder.encode(IRI);
+		int start = locateStart(tones, 0.75);
+		System.out.println(start);
 		WavCodec.save(filename, tones);
 	}
 }

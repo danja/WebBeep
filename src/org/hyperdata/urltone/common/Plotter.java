@@ -1,5 +1,8 @@
 /**
+ * Simple line chart plotter
  * 
+ * integer (discrete time) steps on X-axis
+ * +/- double values on Y-axis
  */
 package org.hyperdata.urltone.common;
 
@@ -16,19 +19,34 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Plotter extends JPanel {
 
-	private static int WINDOW_WIDTH = 1000;
+	/**
+	 * @param drawLines
+	 *            the drawLines to set
+	 */
+	public void setDrawLines(boolean drawLines) {
+		this.drawLines = drawLines;
+	}
 
-	private static int WINDOW_HEIGHT = 200;
+	/**
+	 * @return the data
+	 */
+	public List<Double> getData() {
+		return this.data;
+	}
+
+	private int windowWidth = 1000;
+	private int windowHeight = 200;
+
+	private int screenX = 200;
+	private int screenY = 200;
 
 	private List<Double> data = new ArrayList<Double>();
 
@@ -44,32 +62,115 @@ public class Plotter extends JPanel {
 	private double offset = 0;
 	private double xStep = 0;
 	private double scale = 0;
-
 	private int pointSize = 2;
+	private boolean drawLines = false;
 
 	/**
-	 * @param string
-	 * @param data2
+	 * @return the windowWidth
 	 */
-	public Plotter(String title, List<Double> data) {
-		this(title);
-		setData(data);
+	public int getWindowWidth() {
+		return this.windowWidth;
 	}
 
-	public Plotter(String title) {
-		super();
-		setTitle(title);
+	/**
+	 * @return the windowHeight
+	 */
+	public int getWindowHeight() {
+		return this.windowHeight;
+	}
+
+	/**
+	 * @return the screenX
+	 */
+	public int getScreenX() {
+		return this.screenX;
+	}
+
+	/**
+	 * @return the screenY
+	 */
+	public int getScreenY() {
+		return this.screenY;
+	}
+
+	/**
+	 * @param windowWidth
+	 *            the windowWidth to set
+	 */
+	public void setWindowWidth(int windowWidth) {
+		this.windowWidth = windowWidth;
+	}
+
+	/**
+	 * @param windowHeight
+	 *            the windowHeight to set
+	 */
+	public void setWindowHeight(int windowHeight) {
+		this.windowHeight = windowHeight;
+	}
+
+	/**
+	 * @param screenX
+	 *            the screenX to set
+	 */
+	public void setScreenX(int screenX) {
+		this.screenX = screenX;
+	}
+
+	/**
+	 * @param screenY
+	 *            the screenY to set
+	 */
+	public void setScreenY(int screenY) {
+		this.screenY = screenY;
 	}
 
 	public void setData(List<Double> data) {
 		this.data = data;
 	}
 
+	public Plotter() {
+		super();
+	}
+
+	public Plotter(List<Double> data) {
+		this();
+		setData(data);
+	}
+
+	/**
+	 * @param string
+	 * @param data2
+	 */
+	public Plotter(List<Double> data, String title) {
+		this(data);
+		setTitle(title);
+	}
+
+	/**
+	 * @param string
+	 * @param data2
+	 */
+	public Plotter(List<Double> data, String title, int pointSize) {
+		this(data, title);
+		setPointSize(pointSize);
+	}
+
+	/**
+	 * @param string
+	 * @param data2
+	 */
+	public Plotter(List<Double> data, String title, int pointSize,
+			boolean drawLines) {
+		this(data, title, pointSize);
+		setDrawLines(drawLines);
+	}
+
 	/**
 	 * @param xLabel
 	 *            the xLabel to set
 	 */
-	public void setxLabel(String xLabel) {
+	public void setXLabel(String xLabel) {
 		this.xLabel = xLabel;
 	}
 
@@ -77,7 +178,7 @@ public class Plotter extends JPanel {
 	 * @param yLabel
 	 *            the yLabel to set
 	 */
-	public void setyLabel(String yLabel) {
+	public void setYLabel(String yLabel) {
 		this.yLabel = yLabel;
 	}
 
@@ -94,6 +195,13 @@ public class Plotter extends JPanel {
 	 */
 	public String getTitle() {
 		return this.title;
+	}
+
+	/**
+	 * @param pointSize
+	 */
+	public void setPointSize(int pointSize) {
+		this.pointSize = pointSize;
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -115,13 +223,15 @@ public class Plotter extends JPanel {
 		for (int i = 0; i < data.size(); i++) {
 			double x = PAD + i * xStep;
 			double y = getHeight() - PAD - scale * (data.get(i) + offset / 2);
-			g2.setPaint(Color.red);
-			g2.fill(new Ellipse2D.Double(x -  pointSize/2, y -  pointSize/2,  pointSize,  pointSize)); // point?
-			//System.out.println(data.get(i)+"   x="+x+"   y="+y);
-			if (i > 0) {
-				g2.setPaint(Color.green);
+
+			// System.out.println(data.get(i)+"   x="+x+"   y="+y);
+			if (drawLines && i > 0) {
+				g2.setPaint(Color.blue);
 				g2.draw(new Line2D.Double(previousX, previousY, x, y));
 			}
+			g2.setPaint(Color.green);
+			g2.fill(new Ellipse2D.Double(x - pointSize / 2, y - pointSize / 2,
+					pointSize, pointSize)); // point?
 			previousX = x;
 			previousY = y;
 		}
@@ -145,33 +255,35 @@ public class Plotter extends JPanel {
 		float sh = lm.getAscent() + lm.getDescent();
 
 		// Y-Axis
-		float sy = PAD + ((getHeight() - 2 * PAD) - yLabel.length() * sh) / 2
-				+ lm.getAscent();
+		float labelY = PAD + ((getHeight() - 2 * PAD) - yLabel.length() * sh)
+				/ 2 + lm.getAscent();
 		for (int i = 0; i < yLabel.length(); i++) {
 			String letter = String.valueOf(yLabel.charAt(i));
 			float sw = (float) font.getStringBounds(letter, frc).getWidth();
 			float sx = (PAD - sw) / 2;
-			g2.drawString(letter, sx, sy);
-			sy += sh;
+			g2.drawString(letter, sx, labelY);
+			labelY += sh;
 		}
 		// Y max label
-		String s = String.valueOf(this.max);
-		float sw = (float) font.getStringBounds(s, frc).getWidth();
-		float sx = PAD - sw - 2;
+		String maxLabel = String.valueOf(this.max);
+		labelY = (float) (PAD - lm.getAscent() / 2);
+		g2.drawString(maxLabel, PAD, labelY);
 
-		sy = (float) (PAD - lm.getAscent() / 2);
-		g2.drawString(s, sx, sy);
+		// Y min label
+		String minLabel = String.valueOf(this.min);
+		labelY = (float) (PAD - lm.getAscent() / 2);
+		g2.drawString(minLabel, PAD, getHeight() - labelY);
 
 		// X-Axis
-		sy = getHeight() - PAD + (PAD - sh) / 2 + lm.getAscent();
-		sw = (float) font.getStringBounds(xLabel, frc).getWidth();
-		sx = (getWidth() - sw) / 2;
-		g2.drawString(xLabel, sx, sy);
+		labelY = getHeight() - PAD + (PAD - sh) / 2 + lm.getAscent();
+		float sw = (float) font.getStringBounds(xLabel, frc).getWidth();
+		float sx = (getWidth() - sw) / 2;
+		g2.drawString(xLabel, sx, labelY);
 
 		// max X value label
-		String xValue = String.valueOf(data.size() - 1);
+		String xValue = String.valueOf(data.size());
 		sw = (float) font.getStringBounds(xValue, frc).getWidth();
-		g2.drawString(xValue, getWidth() - sw, sy);
+		g2.drawString(xValue, getWidth() - sw - PAD, labelY);
 	}
 
 	private void doCalcs() {
@@ -187,6 +299,38 @@ public class Plotter extends JPanel {
 		this.scale = (double) (getHeight() - 2 * PAD) / offset;
 	}
 
+	public static void plot(List<Double> data) {
+		Plotter plotter = new Plotter(data);
+		makeFrame(plotter);
+	}
+
+	public static void plot(List<Double> data, String title) {
+		Plotter plotter = new Plotter(data, title);
+		makeFrame(plotter);
+	}
+
+	public static void plot(List<Double> data, String title, int pointSize) {
+		Plotter plotter = new Plotter(data, title, pointSize);
+		makeFrame(plotter);
+	}
+
+	public static void plot(String title, List<Double> data, int pointSize,
+			boolean drawLines) {
+		Plotter plotter = new Plotter(data, title, pointSize, drawLines);
+		makeFrame(plotter);
+	}
+
+	private static void makeFrame(Plotter plotter) {
+		JFrame f = new JFrame();
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.add(plotter);
+		f.setSize(plotter.getWindowWidth(), plotter.getWindowHeight());
+		f.setLocation(plotter.getScreenX(), plotter.getScreenY());
+		f.setTitle(plotter.getTitle() + "   ("
+				+ plotter.getData().size()+" samples)");
+		f.setVisible(true);
+	}
+
 	public static void main(String[] args) {
 		List<Double> data = new ArrayList<Double>();
 		int nPoints = 20;
@@ -196,32 +340,6 @@ public class Plotter extends JPanel {
 			// System.out.println(x + "  " + y);
 			data.add(y);
 		}
-		// List<Double> data = Arrays.asList(-0.9, -0.8, -0.7, -0.6, -0.5,
-		// -0.4, -0.3, -0., -0.54, -0.77, 0.61, 0.55, 0.48, 0.60,
-		// 0.49, 0.36, 0.38, 0.27, 0.20, 0.18);
-
-		Plotter.plot("This", data);
-	}
-
-	public static void plot(String title, List<Double> data) {
-		plot(title,data,8);
-	}
-	
-	public static void plot(String title, List<Double> data, int pointSize) {
-		Plotter plotter = new Plotter(title, data);
-		plotter.setPointSize(pointSize);
-		JFrame f = new JFrame(plotter.getTitle());
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.add(plotter);
-		f.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		f.setLocation(200, 200);
-		f.setVisible(true);
-	}
-
-	/**
-	 * @param pointSize
-	 */
-	public void setPointSize(int pointSize) {
-		this.pointSize  = pointSize;
+		Plotter.plot("Sine Wave", data, 8, true);
 	}
 }
