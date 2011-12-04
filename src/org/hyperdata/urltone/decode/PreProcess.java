@@ -30,7 +30,7 @@ public class PreProcess {
 			data.add(y);
 		}
 		Plotter.plot(data, "Raw", 8, true);
-		Plotter.plot(normalise(data, true, true),"Normalised", 8, true);
+	//	Plotter.plot(normalise(data, true, true),"Normalised", 8, true);
 	}
 	/**
 	 * Normalises values in List scaling to peak value = +/- 1 and/or removing

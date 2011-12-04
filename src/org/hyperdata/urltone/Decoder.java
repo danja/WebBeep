@@ -3,6 +3,7 @@
  */
 package org.hyperdata.urltone;
 
+import java.net.IDN;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,7 @@ public class Decoder {
 
 	public static String decode(List<Double> tones) {
 		// bandpass
+
 		System.out.println("decoding");
 
 		// tones = PreProcess.normalise(tones, true, true);
@@ -46,7 +48,7 @@ public class Decoder {
 		System.out.println("cropping");
 		tones = tones.subList(start, end);
 
-		Plotter.plot(tones, "Cropped");
+	//	Plotter.plot(tones, "Cropped");
 
 		System.out.println("chunking");
 		int cropLength = (int) (Constants.CROP_PROPORTION
@@ -63,6 +65,7 @@ public class Decoder {
 		}
 
 		System.out.println("finding pitches");
+		String ascii = "";
 		for (int i = 0; i < chunks.size()-1; i++) {
 			List<Double> leftChunk = chunks.get(i);
 			leftChunk = PreProcess.normalise(leftChunk, true, true);
@@ -71,19 +74,103 @@ public class Decoder {
 			rightChunk = PreProcess.normalise(rightChunk, true, true);
 
 			PitchFinderGeneral finder = new FFTPitchFinder();
-
+Plotter.plot(leftChunk, "leftChunk");
 			List<Double> leftFreqs = finder.findPitches(leftChunk);
-			List<Integer> leftFreqIndices = new ArrayList<Integer>();
 			System.out.println("leftFreqs = "+leftFreqs);
 			
+			System.out.println("ASCII="+ascii);
+			double lowNote;
+			double noteA = findNearestNote(leftFreqs.get(0));
+			double highNote = findNearestNote(leftFreqs.get(1));
+			if(noteA > highNote){
+				lowNote = highNote;
+				highNote = noteA;
+			} else {
+				lowNote = noteA;
+			}
+			
+//			List<Beep> leftBeeps = new ArrayList<Beep>();
+//			for(int j=0;j<leftFreqs.size();j++){
+//				System.out.println("nearestL="+findNearestNote(leftFreqs.get(j)));
+//			}
+			
 			List<Double> rightFreqs = finder.findPitches(rightChunk);
-			List<Integer> rightFreqIndices = new ArrayList<Integer>();
+//			// List<Integer> rightFreqIndices = new ArrayList<Integer>();
 			System.out.println("rightFreqs = "+rightFreqs);
+			for(int j=0;j<rightFreqs.size();j++){
+				rightFreqs.set(j, findNearestNote(rightFreqs.get(j)));
+			}
+			
+			int beatLow = 0;
+			int beatHigh = 0;
+			if(rightFreqs.size() == 2) { // two long notes
+				beatLow = 1;
+				beatHigh = 1;
+			}
+			if(rightFreqs.size() == 0) { // two short notes
+				beatLow = 2;
+				beatHigh = 2;
+			}
+			if(rightFreqs.size() == 1) { // one of each
+				double rightNote = findNearestNote(rightFreqs.get(0));
+				if(rightNote == lowNote){
+					beatLow = 1;
+					beatHigh = 2;
+				}
+				if(rightNote == highNote){
+					beatLow = 2;
+					beatHigh = 1;
+				}
+			}
+			int lowValue = -1;
+			int highValue = -1;
+			try {
+				System.out.println("unmapping low "+ lowNote + "   " +beatLow);
+				lowValue = unmapValue(lowNote, beatLow, Maps.LOW_FREQ, Maps.LOW_BEATS);
+				System.out.println("got value "+ lowValue);
+			} catch (Exception exception) {
+				exception.printStackTrace();
+			}
+			try {
+				System.out.println("unmapping high "+ highNote + "   " +beatHigh);
+				highValue = unmapValue(highNote, beatHigh, Maps.HIGH_FREQ, Maps.HIGH_BEATS);
+				System.out.println("got value "+ highValue);
+			} catch (Exception exception) {
+				exception.printStackTrace();
+			}			 
+			String c = (new Character(  (char)(lowValue*16 + highValue)    )).toString();
+			// System.out.println(c);
+			ascii += c;
 		}
-
-		return "qwe";
+System.out.println("ascii="+ascii);
+		return IDN.toUnicode(ascii);
 	}
 	
+	public static int unmapValue(double note, int beat, double[] freqs, int[] beats) throws Exception{
+		
+		for(int i=0;i<freqs.length;i++){
+			if(note == freqs[i] && beat == beats[i]){
+				return i;
+			}
+		}
+		throw new Exception("Not Found");
+	}
+	
+	public static double findNearestNote(double freq){
+		
+		double nearestNote = 0;
+		double bestDiff = Math.abs(nearestNote-freq);
+		
+		for(int i=1;i<Maps.ALL_FREQS.length;i++){
+			double current = Maps.ALL_FREQS[i];
+			double diff = Math.abs(current-freq);
+			if(diff<bestDiff){
+				bestDiff = diff;
+				nearestNote = current;
+			}
+		}
+		return nearestNote;
+	}
 //	public List<Integer> getIndices(List<Double> freqs){	
 ////		double[] notes;
 ////		int[] beats; 
@@ -99,7 +186,7 @@ public class Decoder {
 //	}
 
 	public static void main(String[] args) {
-		List<Double> tones = Encoder.encode("a");
-		decode(tones);
+		List<Double> tones = Encoder.encode("hat"); // "http://danbri.org/foaf.rdf#danbri"
+		System.out.println(decode(tones));
 	}
 }
