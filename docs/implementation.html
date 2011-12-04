@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+      "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Web Beep Implementation Notes</title>
+  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+</head>
+
+<body>
+<h1>Web Beeps Implementation</h1>
+<ul>
+  <li><a href="#Design">Design Considerations</a></li>
+  <li><a href="#Encoding">Encoding</a></li>
+  <li><a href="#Decoding">Decoding</a></li>
+  <li><a href="#Initial">Initial Implementation</a></li>
+  <li><a href="#Notes">Notes</a></li>
+</ul>
+
+<h2><a id="Design">Design Considerations</a></h2>
+
+<p>The original idea was to encode HTTP URLs as little tunes, with the
+characters in URLs <em>somehow</em> mapping to musical notes. It's essentially
+the same idea as used in <a
+href="http://en.wikipedia.org/wiki/Touch_tone">touch-tone</a> phone signals,
+but tweaked to make the beeps easier on the ear. </p>
+
+<h3>Text Pre-Processing</h3>
+
+<p>International coverage (i.e. <a
+href="http://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRI</a>s)
+is fairly essential, which basically means supporting <strong><a
+href="http://en.wikipedia.org/wiki/Unicode">Unicode</a></strong>. Because of
+this it was decided not to include any optimisations or other special features
+for URLs, and simply support <strong>arbitrary text</strong>. Unicode contains
+a <em>lot</em> of characters, and mapping from these to musical pitches
+directly is almost certainly unfeasible. However <a
+href="http://en.wikipedia.org/wiki/Punycode">Punycode</a> is an encoding syntax
+by which a string of Unicode characters can be transformed uniquely and
+reversibly into a much smaller character set. Roughly speaking, characters that
+can be expressed in ASCII are expressed that way, but multiple ASCII characters
+are used to represent other individual Unicode characters. In general, the cost
+of reducing the size of the character set is an increase in the resulting
+string length. </p>
+
+<h3>Phonic Constraints</h3>
+
+<p>To achieve a reasonable compromise between length of (beep) messages,
+musicality and implementation complexity, it was decided that a <strong>maximum
+of two concurrent tones</strong> (one bass, one treble) was probably most
+suitable. By restricting these to a <strong><a
+href="http://en.wikipedia.org/wiki/Pentatonic">pentatonic scale</a></strong>,
+arbitrary combinations of notes could be used without major dissonance. Another
+consideration was that generic hardware should be able to transmit and receive
+the beeps, so a range of pitches was chosen that should be suitable for common
+acoustic transducers, i.e. nothing too low or too high (approx. 250-1500Hz,
+which is around female speech range and a bit higher, or an extended soprano
+singer). The restriction to the notes of the pentatonic scale (i.e. 5 per
+octave) meant a little more space for data was desirable, so the treble notes
+may appear as half- or whole-length.</p>
+
+<p>This may give the impression a lot of planning went into this aspect : not
+really, most decisions were made during experimentation, based on what sounded
+about right.</p>
+
+<h2><a id="Encoding">Encoding</a></h2>
+
+<p>Generating Web Beeps is relatively straightforward, details of the
+requirements can be found in the <a href="spec.html">specification</a>, there's
+an example of how this may be implemented in Java in the <a
+href="https://github.com/danja/WebBeep">source code</a>.</p>
+
+<h2><a id="Decoding">Decoding</a></h2>
+
+<p>Getting the text back out from the beeps is rather more convoluted
+(<em>literally!</em>), though is based on standard digital signal processing
+(<a href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a>)
+techniques. </p>
+
+<h3>Pre-processing</h3>
+
+<p>Normalisation (before &amp; after chunking)</p>
+
+<p>Filtering (before &amp; after chunking)</p>
+
+<p>reduce harmonic distorion artifacts and out-of-band noise</p>
+
+<p>Although some </p>
+
+<h3>Pitch Detection</h3>
+
+<p>Many pitch detection algorithms are available, here are some examples ranked
+in order of guesstimated suitability:</p>
+<ol>
+  <li>Cross-correlation (against reference waves) : should be the most accurate
+    and efficient</li>
+  <li>Pisarenko decomposition : can take advantage of prior knowledge (there
+    are max 2 tones)</li>
+  <li>FFT : brute force, computationally expensive (lots of irrelevant
+    cross-correlation) but very well known and easy to see what's going on</li>
+  <li>Bandpass filters (one per note) : could maybe be good, as a variation of
+    1, need to figure out what to convolve</li>
+  <li>Zero-crossing detection/timing : likely to be unreliable</li>
+</ol>
+
+<p>Performance shouldn't really be a problem on a PC-like machine or even a
+smartphone, though experimentation needed. For accuracy it'd be nice to have
+(say) 3 parallel decoding algorithms going, let them vote for the best match.
+</p>
+
+<h2><a id="Initial">Initial Implementation</a></h2>
+
+<p>Test Results</p>
+
+<h2><a id="Notes">Notes</a></h2>
+
+<h2></h2>
+
+<h3>Applications</h3>
+
+<p>As a kind of QR Code for the ear, Web Beeps should be useful in a lot of
+places. Suggestions please...</p>
+
+<p>Ring Tone</p>
+
+<p></p>
+
+<h3>Prior Art</h3>
+
+<p>I'm sure many variations of this have been done before, though it's hard to
+find out what there is - the searches I've tried have mostly led to something
+related to mobile/cellphone ringtones (grr, I wanted the name "Web Tone" but
+it's already taken). Whatever, the basic idea isn't much of a leap: what if you
+had something like DTFM tones only not so hard on the ear? Given that,
+implementations are pretty obvious given minimal background knowledge on
+character encoding, music and DSP techniques. Simple matter of
+experimenting/banging out the code. The implementation described here is pretty
+arbitrary, mostly based on what seemed like a good idea at the time.</p>
+
+<p>I did find a generally related patent application from (?) but its scope is
+quite a bit narrower than what's described here. It's suggested implementation
+seems a fair bit different, or at least I found the description a bit
+confusing. There didn't seem to be an associated implementation anywhere.</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+</body>
+</html>
