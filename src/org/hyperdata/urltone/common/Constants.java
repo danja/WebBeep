@@ -9,7 +9,9 @@ package org.hyperdata.urltone.common;
  */
 public class Constants {
 
-	// Values for mono, 16bit, 44.1kHz
+	/*
+	 * Preset values for mono, 16bit, 44.1kHz
+	 */
 	public static final double AMPLITUDE = 0.99;
 	public static final int BITS_PER_SAMPLE = 16; 
 	public static final int BYTES_PER_SAMPLE = 2; 
@@ -26,14 +28,28 @@ public class Constants {
 	public static final int FFT_BITS = 15; // is ok at 18
 	public static final int FFT_MAX = (int)Math.pow(2,FFT_BITS);
 	
-	// Chunk parameters
+	/* 
+	 * Chunk parameters
+	 */
 		public static double TONE_DURATION = 0.145833333;
 		public static double END_PAD_DURATION = 0.145833333;
 		public static double SILENCE_DURATION = 0;
 		public static double START_PAD_DURATION = 0.0729166667;
 		
-		// Decode parameters
-		public static double START_LEVEL = 0.75;
+		/* 
+		 * Encode parameters
+		 */
+		public static double ENCODE_ATTACK_PROPORTION = 0.0625;
+		public static double ENCODE_DECAY_PROPORTION = 0.125;
+		
+		/* 
+		 * Decode parameters
+		 */
+		public static double SILENCE_THRESHOLD = 0.2; // for cropping - below this level assumed no sound
 		public static double CROP_PROPORTION = 0.5;
+		public static double EDGE_WINDOW_PROPORTION = 0.01;
+		
+		// proportion between actual min/max freqs and filter cutoff freqs
+		public static double CUTOFF_PADDING = 1.1;
 
 }

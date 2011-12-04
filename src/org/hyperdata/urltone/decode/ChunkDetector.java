@@ -45,7 +45,7 @@ public class ChunkDetector {
 	}
 	
 	public static int findEndThreshold(List<Double> tones, double threshold){
-		for(int i=tones.size();i>0;i--){
+		for(int i=tones.size()-1;i>=0;i--){
 			if(tones.get(i)>threshold) return i;
 		}
 		return -1;
@@ -60,17 +60,23 @@ public class ChunkDetector {
 	 */
 	public static List<List<Double>> chunk(List<Double> tones, int startTime,
 			int cropLength) {
+		// System.out.println("tones.size()=" + tones.size());
 		List<List<Double>> chunks = new ArrayList<List<Double>>();
 		int chunkStart = startTime;
-		while (chunkStart < tones.size()) {
-			int chunkEnd = chunkStart
-					+ (int) (Constants.TONE_DURATION * Constants.SAMPLE_RATE);
-			List<Double> chunk = tones.subList(chunkStart, chunkStart
-					+ cropLength); // without decay section
-			System.out.println("chunkStart=" + chunkStart);
+		do {	
+			int chunkEnd = chunkStart + cropLength;
+//			System.out.println("cropLength=" + cropLength);
+//			System.out.println("chunkStart=" + chunkStart);
+//			System.out.println("chunkEnd=" + chunkEnd);
+//			System.out.println();
+			
+			List<Double> chunk = tones.subList(chunkStart, chunkEnd); // without decay section
 			chunks.add(chunk);
-			chunkStart = chunkEnd + 1;
-		}
+			
+			chunkStart += (int) (Constants.TONE_DURATION * Constants.SAMPLE_RATE/2);
+			
+		} while (chunkStart + cropLength < tones.size()-1);
+		
 		return chunks;
 	}
 

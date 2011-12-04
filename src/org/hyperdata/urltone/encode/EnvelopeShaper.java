@@ -11,15 +11,14 @@ import java.util.List;
  */
 public class EnvelopeShaper {
 
-	static double ATTACK_PROPORTION = 0.0625;
-	static double DECAY_PROPORTION = 0.125;
 
-	public static List<Double> applyEnvelope(List<Double> samples) {
+
+	public static List<Double> applyEnvelope(List<Double> samples, double attackProportion, double decayProportion) {
 		// System.out.println("SAMPLES="+samples.size());
-		double attackMarker = ((double) samples.size()) * ATTACK_PROPORTION;
+		double attackMarker = ((double) samples.size()) * attackProportion;
 		// System.out.println("Attack marker="+attackMarker);
 		double decayMarker = ((double) samples.size())
-				* (1.0 - DECAY_PROPORTION);
+				* (1.0 - decayProportion);
 		// System.out.println("Decay marker="+decayMarker);
 		for (int i = 0; i < attackMarker; i++) {
 

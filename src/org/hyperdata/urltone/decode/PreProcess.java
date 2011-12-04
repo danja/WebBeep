@@ -80,24 +80,6 @@ public class PreProcess {
 		return normals;
 	}
 	
-	public static List<Integer> findPeaks(List<Double> signal){
-		signal = RunningAverage.filter(signal, 10);
-		List<Integer> peaks = new ArrayList<Integer>();
-		for(int i=2;i<signal.size();i++){
-			double s1 = roundToSignificantFigures(signal.get(i-2), 2);
-			double s2 = roundToSignificantFigures(signal.get(i-1), 2);
-			double s3 = roundToSignificantFigures(signal.get(i), 2);
-			double diff1 = s2-s1;
-			double diff2 = s3-s2;
-			if(diff1>0 && diff2<0){
-				System.out.println("peak at "+(i-1));
-			//	System.out.println(signal.get(i));
-			//	System.out.println((i-1)/Constants.SAMPLE_RATE);
-			}
-		}
-		return peaks;
-	}
-	
 	public static double roundToSignificantFigures(double num, int n) {
 	    if(num == 0) {
 	        return 0;

@@ -5,7 +5,7 @@ pre-process with bp filters (one high, one low?)
 
 pitch detection algorithm options:
 0. FFT : brute force, but easy to see what's going on
-1. zero-crossing : probably way too unreliable
+1. zero-crossing : probably much too unreliable
 2. cross-correlate with reference waves : should be by far the best
 3. BP filter per note : probably ok, but inefficient compared to 2.
 4. Pisarenko decomposition : probably somewhere between 0 and 2.

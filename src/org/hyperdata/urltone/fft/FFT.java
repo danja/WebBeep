@@ -44,8 +44,8 @@ public class FFT {
 	public List<Double> doPowerFFT(List<Double> xrL, boolean invFlag) {
 		// int size = xrL.size();
 		int size = (int) Math.pow(2, bits);
-		System.out.println("size="+size);
-		System.out.println("xrl size="+xrL.size());
+//		System.out.println("size="+size);
+//		System.out.println("xrl size="+xrL.size());
 		double[] xr = new double[size];
 		double[] xi = new double[size];
 		for (int i = 0; i < xrL.size(); i++) {
@@ -56,7 +56,7 @@ public class FFT {
 			xr[i] = 0;
 			xi[i] = 0;
 		}
-		System.out.println("xr length="+xr.length);
+//		System.out.println("xr length="+xr.length);
 		doFFT(xr, xi, invFlag);
 
 		List<Double> powers = new ArrayList<Double>();

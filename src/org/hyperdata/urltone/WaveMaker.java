@@ -67,7 +67,7 @@ public final class WaveMaker {
 					* Math.sin(2 * Math.PI * map[note] * i
 							/ Constants.SAMPLE_RATE));
 		}
-		data = EnvelopeShaper.applyEnvelope(data);
+		data = EnvelopeShaper.applyEnvelope(data, Constants.ENCODE_ATTACK_PROPORTION, Constants.ENCODE_DECAY_PROPORTION);
 		return data;
 	}
 
