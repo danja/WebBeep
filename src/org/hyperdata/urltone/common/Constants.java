@@ -25,13 +25,14 @@ public class Constants {
 	//	*2 = 2.33333333
 		//0.145833333;
 		// 0.0729166667
-	public static final int FFT_BITS = 15; // is ok at 18
+	public static final int FFT_BITS = 12; // is ok at 18
 	public static final int FFT_MAX = (int)Math.pow(2,FFT_BITS);
 	
 	/* 
 	 * Chunk parameters
 	 */
-		public static double TONE_DURATION = 0.145833333;
+		public static double TONE_DURATION = 0.145833333/1.5;
+		// public static double TONE_DURATION = 0.145833333;
 		public static double END_PAD_DURATION = 0.145833333;
 		public static double SILENCE_DURATION = 0;
 		public static double START_PAD_DURATION = 0.0729166667;

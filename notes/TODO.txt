@@ -1,0 +1,8 @@
+add filters
+
+Add checksum
+
+add file load
+
+add tests
+

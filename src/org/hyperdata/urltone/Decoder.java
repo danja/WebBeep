@@ -20,6 +20,21 @@ import org.hyperdata.urltone.encode.EnvelopeShaper;
  */
 public class Decoder {
 
+	/**
+	 * @param list
+	 * @return
+	 */   	///// TO PLAY WITH
+	private static List<Double> processChunk(List<Double> chunk) {
+		
+		List<Double> modChunk = PreProcess.normalise(chunk, true, true);
+		
+		// slope intro/outro of chunk, does it help?
+		modChunk = EnvelopeShaper.applyEnvelope(modChunk,
+				Constants.EDGE_WINDOW_PROPORTION,
+				Constants.EDGE_WINDOW_PROPORTION);
+		return modChunk;
+	}
+	
 	public static String decode(List<Double> tones) {
 		// bandpass
 
@@ -50,11 +65,9 @@ public class Decoder {
 
 	//	System.out.println("windowing chunks");
 		
-		// slope intro/outro of chunk, does it help?
+		
 		for (int i = 0; i < chunks.size(); i++) {
-			chunks.set(i, EnvelopeShaper.applyEnvelope(chunks.get(i),
-					Constants.EDGE_WINDOW_PROPORTION,
-					Constants.EDGE_WINDOW_PROPORTION));
+			chunks.set(i, processChunk(chunks.get(i)));
 		//	Plotter.plot(chunks.get(i), "Chunk " + i);
 		}
 
@@ -85,13 +98,7 @@ public class Decoder {
 				lowNote = noteA;
 			}
 
-			// List<Beep> leftBeeps = new ArrayList<Beep>();
-			// for(int j=0;j<leftFreqs.size();j++){
-			// System.out.println("nearestL="+findNearestNote(leftFreqs.get(j)));
-			// }
-
 			List<Double> rightFreqs = finder.findPitches(rightChunk);
-			// // List<Integer> rightFreqIndices = new ArrayList<Integer>();
 		//	System.out.println("rightFreqs = " + rightFreqs);
 			for (int j = 0; j < rightFreqs.size(); j++) {
 				rightFreqs.set(j, findNearestNote(rightFreqs.get(j)));
@@ -147,6 +154,8 @@ public class Decoder {
 
 		return IDN.toUnicode(ascii);
 	}
+
+
 
 	public static int unmapValue(double note, int beat, double[] freqs,
 			int[] beats) throws Exception {
