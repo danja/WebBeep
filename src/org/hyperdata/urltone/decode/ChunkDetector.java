@@ -63,7 +63,8 @@ public class ChunkDetector {
 		// System.out.println("tones.size()=" + tones.size());
 		List<List<Double>> chunks = new ArrayList<List<Double>>();
 		int chunkStart = startTime;
-		do {	
+		
+		while (chunkStart + cropLength < tones.size()-1) {	
 			int chunkEnd = chunkStart + cropLength;
 //			System.out.println("cropLength=" + cropLength);
 //			System.out.println("chunkStart=" + chunkStart);
@@ -72,10 +73,18 @@ public class ChunkDetector {
 			
 			List<Double> chunk = tones.subList(chunkStart, chunkEnd); // without decay section
 			chunks.add(chunk);
-			
+	//		System.out.println("chunks found="+chunks.size());
 			chunkStart += (int) (Constants.TONE_DURATION * Constants.SAMPLE_RATE/2);
-			
-		} while (chunkStart + cropLength < tones.size()-1);
+		} 
+		// UGLY HACK
+		if(chunks.size() % 2 != 0){
+	//		System.out.println("chunk size = "+chunks.size()+"  so adding dummy");
+			List<Double> dummychunk = new ArrayList<Double>();
+			for(int i=0;i<cropLength;i++){
+				dummychunk.add(0.0);
+			}
+			chunks.add(dummychunk);
+		}
 		
 		return chunks;
 	}

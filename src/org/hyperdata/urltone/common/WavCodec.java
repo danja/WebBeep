@@ -6,6 +6,7 @@ package org.hyperdata.urltone.common;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sound.sampled.AudioFileFormat;
@@ -22,10 +23,10 @@ import org.hyperdata.urltone.WaveMaker;
 public class WavCodec {
 
 	/**
-	 * Read audio samples from a file (in .wav or .au format) and return them as
+	 * Read audio samples from a .wav file and return them as
 	 * a double array with values between -1.0 and +1.0.
 	 */
-	public static double[] read(String filename) {
+	public static double[] readArray(String filename) {
 		byte[] data = WavCodec.readByte(filename);
 		int N = data.length;
 		double[] d = new double[N / 2];
@@ -35,14 +36,35 @@ public class WavCodec {
 		}
 		return d;
 	}
+	
+	/**
+	 * 
+	 * Read audio samples from a .wav file and return them as
+	 * a double array with values between -1.0 and +1.0.
+	 * 
+	 * @param filename .wav filename
+	 * @return List of Doubles with values between -1.0 and +1.0
+	 */
+	public static  List<Double> read(String filename){
+		double[] data = readArray(filename);
+		List<Double> signal = new ArrayList<Double>();
+		for(int i=0;i< data.length;i++){
+			signal.add(data[i]);
+		}
+		return signal;
+	}
 
 	// return data as a byte array
 	static byte[] readByte(String filename) {
 		byte[] data = null;
 		AudioInputStream ais = null;
 		try {
-			URL url = WaveMaker.class.getResource(filename);
-			ais = AudioSystem.getAudioInputStream(url);
+		//	URL url = WaveMaker.class.getResource(filename);
+		//	System.out.println("URL="+url);
+			File file = new File(filename);
+			ais = AudioSystem.getAudioInputStream(file);
+			AudioFormat format = ais.getFormat();
+// System.out.println("format = "+format);
 			data = new byte[ais.available()];
 			ais.read(data);
 		} catch (Exception e) {

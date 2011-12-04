@@ -4,13 +4,10 @@ NOT YET TESTED!!!
  */
 package org.hyperdata.urltone.decode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.hyperdata.urltone.common.Constants;
 import org.hyperdata.urltone.common.Plotter;
-import org.hyperdata.urltone.filters.IIRLowpassFilter;
-import org.hyperdata.urltone.filters.IIRLowpassFilterDesign;
-import org.hyperdata.urltone.filters.RunningAverage;
 
 
 
@@ -29,7 +26,7 @@ public class PreProcess {
 		//	System.out.println(i + "  " + y);
 			data.add(y);
 		}
-		Plotter.plot(data, "Raw", 8, true);
+	//	Plotter.plot(data, "Raw", 8, true);
 	//	Plotter.plot(normalise(data, true, true),"Normalised", 8, true);
 	}
 	/**

@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 
 public class Plotter extends JPanel {
 
+	static int calls = 0;
 	/**
 	 * @param drawLines
 	 *            the drawLines to set
@@ -42,8 +43,8 @@ public class Plotter extends JPanel {
 		return this.data;
 	}
 
-	private int windowWidth = 1000;
-	private int windowHeight = 200;
+	private int windowWidth = 250; // 1000
+	private int windowHeight = 200; // 200
 
 	private int screenX = 200;
 	private int screenY = 200;
@@ -346,7 +347,8 @@ public class Plotter extends JPanel {
 		f.add(plotter);
 		f.setSize(plotter.getWindowWidth(), plotter.getWindowHeight());
 		f.setLocation(plotter.getScreenX(), plotter.getScreenY());
-		f.setTitle(plotter.getTitle() + "   ("
+		calls++;
+		f.setTitle(calls+"   "+plotter.getTitle() + "   ("
 				+ plotter.getData().size()+" points)");
 		f.setVisible(true);
 	}

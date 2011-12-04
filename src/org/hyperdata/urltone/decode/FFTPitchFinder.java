@@ -66,7 +66,7 @@ public class FFTPitchFinder implements PitchFinderGeneral {
 		// values from the FFT are very small
 		freqs = PreProcess.normalise(freqs, true, true);
 
-		// Plotter plotter = Plotter.plot(freqs, "Freqs", 4, true);
+//		Plotter plotter = Plotter.plot(freqs, "Freqs", 4, true);
 		
 		// If... she.. weighs the same as a duck, she's made of wood.
 		List<Map<Integer, Double>> peaks = PeakDetector.peak_detection(freqs, 0.5);
