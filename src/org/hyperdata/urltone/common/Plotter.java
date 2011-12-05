@@ -43,7 +43,7 @@ public class Plotter extends JPanel {
 		return this.data;
 	}
 
-	private int windowWidth = 250; // 1000
+	private int windowWidth = 1000; // 1000
 	private int windowHeight = 200; // 200
 
 	private int screenX = 200;
@@ -240,6 +240,13 @@ public class Plotter extends JPanel {
 				g2.fill(new Ellipse2D.Double(nx - pointSize / 2, ny - pointSize / 2,
 						pointSize, pointSize)); // point?
 			}
+			for(int n=0;n<highlights.size();n++){
+				double xh = PAD + highlights.get(n) * xStep;
+				double yh = getHeight()/2 - scale * (data.get(highlights.get(n)) - offset); // - offset
+				g2.setPaint(Color.red);
+				g2.fill(new Ellipse2D.Double(xh - pointSize, yh - pointSize,
+						pointSize*2, pointSize*2)); // double point size
+			}
 			previousX = x;
 			previousY = y;
 		}
@@ -247,9 +254,17 @@ public class Plotter extends JPanel {
 	
 	List<Integer> xPoints = new ArrayList<Integer>();
 	List<Double> yPoints = new ArrayList<Double>();
+
+	List<Integer> highlights = new ArrayList<Integer>();
+	
 	public void addPoint(int x, double y){
 		xPoints.add(x);
 		yPoints.add(y);
+		repaint();
+	}
+	
+	public void highlight(int x){
+		highlights.add(x);
 		repaint();
 	}
 	
@@ -295,12 +310,12 @@ public class Plotter extends JPanel {
 			labelY += sh;
 		}
 		// Y max label
-		String maxLabel = String.valueOf(this.max);
+		String maxLabel = String.valueOf(roundToSignificantFigures(this.max,2));
 		labelY = (float) (PAD - lm.getAscent() / 2);
 		g2.drawString(maxLabel, PAD, labelY);
 
 		// Y min label
-		String minLabel = String.valueOf(this.min);
+		String minLabel = String.valueOf(roundToSignificantFigures(this.min,2));
 		labelY = (float) (PAD - lm.getAscent() / 2);
 		g2.drawString(minLabel, PAD, getHeight() - labelY);
 
@@ -311,9 +326,22 @@ public class Plotter extends JPanel {
 		g2.drawString(xLabel, sx, labelY);
 
 		// max X value label
-		String xValue = String.valueOf(data.size());
+		String xValue = String.valueOf(data.size())+" points";
 		sw = (float) font.getStringBounds(xValue, frc).getWidth();
 		g2.drawString(xValue, getWidth() - sw - PAD, labelY);
+	}
+
+	public static double roundToSignificantFigures(double num, int n) {
+	    if(num == 0) {
+	        return 0;
+	    }
+	
+	    final double d = Math.ceil(Math.log10(num < 0 ? -num: num));
+	    final int power = n - (int) d;
+	
+	    final double magnitude = Math.pow(10, power);
+	    final long shifted = Math.round(num*magnitude);
+	    return shifted/magnitude;
 	}
 
 	public static Plotter plot(List<Double> data) {
@@ -340,6 +368,15 @@ public class Plotter extends JPanel {
 		makeFrame(plotter);
 		return plotter;
 	}
+	
+	public static Plotter plot(List<Double> data, String title, String xLabel, String yLabel, int pointSize,
+			boolean drawLines) {
+		Plotter plotter = new Plotter(data, title, pointSize, drawLines);
+		plotter.setXLabel(xLabel);
+		plotter.setYLabel(yLabel);
+		makeFrame(plotter);
+		return plotter;
+	}
 
 	private static void makeFrame(Plotter plotter) {
 		JFrame f = new JFrame();
@@ -348,8 +385,7 @@ public class Plotter extends JPanel {
 		f.setSize(plotter.getWindowWidth(), plotter.getWindowHeight());
 		f.setLocation(plotter.getScreenX(), plotter.getScreenY());
 		calls++;
-		f.setTitle(calls+"   "+plotter.getTitle() + "   ("
-				+ plotter.getData().size()+" points)");
+		f.setTitle("("+calls+")"+"   "+plotter.getTitle());
 		f.setVisible(true);
 	}
 

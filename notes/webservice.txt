@@ -1,0 +1,21 @@
+Two Operations: Encode, Decode
+
+Encode Web Beep
+-----------------
+form - POST string (store)
+email/web, optional (store)
+progress indicator
+download beep
+
+Decode Web Beep
+---------------
+form - upload audio file
+email/web, optional (store)
+progress indicator
+show result (store)
+if FAIL:
+  try other algorithms
+  store audio
+
+
+

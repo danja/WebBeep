@@ -18,6 +18,8 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		
+		// NOTE FFT is at low value
+		
 		String input = "http://danbri.org/foaf.rdf#danbri"; // http://danbri.org/foaf.rdf#danbri
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 		

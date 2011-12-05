@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.urltone.decode;
+package org.hyperdata.urltone.decode.fft;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,8 @@ import org.hyperdata.urltone.Encoder;
 import org.hyperdata.urltone.common.Constants;
 import org.hyperdata.urltone.common.Maps;
 import org.hyperdata.urltone.common.Plotter;
-import org.hyperdata.urltone.fft.FFT;
+import org.hyperdata.urltone.decode.PitchFinderGeneral;
+import org.hyperdata.urltone.decode.PreProcess;
 
 /**
  * @author danny
@@ -27,7 +28,7 @@ public class FFTPitchFinder implements PitchFinderGeneral {
 	//	Plotter.plot(tones, "Tones");
 //		System.out.println("tones=" + tones.size());
 
-		PitchFinderGeneral finder = new FFTPitchFinder();
+		FFTPitchFinder finder = new FFTPitchFinder();
 		Map<Double, Double> pitches = finder.findPairs(tones);
 
 		Set<Double> keys = pitches.keySet();

@@ -4,7 +4,7 @@
  * in turn derived from libfft.c by by Jef Poskanzer (public domain)
  */
 
-package org.hyperdata.urltone.fft;
+package org.hyperdata.urltone.decode.fft;
 
 import java.util.ArrayList;
 import java.util.List;

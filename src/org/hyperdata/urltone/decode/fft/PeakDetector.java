@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.urltone.decode;
+package org.hyperdata.urltone.decode.fft;
 
 import java.util.*;
 

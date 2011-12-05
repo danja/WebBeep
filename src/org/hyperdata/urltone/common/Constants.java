@@ -12,7 +12,7 @@ public class Constants {
 	/*
 	 * Preset values for mono, 16bit, 44.1kHz
 	 */
-	public static final double AMPLITUDE = 0.99;
+	public static final double AMPLITUDE = 0.49;
 	public static final int BITS_PER_SAMPLE = 16; 
 	public static final int BYTES_PER_SAMPLE = 2; 
 	public static final double MAX_VALUE = 32767;

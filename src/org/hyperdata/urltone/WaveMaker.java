@@ -42,15 +42,15 @@ public final class WaveMaker {
 //		System.out.println("Maps.HIGH_FREQ[noteHigh]="+Maps.HIGH_FREQ[noteHigh]);
 		
 		if (Maps.LOW_BEATS[noteLow] == 1) {
-			dataLow = makeWaveform(noteLow, duration, Maps.LOW_FREQ);
+			dataLow = makeShapedWaveform(Maps.LOW_FREQ[noteLow], Constants.AMPLITUDE, duration);
 		} else {
-			dataLow = makeWaveform(noteLow, duration / 2, Maps.LOW_FREQ);
+			dataLow = makeShapedWaveform(Maps.LOW_FREQ[noteLow], Constants.AMPLITUDE, duration / 2);
 			dataLow.addAll(makeSilence(duration / 2));
 		}
 		if (Maps.HIGH_BEATS[noteHigh] == 1) {
-			dataHigh = makeWaveform(noteHigh, duration, Maps.HIGH_FREQ);
+			dataHigh = makeShapedWaveform(Maps.HIGH_FREQ[noteHigh], Constants.AMPLITUDE, duration);
 		} else {
-			dataHigh = makeWaveform(noteHigh, duration / 2, Maps.HIGH_FREQ);
+			dataHigh = makeShapedWaveform(Maps.HIGH_FREQ[noteHigh], Constants.AMPLITUDE,duration / 2);
 			dataHigh.addAll(makeSilence(duration / 2));
 		}
 		for (int i = 0; i < Constants.N_SAMPLES * duration; i++) { // merge/mix
@@ -59,17 +59,32 @@ public final class WaveMaker {
 		return dataLow;
 	}
 
-	public static List<Double> makeWaveform(int note, double duration,
-			double[] map) {
+	public static List<Double> makeShapedWaveform(double freq,double amplitude, double duration) {
+		List<Double> data = makeWaveform(freq, amplitude, duration);
+		return EnvelopeShaper.applyEnvelope(data, Constants.ENCODE_ATTACK_PROPORTION, Constants.ENCODE_DECAY_PROPORTION);
+		
+	}
+	public static List<Double> makeWaveform(double freq, double amplitude, double duration) {
 		List<Double> data = new ArrayList<Double>();
-		for (int i = 0; i < Constants.N_SAMPLES * duration; i++) {
-			data.add((Constants.AMPLITUDE / 2)
-					* Math.sin(2 * Math.PI * map[note] * i
-							/ Constants.SAMPLE_RATE));
+		for (int i = 0; i < ((double)Constants.N_SAMPLES) * duration; i++) {
+			data.add((amplitude)
+					* Math.sin(2 * Math.PI * freq * i
+							/ (double)Constants.SAMPLE_RATE));
 		}
-		data = EnvelopeShaper.applyEnvelope(data, Constants.ENCODE_ATTACK_PROPORTION, Constants.ENCODE_DECAY_PROPORTION);
+	//	data = EnvelopeShaper.applyEnvelope(data, Constants.ENCODE_ATTACK_PROPORTION, Constants.ENCODE_DECAY_PROPORTION);
 		return data;
 	}
+	
+//	public static List<Double> makeWaveform(double freq, double duration) {
+//		List<Double> data = new ArrayList<Double>();
+//		for (int i = 0; i < ((double)Constants.N_SAMPLES) * duration; i++) {
+//			data.add((Constants.AMPLITUDE / 2)
+//					* Math.sin(2 * Math.PI * freq * i
+//							/ (double)Constants.SAMPLE_RATE));
+//		}
+//	//	data = EnvelopeShaper.applyEnvelope(data, Constants.ENCODE_ATTACK_PROPORTION, Constants.ENCODE_DECAY_PROPORTION);
+//		return data;
+//	}
 
 	public static List<Double> makeSilence(double duration) {
 		List<Double> data = new ArrayList<Double>();

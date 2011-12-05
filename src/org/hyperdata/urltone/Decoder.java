@@ -9,9 +9,9 @@ import java.util.List;
 import org.hyperdata.urltone.common.Constants;
 import org.hyperdata.urltone.common.Maps;
 import org.hyperdata.urltone.decode.ChunkDetector;
-import org.hyperdata.urltone.decode.FFTPitchFinder;
 import org.hyperdata.urltone.decode.PitchFinderGeneral;
 import org.hyperdata.urltone.decode.PreProcess;
+import org.hyperdata.urltone.decode.fft.FFTPitchFinder;
 import org.hyperdata.urltone.encode.EnvelopeShaper;
 
 /**

@@ -13,6 +13,6 @@ import java.util.Map;
  */
 public interface PitchFinderGeneral {
 	
-	public Map<Double, Double> findPairs(List<Double> tones);
+	// public Map<Double, Double> findPairs(List<Double> tones);
 	public List<Double> findPitches(List<Double> tones);
 }

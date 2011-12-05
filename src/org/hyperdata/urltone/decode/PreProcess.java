@@ -29,6 +29,10 @@ public class PreProcess {
 	//	Plotter.plot(data, "Raw", 8, true);
 	//	Plotter.plot(normalise(data, true, true),"Normalised", 8, true);
 	}
+	
+	public static List<Double> normalise(List<Double> tones) {
+		return normalise(tones,true,true);
+	}
 	/**
 	 * Normalises values in List scaling to peak value = +/- 1 and/or removing
 	 * zero offset)
@@ -75,19 +79,6 @@ public class PreProcess {
 			normals.add((tones.get(i) - offset)*scale);
 		}
 		return normals;
-	}
-	
-	public static double roundToSignificantFigures(double num, int n) {
-	    if(num == 0) {
-	        return 0;
-	    }
-
-	    final double d = Math.ceil(Math.log10(num < 0 ? -num: num));
-	    final int power = n - (int) d;
-
-	    final double magnitude = Math.pow(10, power);
-	    final long shifted = Math.round(num*magnitude);
-	    return shifted/magnitude;
 	}
 	
 	// TODO
