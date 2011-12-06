@@ -16,14 +16,10 @@ public class RunTests {
 	String finalString = String.valueOf((char)random.nextInt(256));
 	
 	public static void main(String[] args){
-		String testString = "";
-		for(int i=0;i<LENGTH;i++){
-			testString+= getChar();
-		}
-		System.out.println(testString);
+
+		// run main method in each class
+		// follow with a pop-up saying what you should see
+		// ok click, proceed to the next main()
 	}
-		public static String getChar(){
-			return String.valueOf((char)random.nextInt(256));
-		}
 	
 }

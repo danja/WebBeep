@@ -6,7 +6,7 @@ package org.hyperdata.urltone.decode;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.urltone.Encoder;
+import org.hyperdata.urltone.encode.Encoder;
 import org.hyperdata.urltone.util.Constants;
 import org.hyperdata.urltone.util.WavCodec;
 

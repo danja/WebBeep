@@ -63,7 +63,7 @@ public class Plotter extends JPanel {
 	private double offset = 0;
 	private double xStep = 0;
 	private double scale = 0;
-	private int pointSize = 8;
+	private int pointSize = 2;
 	private boolean drawLines = false;
 
 	/**

@@ -1,11 +1,12 @@
 /**
  * 
  */
-package org.hyperdata.urltone;
+package org.hyperdata.urltone.encode;
 
 import java.net.IDN;
 import java.util.*;
 
+import org.hyperdata.urltone.WaveMaker;
 import org.hyperdata.urltone.decode.PreProcess;
 import org.hyperdata.urltone.decode.fft.FFT;
 import org.hyperdata.urltone.decode.fft.PeakDetector;

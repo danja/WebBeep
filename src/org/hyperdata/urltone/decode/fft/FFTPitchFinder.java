@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hyperdata.urltone.Encoder;
 import org.hyperdata.urltone.decode.PitchFinderGeneral;
 import org.hyperdata.urltone.decode.PreProcess;
+import org.hyperdata.urltone.encode.Encoder;
 import org.hyperdata.urltone.util.Constants;
 import org.hyperdata.urltone.util.Maps;
 import org.hyperdata.urltone.util.Plotter;

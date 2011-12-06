@@ -1,16 +1,14 @@
 /**
  * 
  */
-package org.hyperdata.urltone;
+package org.hyperdata.urltone.decode;
 
 import java.net.IDN;
 import java.util.List;
 
-import org.hyperdata.urltone.decode.ChunkDetector;
-import org.hyperdata.urltone.decode.PitchFinderGeneral;
-import org.hyperdata.urltone.decode.PreProcess;
 import org.hyperdata.urltone.decode.correlate.Correlator;
 import org.hyperdata.urltone.decode.fft.FFTPitchFinder;
+import org.hyperdata.urltone.encode.Encoder;
 import org.hyperdata.urltone.encode.EnvelopeShaper;
 import org.hyperdata.urltone.util.Constants;
 import org.hyperdata.urltone.util.Maps;
@@ -78,30 +76,10 @@ public class Decoder {
 		for (int i = 0; i < chunks.size() - 1; i=i+2) {
 		//	System.out.println("CHUNK " + i + " and "+ (i+1));
 			List<Double> leftChunk = chunks.get(i);
-			leftChunk = PreProcess.normalise(leftChunk, true, true);
-
 			List<Double> rightChunk = chunks.get(i + 1);
-			rightChunk = PreProcess.normalise(rightChunk, true, true);
-
-			//////////////////////////////////////////////////////////////////////////////////
 			
-			PitchFinderGeneral finder = new FFTPitchFinder();
-			PitchFinderGeneral finderC = new Correlator();
+			String c = chunksToCharacter(leftChunk, rightChunk);
 			
-		//	Plotter.plot(leftChunk, "leftChunk");
-			
-			List<Double> leftFreqs = finder.findPitches(leftChunk);
-			List<Double> leftFreqsC = finderC.findPitches(leftChunk);
-			
-			System.out.println(leftFreqs);
-			System.out.println(leftFreqsC);
-			System.out.println();
-			
-			List<Double> rightFreqs = finder.findPitches(rightChunk);
-			
-			
-			
-			String c = decodeChar(leftFreqs, rightFreqs);
 		
 			// System.out.println(c);
 			ascii += c;
@@ -112,6 +90,31 @@ public class Decoder {
 	}
 
 
+
+	/**
+	 * @param leftChunk
+	 * @param rightChunk
+	 * @return
+	 */
+	private static String chunksToCharacter(List<Double> leftChunk,
+			List<Double> rightChunk) {
+		leftChunk = PreProcess.normalise(leftChunk, true, true);
+
+		
+		rightChunk = PreProcess.normalise(rightChunk, true, true);
+
+		//////////////////////////////////////////////////////////////////////////////////
+		
+		PitchFinderGeneral finder = new FFTPitchFinder();
+		
+	//	Plotter.plot(leftChunk, "leftChunk");
+		
+		List<Double> leftFreqs = finder.findPitches(leftChunk);
+		List<Double> rightFreqs = finder.findPitches(rightChunk);
+
+		String c = decodeChar(leftFreqs, rightFreqs);
+		return c;
+	}
 
 	/**
 	 * @param leftFreqs

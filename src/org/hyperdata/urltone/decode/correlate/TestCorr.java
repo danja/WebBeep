@@ -6,9 +6,9 @@ package org.hyperdata.urltone.decode.correlate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.urltone.Encoder;
 import org.hyperdata.urltone.WaveMaker;
 import org.hyperdata.urltone.decode.ChunkDetector;
+import org.hyperdata.urltone.encode.Encoder;
 import org.hyperdata.urltone.util.Constants;
 import org.hyperdata.urltone.util.Plotter;
 
