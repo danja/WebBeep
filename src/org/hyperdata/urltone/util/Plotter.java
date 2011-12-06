@@ -4,7 +4,7 @@
  * integer (discrete time) steps on X-axis
  * +/- double values on Y-axis
  */
-package org.hyperdata.urltone.common;
+package org.hyperdata.urltone.util;
 
 /**
  * @author danny
@@ -43,7 +43,7 @@ public class Plotter extends JPanel {
 		return this.data;
 	}
 
-	private int windowWidth = 1000; // 1000
+	private int windowWidth = 800; // 1000
 	private int windowHeight = 200; // 200
 
 	private int screenX = 200;
@@ -63,7 +63,7 @@ public class Plotter extends JPanel {
 	private double offset = 0;
 	private double xStep = 0;
 	private double scale = 0;
-	private int pointSize = 2;
+	private int pointSize = 8;
 	private boolean drawLines = false;
 
 	/**
@@ -356,6 +356,13 @@ public class Plotter extends JPanel {
 		return plotter;
 	}
 
+	public static Plotter plot(double zoom, List<Double> data, String title) {
+		data = data.subList(0, (int)(data.size()/zoom));
+		Plotter plotter = new Plotter(data, title);
+		makeFrame(plotter);
+		return plotter;
+	}
+	
 	public static Plotter plot(List<Double> data, String title, int pointSize) {
 		Plotter plotter = new Plotter(data, title, pointSize);
 		makeFrame(plotter);

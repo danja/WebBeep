@@ -6,13 +6,14 @@ package org.hyperdata.urltone;
 import java.net.IDN;
 import java.util.List;
 
-import org.hyperdata.urltone.common.Constants;
-import org.hyperdata.urltone.common.Maps;
 import org.hyperdata.urltone.decode.ChunkDetector;
 import org.hyperdata.urltone.decode.PitchFinderGeneral;
 import org.hyperdata.urltone.decode.PreProcess;
+import org.hyperdata.urltone.decode.correlate.Correlator;
 import org.hyperdata.urltone.decode.fft.FFTPitchFinder;
 import org.hyperdata.urltone.encode.EnvelopeShaper;
+import org.hyperdata.urltone.util.Constants;
+import org.hyperdata.urltone.util.Maps;
 
 /**
  * @author danny
@@ -82,71 +83,26 @@ public class Decoder {
 			List<Double> rightChunk = chunks.get(i + 1);
 			rightChunk = PreProcess.normalise(rightChunk, true, true);
 
+			//////////////////////////////////////////////////////////////////////////////////
+			
 			PitchFinderGeneral finder = new FFTPitchFinder();
+			PitchFinderGeneral finderC = new Correlator();
+			
 		//	Plotter.plot(leftChunk, "leftChunk");
+			
 			List<Double> leftFreqs = finder.findPitches(leftChunk);
-		//	System.out.println("leftFreqs = " + leftFreqs);
-
-		//	System.out.println("ASCII=" + ascii);
-			double lowNote;
-			double noteA = findNearestNote(leftFreqs.get(0));
-			double highNote = findNearestNote(leftFreqs.get(1));
-			if (noteA > highNote) {
-				lowNote = highNote;
-				highNote = noteA;
-			} else {
-				lowNote = noteA;
-			}
-
+			List<Double> leftFreqsC = finderC.findPitches(leftChunk);
+			
+			System.out.println(leftFreqs);
+			System.out.println(leftFreqsC);
+			System.out.println();
+			
 			List<Double> rightFreqs = finder.findPitches(rightChunk);
-		//	System.out.println("rightFreqs = " + rightFreqs);
-			for (int j = 0; j < rightFreqs.size(); j++) {
-				rightFreqs.set(j, findNearestNote(rightFreqs.get(j)));
-			}
-
-			int beatLow = 0;
-			int beatHigh = 0;
-			if (rightFreqs.size() == 2) { // two long notes
-				beatLow = 1;
-				beatHigh = 1;
-			}
-			if (rightFreqs.size() == 0) { // two short notes
-				beatLow = 2;
-				beatHigh = 2;
-			}
-			if (rightFreqs.size() == 1) { // one of each
-				double rightNote = findNearestNote(rightFreqs.get(0));
-				if (rightNote == lowNote) {
-					beatLow = 1;
-					beatHigh = 2;
-				}
-				if (rightNote == highNote) {
-					beatLow = 2;
-					beatHigh = 1;
-				}
-			}
-			int lowValue = -1;
-			int highValue = -1;
-			try {
-//				System.out
-//						.println("unmapping low " + lowNote + "   " + beatLow);
-				lowValue = unmapValue(lowNote, beatLow, Maps.LOW_FREQ,
-						Maps.LOW_BEATS);
-	//			System.out.println("got value " + lowValue);
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
-			try {
-//				System.out.println("unmapping high " + highNote + "   "
-//						+ beatHigh);
-				highValue = unmapValue(highNote, beatHigh, Maps.HIGH_FREQ,
-						Maps.HIGH_BEATS);
-	//			System.out.println("got value " + highValue);
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
-			String c = (new Character((char) (lowValue * 16 + highValue)))
-					.toString();
+			
+			
+			
+			String c = decodeChar(leftFreqs, rightFreqs);
+		
 			// System.out.println(c);
 			ascii += c;
 	//		System.out.println("ascii=" + ascii);
@@ -157,9 +113,79 @@ public class Decoder {
 
 
 
+	/**
+	 * @param leftFreqs
+	 * @param rightFreqs
+	 * @return
+	 */
+	private static String decodeChar(List<Double> leftFreqs,
+			List<Double> rightFreqs) {
+		
+		double lowNote;
+		double noteA = findNearestNote(leftFreqs.get(0));
+		double highNote = findNearestNote(leftFreqs.get(1));
+		if (noteA > highNote) {
+			lowNote = highNote;
+			highNote = noteA;
+		} else {
+			lowNote = noteA;
+		}
+
+	
+	//	System.out.println("rightFreqs = " + rightFreqs);
+		for (int j = 0; j < rightFreqs.size(); j++) {
+			rightFreqs.set(j, findNearestNote(rightFreqs.get(j)));
+		}
+
+		int beatLow = 0;
+		int beatHigh = 0;
+		if (rightFreqs.size() == 2) { // two long notes
+			beatLow = 1;
+			beatHigh = 1;
+		}
+		if (rightFreqs.size() == 0) { // two short notes
+			beatLow = 2;
+			beatHigh = 2;
+		}
+		if (rightFreqs.size() == 1) { // one of each
+			double rightNote = findNearestNote(rightFreqs.get(0));
+			if (rightNote == lowNote) {
+				beatLow = 1;
+				beatHigh = 2;
+			}
+			if (rightNote == highNote) {
+				beatLow = 2;
+				beatHigh = 1;
+			}
+		}
+		int lowValue = -1;
+		int highValue = -1;
+		try {
+//			System.out
+//					.println("unmapping low " + lowNote + "   " + beatLow);
+			lowValue = unmapValue(lowNote, beatLow, Maps.LOW_FREQ,
+					Maps.LOW_BEATS);
+//			System.out.println("got value " + lowValue);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		try {
+//			System.out.println("unmapping high " + highNote + "   "
+//					+ beatHigh);
+			highValue = unmapValue(highNote, beatHigh, Maps.HIGH_FREQ,
+					Maps.HIGH_BEATS);
+//			System.out.println("got value " + highValue);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		String c = (new Character((char) (lowValue * 16 + highValue)))
+				.toString();
+		return c;
+	}
+
 	public static int unmapValue(double note, int beat, double[] freqs,
 			int[] beats) throws Exception {
-
+// System.out.println(beat);
 		for (int i = 0; i < freqs.length; i++) {
 			if (note == freqs[i] && beat == beats[i]) {
 				return i;

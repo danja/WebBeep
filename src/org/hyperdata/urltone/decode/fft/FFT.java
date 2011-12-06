@@ -41,6 +41,10 @@ public class FFT {
 		}
 	}
 
+	public List<Double> fft(List<Double> xrL){
+		return doPowerFFT(xrL,false);
+	}
+	
 	public List<Double> doPowerFFT(List<Double> xrL, boolean invFlag) {
 		// int size = xrL.size();
 		int size = (int) Math.pow(2, bits);

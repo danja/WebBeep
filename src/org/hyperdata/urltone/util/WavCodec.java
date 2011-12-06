@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.urltone.common;
+package org.hyperdata.urltone.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

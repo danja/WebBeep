@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.urltone.common;
+package org.hyperdata.urltone.util;
 
 /**
  * @author danny

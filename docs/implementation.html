@@ -16,11 +16,22 @@
 
 <body>
 <h1>Web Beeps Implementation</h1>
+
+<h2>Introduction</h2>
+
+<p>I started this write-up just after I had initial rough code running that
+suggested the project was feasible (I wanted notes for myself before I forgot),
+so the writing tense varies. Hopefully it contains enough information (however
+incoherent) to explain how it works. There is some digital signal processing
+jargon, but DSP can be treated as black-box stuff, there's no real need to go
+into the details to build things. (It's been years since I studied this stuff
+and my maths is totally rusted, the revision I did for this was basically
+skimming the corresponding Wikipedia articles).</p>
 <ul>
   <li><a href="#Design">Design Considerations</a></li>
   <li><a href="#Encoding">Encoding</a></li>
   <li><a href="#Decoding">Decoding</a></li>
-  <li><a href="#Initial">Initial Implementation</a></li>
+  <li><a href="#Initial">Reference Implementation</a></li>
   <li><a href="#Notes">Notes</a></li>
 </ul>
 
@@ -115,9 +126,103 @@ smartphone, though experimentation needed. For accuracy it'd be nice to have
 (say) 3 parallel decoding algorithms going, let them vote for the best match.
 </p>
 
-<h2><a id="Initial">Initial Implementation</a></h2>
+<h2><a id="Initial">Reference Implementation</a></h2>
 
-<p>Test Results</p>
+<p>The reference implementation has been written in Java. </p>
+
+<p></p>
+
+<p>The decoder was initially developed using FFT pitch detection - a suitable
+FFT class was easily found online (a port of a C version), then a
+cross-correlation approach was tried.</p>
+
+<h4>FFT Detection</h4>
+
+<p>plus peak detection</p>
+
+<p><em>timing</em></p>
+
+<h4>Cross-Correlation</h4>
+
+<p>The second approach to pitch detection I tried was cross-correlation, the
+idea being to have reference tones corresponding to all the note frequencies
+that are likely to be present, and comparing each of these with a given chunk
+in the Web Beep. Intuitively, this should rock - it's totally targetted and so
+should be very accurate and efficient.</p>
+
+<p>Correlation is essentially comparing two signals point-by-point. The only
+problem with that for the current problem is that the phase may vary.
+Cross-correlation addresses this by sliding the values of one signal against
+another and doing comparisons for each step. I'm sure plenty of libraries exist
+for this, but none jumped out at me and the principle seems simple enough, so I
+hacked it. </p>
+
+<p>As a trial I started with a sampled sinewave signal (aka Test Tone) of known
+frequency (300Hz) with enough cycles (23?) that the frequency should be pretty
+obvious. </p>
+
+<p><img alt="test tone plot" src="images/correlation-tone-plot.png" width="800"
+height="200" /></p>
+
+<p>I then set up the code to generate a load of reference waveforms, a series
+that I knew would include the Test Tone frequency - I went from half it's
+frequency to double it, in steps of 1Hz. </p>
+
+<p></p>
+
+<p><img alt="reference wave" src="images/correlation-reference-plot.png"
+width="800" height="200" /></p>
+
+<p>The code that did the comparisons is a loop within a loop, moving the
+starting point of the reference through the Test Tone, for each
+signal/reference comparison the reference values being shunted along as many
+times as necessary to cover the whole test tone (to give the same effect as
+calculating a reference signal of the same length as the Test Tone - this way
+might be marginally quicker).</p>
+
+<p>Assuming I've understood cross-correlation correctly, the comparisons are
+simply point-by-point multiplications. These are summed for each reference
+frequency across all steps through the Test Tone. This produced a result as
+below. As well as a bit of low amplitude oscillation, in the middle there's a
+big peak followed by a big trough.</p>
+
+<p></p>
+
+<p><img alt="correlation plot" src="images/correlation-plot.png" width="800"
+height="200" /></p>
+
+<p></p>
+
+<p>Pulling out the values (rounded here), the top of the peak corresponds to
+294Hz, the bottom of the trough 304Hz. Taking the mean of these gives a value
+of 299Hz, not a bad estimate for the target frequency of 300Hz - it's about
+0.33% out.</p>
+
+<p>This is a brilliant result, only not the one called for by this application.
+I don't want to have to sweep through reference tones in 1Hz steps, I want to
+give it just a handful of known reference frequencies (e.g. the note A at
+440HZ) and see if they're present or not.</p>
+
+<p>So I pulled out the point corresponding to the target frequency (it's the
+red dot on the plot above), here it is compared with the "visible" values:</p>
+
+<p><strong>peak point</strong> : (294, 50000)</p>
+
+<p><strong>trough point</strong> : (304, -67000)</p>
+
+<p><strong>target freq point</strong> : (300, -57000)</p>
+
+<p><strong>mean of abs(y) values</strong> : 4900</p>
+
+<p>- so the point corresponding to the frequency in question does seem to be
+significantly away from the background noise. It's a bit worrying that it's
+close to a zero-crossing point, but this seems promising enough to glue
+together the rest of the pitch detection implementation and see how well it
+behaves with some real data.</p>
+
+<p></p>
+
+<h3>Test Results</h3>
 
 <h2><a id="Notes">Notes</a></h2>
 
@@ -126,28 +231,23 @@ smartphone, though experimentation needed. For accuracy it'd be nice to have
 <h3>Applications</h3>
 
 <p>As a kind of QR Code for the ear, Web Beeps should be useful in a lot of
-places. Suggestions please...</p>
+places. <em>Suggestions please...</em></p>
 
-<p>Ring Tone</p>
+<p>Ring Tone - use your email, Home Page or personal URI.</p>
 
 <p></p>
 
-<h3>Prior Art</h3>
+<h3>Prior Art?</h3>
 
 <p>I'm sure many variations of this have been done before, though it's hard to
-find out what there is - the searches I've tried have mostly led to something
-related to mobile/cellphone ringtones (grr, I wanted the name "Web Tone" but
-it's already taken). Whatever, the basic idea isn't much of a leap: what if you
-had something like DTFM tones only not so hard on the ear? Given that,
-implementations are pretty obvious given minimal background knowledge on
-character encoding, music and DSP techniques. Simple matter of
-experimenting/banging out the code. The implementation described here is pretty
-arbitrary, mostly based on what seemed like a good idea at the time.</p>
-
-<p>I did find a generally related patent application from (?) but its scope is
-quite a bit narrower than what's described here. It's suggested implementation
-seems a fair bit different, or at least I found the description a bit
-confusing. There didn't seem to be an associated implementation anywhere.</p>
+find out what there is - searches I've tried mostly led to something related to
+mobile/cellphone ringtones (grr, I wanted the name "Web Tone" but it's already
+taken). Whatever, the basic idea is straightforward: what if you had something
+like DTFM tones only not so hard on the ear? Given that, implementations are
+pretty obvious given minimal background knowledge of character encoding, music
+and DSP techniques. Simple matter of guesswork, experimentation &amp; banging
+out the code. The implementation described here is pretty arbitrary, mostly
+based on what seemed like a good idea at the time.</p>
 
 <p></p>
 

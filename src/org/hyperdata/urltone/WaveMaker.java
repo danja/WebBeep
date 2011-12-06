@@ -2,10 +2,10 @@ package org.hyperdata.urltone;
 
 import java.util.*;
 
-import org.hyperdata.urltone.common.Constants;
-import org.hyperdata.urltone.common.Maps;
-import org.hyperdata.urltone.common.WavCodec;
 import org.hyperdata.urltone.encode.EnvelopeShaper;
+import org.hyperdata.urltone.util.Constants;
+import org.hyperdata.urltone.util.Maps;
+import org.hyperdata.urltone.util.WavCodec;
 
 public final class WaveMaker {
 

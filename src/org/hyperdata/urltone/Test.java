@@ -5,7 +5,8 @@ package org.hyperdata.urltone;
 
 import java.util.List;
 
-import org.hyperdata.urltone.common.WavCodec;
+import org.hyperdata.urltone.util.Plotter;
+import org.hyperdata.urltone.util.WavCodec;
 
 /**
  * @author danny
@@ -20,7 +21,7 @@ public class Test {
 		
 		// NOTE FFT is at low value
 		
-		String input = "http://danbri.org/foaf.rdf#danbri"; // http://danbri.org/foaf.rdf#danbri
+		String input = "o"; // http://danbri.org/foaf.rdf#danbri
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 		
 		System.out.println("Input : "+input);
@@ -31,6 +32,7 @@ public class Test {
 		List<Double> outTones = Encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 		
 		WavCodec.save(filename, outTones);
+		Plotter.plot(outTones);
 		
 		long thisTime = System.currentTimeMillis();
 		

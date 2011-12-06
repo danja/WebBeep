@@ -1,18 +1,24 @@
 /**
+WRONGMINDED! but maybe useful elsewhere
+need tweak to look like version in TestCorr (return List)
+
  * 
  */
 package org.hyperdata.urltone.decode.correlate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.hyperdata.urltone.Encoder;
 import org.hyperdata.urltone.WaveMaker;
-import org.hyperdata.urltone.common.Constants;
-import org.hyperdata.urltone.common.Plotter;
 import org.hyperdata.urltone.decode.ChunkDetector;
 import org.hyperdata.urltone.decode.PitchFinderGeneral;
 import org.hyperdata.urltone.decode.PreProcess;
+import org.hyperdata.urltone.util.Constants;
+import org.hyperdata.urltone.util.Plotter;
 
 /**
  * @author danny
@@ -26,28 +32,88 @@ public class Correlator implements PitchFinderGeneral {
 	@Override
 	public List<Double> findPitches(List<Double> tones) {
 
-		Iterator<Double> freqs = ReferenceTones.tones.keySet().iterator();
+		Map<Double,Double> correlations = new HashMap<Double,Double>();
+		
+		Iterator<Double> refFreqs = ReferenceTones.tones.keySet().iterator();
+		double max = 0;
+		while(refFreqs.hasNext()){
+			double refFreq = refFreqs.next();
+			List<Double> ref = ReferenceTones.tones.get(refFreq);
+			double correlate = Math.abs(correlate(tones,ref));
+			correlations.put(refFreq, correlate);
+			if(correlate > max) max = correlate;
+		}
+		
+		List<Double> pitches = new ArrayList<Double>();
+		List<Double> all = new ArrayList<Double>();
+		
+		Iterator<Double> freqs = correlations.keySet().iterator();
+		double gold = 0;
+		double goldFreq = 0;
+		double silver = 0;
+		double silverFreq = 0;
 		while(freqs.hasNext()){
 			double freq = freqs.next();
-			List<Double> tone = ReferenceTones.tones.get(freq);
+			double correlate = correlations.get(freq);
+			all.add(correlate);
+			if(correlate > gold) {
+				gold = correlate;
+				goldFreq = freq;
+			}
+			
+			if(correlate > silver && correlate != gold){
+				silver = correlate;
+				silverFreq = freq;
+			}
 		}
-		return null;
+		Plotter plotter = Plotter.plot(all, "eek", 8);
+		pitches.add(goldFreq);
+		pitches.add(silverFreq);
+		return pitches;
 	}
 	
 	public static void main(String[] args) {
-		double testFreq = 300;
+		 double testFreq = 571;
 		List<Double> result = new ArrayList<Double>();
 		List<Double> testTone = WaveMaker.makeShapedWaveform(testFreq, 0.99,
 				Constants.TONE_DURATION);
-		double sampleProportion = 0.8;
 		
-		int midPoint = testTone.size()/2;
-		int start = midPoint-(int)(testTone.size()*sampleProportion/2);
 		
-		int end = midPoint+(int)(testTone.size()*sampleProportion/2);
-	//	System.out.println(start+"   "+end);
-	//	System.out.println("original size : "+testTone.size());
-		testTone = testTone.subList(start,end);
+		////////////////////////////////////////////
+//		List<Double> testTone = Encoder.encode("o");
+//		int startx = ChunkDetector.findStartThreshold(testTone,
+//				Constants.SILENCE_THRESHOLD);
+//		int endx = ChunkDetector.findEndThreshold(testTone,
+//				Constants.SILENCE_THRESHOLD);
+//		testTone = testTone.subList(startx, endx);
+		
+		
+//	good	[1571.923828125, 290.6982421875]
+//		bad		[293.66, 261.63]
+		///////////////////////////////////////////////////
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		double sampleProportion = 1;
+//		
+//		int midPoint = testTone.size()/2;
+//		int start = midPoint-(int)(testTone.size()*sampleProportion/2);
+//		
+//		int end = midPoint+(int)(testTone.size()*sampleProportion/2);
+//	//	System.out.println(start+"   "+end);
+//	//	System.out.println("original size : "+testTone.size());
+//		testTone = testTone.subList(start,end);
 	//	System.out.println("cropped size : "+testTone.size());
 		Plotter.plot(testTone, "Test Tone", "Time", "Amplitude", 2, true);
 		double max = 0;
@@ -56,7 +122,9 @@ public class Correlator implements PitchFinderGeneral {
 		int minPoint = 0;
 		double sum = 0;
 		
-		for (int i = (int) (testFreq / 2); i < testFreq * 2; i++) {
+		for (int i = 100; i<2000; i++) {
+	// 	for (int i = (int) (testFreq / 2); i < testFreq * 2; i++) {		
+			
 			// 2Hz tone, one cycle every 1/2 seconds
 			double duration = 1.0 / (double) i;
 			// System.out.println("duration="+duration);
@@ -94,14 +162,14 @@ public class Correlator implements PitchFinderGeneral {
 		plotter.highlight((int)testFreq- (int) (testFreq / 2));
 //		plotter.highlight(maxPoint);
 		
-		List<Double> data = PreProcess.normalise(result, true, true);
-		data = ChunkDetector.rectify(data);
+//		List<Double> data = PreProcess.normalise(result, true, true);
+//		data = ChunkDetector.rectify(data);
 		// Plotter.plot(data, "Rectified", 3, true);
-		System.out.println("min : "+minPoint + "   "+Plotter.roundToSignificantFigures(min,2));
-		System.out.println("freq : "+testFreq + "   "+Plotter.roundToSignificantFigures(result.get((int)testFreq- (int) (testFreq / 2)), 2));
-		System.out.println("max : "+maxPoint + "    "+Plotter.roundToSignificantFigures(max,2));
+		System.out.println("min point : "+minPoint + "  value at "+Plotter.roundToSignificantFigures(min,2));
+		System.out.println("freq point : "+testFreq + "  value at  "+Plotter.roundToSignificantFigures(result.get((int)testFreq- (int) (testFreq / 2)), 2));
+		System.out.println("max point : "+maxPoint + "  value at  "+Plotter.roundToSignificantFigures(max,2));
 		
-		System.out.println("sum of abs values : "+ (sum/testFreq * 1.5)); 
+		System.out.println("mean of abs values : "+ Plotter.roundToSignificantFigures(sum/result.size(),2)); 
 		
 		int estimate = (minPoint + maxPoint)/2;
 		System.out.println("target : "+testFreq + "   estimate : "+estimate);
@@ -118,6 +186,7 @@ public class Correlator implements PitchFinderGeneral {
 	 * @return
 	 */
 	public static double correlate(List<Double> tone, List<Double> reference) {
+		List<Double> result = new ArrayList<Double>();
 		// System.out.println("tone.size()="+tone.size());
 		// System.out.println("reference.size()="+reference.size());
 		if (reference.size() > tone.size()) {
@@ -130,7 +199,7 @@ public class Correlator implements PitchFinderGeneral {
 		// for(int startPoint =
 		// 0;startPoint+reference.size()<tone.size();startPoint +=
 		// reference.size()){
-		for (int shift = 0; shift < reference.size(); shift++) {
+		for (int shift = 0; shift < tone.size(); shift++) {
 			
 			for (int i = 0; i < tone.size(); i = i + reference.size()) { //
 				for (int j = 0; j < reference.size(); j++) {
@@ -139,18 +208,20 @@ public class Correlator implements PitchFinderGeneral {
 					// System.out.println("reference.size()="+reference.size());
 					// System.out.println("i="+i);
 					// System.out.println("j="+j);
-					int refPoint = j + shift;
-					if (refPoint >= reference.size()) {
-						refPoint -= reference.size();
-					}
-					double ref = reference.get(refPoint);
-					int testPoint = i + j;
+//					int refPoint = j + shift;
+//					if (refPoint >= reference.size()) {
+//						refPoint -= reference.size();
+//					}
+					double ref = reference.get(j);
+					
+					int testPoint = i + j + shift;
 					if (testPoint >= tone.size()) {
 						testPoint = testPoint - tone.size();
 					}
 					// System.out.println("testPoint="+testPoint);
 					double sample = tone.get(testPoint);
 					sum += ref * sample;
+			//		sum += (ref - sample)*(ref - sample); for the fun of it
 				}
 			}
 			if(sum>maxSum){
@@ -159,10 +230,9 @@ public class Correlator implements PitchFinderGeneral {
 			if(sum<minSum){
 				minSum = sum;
 			}
-			
-		} // shift
+			result.add(sum);
+		} // end shift
+	//	 return result;
 		return maxSum>Math.abs(minSum) ? maxSum : minSum;
 	}
-
-
 }

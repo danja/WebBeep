@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.urltone.Encoder;
-import org.hyperdata.urltone.common.Constants;
-import org.hyperdata.urltone.common.WavCodec;
+import org.hyperdata.urltone.util.Constants;
+import org.hyperdata.urltone.util.WavCodec;
 
 /**
  * @author danny
