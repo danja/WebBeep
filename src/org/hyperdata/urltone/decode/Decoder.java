@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.hyperdata.urltone.decode.correlate.Correlator;
 import org.hyperdata.urltone.decode.fft.FFTPitchFinder;
+import org.hyperdata.urltone.encode.Checksum;
 import org.hyperdata.urltone.encode.Encoder;
 import org.hyperdata.urltone.encode.EnvelopeShaper;
 import org.hyperdata.urltone.util.Constants;
@@ -85,11 +86,31 @@ public class Decoder {
 			ascii += c;
 	//		System.out.println("ascii=" + ascii);
 		}
-
+try{
+		ascii = doChecksum(ascii);
+		System.out.println("ascii="+ascii);
+}catch(Exception exception){
+	exception.printStackTrace();
+}
+		
 		return IDN.toUnicode(ascii);
 	}
 
 
+
+	/**
+	 * @param ascii
+	 * @return
+	 */
+	private static String doChecksum(String ascii) throws Exception {
+		String checkString = ascii.substring(0,1);
+		ascii = ascii.substring(1);
+		String checkSum = Checksum.makeChecksumString(ascii);
+		if(!checkSum.equals(checkString)){
+			throw new Exception("checksum failed");
+		}
+		return ascii;
+	}
 
 	/**
 	 * @param leftChunk
@@ -215,6 +236,6 @@ public class Decoder {
 
 	public static void main(String[] args) {
 		List<Double> tones = Encoder.encode("http://danbri.org/foaf.rdf#danbri"); // "http://danbri.org/foaf.rdf#danbri"
-		System.out.println(decode(tones));
+		System.out.println("Decoded = "+decode(tones));
 	}
 }

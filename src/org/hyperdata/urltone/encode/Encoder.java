@@ -48,18 +48,17 @@ public class Encoder {
 	public static List<Double> encode(String idn) {
 
 		String ascii = IDN.toASCII(idn); // Punycode encode
+		
+		ascii = Checksum.makeChecksumString(ascii) + ascii;
 
 		List<Double> tones = new ArrayList<Double>();
 
 		tones.addAll(WaveMaker.makeSilence(Constants.START_PAD_DURATION));
 
-		int checksum = 0;
-
 		for (int i = 0; i < ascii.length(); i++) {
 			// System.out.print(ascii.charAt(i));
 
 			int val = (int) ascii.charAt(i);
-			checksum += val;
 			// System.out.println(val);
 			int lsVal = val % 16; // least significant hex digit of val is for
 									// high tone
