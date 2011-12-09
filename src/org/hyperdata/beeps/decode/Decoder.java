@@ -13,18 +13,22 @@ import org.hyperdata.beeps.decode.fft.FFTPitchFinder;
 import org.hyperdata.beeps.encode.Checksum;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.encode.EnvelopeShaper;
+import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
  * @author danny
  * 
+ * 	 * 
+	 * preprocessors in Decoder are applied to the whole incoming waveform
+	 * postprocessors are applied to individual dual-tone chunks
  */
-public class Decoder {
+public class Decoder extends DefaultCodec {
 
 	/**
 	 * @param list
 	 * @return
-	 */   	///// TO PLAY WITH
+	 */   	///// MOVE to external process
 	private static List<Double> processChunk(List<Double> chunk) {
 		
 		List<Double> modChunk = PreProcess.normalise(chunk, true, true);
@@ -37,7 +41,7 @@ public class Decoder {
 	}
 	
 	public String decode(List<Double> tones) {
-		// bandpass
+		tones = applyPreProcessors(tones);
 
 		System.out.println("decoding");
 
@@ -70,7 +74,9 @@ public class Decoder {
 		
 		
 		for (int i = 0; i < chunks.size(); i++) {
-			chunks.set(i, processChunk(chunks.get(i)));
+			List<Double> chunk = processChunk(chunks.get(i)); // MOVE
+			chunk = applyPostProcessors(chunk);
+			chunks.set(i, chunk);
 		//	Plotter.plot(chunks.get(i), "Chunk " + i);
 		}
 

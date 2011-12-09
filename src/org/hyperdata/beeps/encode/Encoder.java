@@ -12,6 +12,7 @@ import org.hyperdata.beeps.WaveMaker;
 import org.hyperdata.beeps.decode.PreProcess;
 import org.hyperdata.beeps.decode.fft.FFT;
 import org.hyperdata.beeps.decode.fft.PeakDetector;
+import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.WavCodec;
 
@@ -19,32 +20,12 @@ import org.hyperdata.beeps.util.WavCodec;
  * @author danny
  * 
  */
-public class Encoder {
-
-	static String IRI = "http://danbri.org/foaf.rdf#danbri"; 
-
-	// "http://danbri.org/foaf.rdf#danbri"; // "OK" is good!
-	// http://dannyayers.com/stuff
-	// Aa
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		String iri = IRI;
-		if (args.length > 0) {
-			iri = args[0];
-		}
-		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
-		Encoder encoder = new Encoder();
-		List<Double> tones = encoder.encode(IRI);
-		Plotter.plot(tones, "Tones");
-		System.out.println("tones=" + tones.size());
-		// WavCodec.save("/home/danny/workspace/WebBeep/data/beeps1.wav",
-		// tones);
-	}
+public class Encoder extends DefaultCodec {
 
 	/**
 	 * 
+	 * preprocessors in Encoder are applied to individual dual-tone chunks
+	 * postprocessors are applied to the whole outgoing constructed waveform
 	 */
 	public List<Double> encode(String idn) {
 
@@ -65,11 +46,36 @@ public class Encoder {
 									// high tone
 
 			int msVal = (val - val % 16) / 16;
-			tones.addAll(WaveMaker.makeDualtone(msVal, lsVal,
-					Constants.TONE_DURATION));
+			List<Double> chunk = WaveMaker.makeDualtone(msVal, lsVal,
+					Constants.TONE_DURATION);
+			chunk = applyPreProcessors(chunk);
+			tones.addAll(chunk);
 			tones.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
 		}
 		tones.addAll(WaveMaker.makeSilence(Constants.END_PAD_DURATION));
+		tones = applyPostProcessors(tones);
 		return tones;
+	}
+	
+	static String IRI = "http://danbri.org/foaf.rdf#danbri"; 
+
+	// "http://danbri.org/foaf.rdf#danbri"; // "OK" is good!
+	// http://dannyayers.com/stuff
+	// Aa
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		String iri = IRI;
+		if (args.length > 0) {
+			iri = args[0];
+		}
+		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
+		Encoder encoder = new Encoder();
+		List<Double> tones = encoder.encode(IRI);
+		Plotter.plot(tones, "Tones");
+		System.out.println("tones=" + tones.size());
+		// WavCodec.save("/home/danny/workspace/WebBeep/data/beeps1.wav",
+		// tones);
 	}
 }

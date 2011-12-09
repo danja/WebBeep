@@ -6,6 +6,7 @@ package org.hyperdata.beeps.degrade;
 import java.util.List;
 
 import org.hyperdata.beeps.*;
+import org.hyperdata.beeps.pipelines.Processor;
 /**
  * @author danny
  *

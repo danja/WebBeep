@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.pipelines;
 
 import java.util.List;
 
@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface Processor {
 	public List<Double> process(List<Double> input);
+	public void setParameter(String name, Object value);
 }
