@@ -13,6 +13,7 @@ import org.hyperdata.beeps.decode.fft.FFTPitchFinder;
 import org.hyperdata.beeps.encode.Checksum;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.encode.EnvelopeShaper;
+import org.hyperdata.beeps.util.Plotter;
 
 /**
  * @author danny
@@ -35,16 +36,16 @@ public class Decoder {
 		return modChunk;
 	}
 	
-	public static String decode(List<Double> tones) {
+	public String decode(List<Double> tones) {
 		// bandpass
 
-	//	System.out.println("decoding");
+		System.out.println("decoding");
 
 		// tones = PreProcess.normalise(tones, true, true);
 		// tones = ChunkDetector.rectify(tones);
 		// tones = RunningAverage.filter(tones, 100);
 
-		// Plotter.plot(tones);
+		 Plotter.plot(tones, "in decoder");
 
 		int start = ChunkDetector.findStartThreshold(tones,
 				Constants.SILENCE_THRESHOLD);
@@ -54,11 +55,13 @@ public class Decoder {
 		// plotter.addPoint(start, tones.get(start));
 		// plotter.addPoint(end, tones.get(end));
 	//	System.out.println("cropping");
+		
 		tones = tones.subList(start, end);
 
 	//	Plotter.plot(tones, "Cropped");
 
 	//	System.out.println("chunking");
+		
 		int cropLength = (int) (Constants.CROP_PROPORTION
 				* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
 		List<List<Double>> chunks = ChunkDetector.chunk(tones, 0, cropLength);
@@ -86,12 +89,12 @@ public class Decoder {
 			ascii += c;
 	//		System.out.println("ascii=" + ascii);
 		}
-try{
-		ascii = doChecksum(ascii);
-		System.out.println("ascii="+ascii);
-}catch(Exception exception){
-	exception.printStackTrace();
-}
+//try{
+//		ascii = doChecksum(ascii);
+//		System.out.println("ascii="+ascii);
+//}catch(Exception exception){
+//	exception.printStackTrace();
+//}
 		
 		return IDN.toUnicode(ascii);
 	}
@@ -235,7 +238,9 @@ try{
 	}
 
 	public static void main(String[] args) {
-		List<Double> tones = Encoder.encode("http://danbri.org/foaf.rdf#danbri"); // "http://danbri.org/foaf.rdf#danbri"
-		System.out.println("Decoded = "+decode(tones));
+		Encoder encoder = new Encoder();
+		List<Double> tones = encoder.encode("http://danbri.org/foaf.rdf#danbri"); // "http://danbri.org/foaf.rdf#danbri"
+		Decoder decoder = new Decoder();
+		System.out.println("Decoded = "+decoder.decode(tones));
 	}
 }

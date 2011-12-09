@@ -12,3 +12,18 @@ Decode time: 1.249 seconds
 
 *** Success!!! ***
 
+same again
+
+Input : http://danbri.org/foaf.rdf#danbri
+33 characters
+
+Encode time: 0.788 seconds
+23.878788 mS per char
+decoding
+
+Decode time: 1.454 seconds
+44.060608 mS per char
+Output : http://danbri.org/foaf.rdf#danbri
+
+*** Success!!! ***
+

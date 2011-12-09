@@ -79,7 +79,7 @@ public class WavCodec {
 	public static void save(String filename, List<Double> input) {
 
 		// signed, little endian
-		AudioFormat format = new AudioFormat(Constants.SAMPLE_RATE, Constants.BYTES_PER_SAMPLE, 1,
+		AudioFormat format = new AudioFormat(Constants.SAMPLE_RATE, Constants.BITS_PER_SAMPLE, 1,
 				true, false);
 		byte[] data = new byte[2 * input.size()];
 		for (int i = 0; i < input.size(); i++) {

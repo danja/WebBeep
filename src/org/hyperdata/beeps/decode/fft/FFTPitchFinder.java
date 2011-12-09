@@ -24,7 +24,8 @@ import org.hyperdata.beeps.util.Plotter;
 public class FFTPitchFinder implements PitchFinderGeneral {
 
 	public static void main(String[] args) {
-		List<Double> tones = Encoder.encode("a");
+		Encoder encoder = new Encoder();
+		List<Double> tones = encoder.encode("a");
 	//	Plotter.plot(tones, "Tones");
 //		System.out.println("tones=" + tones.size());
 

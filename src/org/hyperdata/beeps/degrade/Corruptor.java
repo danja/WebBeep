@@ -5,12 +5,13 @@ package org.hyperdata.beeps.degrade;
 
 import java.util.List;
 
+import org.hyperdata.beeps.*;
 /**
  * @author danny
  *
  */
-public interface Corruptor {
+public interface Corruptor extends Processor {
 
-	public List<Double> corrupt(List<Double> input);
+	// public List<Double> corrupt(List<Double> input);
 	public List<Double> corrupt(List<Double> input, double amount);
 }

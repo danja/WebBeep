@@ -35,7 +35,8 @@ public class Encoder {
 			iri = args[0];
 		}
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
-		List<Double> tones = encode(IRI);
+		Encoder encoder = new Encoder();
+		List<Double> tones = encoder.encode(IRI);
 		Plotter.plot(tones, "Tones");
 		System.out.println("tones=" + tones.size());
 		// WavCodec.save("/home/danny/workspace/WebBeep/data/beeps1.wav",
@@ -45,18 +46,18 @@ public class Encoder {
 	/**
 	 * 
 	 */
-	public static List<Double> encode(String idn) {
+	public List<Double> encode(String idn) {
 
 		String ascii = IDN.toASCII(idn); // Punycode encode
 		
-		ascii = Checksum.makeChecksumString(ascii) + ascii;
+		// ascii = Checksum.makeChecksumString(ascii) + ascii;
 
 		List<Double> tones = new ArrayList<Double>();
 
 		tones.addAll(WaveMaker.makeSilence(Constants.START_PAD_DURATION));
 
 		for (int i = 0; i < ascii.length(); i++) {
-			// System.out.print(ascii.charAt(i));
+			// System.out.println(ascii.charAt(i));
 
 			int val = (int) ascii.charAt(i);
 			// System.out.println(val);

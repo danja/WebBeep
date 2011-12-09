@@ -93,7 +93,8 @@ public class ChunkDetector {
 	static String filename = "/home/danny/workspace/UTone/data/filtered.wav";
 
 	public static void main(String[] args) {
-		List<Double> tones = Encoder.encode(IRI);
+		Encoder encoder = new Encoder();
+		List<Double> tones = encoder.encode(IRI);
 		int start = findStartThreshold(tones, 0.75);
 		System.out.println(start);
 		WavCodec.save(filename, tones);

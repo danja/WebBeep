@@ -23,7 +23,12 @@ public class Test {
 		
 		// NOTE FFT is at low value
 		
-		String input = "http://danbri.org/foaf.rdf#danbri"; // http://danbri.org/foaf.rdf#danbri
+	//	String input = "http://danbri.org/foaf.rdf#danbri";
+		String input = "ffff";
+		for(char i=70; i<128;i++){
+			input += new Character(i);
+		}
+		// http://danbri.org/foaf.rdf#danbri
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 		
 		System.out.println("Input : "+input);
@@ -31,7 +36,9 @@ public class Test {
 		
 		long startTime = System.currentTimeMillis();
 		
-		List<Double> outTones = Encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
+		Encoder encoder = new Encoder();
+		
+		List<Double> outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 		
 		WavCodec.save(filename, outTones);
 		Plotter.plot(outTones);
@@ -44,18 +51,39 @@ public class Test {
 		List<Double> inTones = WavCodec.read(filename);
 		
 		startTime = System.currentTimeMillis();
-		String output = Decoder.decode(inTones);
+		Decoder decoder = new Decoder();
+		String output = decoder.decode(inTones);
 		System.out.println();
 		thisTime = System.currentTimeMillis();
 
 		System.out.println("Decode time: " + (float)(thisTime - startTime)/1000 + " seconds");
 		System.out.println((float)(thisTime - startTime)/input.length()+" mS per char");
 		
+		System.out.println("Output : "+output);
 		if(output.equals(input)){
 			System.out.println("\n*** Success!!! ***");
 		} else {
 			System.out.println("\n*** FAIL! ***");
 		}
+		int hits = 0;
+		String errs = "";
+		for(int i=0;i<input.length();i++){
+			try{
+				if(input.charAt(i) == output.charAt(i)) {
+					hits++;
+				}else {
+					errs += input.charAt(i);
+				}
+			} catch(Exception e){ 
+				// ignore
+			}
+		}
+		System.out.println("Hits = "+100*(double)hits/(double)input.length()+" %");
+		if(errs.length() > 0){
+			System.out.println("Bad chars = "+errs);
+		}
+		
+		
 	}
 
 }

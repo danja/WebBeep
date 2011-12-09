@@ -26,7 +26,8 @@ public class TestCorr {
 		
 		
 		////////////////////////////////////////////
-		List<Double> testTone = Encoder.encode("o");
+		 Encoder encoder = new Encoder();
+		List<Double> testTone = encoder.encode("o");
 		int startx = ChunkDetector.findStartThreshold(testTone,
 				Constants.SILENCE_THRESHOLD);
 		int endx = ChunkDetector.findEndThreshold(testTone,

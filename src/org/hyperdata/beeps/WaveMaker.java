@@ -51,7 +51,7 @@ public final class WaveMaker {
 			dataHigh = makeShapedWaveform(Maps.HIGH_FREQ[noteHigh], Constants.AMPLITUDE,duration / 2);
 			dataHigh.addAll(makeSilence(duration / 2));
 		}
-		for (int i = 0; i < Constants.N_SAMPLES * duration; i++) { // merge/mix
+		for (int i = 0; i < Constants.SAMPLE_RATE * duration; i++) { // merge/mix
 			dataLow.set(i, dataLow.get(i) + dataHigh.get(i)); // ////////////////////////////////////
 		}
 		return dataLow;
@@ -64,10 +64,8 @@ public final class WaveMaker {
 	}
 	public static List<Double> makeWaveform(double freq, double amplitude, double duration) {
 		List<Double> data = new ArrayList<Double>();
-		for (int i = 0; i < ((double)Constants.N_SAMPLES) * duration; i++) {
-			data.add((amplitude)
-					* Math.sin(2 * Math.PI * freq * i
-							/ (double)Constants.SAMPLE_RATE));
+		for (int i = 0; i < ((double)Constants.SAMPLE_RATE) * duration; i++) {
+			data.add(amplitude * Math.sin(2 * Math.PI * freq * i / (double)Constants.SAMPLE_RATE));
 		}
 	//	data = EnvelopeShaper.applyEnvelope(data, Constants.ENCODE_ATTACK_PROPORTION, Constants.ENCODE_DECAY_PROPORTION);
 		return data;
@@ -86,7 +84,7 @@ public final class WaveMaker {
 
 	public static List<Double> makeSilence(double duration) {
 		List<Double> data = new ArrayList<Double>();
-		for (int i = 0; i < Constants.N_SAMPLES * duration; i++) {
+		for (int i = 0; i < Constants.SAMPLE_RATE * duration; i++) {
 			data.add(0.0);
 		}
 		return data;
