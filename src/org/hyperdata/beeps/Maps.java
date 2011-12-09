@@ -1,7 +1,8 @@
 /**
  * 
  */
-package org.hyperdata.beeps.util;
+package org.hyperdata.beeps;
+
 
 /**
  * @author danny

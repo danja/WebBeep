@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.test;
+package org.hyperdata.beeps.degrade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.hyperdata.beeps.decode.ChunkDetector;
  * @author danny
  *
  */
-public class Corrupter {
+public class Noisy {
 
 	public static List<Double> CorruptLF(List<Double> tones) {
 		List<Double> noisy = makeNoise(tones.size());

@@ -1,0 +1,14 @@
+very basic, with 44100:
+
+Input : http://danbri.org/foaf.rdf#danbri
+33 characters
+
+Encode time: 0.811 seconds
+24.575758 mS per char
+ascii=http://danbri.org/foaf.rdf#danbri
+
+Decode time: 1.249 seconds
+37.848484 mS per char
+
+*** Success!!! ***
+

@@ -12,12 +12,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.WaveMaker;
 import org.hyperdata.beeps.decode.ChunkDetector;
 import org.hyperdata.beeps.decode.PitchFinderGeneral;
 import org.hyperdata.beeps.decode.PreProcess;
 import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.util.Constants;
 import org.hyperdata.beeps.util.Plotter;
 
 /**

@@ -6,8 +6,8 @@ package org.hyperdata.beeps.decode;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.util.Constants;
 import org.hyperdata.beeps.util.WavCodec;
 
 /**

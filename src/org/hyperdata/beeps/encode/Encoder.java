@@ -6,12 +6,12 @@ package org.hyperdata.beeps.encode;
 import java.net.IDN;
 import java.util.*;
 
+import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.WaveMaker;
 import org.hyperdata.beeps.decode.PreProcess;
 import org.hyperdata.beeps.decode.fft.FFT;
 import org.hyperdata.beeps.decode.fft.PeakDetector;
-import org.hyperdata.beeps.util.Constants;
-import org.hyperdata.beeps.util.Maps;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.WavCodec;
 

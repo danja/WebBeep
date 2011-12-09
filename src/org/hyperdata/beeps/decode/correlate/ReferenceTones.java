@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.WaveMaker;
-import org.hyperdata.beeps.util.Constants;
-import org.hyperdata.beeps.util.Maps;
 
 
 /**

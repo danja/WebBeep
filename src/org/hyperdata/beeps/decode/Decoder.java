@@ -6,13 +6,13 @@ package org.hyperdata.beeps.decode;
 import java.net.IDN;
 import java.util.List;
 
+import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.decode.correlate.Correlator;
 import org.hyperdata.beeps.decode.fft.FFTPitchFinder;
 import org.hyperdata.beeps.encode.Checksum;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.encode.EnvelopeShaper;
-import org.hyperdata.beeps.util.Constants;
-import org.hyperdata.beeps.util.Maps;
 
 /**
  * @author danny

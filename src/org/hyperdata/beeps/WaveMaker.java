@@ -3,8 +3,6 @@ package org.hyperdata.beeps;
 import java.util.*;
 
 import org.hyperdata.beeps.encode.EnvelopeShaper;
-import org.hyperdata.beeps.util.Constants;
-import org.hyperdata.beeps.util.Maps;
 import org.hyperdata.beeps.util.WavCodec;
 
 public final class WaveMaker {

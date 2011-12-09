@@ -14,6 +14,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
+import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.WaveMaker;
 
 /**
@@ -59,8 +60,6 @@ public class WavCodec {
 		byte[] data = null;
 		AudioInputStream ais = null;
 		try {
-		//	URL url = WaveMaker.class.getResource(filename);
-		//	System.out.println("URL="+url);
 			File file = new File(filename);
 			ais = AudioSystem.getAudioInputStream(file);
 			AudioFormat format = ais.getFormat();
@@ -75,26 +74,12 @@ public class WavCodec {
 	}
 
 	/**
-	 * Save the double array as a sound file (using .wav or .au format).
+	 * Save the double array as a sound file
 	 */
-	// public static void save(String filename, double[] input) {
-	//
-	// // assumes 44,100 samples per second
-	// // use 16-bit audio, mono, signed PCM, little Endian
-	// AudioFormat format = new AudioFormat(WaveMaker.SAMPLE_RATE, 16, 1, true,
-	// false);
-	// byte[] data = new byte[2 * input.length];
-	// for (int i = 0; i < input.length; i++) {
-	// int temp = (short) (input[i] * WaveMaker.MAX_VALUE);
-	// data[2 * i + 0] = (byte) temp;
-	// data[2 * i + 1] = (byte) (temp >> 8);
-	// }
-
 	public static void save(String filename, List<Double> input) {
 
-		// assumes 44,100 samples per second
-		// use 16-bit audio, mono, signed PCM, little Endian
-		AudioFormat format = new AudioFormat(Constants.SAMPLE_RATE, 16, 1,
+		// signed, little endian
+		AudioFormat format = new AudioFormat(Constants.SAMPLE_RATE, Constants.BYTES_PER_SAMPLE, 1,
 				true, false);
 		byte[] data = new byte[2 * input.size()];
 		for (int i = 0; i < input.size(); i++) {
@@ -103,7 +88,7 @@ public class WavCodec {
 			data[2 * i + 1] = (byte) (temp >> 8);
 		}
 
-		// now save the file
+		// save the file
 		try {
 			ByteArrayInputStream bais = new ByteArrayInputStream(data);
 			AudioInputStream ais = new AudioInputStream(bais, format,

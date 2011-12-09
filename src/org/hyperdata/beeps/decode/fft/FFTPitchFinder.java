@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.decode.PitchFinderGeneral;
 import org.hyperdata.beeps.decode.PreProcess;
 import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.util.Constants;
-import org.hyperdata.beeps.util.Maps;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
