@@ -19,7 +19,7 @@ public class Checksum {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String input = "£!^&*^dfhdfsaSDGDFDGH";
+		String input = "abc";
 		System.out.println(makeChecksumString(input));
 
 	}
@@ -28,8 +28,10 @@ public class Checksum {
 		byte[] bytes = input.getBytes();
 		int sum = 0;
 		for(int i=0;i<bytes.length;i++){
+			System.out.println(bytes[i]);
 			sum += bytes[i];
 		}
+		System.out.println(sum+"   "+sum % 128);
 		String s = new Character((char)(sum % 128)).toString();
 		return s;
 	}

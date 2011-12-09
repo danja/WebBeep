@@ -29,11 +29,44 @@ implementation)</em></p>
 
 <p></p>
 
-<p>Encoding</p>
+<h2>Encoding</h2>
+
+<p>i18n, A checksum character is prepended to the ASCII</p>
+
+<h3>Internationalization</h3>
 
 <p></p>
 
-<p>Tone Map</p>
+<h3>Checksum</h3>
+
+<p>The checksum character to prepend to the ASCII representation is determined
+as followed:</p>
+<ol>
+  <li>the numeric code value of each character (0-127) in the ASCII
+    representation is obtained</li>
+  <li>all numeric values are summed</li>
+  <li>the lower 7 bits of the sum is the numeric value of the checksum
+  character</li>
+</ol>
+
+<h4>Example</h4>
+
+<p>If the ASCII input string is "abc" :</p>
+<ul>
+  <li>the numeric codes for these characters are 97, 98, 99</li>
+  <li>the sum of these values is 294 </li>
+  <li>the lower 7 bits of the sum is (294 % 128 =) 38, which is ASCII
+  '&amp;'</li>
+</ul>
+
+<p>So the resultant string with checksum is "&amp;abc".</p>
+
+<p><em>See <a
+href="https://github.com/danja/WebBeep/blob/master/src/org/hyperdata/beeps/encode/Checksum.java">org/hyperdata/beeps/encode/Checksum.java</a></em></p>
+
+<p></p>
+
+<h3>Tone Map</h3>
 
 <p></p>
 
