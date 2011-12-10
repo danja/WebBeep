@@ -19,7 +19,7 @@ import org.hyperdata.beeps.util.WavCodec;
  */
 public class ChunkDetector {
 
-	static double WINDOW_TIME = 0.04; // seconds
+	// static double WINDOW_TIME = 0.04; // seconds
 
 	/** make all values positive
 	 * 
@@ -74,7 +74,7 @@ public class ChunkDetector {
 			List<Double> chunk = tones.subList(chunkStart, chunkEnd); // without decay section
 			chunks.add(chunk);
 	//		System.out.println("chunks found="+chunks.size());
-			chunkStart += (int) (Constants.TONE_DURATION * Constants.SAMPLE_RATE/2);
+			chunkStart += (int) ((Constants.SILENCE_DURATION + Constants.TONE_DURATION) * Constants.SAMPLE_RATE/2);
 		} 
 		// UGLY HACK
 		if(chunks.size() % 2 != 0){

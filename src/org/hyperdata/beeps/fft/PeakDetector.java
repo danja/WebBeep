@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.decode.fft;
+package org.hyperdata.beeps.fft;
 
 import java.util.*;
 

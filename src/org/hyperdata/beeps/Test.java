@@ -24,7 +24,7 @@ public class Test {
 		// NOTE FFT is at low value
 		
 	//	String input = "http://danbri.org/foaf.rdf#danbri";
-		String input = "ffff";
+		String input = "iffff";
 		for(char i=70; i<128;i++){
 			input += new Character(i);
 		}

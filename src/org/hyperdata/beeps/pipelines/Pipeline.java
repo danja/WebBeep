@@ -14,4 +14,5 @@ public interface Pipeline {
 
 	public void addProcessor(Processor processor);
 	public List<Double> applyProcessors(List<Double> input);
+	public int size();
 }

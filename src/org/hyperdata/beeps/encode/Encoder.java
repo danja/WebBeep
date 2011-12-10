@@ -8,12 +8,12 @@ import java.util.*;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Maps;
-import org.hyperdata.beeps.WaveMaker;
-import org.hyperdata.beeps.decode.PreProcess;
-import org.hyperdata.beeps.decode.fft.FFT;
-import org.hyperdata.beeps.decode.fft.PeakDetector;
+import org.hyperdata.beeps.fft.FFT;
+import org.hyperdata.beeps.fft.PeakDetector;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
+import org.hyperdata.beeps.process.Normalise;
 import org.hyperdata.beeps.util.Plotter;
+import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
 
 /**
@@ -22,6 +22,23 @@ import org.hyperdata.beeps.util.WavCodec;
  */
 public class Encoder extends DefaultCodec {
 
+	public Encoder(){
+		super();
+	}
+	
+	public List<Double> merge(List<List<Double>> input){
+		List<Double> output = new ArrayList<Double>();
+		output.addAll(WaveMaker.makeSilence(Constants.START_PAD_DURATION));
+		for(int i=0;i<input.size();i++){
+			output.addAll(input.get(i));
+output.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
+		}
+		output.addAll(WaveMaker.makeSilence(Constants.END_PAD_DURATION));
+		return output;
+	}
+	
+	
+	
 	/**
 	 * 
 	 * preprocessors in Encoder are applied to individual dual-tone chunks
@@ -31,12 +48,10 @@ public class Encoder extends DefaultCodec {
 
 		String ascii = IDN.toASCII(idn); // Punycode encode
 		
-		// ascii = Checksum.makeChecksumString(ascii) + ascii;
+		 ascii = Checksum.makeChecksumString(ascii) + ascii;
 
-		List<Double> tones = new ArrayList<Double>();
-
-		tones.addAll(WaveMaker.makeSilence(Constants.START_PAD_DURATION));
-
+		 List<List<Double>> chunks = new ArrayList<List<Double>>();
+		 
 		for (int i = 0; i < ascii.length(); i++) {
 			// System.out.println(ascii.charAt(i));
 
@@ -49,11 +64,17 @@ public class Encoder extends DefaultCodec {
 			List<Double> chunk = WaveMaker.makeDualtone(msVal, lsVal,
 					Constants.TONE_DURATION);
 			chunk = applyPreProcessors(chunk);
-			tones.addAll(chunk);
-			tones.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
+			chunks.add(chunk);
 		}
-		tones.addAll(WaveMaker.makeSilence(Constants.END_PAD_DURATION));
-		tones = applyPostProcessors(tones);
+		System.out.println("Chunks=");
+		checkType(chunks);
+		Tone tones = new Tone(merge(chunks));
+		System.out.println("Tones=");
+checkType(tones);
+System.out.println("Merge=");
+checkType(merge(chunks));
+
+		tones = new Tone(applyPostProcessors(tones));
 		return tones;
 	}
 	

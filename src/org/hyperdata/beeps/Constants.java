@@ -8,7 +8,6 @@ package org.hyperdata.beeps;
  *
  */
 public class Constants {
-
 	/*
 	 * Preset values for mono, 16bit, 44.1kHz
 	 */
@@ -16,7 +15,7 @@ public class Constants {
 	public static final int BITS_PER_SAMPLE = 16; 
 	public static final int BYTES_PER_SAMPLE = 2; 
 	public static final double MAX_VALUE = 32767;
-	public static final int SAMPLE_RATE = 44100; // 22050;
+	public static final int SAMPLE_RATE = 44100; // 22050;44100
 //	public static final int N_SAMPLES = SAMPLE_RATE;
 	// 140 bpm
 	//	0.58333333 barsps
@@ -34,7 +33,7 @@ public class Constants {
 		public static double TONE_DURATION = 0.145833333/1.5;
 		// public static double TONE_DURATION = 0.145833333;
 		public static double END_PAD_DURATION = 0.145833333;
-		public static double SILENCE_DURATION = 0;
+		public static double SILENCE_DURATION = 0.01;
 		public static double START_PAD_DURATION = 0.0729166667;
 		
 		/* 

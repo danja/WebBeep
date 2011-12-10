@@ -5,14 +5,22 @@ package org.hyperdata.beeps.encode;
 
 import java.util.List;
 
+import org.hyperdata.beeps.pipelines.DefaultProcessor;
+
 /**
  * @author danny
  * 
  */
-public class EnvelopeShaper {
+public class EnvelopeShaper extends DefaultProcessor {
 
-
-
+	public EnvelopeShaper(){
+		super("EnvelopeShaper");
+	}
+	
+	public List<Double> process(List<Double> samples){
+		return applyEnvelope(samples, (Double)getParameter("attackProportion"), (Double)getParameter("decayProportion"));
+	}
+	
 	public static List<Double> applyEnvelope(List<Double> samples, double attackProportion, double decayProportion) {
 		// System.out.println("SAMPLES="+samples.size());
 		double attackMarker = ((double) samples.size()) * attackProportion;

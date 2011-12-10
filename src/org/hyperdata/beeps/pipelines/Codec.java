@@ -13,6 +13,7 @@ import java.util.List;
  *
  */
 public interface Codec {
+	public void initProcessors();
 	public void addPreProcessor(Processor processor);
 	public void addPostProcessor(Processor processor);
 	public List<Double> applyPreProcessors(List<Double> input);

@@ -1,8 +1,9 @@
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.encode;
 
 import java.util.*;
 
-import org.hyperdata.beeps.encode.EnvelopeShaper;
+import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.util.WavCodec;
 
 public final class WaveMaker {

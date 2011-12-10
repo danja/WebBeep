@@ -7,13 +7,16 @@ import java.net.IDN;
 import java.util.List;
 
 import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.decode.correlate.Correlator;
-import org.hyperdata.beeps.decode.fft.FFTPitchFinder;
 import org.hyperdata.beeps.encode.Checksum;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.encode.EnvelopeShaper;
+import org.hyperdata.beeps.fft.FFTPitchFinder;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
+import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.process.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
@@ -25,25 +28,41 @@ import org.hyperdata.beeps.util.Plotter;
  */
 public class Decoder extends DefaultCodec {
 
+	public Decoder(){
+		super();
+	}
+	
+	public void initProcessors(){
+		addPostProcessor(new Normalise());
+		
+		Processor envelope = new EnvelopeShaper();
+		envelope.setParameter("attackProportion", Constants.EDGE_WINDOW_PROPORTION);
+		envelope.setParameter("decayProportion", Constants.EDGE_WINDOW_PROPORTION);
+		addPostProcessor(envelope);
+	}
 	/**
 	 * @param list
 	 * @return
 	 */   	///// MOVE to external process
-	private static List<Double> processChunk(List<Double> chunk) {
-		
-		List<Double> modChunk = PreProcess.normalise(chunk, true, true);
-		
-		// slope intro/outro of chunk, does it help?
-		modChunk = EnvelopeShaper.applyEnvelope(modChunk,
-				Constants.EDGE_WINDOW_PROPORTION,
-				Constants.EDGE_WINDOW_PROPORTION);
-		return modChunk;
-	}
+//	private static List<Double> processChunk(List<Double> chunk) {
+//		Processor normalise = new Normalise();
+//		List<Double> modChunk = normalise.process(chunk);
+//		
+//		// slope intro/outro of chunk, does it help?
+////		modChunk = EnvelopeShaper.applyEnvelope(modChunk,
+////				Constants.EDGE_WINDOW_PROPORTION,
+////				Constants.EDGE_WINDOW_PROPORTION);
+//		Processor envelope = new EnvelopeShaper();
+//		envelope.setParameter("attackProportion", Constants.EDGE_WINDOW_PROPORTION);
+//		envelope.setParameter("decayProportion", Constants.EDGE_WINDOW_PROPORTION);
+//		modChunk = envelope.process(modChunk);
+//		return modChunk;
+//	}
 	
 	public String decode(List<Double> tones) {
+		Debug.inform("Decoding");
+		
 		tones = applyPreProcessors(tones);
-
-		System.out.println("decoding");
 
 		// tones = PreProcess.normalise(tones, true, true);
 		// tones = ChunkDetector.rectify(tones);
@@ -74,7 +93,7 @@ public class Decoder extends DefaultCodec {
 		
 		
 		for (int i = 0; i < chunks.size(); i++) {
-			List<Double> chunk = processChunk(chunks.get(i)); // MOVE
+			List<Double> chunk = chunks.get(i);
 			chunk = applyPostProcessors(chunk);
 			chunks.set(i, chunk);
 		//	Plotter.plot(chunks.get(i), "Chunk " + i);
@@ -95,12 +114,12 @@ public class Decoder extends DefaultCodec {
 			ascii += c;
 	//		System.out.println("ascii=" + ascii);
 		}
-//try{
-//		ascii = doChecksum(ascii);
-//		System.out.println("ascii="+ascii);
-//}catch(Exception exception){
-//	exception.printStackTrace();
-//}
+try{
+		ascii = doChecksum(ascii);
+		System.out.println("ascii="+ascii);
+}catch(Exception exception){
+	exception.printStackTrace();
+}
 		
 		return IDN.toUnicode(ascii);
 	}
@@ -128,10 +147,12 @@ public class Decoder extends DefaultCodec {
 	 */
 	private static String chunksToCharacter(List<Double> leftChunk,
 			List<Double> rightChunk) {
-		leftChunk = PreProcess.normalise(leftChunk, true, true);
+		
+		Processor normalise = new Normalise();
+		leftChunk = normalise.process(leftChunk);
 
 		
-		rightChunk = PreProcess.normalise(rightChunk, true, true);
+		rightChunk = normalise.process(rightChunk);
 
 		//////////////////////////////////////////////////////////////////////////////////
 		

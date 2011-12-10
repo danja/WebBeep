@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.decode.fft;
+package org.hyperdata.beeps.fft;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,8 +13,9 @@ import java.util.Set;
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.decode.PitchFinderGeneral;
-import org.hyperdata.beeps.decode.PreProcess;
 import org.hyperdata.beeps.encode.Encoder;
+import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.process.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
@@ -66,7 +67,8 @@ public class FFTPitchFinder implements PitchFinderGeneral {
 		List<Double> freqs = fft.doPowerFFT(tones, false).subList(0, trim);
 
 		// values from the FFT are very small
-		freqs = PreProcess.normalise(freqs, true, true);
+		Processor normalise = new Normalise();
+		freqs = normalise.process(freqs);
 
 //		Plotter plotter = Plotter.plot(freqs, "Freqs", 4, true);
 		

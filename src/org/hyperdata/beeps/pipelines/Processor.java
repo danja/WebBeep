@@ -10,6 +10,10 @@ import java.util.List;
  *
  */
 public interface Processor {
+	public void setName(String name);
+	public String getName();
 	public List<Double> process(List<Double> input);
+	public List<List<Double>> processMulti(List<List<Double>> input);
 	public void setParameter(String name, Object value);
+	public Object getParameter(String name);
 }
