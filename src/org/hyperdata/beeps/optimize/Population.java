@@ -3,12 +3,17 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import java.util.*;
+
 /**
  * @author danny
  *
  */
 public class Population {
 
+	private List<System> systems = new ArrayList<System>();
+	
+	
 	/**
 	 * @param args
 	 */

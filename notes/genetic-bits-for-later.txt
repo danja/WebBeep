@@ -1,0 +1,36 @@
+Encoder
+
+Function   Bits   Value Range
+
+gen Fs      2      44, 22, 11, 6 kHz
+chunknorm   1      on/off
+env         1      on/off
+env attack  4      tone length/3...tone length/8
+env decay   4      "
+LP FIR Fc   4      1kHz...12kHz
+LP stages   4      64...4096
+HP FIR Fc   4      30Hz...250Hz
+HP stages   4      64...4096
+
+28 bits total   
+
+Decoder
+
+start threshold 4    0.1...0.9
+start delay     4    0...0.5
+snip duration   4    0.1...0.9
+HP FIR          1    on/off
+HP FIR Fc       4    30Hz...250Hz
+HP stages       4    64...4096
+LP1 FIR         1    on/off
+LP1 FIR Fc      4    1kHz...12kHz
+LP1 stages      4    64...4096
+LP2 FIR Fc      4    1kHz...12kHz
+LP2 stages      4    64...4096
+
+FFT bits      3      8...16
+peak detector 4      0.05...0.9
+
+
+
+ 

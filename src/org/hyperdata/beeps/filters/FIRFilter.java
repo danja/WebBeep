@@ -107,6 +107,10 @@ public class FIRFilter {
 	private int window;
 	private double fc1; 
 	private double fc2;
+	
+	public FIRFilter(){
+		super();
+	}
 
 	public FIRFilter(int shape, int nPoints, int window, double fc) {
 		this.shape = shape;

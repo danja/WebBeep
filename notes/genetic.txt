@@ -11,28 +11,30 @@ Bit    Function       Value Range
 1      chunknorm        on/off
 2      env attack       tone length/2...tone length/8
 3      env decay           "
-4      LP FIR window    Blackman/Hanning/Hamming
-5      LP FIR Fc        1kHz...12kHz
-6      LP stages        64...4096
-7      HP FIR window    Blackman/Hanning/Hamming
-8      HP FIR Fc        30Hz...250Hz
-9      HP stages        64...4096
+4      LP FIR           on/off
+5      LP FIR window    Blackman/Hanning/Hamming
+6      LP FIR Fc        1kHz...12kHz
+7      LP stages        64...4096
+8      LP FIR           on/off
+9      HP FIR window    Blackman/Hanning/Hamming
+A      HP FIR Fc        30Hz...250Hz
+B      HP stages        64...4096
 
 Decoder
 
-0 start threshold     0.1...0.9
-1 start delay         0...0.5
-2 snip duration       0.1...0.9
-3 HP FIR              on/off
-4 HP FIR window       Blackman/Hanning/Hamming
-5 HP FIR Fc           30Hz...250Hz
-6 HP stages           64...4096
-7 LP1 FIR             on/off
-8 LP1 FIR window      Blackman/Hanning/Hamming
-9 LP1 FIR Fc          1kHz...12kHz
-A LP1 stages          64...4096
-B LP2 FIR window      Blackman/Hanning/Hamming
-C LP2 FIR Fc          1kHz...12kHz
-D LP2 stages          64...4096
-E FFT bits            8...16
-F peak detector       0.05...0.9
+10 start threshold     0.1...0.9
+11 start delay         0...0.5
+12 snip duration       0.1...0.9
+13 HP FIR              on/off
+14 HP FIR window       Blackman/Hanning/Hamming
+15 HP FIR Fc           30Hz...250Hz
+16 HP stages           64...4096
+17 LP1 FIR             on/off
+18 LP1 FIR window      Blackman/Hanning/Hamming
+19 LP1 FIR Fc          1kHz...12kHz
+1A LP1 stages          64...4096
+1B LP2 FIR window      Blackman/Hanning/Hamming
+1C LP2 FIR Fc          1kHz...12kHz
+1D LP2 stages          64...4096
+1E FFT bits            8...16
+1F peak detector       0.05...0.9
