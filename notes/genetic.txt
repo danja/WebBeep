@@ -1,0 +1,38 @@
+System is one encoder-decoder setup
+
+Population is a bunch of them
+
+
+Encoder
+
+Bit    Function       Value Range
+
+0      gen Fs           44, 22, 11, 6 kHz
+1      chunknorm        on/off
+2      env attack       tone length/2...tone length/8
+3      env decay           "
+4      LP FIR window    Blackman/Hanning/Hamming
+5      LP FIR Fc        1kHz...12kHz
+6      LP stages        64...4096
+7      HP FIR window    Blackman/Hanning/Hamming
+8      HP FIR Fc        30Hz...250Hz
+9      HP stages        64...4096
+
+Decoder
+
+0 start threshold     0.1...0.9
+1 start delay         0...0.5
+2 snip duration       0.1...0.9
+3 HP FIR              on/off
+4 HP FIR window       Blackman/Hanning/Hamming
+5 HP FIR Fc           30Hz...250Hz
+6 HP stages           64...4096
+7 LP1 FIR             on/off
+8 LP1 FIR window      Blackman/Hanning/Hamming
+9 LP1 FIR Fc          1kHz...12kHz
+A LP1 stages          64...4096
+B LP2 FIR window      Blackman/Hanning/Hamming
+C LP2 FIR Fc          1kHz...12kHz
+D LP2 stages          64...4096
+E FFT bits            8...16
+F peak detector       0.05...0.9
