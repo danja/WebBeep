@@ -23,8 +23,6 @@ public class ParameterizedCodecTest {
 	 */
 	public static void main(String[] args) {
 
-		// NOTE FFT is at low value
-
 		// String input = "http://danbri.org/foaf.rdf#danbri";
 		String input = "iffff";
 		for (char i = 70; i < 128; i++) {
@@ -37,12 +35,12 @@ public class ParameterizedCodecTest {
 		Debug.inform(input.length() + " characters\n");
 
 		long startTime = System.currentTimeMillis();
-
-		for (int j = 0; j < 10; j++) {
+ 
+		for (int j = 0; j < 10; j++) { // start for loop
 			Encoder encoder = new ParameterizedEncoder();
 			Debug.debug(((ParameterizedEncoder) encoder));
 
-			System.out.println("Encoder parameters = "+((ParameterizedEncoder)encoder).parameters);
+			System.out.println("Encoder prams "+((ParameterizedEncoder)encoder).parameters);
 			
 			List<Double> outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 
@@ -53,12 +51,16 @@ public class ParameterizedCodecTest {
 			}
 			long thisTime = System.currentTimeMillis();
 
+			System.out.println("Encode time: " + (float) (thisTime - startTime)
+					/ 1000 + " seconds");
+			
 			Debug.inform("Encode time: " + (float) (thisTime - startTime)
 					/ 1000 + " seconds");
 			Debug.inform((float) (thisTime - startTime) / input.length()
 					+ " mS per char");
 
-			List<Double> inTones = WavCodec.read(filename);
+			List<Double> inTones = outTones; // skip saving
+			// List<Double> inTones = WavCodec.read(filename);
 
 			startTime = System.currentTimeMillis();
 			Decoder decoder = new ParameterizedDecoder();
@@ -97,7 +99,7 @@ public class ParameterizedCodecTest {
 			if (errs.length() > 0) {
 				Debug.verbose("Bad chars = " + errs);
 			}
-		}
+		} // end for loop
 
 	}
 

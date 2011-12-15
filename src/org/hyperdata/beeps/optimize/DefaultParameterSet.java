@@ -53,7 +53,7 @@ public class DefaultParameterSet implements ParameterSet {
 	public String toString(){
 		String string = "*** Parameter Set ***\n";
 		for(int i=0;i<parameters.size();i++){
-			string += parameters.get(i).toString();
+			string += parameters.get(i).toString()+"\n";
 		}
 		return string;
 	}

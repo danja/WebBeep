@@ -22,122 +22,129 @@ import org.hyperdata.beeps.util.Plotter;
 /**
  * @author danny
  * 
- * 	 * 
-	 * preprocessors in Decoder are applied to the whole incoming waveform
-	 * postprocessors are applied to individual dual-tone chunks
+ *         * preprocessors in Decoder are applied to the whole incoming waveform
+ *         postprocessors are applied to individual dual-tone chunks
  */
 public class Decoder extends DefaultCodec {
 
-	public Decoder(){
+	public Decoder() {
 		super();
 	}
-	
-	public void initProcessors(){
+
+	public void initProcessors() {
 		super.initProcessors();
 		addPostProcessor(new Normalise());
-		
+
 		Processor envelope = new EnvelopeShaper();
-		envelope.setParameter("attackProportion", Constants.EDGE_WINDOW_PROPORTION);
-		envelope.setParameter("decayProportion", Constants.EDGE_WINDOW_PROPORTION);
+		envelope.setParameter("attackProportion",
+				Constants.EDGE_WINDOW_PROPORTION);
+		envelope.setParameter("decayProportion",
+				Constants.EDGE_WINDOW_PROPORTION);
 		addPostProcessor(envelope);
 	}
+
 	/**
 	 * @param list
 	 * @return
-	 */   	///// MOVE to external process
-//	private static List<Double> processChunk(List<Double> chunk) {
-//		Processor normalise = new Normalise();
-//		List<Double> modChunk = normalise.process(chunk);
-//		
-//		// slope intro/outro of chunk, does it help?
-////		modChunk = EnvelopeShaper.applyEnvelope(modChunk,
-////				Constants.EDGE_WINDOW_PROPORTION,
-////				Constants.EDGE_WINDOW_PROPORTION);
-//		Processor envelope = new EnvelopeShaper();
-//		envelope.setParameter("attackProportion", Constants.EDGE_WINDOW_PROPORTION);
-//		envelope.setParameter("decayProportion", Constants.EDGE_WINDOW_PROPORTION);
-//		modChunk = envelope.process(modChunk);
-//		return modChunk;
-//	}
-	
+	 */
+	// /// MOVE to external process
+	// private static List<Double> processChunk(List<Double> chunk) {
+	// Processor normalise = new Normalise();
+	// List<Double> modChunk = normalise.process(chunk);
+	//
+	// // slope intro/outro of chunk, does it help?
+	// // modChunk = EnvelopeShaper.applyEnvelope(modChunk,
+	// // Constants.EDGE_WINDOW_PROPORTION,
+	// // Constants.EDGE_WINDOW_PROPORTION);
+	// Processor envelope = new EnvelopeShaper();
+	// envelope.setParameter("attackProportion",
+	// Constants.EDGE_WINDOW_PROPORTION);
+	// envelope.setParameter("decayProportion",
+	// Constants.EDGE_WINDOW_PROPORTION);
+	// modChunk = envelope.process(modChunk);
+	// return modChunk;
+	// }
+
 	public String decode(List<Double> tones) {
 		Debug.inform("Decoding");
-		
+
 		tones = applyPreProcessors(tones);
 
 		// tones = PreProcess.normalise(tones, true, true);
 		// tones = ChunkDetector.rectify(tones);
 		// tones = RunningAverage.filter(tones, 100);
 
-		if(Debug.showPlots){
-		 Plotter.plot(tones, "in decoder");
+		if (Debug.showPlots) {
+			Plotter.plot(tones, "in decoder");
 		}
 
-		if(10 == 11){ //// TODO something with this
+		// if(10 == 11){ //// TODO something with this
+		Debug.inform("DETECTOR - do something with me");
 		int start = ChunkDetector.findStartThreshold(tones,
 				Constants.SILENCE_THRESHOLD);
 		int end = ChunkDetector.findEndThreshold(tones,
 				Constants.SILENCE_THRESHOLD);
-	//	System.out.println("cropping");
-		
+		// System.out.println("cropping");
+
+		try{
 		tones = tones.subList(start, end);
+		}catch(Exception exception){
+			System.out.println("DETECTOR problem");
+			Plotter.plot(tones, "DETECTOR");
 		}
+		// }
 
-	//	Plotter.plot(tones, "Cropped");
+		// Plotter.plot(tones, "Cropped");
 
-	//	System.out.println("chunking");
-		
+		// System.out.println("chunking");
+
 		int cropLength = (int) (Constants.CROP_PROPORTION
 				* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
 		List<List<Double>> chunks = ChunkDetector.chunk(tones, 0, cropLength);
 
-	//	System.out.println("windowing chunks");
-		
-		
+		// System.out.println("windowing chunks");
+
 		for (int i = 0; i < chunks.size(); i++) {
 			List<Double> chunk = chunks.get(i);
 			chunk = applyPostProcessors(chunk);
 			chunks.set(i, chunk);
-		//	Plotter.plot(chunks.get(i), "Chunk " + i);
+			// Plotter.plot(chunks.get(i), "Chunk " + i);
 		}
 
-	//	System.out.println("finding pitches");
-	//	System.out.println("chunks.size() = " + chunks.size());
+		// System.out.println("finding pitches");
+		// System.out.println("chunks.size() = " + chunks.size());
 		String ascii = "";
-		for (int i = 0; i < chunks.size() - 1; i=i+2) {
-		//	System.out.println("CHUNK " + i + " and "+ (i+1));
+		for (int i = 0; i < chunks.size() - 1; i = i + 2) {
+			// System.out.println("CHUNK " + i + " and "+ (i+1));
 			List<Double> leftChunk = chunks.get(i);
 			List<Double> rightChunk = chunks.get(i + 1);
-			
+
 			String c = chunksToCharacter(leftChunk, rightChunk);
-			
-		
+
 			// System.out.println(c);
 			ascii += c;
-	//		System.out.println("ascii=" + ascii);
+			// System.out.println("ascii=" + ascii);
 		}
-try{
-		ascii = doChecksum(ascii);
-		Debug.debug("ascii="+ascii);
-}catch(Exception exception){
-	exception.printStackTrace();
-}
-		
+		try {
+			ascii = doChecksum(ascii);
+			Debug.debug("ascii=" + ascii);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+
 		return IDN.toUnicode(ascii);
 	}
-
-
 
 	/**
 	 * @param ascii
 	 * @return
 	 */
 	private static String doChecksum(String ascii) throws Exception {
-		String checkString = ascii.substring(0,1);
+		String checkString = ascii.substring(0, 1);
 		ascii = ascii.substring(1);
 		String checkSum = Checksum.makeChecksumString(ascii);
-		if(!checkSum.equals(checkString)){
-		//	throw new Exception("checksum failed");
+		if (!checkSum.equals(checkString)) {
+			// throw new Exception("checksum failed");
 			Debug.inform("Checksum failed!");
 		}
 		return ascii;
@@ -150,19 +157,18 @@ try{
 	 */
 	private static String chunksToCharacter(List<Double> leftChunk,
 			List<Double> rightChunk) {
-		
+
 		Processor normalise = new Normalise();
 		leftChunk = normalise.process(leftChunk);
 
-		
 		rightChunk = normalise.process(rightChunk);
 
-		//////////////////////////////////////////////////////////////////////////////////
-		
+		// ////////////////////////////////////////////////////////////////////////////////
+
 		PitchFinderGeneral finder = new FFTPitchFinder();
-		
-	//	Plotter.plot(leftChunk, "leftChunk");
-		
+
+		// Plotter.plot(leftChunk, "leftChunk");
+
 		List<Double> leftFreqs = finder.findPitches(leftChunk);
 		List<Double> rightFreqs = finder.findPitches(rightChunk);
 
@@ -177,17 +183,17 @@ try{
 	 */
 	private static String decodeChar(List<Double> leftFreqs,
 			List<Double> rightFreqs) {
-		
+
 		double lowNote;
 		double noteA = 440;
 		double highNote = 880;
-		try{
-		noteA = findNearestNote(leftFreqs.get(0));
-		highNote = findNearestNote(leftFreqs.get(1));
-		} catch(Exception exception){
+		try {
+			noteA = findNearestNote(leftFreqs.get(0));
+			highNote = findNearestNote(leftFreqs.get(1));
+		} catch (Exception exception) {
 			Debug.error("Index out of range in Decoder.decodeChar");
-			Debug.error("leftFreqs.size() = "+leftFreqs.size());
-			Debug.error("rightFreqs.size() = "+rightFreqs.size());
+			Debug.error("leftFreqs.size() = " + leftFreqs.size());
+			Debug.error("rightFreqs.size() = " + rightFreqs.size());
 		}
 		if (noteA > highNote) {
 			lowNote = highNote;
@@ -196,8 +202,7 @@ try{
 			lowNote = noteA;
 		}
 
-	
-	//	System.out.println("rightFreqs = " + rightFreqs);
+		// System.out.println("rightFreqs = " + rightFreqs);
 		for (int j = 0; j < rightFreqs.size(); j++) {
 			rightFreqs.set(j, findNearestNote(rightFreqs.get(j)));
 		}
@@ -226,22 +231,24 @@ try{
 		int lowValue = -1;
 		int highValue = -1;
 		try {
-//			System.out
-//					.println("unmapping low " + lowNote + "   " + beatLow);
+			// System.out
+			// .println("unmapping low " + lowNote + "   " + beatLow);
 			lowValue = unmapValue(lowNote, beatLow, Maps.LOW_FREQ,
 					Maps.LOW_BEATS);
-//			System.out.println("got value " + lowValue);
+			// System.out.println("got value " + lowValue);
 		} catch (Exception exception) {
-			Debug.inform("No character matched to lowNote="+lowNote+" beatLow="+beatLow);
+			Debug.inform("No character matched to lowNote=" + lowNote
+					+ " beatLow=" + beatLow);
 		}
 		try {
-//			System.out.println("unmapping high " + highNote + "   "
-//					+ beatHigh);
+			// System.out.println("unmapping high " + highNote + "   "
+			// + beatHigh);
 			highValue = unmapValue(highNote, beatHigh, Maps.HIGH_FREQ,
 					Maps.HIGH_BEATS);
-//			System.out.println("got value " + highValue);
+			// System.out.println("got value " + highValue);
 		} catch (Exception exception) {
-			Debug.inform("No character matched to highNote="+highNote+" beatHigh="+beatHigh);
+			Debug.inform("No character matched to highNote=" + highNote
+					+ " beatHigh=" + beatHigh);
 		}
 		String c = (new Character((char) (lowValue * 16 + highValue)))
 				.toString();
@@ -250,7 +257,7 @@ try{
 
 	public static int unmapValue(double note, int beat, double[] freqs,
 			int[] beats) throws Exception {
-// System.out.println(beat);
+		// System.out.println(beat);
 		for (int i = 0; i < freqs.length; i++) {
 			if (note == freqs[i] && beat == beats[i]) {
 				return i;
@@ -277,8 +284,9 @@ try{
 
 	public static void main(String[] args) {
 		Encoder encoder = new Encoder();
-		List<Double> tones = encoder.encode("http://danbri.org/foaf.rdf#danbri"); // "http://danbri.org/foaf.rdf#danbri"
+		List<Double> tones = encoder
+				.encode("http://danbri.org/foaf.rdf#danbri"); // "http://danbri.org/foaf.rdf#danbri"
 		Decoder decoder = new Decoder();
-		System.out.println("Decoded = "+decoder.decode(tones));
+		System.out.println("Decoded = " + decoder.decode(tones));
 	}
 }

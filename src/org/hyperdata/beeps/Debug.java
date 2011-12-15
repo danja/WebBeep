@@ -16,7 +16,7 @@ public class Debug {
 	public static final char VERBOSE = 3;
 	public static final char DEBUG = 4;
 	
-	public static char level = 1;
+	public static char level = 0;
 	public static boolean showPlots = false;
 
 	// Apache logger etc uses DEBUG, INFO, WARN, ERROR and FATAL
