@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 /**
  * @author danny
  *
@@ -10,10 +12,19 @@ package org.hyperdata.beeps.optimize;
 public abstract class DefaultParameter implements Parameter {
 
 	
+	/**
+	 * @return the processor
+	 */
+	public Processor getProcessor() {
+		return this.processor;
+	}
+
 	protected String name = "unnamed";
 	protected Object value;
+	private Processor processor;
 
-	public DefaultParameter(String name){
+	public DefaultParameter(Processor processor, String name){
+		this.processor = processor;
 		this.name = name;
 		initRandom();
 	}

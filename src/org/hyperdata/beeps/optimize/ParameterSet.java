@@ -16,5 +16,5 @@ public interface ParameterSet {
 	/**
 	 * @param chunkEnv
 	 */
-	public void copyParametersToProcessor(Processor chunkEnv);
+	// public void copyParametersToProcessor(Processor chunkEnv);
 }

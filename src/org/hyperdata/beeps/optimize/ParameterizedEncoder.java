@@ -31,9 +31,9 @@ import org.hyperdata.beeps.optimize.*;
 public class ParameterizedEncoder extends Encoder {
 
 	public ParameterSet parameters = new DefaultParameterSet();
-	
-	public ParameterizedEncoder(){
-		createRandomParameters();
+
+	public ParameterizedEncoder() {
+		// createRandomParameters();
 		init();
 	}
 
@@ -42,67 +42,66 @@ public class ParameterizedEncoder extends Encoder {
 	public void init() {
 		initProcessors(); // clears them
 		try {
+
+			Processor chunknorm = new Normalise();
+			createParameter(chunknorm, "chunkNorm");
 			if (parameters.getValue("chunkNorm").equals("on")) {
-				Processor chunknorm = new Normalise();
 				addPreProcessor(chunknorm);
 			}
+			Processor chunkEnv = new EnvelopeShaper();
+			createParameter(chunkEnv, "chunkEnv");
+			createParameter(chunkEnv, "attackProportion");
+			createParameter(chunkEnv, "decayProportion");
+			chunkEnv.initFromParameters();
 			if (parameters.getValue("chunkEnv").equals("on")) {
-				Processor chunkEnv = new EnvelopeShaper();
-				parameters.copyParametersToProcessor(chunkEnv);
-				chunkEnv.initFromParameters();
 				addPreProcessor(chunkEnv);
 			}
-			if (parameters.getValue("toNoise").equals("on")) { // test dummy
-				Processor toNoise = new AllToNoiseProcessor();
-				parameters.copyParametersToProcessor(toNoise);
-				toNoise.initFromParameters();
-				addPreProcessor(toNoise);
-			}
+//			Processor toNoise = new AllToNoiseProcessor();
+//			createParameter(toNoise, "toNoise"); // dummy test
+//			toNoise.initFromParameters();
+//			if (parameters.getValue("toNoise").equals("on")) { // test dummy
+//				addPreProcessor(toNoise);
+//			}
+			Processor lp = new FIRProcessor("LP_FIR");
+			lp.setParameter("shape", "LP"); // overwrite - bit clunky
+			createParameter(lp, "LP_FIR");
+			createParameter(lp, "window");
+			createParameter(lp, "cutoff");
+			createParameter(lp, "npoints");
 			
+			lp.initFromParameters();
 			if (parameters.getValue("LP_FIR").equals("on")) {
-				Processor lp = new FIRProcessor("LP_FIR");
-				parameters.copyParametersToProcessor(lp);
-				lp.initFromParameters();
-				lp.setParameter("shape", "LP"); // overwrite - bit clunky
 				addPostProcessor(lp);
 			}
+			Processor hp = new FIRProcessor("HP_FIR");
+			hp.setParameter("shape", "HP"); // overwrite - bit clunky
+			// parameters.copyParametersToProcessor(hp);
+			createParameter(hp, "HP_FIR");
+			createParameter(hp, "window");
+			createParameter(hp, "cutoff");
+			createParameter(hp, "npoints");
+			
+			hp.initFromParameters();
 			if (parameters.getValue("HP_FIR").equals("on")) {
-				Processor hp = new FIRProcessor("HP_FIR");
-				parameters.copyParametersToProcessor(hp);
-				hp.initFromParameters();
-				hp.setParameter("shape", "HP"); // overwrite - bit clunky
 				addPostProcessor(hp);
 			}
-
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}
 
-	private void p(String name) {
-		Parameter parameter = ParameterFactory.createParameter(name);
-		Debug.debug("Created : "+parameter);
+	private void createParameter(Processor processor, String name) {
+		Parameter parameter = ParameterFactory.createParameter(processor, name);
+		processor.setParameter(parameter);
+		Debug.debug("Created : " + parameter);
 		parameters.addParameter(parameter);
 	}
 
-	private void createRandomParameters() {
-		// * gen Fs 44, 22, 11, 6 kHz
-		p("chunkNorm");
-		p("chunkEnv");
-		p("attackProportion");
-		p("decayProportion");
-		p("toNoise"); // dummy test
-		p("LP_FIR");
-		p("LP_window");
-		p("LP_Fc");
-		p("LP_points");
-		p("HP_FIR");
-		p("HP_window");
-		p("HP_Fc");
-		p("HP_points");
-	}
-	
-	public String toString(){
-		return parameters.toString();
+	public String toString() {
+		String string = this.getClass().toString();
+		if (parameters != null) {
+			string += "\n" + parameters;
+		}
+		return string;
 	}
 }

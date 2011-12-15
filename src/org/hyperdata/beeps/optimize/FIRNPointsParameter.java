@@ -3,13 +3,15 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 /**
  * @author danny 64...4096
  */
 public class FIRNPointsParameter extends DefaultParameter {
 
-	public FIRNPointsParameter(String name) {
-		super(name);
+	public FIRNPointsParameter(Processor processor, String name) {
+		super(processor, name);
 	}
 
 	/*
@@ -31,8 +33,8 @@ public class FIRNPointsParameter extends DefaultParameter {
 		System.out.println(Math.pow(2, 0 + 6));
 		System.out.println(Math.pow(2, 0.99 * 6+ 6));
 		for (int i = 0; i < 10; i++) {
-			FIRNPointsParameter p = new FIRNPointsParameter("test");
-			System.out.println(p);
+		//	FIRNPointsParameter p = new FIRNPointsParameter("test");
+		//	System.out.println(p);
 		}
 	}
 }

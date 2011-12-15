@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 /**
  * @author danny
  *
@@ -23,27 +25,29 @@ p("HP_Fc");
 p("HP_points");
 */
 	
-	public static Parameter createParameter(String type){
+	public static Parameter createParameter(Processor processor, String type){
 //		if(type.equals("chunkNorm") || type.equals("chunkEnv") || type.equals("toNoise")) {
 //			return new BooleanParameter(type);
 //		}
 		if(type.equals("chunkNorm") || type.equals("chunkEnv") || type.equals("toNoise")) {
-			return new BooleanParameter(type, "on");
+		//	return new BooleanParameter(processor, type, "on");
+			return new BooleanParameter(processor, type);
 		}
 		if(type.equals("attackProportion") || type.equals("decayProportion")) {
-			return new EnvelopeParameter(type);
+			return new EnvelopeParameter(processor, type);
 		} 
 		if(type.equals("LP_FIR") || type.equals("HP_FIR")){
-			return new BooleanParameter(type);
+			return new BooleanParameter(processor, type);
 		}
-		if(type.equals("LP_points") || type.equals("HP_points")){
-			return new FIRNPointsParameter(type);
+		if(type.equals("npoints")){
+			return new FIRNPointsParameter(processor, type);
 		}
-		if(type.equals("LP_window") || type.equals("HP_window")){
-			return new FIRWindowParameter(type);
+		if(type.equals("window")){
+			return new FIRWindowParameter(processor, type);
 		}
-		if(type.equals("LP_Fc") || type.equals("HP_Fc")){
-			return new FrequencyParameter(type);
+		if(type.equals("cutoff")){
+			System.out.println("HERE processor = "+processor);
+			return new FrequencyParameter(processor, type);
 		}
 		
 

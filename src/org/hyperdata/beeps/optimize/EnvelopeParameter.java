@@ -5,15 +5,18 @@ package org.hyperdata.beeps.optimize;
 
 import java.util.Random;
 
+import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.util.Plotter;
+
 /**
  * @author danny
  *
  */
 public class EnvelopeParameter extends DefaultParameter {
 	
-	public EnvelopeParameter(String name){
-		super(name);
-		initRandom();
+	public EnvelopeParameter(Processor processor, String name){
+		super(processor, name);
+		// initRandom();
 	}
 	
 
@@ -23,6 +26,6 @@ public class EnvelopeParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
-		value = Math.random()/2; // 0...0.5
+		value = Plotter.roundToSignificantFigures(Math.random()/2,2); // 0...0.5
 	}
 }

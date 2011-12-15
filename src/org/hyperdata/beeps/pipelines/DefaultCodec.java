@@ -75,8 +75,8 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void initProcessors() {
-		Debug.debug("Wiping processes...");
 		preprocessors = new DefaultPipeline();
 		postprocessors = new DefaultPipeline();
+		Debug.debug("Processes cleared in "+this);
 	}
 }

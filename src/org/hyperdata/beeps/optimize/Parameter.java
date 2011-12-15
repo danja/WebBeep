@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 /**
  * @author danny
  *
@@ -14,4 +16,5 @@ public interface Parameter {
 	// public void init();
 	public void initRandom();
 	public Object getValue();
+	public Processor getProcessor();
 }

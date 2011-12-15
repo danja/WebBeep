@@ -69,8 +69,8 @@ public class Encoder extends DefaultCodec {
 		Tone tones = new Tone(merge(chunks));
 	//	System.out.println("Tones=");
 		// checkType(tones);
-		System.out.println("Merge=");
-		checkType(merge(chunks));
+	//	System.out.println("Merge=");
+	//	checkType(merge(chunks));
 
 		tones = new Tone(applyPostProcessors(tones));
 		return tones;

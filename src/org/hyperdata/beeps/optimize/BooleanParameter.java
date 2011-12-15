@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 /**
  * @author danny
  *
@@ -11,8 +13,8 @@ public class BooleanParameter extends DefaultParameter {
 	
 
 	
-	public BooleanParameter(String name){
-		super(name);
+	public BooleanParameter(Processor processor, String name){
+		super(processor, name);
 	}
 
 
@@ -20,10 +22,10 @@ public class BooleanParameter extends DefaultParameter {
 	 * @param type
 	 * @param string
 	 */
-	public BooleanParameter(String type, String string) { // force a value, for testing
-		super(type);
-		value = string;
-	}
+//	public BooleanParameter(Processor processor, String type, String string) { // force a value, for testing
+//		super(processor, type);
+//		value = string;
+//	}
 
 
 	/* (non-Javadoc)

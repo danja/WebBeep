@@ -6,6 +6,8 @@ package org.hyperdata.beeps.pipelines;
 import java.util.List;
 import java.util.Set;
 
+import org.hyperdata.beeps.optimize.Parameter;
+
 /**
  * @author danny
  *
@@ -23,4 +25,8 @@ public interface Processor {
 	 * @return
 	 */
 	public Set<String> parameterNames();
+	/**
+	 * @param parameter
+	 */
+	public void setParameter(Parameter parameter);
 }

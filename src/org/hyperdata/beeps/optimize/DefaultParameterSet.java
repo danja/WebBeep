@@ -27,17 +27,17 @@ public class DefaultParameterSet implements ParameterSet {
 		parameters.add(param);
 	}
 	
-	public void copyParametersToProcessor(Processor processor){
-		Iterator<String> nameIterator = processor.parameterNames().iterator();
-		while(nameIterator.hasNext()){
-			String name = nameIterator.next();
-			try {
-				processor.setParameter(name, getValue(name));
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
-		}
-	}
+//	public void copyParametersToProcessor(Processor processor){
+//		Iterator<String> nameIterator = processor.parameterNames().iterator();
+//		while(nameIterator.hasNext()){
+//			String name = nameIterator.next();
+//			try {
+//				processor.setParameter(name, getValue(name));
+//			} catch (Exception exception) {
+//				exception.printStackTrace();
+//			}
+//		}
+//	}
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.optimize.ParameterSet#getValue(java.lang.String)
@@ -51,7 +51,7 @@ public class DefaultParameterSet implements ParameterSet {
 	}
 	
 	public String toString(){
-		String string = "Parameter Set \n";
+		String string = "*** Parameter Set ***\n";
 		for(int i=0;i<parameters.size();i++){
 			string += parameters.get(i).toString() + "\n";
 		}

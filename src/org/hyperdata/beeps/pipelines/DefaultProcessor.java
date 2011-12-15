@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hyperdata.beeps.optimize.Parameter;
+
 /**
  * @author danny
  *
@@ -61,6 +63,11 @@ public abstract class DefaultProcessor implements Processor {
 	@Override
 	public void setParameter(String name, Object value) {
 		parameters.put(name, value);
+	}
+	
+	@Override
+	public void setParameter(Parameter parameter) {
+		parameters.put(parameter.getName(), parameter.getValue());
 	}
 	
 	public Set<String> parameterNames(){

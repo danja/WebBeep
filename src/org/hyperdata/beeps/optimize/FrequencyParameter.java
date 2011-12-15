@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 /**
  * @author danny
  * 
@@ -17,8 +19,8 @@ public class FrequencyParameter extends DefaultParameter {
 	static double HP_LOW = 1000;
 	static double HP_HIGH = 2000;
 
-	public FrequencyParameter(String name) {
-		super(name);
+	public FrequencyParameter(Processor processor, String name) {
+		super(processor, name);
 	}
 
 	/*
@@ -28,10 +30,11 @@ public class FrequencyParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
-		if (name.equals("LP_Fc")) {
+		System.out.println("processor.getShape="+getProcessor().getParameter("shape"));
+		if (name.equals("LP")) {
 			value = scaledFreq(LP_LOW, LP_HIGH);
 		}
-		if (name.equals("HP_Fc")) {
+		if (name.equals("HP")) {
 			value = scaledFreq(HP_LOW, HP_HIGH);
 		}
 	}
@@ -47,7 +50,7 @@ public class FrequencyParameter extends DefaultParameter {
 
 	public static void main(String args[]) {
 		for (int i = 0; i < 10; i++) {
-			System.out.println(new FrequencyParameter("HP_Fc"));
+		//	System.out.println(new FrequencyParameter("HP_Fc"));
 		}
 	}
 }

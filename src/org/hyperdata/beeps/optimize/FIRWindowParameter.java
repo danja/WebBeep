@@ -4,6 +4,7 @@
 package org.hyperdata.beeps.optimize;
 
 import org.hyperdata.beeps.filters.Firk;
+import org.hyperdata.beeps.pipelines.Processor;
 
 /**
  * @author danny
@@ -11,8 +12,8 @@ import org.hyperdata.beeps.filters.Firk;
  */
 public class FIRWindowParameter extends DefaultParameter {
 
-	public FIRWindowParameter(String name){
-		super(name);
+	public FIRWindowParameter(Processor processor, String name){
+		super(processor, name);
 	}
 	
 	/* (non-Javadoc)
@@ -28,7 +29,7 @@ public class FIRWindowParameter extends DefaultParameter {
 	
 	public static void main(String[] args){
 		for(int i=0;i<10;i++){
-			System.out.println(new FIRWindowParameter("test"));
+	//		System.out.println(new FIRWindowParameter("test"));
 		}
 	}
 
