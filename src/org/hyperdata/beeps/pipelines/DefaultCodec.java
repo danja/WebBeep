@@ -12,13 +12,13 @@ import org.hyperdata.beeps.Debug;
  * @author danny
  *
  */
-public class DefaultCodec implements Codec {
+public abstract class DefaultCodec implements Codec {
 
-	private Pipeline preprocessors = new DefaultPipeline();
-	private Pipeline postprocessors = new DefaultPipeline();
+	private Pipeline preprocessors;
+	private Pipeline postprocessors;
 	
 	public DefaultCodec(){
-		initProcessors();
+		 initProcessors();
 	}
 	
 	/**
@@ -74,6 +74,7 @@ public class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void initProcessors() {
-// nowt to do
+		preprocessors = new DefaultPipeline();
+		postprocessors = new DefaultPipeline();
 	}
 }

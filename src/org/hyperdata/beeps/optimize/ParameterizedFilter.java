@@ -3,13 +3,13 @@
  */
 package org.hyperdata.beeps.optimize;
 
-import org.hyperdata.beeps.filters.FIRFilter;
+import org.hyperdata.beeps.filters.FIRFilterImpl;
 /**
  * 
  * @author danny
  *
  */
-public class ParameterizedFilter extends FIRFilter{
+public class ParameterizedFilter extends FIRFilterImpl{
 
 	public ParameterizedFilter(){
 		

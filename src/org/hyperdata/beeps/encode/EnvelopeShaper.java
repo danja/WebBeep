@@ -12,16 +12,21 @@ import org.hyperdata.beeps.pipelines.DefaultProcessor;
  * 
  */
 public class EnvelopeShaper extends DefaultProcessor {
+	
+
+
+	private double attackProportion = 0;
+	private double decayProportion = 0;
 
 	public EnvelopeShaper(){
 		super("EnvelopeShaper");
 	}
 	
-	public List<Double> process(List<Double> samples){
-		return applyEnvelope(samples, (Double)getParameter("attackProportion"), (Double)getParameter("decayProportion"));
-	}
+//	public List<Double> process(List<Double> samples){
+//		return applyEnvelope(samples, (Double)getParameter("attackProportion"), (Double)getParameter("decayProportion"));
+//	}
 	
-	public static List<Double> applyEnvelope(List<Double> samples, double attackProportion, double decayProportion) {
+	public List<Double> process(List<Double> samples) {
 		// System.out.println("SAMPLES="+samples.size());
 		double attackMarker = ((double) samples.size()) * attackProportion;
 		// System.out.println("Attack marker="+attackMarker);
@@ -43,5 +48,28 @@ public class EnvelopeShaper extends DefaultProcessor {
 		}
 
 		return samples;
+	}
+	
+	/**
+	 * @param decayProportion the decayProportion to set
+	 */
+	public void setDecayProportion(double decayProportion) {
+		this.decayProportion = decayProportion;
+	}
+
+	/**
+	 * @param attackProportion the attackProportion to set
+	 */
+	public void setAttackProportion(double attackProportion) {
+		this.attackProportion = attackProportion;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#initFromParameters()
+	 */
+	@Override
+	public void initFromParameters() {
+		setAttackProportion((Double)parameters.get("attackProportion"));
+		setDecayProportion((Double)parameters.get("decayProportion"));
 	}
 }

@@ -60,7 +60,10 @@ public final class WaveMaker {
 
 	public static List<Double> makeShapedWaveform(double freq,double amplitude, double duration) {
 		List<Double> data = makeWaveform(freq, amplitude, duration);
-		return EnvelopeShaper.applyEnvelope(data, Constants.ENCODE_ATTACK_PROPORTION, Constants.ENCODE_DECAY_PROPORTION);
+		EnvelopeShaper env = new EnvelopeShaper();
+		env.setAttackProportion(Constants.ENCODE_ATTACK_PROPORTION);
+		env.setDecayProportion(Constants.ENCODE_DECAY_PROPORTION);		
+		return env.process(data);
 		
 	}
 	public static List<Double> makeWaveform(double freq, double amplitude, double duration) {

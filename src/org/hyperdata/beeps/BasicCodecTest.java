@@ -14,7 +14,7 @@ import org.hyperdata.beeps.util.WavCodec;
  * @author danny
  *
  */
-public class Test {
+public class BasicCodecTest {
 	
 	/**
 	 * @param args

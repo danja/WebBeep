@@ -85,4 +85,12 @@ public class Normalise extends DefaultProcessor {
 		}
 		return normals;
 	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#initFromParameters()
+	 */
+	@Override
+	public void initFromParameters() {
+		// doesn't have any parameters
+	}
 }

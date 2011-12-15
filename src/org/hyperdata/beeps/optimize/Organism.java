@@ -14,7 +14,7 @@ import org.hyperdata.beeps.degrade.Corruptor;
  * Fitness - function of accuracy and time
  *
  */
-public class System {
+public class Organism {
 
 	private Encoder encoder = new ParameterizedEncoder();
 	private FIRFilter encoderLP = new ParameterizedFilter();

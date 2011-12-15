@@ -4,6 +4,7 @@
 package org.hyperdata.beeps.degrade;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hyperdata.beeps.*;
 import org.hyperdata.beeps.pipelines.Processor;
@@ -63,6 +64,24 @@ public class Corruptor implements Processor {
 	 */
 	@Override
 	public Object getParameter(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#initFromParameters()
+	 */
+	@Override
+	public void initFromParameters() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#parameterNames()
+	 */
+	@Override
+	public Set<String> parameterNames() {
 		// TODO Auto-generated method stub
 		return null;
 	}

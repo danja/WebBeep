@@ -11,8 +11,11 @@ import java.util.*;
  */
 public class Population {
 
-	private List<System> systems = new ArrayList<System>();
+	private List<Organism> systems = new ArrayList<Organism>();
 	
+	public void add(Organism system){
+		systems.add(system);
+	}
 	
 	/**
 	 * @param args

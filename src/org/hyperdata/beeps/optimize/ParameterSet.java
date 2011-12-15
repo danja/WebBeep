@@ -2,6 +2,8 @@
  * 
  */
 package org.hyperdata.beeps.optimize;
+ 
+import org.hyperdata.beeps.pipelines.Processor;
 
 /**
  * @author danny
@@ -9,5 +11,10 @@ package org.hyperdata.beeps.optimize;
  */
 public interface ParameterSet {
 	public void addParameter(Parameter param);
-	public Object getValue(String name);
+	
+	public Object getValue(String name) throws Exception;
+	/**
+	 * @param chunkEnv
+	 */
+	public void copyParametersToProcessor(Processor chunkEnv);
 }

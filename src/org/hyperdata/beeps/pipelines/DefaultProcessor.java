@@ -5,23 +5,28 @@ package org.hyperdata.beeps.pipelines;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author danny
  *
  */
-public class DefaultProcessor implements Processor {
+public abstract class DefaultProcessor implements Processor {
 
 	private String name = "anonymous";
-	private Map parameters = new HashMap();
+	protected Map<String, Object> parameters = new HashMap<String, Object>();
+	
+
+	public DefaultProcessor(){
+	}
+	
 	
 	public DefaultProcessor(String name){
 		this.name = name;
 	}
-	
-
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Processor#setName(java.lang.String)
@@ -56,6 +61,21 @@ public class DefaultProcessor implements Processor {
 	@Override
 	public void setParameter(String name, Object value) {
 		parameters.put(name, value);
+	}
+	
+	public Set<String> parameterNames(){
+		return parameters.keySet();
+	}
+	
+	public String toString(){
+		String string = name;
+		Iterator<String> iterator = parameters.keySet().iterator();
+		while(iterator.hasNext()){
+			String name = iterator.next();
+			string += "\n" + name + " = " + parameters.get(name);
+			string += "\n";
+		}
+		return string;
 	}
 
 	/**

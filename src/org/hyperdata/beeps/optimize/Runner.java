@@ -16,8 +16,10 @@ public class Runner {
 	public static void main(String[] args) {
 		Population population = new Population();
 for(int i=0;i<populationN;i++){
-	
+	Organism system = new Organism();
+	population.add(system);
 }
+
 	}
 
 	

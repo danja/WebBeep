@@ -22,23 +22,21 @@ import org.hyperdata.beeps.util.WavCodec;
  */
 public class Encoder extends DefaultCodec {
 
-	public Encoder(){
+	public Encoder() {
 		super();
 	}
-	
-	public List<Double> merge(List<List<Double>> input){
+
+	public List<Double> merge(List<List<Double>> input) {
 		List<Double> output = new ArrayList<Double>();
 		output.addAll(WaveMaker.makeSilence(Constants.START_PAD_DURATION));
-		for(int i=0;i<input.size();i++){
+		for (int i = 0; i < input.size(); i++) {
 			output.addAll(input.get(i));
-output.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
+			output.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
 		}
 		output.addAll(WaveMaker.makeSilence(Constants.END_PAD_DURATION));
 		return output;
 	}
-	
-	
-	
+
 	/**
 	 * 
 	 * preprocessors in Encoder are applied to individual dual-tone chunks
@@ -47,11 +45,11 @@ output.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
 	public List<Double> encode(String idn) {
 
 		String ascii = IDN.toASCII(idn); // Punycode encode
-		
-		 ascii = Checksum.makeChecksumString(ascii) + ascii;
 
-		 List<List<Double>> chunks = new ArrayList<List<Double>>();
-		 
+		ascii = Checksum.makeChecksumString(ascii) + ascii;
+
+		List<List<Double>> chunks = new ArrayList<List<Double>>();
+
 		for (int i = 0; i < ascii.length(); i++) {
 			// System.out.println(ascii.charAt(i));
 
@@ -70,15 +68,15 @@ output.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
 		checkType(chunks);
 		Tone tones = new Tone(merge(chunks));
 		System.out.println("Tones=");
-checkType(tones);
-System.out.println("Merge=");
-checkType(merge(chunks));
+		checkType(tones);
+		System.out.println("Merge=");
+		checkType(merge(chunks));
 
 		tones = new Tone(applyPostProcessors(tones));
 		return tones;
 	}
-	
-	static String IRI = "http://danbri.org/foaf.rdf#danbri"; 
+
+	static String IRI = "http://danbri.org/foaf.rdf#danbri";
 
 	// "http://danbri.org/foaf.rdf#danbri"; // "OK" is good!
 	// http://dannyayers.com/stuff
