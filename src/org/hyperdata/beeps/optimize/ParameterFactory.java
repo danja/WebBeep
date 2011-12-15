@@ -24,8 +24,11 @@ p("HP_points");
 */
 	
 	public static Parameter createParameter(String type){
-		if(type.equals("chunkEnv")) {
-			return new BooleanParameter(type);
+//		if(type.equals("chunkNorm") || type.equals("chunkEnv") || type.equals("toNoise")) {
+//			return new BooleanParameter(type);
+//		}
+		if(type.equals("chunkNorm") || type.equals("chunkEnv") || type.equals("toNoise")) {
+			return new BooleanParameter(type, "on");
 		}
 		if(type.equals("attackProportion") || type.equals("decayProportion")) {
 			return new EnvelopeParameter(type);
@@ -36,7 +39,14 @@ p("HP_points");
 		if(type.equals("LP_points") || type.equals("HP_points")){
 			return new FIRNPointsParameter(type);
 		}
-		@@@@@@@@@@@@@@''
+		if(type.equals("LP_window") || type.equals("HP_window")){
+			return new FIRWindowParameter(type);
+		}
+		if(type.equals("LP_Fc") || type.equals("HP_Fc")){
+			return new FrequencyParameter(type);
+		}
+		
+
 		System.out.println("PARAMETER TYPE "+type+" NOT AVAILABLE");
 		return null;
 	}

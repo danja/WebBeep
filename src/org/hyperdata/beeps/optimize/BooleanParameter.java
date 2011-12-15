@@ -16,11 +16,27 @@ public class BooleanParameter extends DefaultParameter {
 	}
 
 
+	/**
+	 * @param type
+	 * @param string
+	 */
+	public BooleanParameter(String type, String string) { // force a value, for testing
+		super(type);
+		value = string;
+	}
+
+
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.optimize.Parameter#mutate()
 	 */
 	@Override
 	public void initRandom() {
-		value = new Boolean(Math.random() > 0.5);
+		if(Math.random() > 0.5){
+			value = "on";
+		} else {
+			value = "off";
+		}
 	}
+	
+	
 }

@@ -10,7 +10,7 @@ package org.hyperdata.beeps.optimize;
 public abstract class DefaultParameter implements Parameter {
 
 	
-	private String name = "unnamed";
+	protected String name = "unnamed";
 	protected Object value;
 
 	public DefaultParameter(String name){

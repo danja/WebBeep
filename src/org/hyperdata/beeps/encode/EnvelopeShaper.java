@@ -5,6 +5,7 @@ package org.hyperdata.beeps.encode;
 
 import java.util.List;
 
+import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 
 /**
@@ -69,7 +70,11 @@ public class EnvelopeShaper extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
+		Debug.debug("parameters="+parameters);
+		Debug.halt(this);
+
 		setAttackProportion((Double)parameters.get("attackProportion"));
 		setDecayProportion((Double)parameters.get("decayProportion"));
+		
 	}
 }

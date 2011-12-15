@@ -64,11 +64,11 @@ public class Encoder extends DefaultCodec {
 			chunk = applyPreProcessors(chunk);
 			chunks.add(chunk);
 		}
-		System.out.println("Chunks=");
-		checkType(chunks);
+	//	System.out.println("Chunks=");
+	//	checkType(chunks);
 		Tone tones = new Tone(merge(chunks));
-		System.out.println("Tones=");
-		checkType(tones);
+	//	System.out.println("Tones=");
+		// checkType(tones);
 		System.out.println("Merge=");
 		checkType(merge(chunks));
 

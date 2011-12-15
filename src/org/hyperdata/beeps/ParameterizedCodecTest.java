@@ -39,6 +39,7 @@ public class ParameterizedCodecTest {
 		long startTime = System.currentTimeMillis();
 		
 		Encoder encoder = new ParameterizedEncoder();
+		System.out.println((ParameterizedEncoder)encoder);
 		
 		List<Double> outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 		

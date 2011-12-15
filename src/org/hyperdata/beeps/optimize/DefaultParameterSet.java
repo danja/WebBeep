@@ -47,6 +47,14 @@ public class DefaultParameterSet implements ParameterSet {
 		for(int i=0;i<parameters.size();i++){
 			if(parameters.get(i).getName().equals(name)) return parameters.get(i).getValue();
 		}
-		throw new Exception("Named parameter not found.");
+		throw new Exception("Parameter named "+name+" not found.");
+	}
+	
+	public String toString(){
+		String string = "Parameter Set \n";
+		for(int i=0;i<parameters.size();i++){
+			string += parameters.get(i).toString() + "\n";
+		}
+		return string;
 	}
 }

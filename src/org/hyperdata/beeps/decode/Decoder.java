@@ -33,6 +33,7 @@ public class Decoder extends DefaultCodec {
 	}
 	
 	public void initProcessors(){
+		super.initProcessors();
 		addPostProcessor(new Normalise());
 		
 		Processor envelope = new EnvelopeShaper();

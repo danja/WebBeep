@@ -31,7 +31,6 @@ public class DefaultPipeline implements Pipeline {
 		List<Double> output = input;
 		for(int i=0;i<processors.size();i++){
 			Processor processor = processors.get(i);
-			Debug.inform("Applying process : "+processor.getName());
 			Debug.inform("Applying process : "+processor);
 			output = processor.process(output);
 		}

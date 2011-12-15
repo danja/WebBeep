@@ -39,10 +39,15 @@ package org.hyperdata.beeps.filters;
 public class Firk {
 
 	// Window type constants
-	final static int BLACKMAN = 1;
-	final static int HANNING = 2;
-	final static int HAMMING = 3;
+	final static int BLACKMAN = 0;
+	final static int HANNING = 1;
+	final static int HAMMING = 2;
+	final static String[] WINDOW_TYPES = {"Blackman", "Hanning","Hamming"};
 
+	public static String windowName(int val){
+		return WINDOW_TYPES[val];
+	}
+	
 	// Generate lowpass filter
 	//
 	// This is done by generating a sinc function and then windowing it

@@ -36,7 +36,6 @@ public class Noise {
 	public static void main(String[] args) {
 		List<Double> white = white(1.0);
 		Plotter.plot(white);
-
 	}
 	    
 	

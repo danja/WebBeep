@@ -8,7 +8,7 @@ package org.hyperdata.beeps;
  *
  */
 public class Debug {
-	public static char level = 1;
+	public static char level = 2;
 	
 	public static final char QUIET = 0;
 	public static final char INFORM = 1;
@@ -24,5 +24,13 @@ public class Debug {
 		if(level > 1) {
 			System.out.println(message);
 		}
+	}
+
+	/**
+	 * @param envelopeShaper
+	 */
+	public static void halt(Object object) {
+		System.out.println("Exit forced in "+object);
+		System.exit(1);
 	}
 }

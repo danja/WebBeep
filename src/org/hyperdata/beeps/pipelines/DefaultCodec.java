@@ -34,6 +34,7 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void addPreProcessor(Processor processor) {
+		Debug.debug("Adding Processor : "+processor);
 		preprocessors.addProcessor(processor);
 	}
 
@@ -74,6 +75,7 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void initProcessors() {
+		Debug.debug("Wiping processes...");
 		preprocessors = new DefaultPipeline();
 		postprocessors = new DefaultPipeline();
 	}

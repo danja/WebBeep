@@ -17,15 +17,15 @@ import org.hyperdata.beeps.degrade.Corruptor;
 public class Organism {
 
 	private Encoder encoder = new ParameterizedEncoder();
-	private FIRFilter encoderLP = new ParameterizedFilter();
-	private FIRFilter encoderHP = new ParameterizedFilter();
+//	private FIRFilter encoderLP = new ParameterizedFilter();
+//	private FIRFilter encoderHP = new ParameterizedFilter();
 	
 	private Corruptor corruptor = new Corruptor();
 	
 	private Decoder decoder = new ParameterizedDecoder();
-	private FIRFilter decoderLP1 = new ParameterizedFilter();
-	private FIRFilter decoderLP2 = new ParameterizedFilter();
-	private FIRFilter decoderHP = new ParameterizedFilter();
+//	private FIRFilter decoderLP1 = new ParameterizedFilter();
+//	private FIRFilter decoderLP2 = new ParameterizedFilter();
+//	private FIRFilter decoderHP = new ParameterizedFilter();
 	
 	/*
 	 Encoder
