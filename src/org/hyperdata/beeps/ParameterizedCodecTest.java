@@ -35,13 +35,16 @@ public class ParameterizedCodecTest {
 		Debug.inform(input.length() + " characters\n");
 
 		long startTime = System.currentTimeMillis();
- 
-		for (int j = 0; j < 10; j++) { // start for loop
+		int runs = 100;
+		int successCount = 0;
+		for (int j = 0; j < runs; j++) { // start for loop
+			System.out.println("============== Start Run =========");
 			Encoder encoder = new ParameterizedEncoder();
 			Debug.debug(((ParameterizedEncoder) encoder));
 
-			System.out.println("Encoder prams "+((ParameterizedEncoder)encoder).parameters);
-			
+			System.out.println("Encoder prams "
+					+ ((ParameterizedEncoder) encoder).parameters);
+
 			List<Double> outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 
 			// WavCodec.save(filename, outTones); SAVE
@@ -53,7 +56,7 @@ public class ParameterizedCodecTest {
 
 			System.out.println("Encode time: " + (float) (thisTime - startTime)
 					/ 1000 + " seconds");
-			
+
 			Debug.inform("Encode time: " + (float) (thisTime - startTime)
 					/ 1000 + " seconds");
 			Debug.inform((float) (thisTime - startTime) / input.length()
@@ -75,6 +78,7 @@ public class ParameterizedCodecTest {
 			Debug.inform("Output : " + output);
 			System.out.println("Output : " + output);
 			if (output.equals(input)) {
+				successCount++;
 				Debug.inform("\n*** Success!!! ***");
 			} else {
 				Debug.inform("\n*** FAIL! ***");
@@ -100,7 +104,7 @@ public class ParameterizedCodecTest {
 				Debug.verbose("Bad chars = " + errs);
 			}
 		} // end for loop
-
+		System.out.println("Success count = " + successCount + " out of "
+				+ runs);
 	}
-
 }
