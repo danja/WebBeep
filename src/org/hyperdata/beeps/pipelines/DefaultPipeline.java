@@ -27,11 +27,11 @@ public class DefaultPipeline implements Pipeline {
 
 	public List<Double> applyProcessors(List<Double> input) {
 		if(processors.size() == 0) return input;
-		Debug.inform("Applying "+processors.size()+" processors");
+		Debug.verbose("Applying "+processors.size()+" processors");
 		List<Double> output = input;
 		for(int i=0;i<processors.size();i++){
 			Processor processor = processors.get(i);
-			Debug.inform("Applying process : "+processor);
+			Debug.verbose("Applying process : "+processor);
 			output = processor.process(output);
 		}
 		return output;

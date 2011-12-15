@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.pipelines.Processor;
 
 /**
@@ -46,12 +47,11 @@ p("HP_points");
 			return new FIRWindowParameter(processor, type);
 		}
 		if(type.equals("cutoff")){
-			System.out.println("HERE processor = "+processor);
+		//	System.out.println("HERE processor = "+processor);
 			return new FrequencyParameter(processor, type);
 		}
 		
-
-		System.out.println("PARAMETER TYPE "+type+" NOT AVAILABLE");
+		Debug.error("Parameter "+type+" not available in ParameterFactory.");
 		return null;
 	}
 }

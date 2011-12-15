@@ -34,7 +34,7 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void addPreProcessor(Processor processor) {
-		Debug.debug("Adding Processor : "+processor);
+		Debug.verbose("Adding Processor : "+processor);
 		preprocessors.addProcessor(processor);
 	}
 
@@ -52,7 +52,7 @@ public abstract class DefaultCodec implements Codec {
 	@Override
 	public List<Double> applyPreProcessors(List<Double> input) {
 		if(preprocessors.size() == 0) return input;
-		Debug.inform("Preprocessing...");
+		Debug.verbose("Preprocessing...");
 		return preprocessors.applyProcessors(input);
 	}
 	
@@ -66,7 +66,7 @@ public abstract class DefaultCodec implements Codec {
 	@Override
 	public List<Double> applyPostProcessors(List<Double> input) {
 		if(postprocessors.size() == 0) return input;
-		Debug.inform("Postprocessing...");
+		Debug.verbose("Postprocessing...");
 		return postprocessors.applyProcessors(input);
 	}
 

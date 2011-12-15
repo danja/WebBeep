@@ -69,18 +69,19 @@ public class Decoder extends DefaultCodec {
 		// tones = ChunkDetector.rectify(tones);
 		// tones = RunningAverage.filter(tones, 100);
 
+		if(Debug.showPlots){
 		 Plotter.plot(tones, "in decoder");
+		}
 
+		if(10 == 11){ //// TODO something with this
 		int start = ChunkDetector.findStartThreshold(tones,
 				Constants.SILENCE_THRESHOLD);
 		int end = ChunkDetector.findEndThreshold(tones,
 				Constants.SILENCE_THRESHOLD);
-
-		// plotter.addPoint(start, tones.get(start));
-		// plotter.addPoint(end, tones.get(end));
 	//	System.out.println("cropping");
 		
 		tones = tones.subList(start, end);
+		}
 
 	//	Plotter.plot(tones, "Cropped");
 
@@ -117,7 +118,7 @@ public class Decoder extends DefaultCodec {
 		}
 try{
 		ascii = doChecksum(ascii);
-		System.out.println("ascii="+ascii);
+		Debug.debug("ascii="+ascii);
 }catch(Exception exception){
 	exception.printStackTrace();
 }
@@ -136,7 +137,8 @@ try{
 		ascii = ascii.substring(1);
 		String checkSum = Checksum.makeChecksumString(ascii);
 		if(!checkSum.equals(checkString)){
-			throw new Exception("checksum failed");
+		//	throw new Exception("checksum failed");
+			Debug.inform("Checksum failed!");
 		}
 		return ascii;
 	}
@@ -177,8 +179,16 @@ try{
 			List<Double> rightFreqs) {
 		
 		double lowNote;
-		double noteA = findNearestNote(leftFreqs.get(0));
-		double highNote = findNearestNote(leftFreqs.get(1));
+		double noteA = 440;
+		double highNote = 880;
+		try{
+		noteA = findNearestNote(leftFreqs.get(0));
+		highNote = findNearestNote(leftFreqs.get(1));
+		} catch(Exception exception){
+			Debug.error("Index out of range in Decoder.decodeChar");
+			Debug.error("leftFreqs.size() = "+leftFreqs.size());
+			Debug.error("rightFreqs.size() = "+rightFreqs.size());
+		}
 		if (noteA > highNote) {
 			lowNote = highNote;
 			highNote = noteA;
@@ -222,7 +232,7 @@ try{
 					Maps.LOW_BEATS);
 //			System.out.println("got value " + lowValue);
 		} catch (Exception exception) {
-			exception.printStackTrace();
+			Debug.inform("No character matched to lowNote="+lowNote+" beatLow="+beatLow);
 		}
 		try {
 //			System.out.println("unmapping high " + highNote + "   "
@@ -231,7 +241,7 @@ try{
 					Maps.HIGH_BEATS);
 //			System.out.println("got value " + highValue);
 		} catch (Exception exception) {
-			exception.printStackTrace();
+			Debug.inform("No character matched to highNote="+highNote+" beatHigh="+beatHigh);
 		}
 		String c = (new Character((char) (lowValue * 16 + highValue)))
 				.toString();

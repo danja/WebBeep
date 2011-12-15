@@ -72,7 +72,7 @@ public class EnvelopeShaper extends DefaultProcessor {
 	public void initFromParameters() {
 		Debug.debug("parameters="+parameters);
 //		Debug.halt(this);
-System.out.println("parameters.get(attackProportion)="+parameters.get("attackProportion"));
+// System.out.println("parameters.get(attackProportion)="+parameters.get("attackProportion"));
 		setAttackProportion((Double)parameters.get("attackProportion"));
 		setDecayProportion((Double)parameters.get("decayProportion"));
 		

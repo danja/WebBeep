@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.pipelines.Processor;
 
 /**
@@ -30,11 +31,12 @@ public class FrequencyParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
-		System.out.println("processor.getShape="+getProcessor().getParameter("shape"));
-		if (name.equals("LP")) {
+		String shape = (String)getProcessor().getParameter("shape");
+		Debug.debug("Initializing a "+shape);
+		if (shape.equals("LP")) {
 			value = scaledFreq(LP_LOW, LP_HIGH);
 		}
-		if (name.equals("HP")) {
+		if (shape.equals("HP")) {
 			value = scaledFreq(HP_LOW, HP_HIGH);
 		}
 	}
