@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.hyperdata.beeps.*;
 import org.hyperdata.beeps.optimize.Parameter;
+import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 /**
@@ -16,6 +17,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class Corruptor extends DefaultProcessor {
 
+	public Corruptor(){
+		super("Corruptor");
+	}
 	//public List<Double> corrupt(List<Double> input, double amount);
 	
 	/* (non-Javadoc)

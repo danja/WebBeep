@@ -5,16 +5,16 @@ package org.hyperdata.beeps.optimize;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.pipelines.Parameterized;
 
 /**
  * @author danny
  * 
- *         LP FIR Fc 1kHz...12kHz HP FIR Fc 30Hz...250Hz
+ *         FIR Filters, ranges are in Constants
  */
 public class FrequencyParameter extends DefaultParameter {
 
-	public FrequencyParameter(Processor processor, String name) {
+	public FrequencyParameter(Parameterized processor, String name) {
 		super(processor, name);
 	}
 

@@ -1,5 +1,5 @@
 /**
- * 
+ * sadly I had to lose the interface PitchFinderGeneral
  */
 package org.hyperdata.beeps.decode;
 
@@ -16,7 +16,9 @@ import org.hyperdata.beeps.encode.EnvelopeShaper;
 import org.hyperdata.beeps.fft.FFTPitchFinder;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
-import org.hyperdata.beeps.process.Normalise;
+import org.hyperdata.beeps.pipelines.SplittingProcessor;
+import org.hyperdata.beeps.processors.Cropper;
+import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
@@ -78,30 +80,23 @@ public class Decoder extends DefaultCodec {
 			Plotter.plot(tones, "in decoder");
 		}
 
-		// if(10 == 11){ //// TODO something with this
-		Debug.inform("DETECTOR - do something with me");
-		int start = ChunkDetector.findStartThreshold(tones,
-				Constants.SILENCE_THRESHOLD);
-		int end = ChunkDetector.findEndThreshold(tones,
-				Constants.SILENCE_THRESHOLD);
-		// System.out.println("cropping");
+		// CROPPER - processor
 
-		try{
-		tones = tones.subList(start, end);
-		}catch(Exception exception){
-			System.out.println("DETECTOR problem");
-		//	Plotter.plot(tones, "DETECTOR");
-		}
+		Processor cropper = new Cropper();
+
+		tones = cropper.process(tones);
 		// }
 
 		// Plotter.plot(tones, "Cropped");
 
-		// System.out.println("chunking");
+		// MOVE TO CHUNKER - SplittingProcessor
 
-		int cropLength = (int) (Constants.CROP_PROPORTION
-				* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
-		List<List<Double>> chunks = ChunkDetector.chunk(tones, 0, cropLength);
+//		int cropLength = (int) (Constants.CROP_PROPORTION
+//				* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
+//		List<List<Double>> chunks = Chunker.chunk(tones, 0, cropLength);
 
+		SplittingProcessor chunker = new Chunker();
+		List<List<Double>> chunks = chunker.process(tones);
 		// System.out.println("windowing chunks");
 
 		for (int i = 0; i < chunks.size(); i++) {
@@ -118,7 +113,8 @@ public class Decoder extends DefaultCodec {
 			// System.out.println("CHUNK " + i + " and "+ (i+1));
 			List<Double> leftChunk = chunks.get(i);
 			List<Double> rightChunk = chunks.get(i + 1);
-
+			// System.out.println("leftChunk.size()="+leftChunk.size());
+			// System.out.println("rightChunk.size()="+rightChunk.size());
 			String c = chunksToCharacter(leftChunk, rightChunk);
 
 			// System.out.println(c);
@@ -159,18 +155,22 @@ public class Decoder extends DefaultCodec {
 			List<Double> rightChunk) {
 
 		Processor normalise = new Normalise();
-		leftChunk = normalise.process(leftChunk);
+		try {
+			leftChunk = normalise.process(leftChunk);
 
-		rightChunk = normalise.process(rightChunk);
+			rightChunk = normalise.process(rightChunk);
+		} catch (Exception exception) {
+			Debug.verbose("chunksToCharacter fail - " + exception.getMessage());
+		}
 
 		// ////////////////////////////////////////////////////////////////////////////////
 
-		PitchFinderGeneral finder = new FFTPitchFinder();
+		Processor finder = new FFTPitchFinder();
 
 		// Plotter.plot(leftChunk, "leftChunk");
 
-		List<Double> leftFreqs = finder.findPitches(leftChunk);
-		List<Double> rightFreqs = finder.findPitches(rightChunk);
+		List<Double> leftFreqs = finder.process(leftChunk);
+		List<Double> rightFreqs = finder.process(rightChunk);
 
 		String c = decodeChar(leftFreqs, rightFreqs);
 		return c;

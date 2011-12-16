@@ -12,17 +12,22 @@ import java.util.Set;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Maps;
-import org.hyperdata.beeps.decode.PitchFinderGeneral;
 import org.hyperdata.beeps.encode.Encoder;
+import org.hyperdata.beeps.pipelines.DefaultParameterized;
+import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
-import org.hyperdata.beeps.process.Normalise;
+import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
  * @author danny
  * 
  */
-public class FFTPitchFinder implements PitchFinderGeneral {
+public class FFTPitchFinder extends DefaultProcessor {
+	
+	public FFTPitchFinder(){
+		super("FFTPitchFinder");
+	}
 
 	public static void main(String[] args) {
 		Encoder encoder = new Encoder();
@@ -44,7 +49,7 @@ public class FFTPitchFinder implements PitchFinderGeneral {
 
 	}
 
-	public List<Double> findPitches(List<Double> tones) {
+	public List<Double> process(List<Double> tones) {
 		Map<Double, Double> pitches = findPairs(tones);
 		Set<Double> keys = pitches.keySet();
 		Iterator<Double> iterator = keys.iterator();
@@ -97,6 +102,15 @@ public class FFTPitchFinder implements PitchFinderGeneral {
 		}
 		
 		return pitches;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
+	 */
+	@Override
+	public void initFromParameters() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

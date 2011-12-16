@@ -21,13 +21,12 @@ public class BasicCodecTest {
 	 */
 	public static void main(String[] args) {
 
-		// NOTE FFT is at low value
-
 		// String input = "http://danbri.org/foaf.rdf#danbri";
-		String input = "iffff";
-		for (char i = 70; i < 128; i++) {
-			input += new Character(i);
-		}
+		// String input = "iffff";
+//		for (char i = 70; i < 128; i++) {
+//			input += new Character(i);
+//		}
+		String input = Helpers.getRandomASCII();
 		// http://danbri.org/foaf.rdf#danbri
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 

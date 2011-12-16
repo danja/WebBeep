@@ -13,24 +13,29 @@ import java.util.List;
 import java.util.Map;
 
 import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.decode.ChunkDetector;
-import org.hyperdata.beeps.decode.PitchFinderGeneral;
+import org.hyperdata.beeps.decode.Chunker;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.encode.WaveMaker;
-import org.hyperdata.beeps.process.Normalise;
+import org.hyperdata.beeps.pipelines.DefaultParameterized;
+import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
  * @author danny
  * 
  */
-public class Correlator implements PitchFinderGeneral {
+public class Correlator extends DefaultProcessor {
+	
+	public Correlator(){
+		super("Correlator");
+	}
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.urltone.decode.PitchFinderGeneral#findPitches(java.util.List)
 	 */
 	@Override
-	public List<Double> findPitches(List<Double> tones) {
+	public List<Double> process(List<Double> tones) {
 
 		Map<Double,Double> correlations = new HashMap<Double,Double>();
 		
@@ -234,5 +239,14 @@ public class Correlator implements PitchFinderGeneral {
 		} // end shift
 	//	 return result;
 		return maxSum>Math.abs(minSum) ? maxSum : minSum;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
+	 */
+	@Override
+	public void initFromParameters() {
+		// TODO Auto-generated method stub
+		
 	}
 }

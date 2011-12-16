@@ -11,7 +11,7 @@ import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.fft.FFT;
 import org.hyperdata.beeps.fft.PeakDetector;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
-import org.hyperdata.beeps.process.Normalise;
+import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;

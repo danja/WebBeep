@@ -5,7 +5,7 @@ package org.hyperdata.beeps.optimize;
 
 import java.util.Random;
 
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.pipelines.Parameterized;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
@@ -14,7 +14,7 @@ import org.hyperdata.beeps.util.Plotter;
  */
 public class EnvelopeParameter extends DefaultParameter {
 	
-	public EnvelopeParameter(Processor processor, String name){
+	public EnvelopeParameter(Parameterized processor, String name){
 		super(processor, name);
 		// initRandom();
 	}

@@ -2,12 +2,14 @@
 NOT YET TESTED!!!
  * 
  */
-package org.hyperdata.beeps.process;
+package org.hyperdata.beeps.processors;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.util.Plotter;
 
 

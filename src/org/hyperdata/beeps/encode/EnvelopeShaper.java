@@ -6,6 +6,7 @@ package org.hyperdata.beeps.encode;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 
 /**

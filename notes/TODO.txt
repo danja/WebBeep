@@ -1,8 +1,18 @@
-add filters
+Line codec - for between output and input 
 
-Add checksum
+Improvements:
+compressor
 
-add file load
+Distortion:
+x3/2 distortion
+noise
+reverb
+clipping
+
+GA
+
+refactor : swap out List<Double> for Tone etc
+
 
 add tests
 

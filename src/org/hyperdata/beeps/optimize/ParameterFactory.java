@@ -4,7 +4,7 @@
 package org.hyperdata.beeps.optimize;
 
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.pipelines.Parameterized;
 
 /**
  * @author danny
@@ -26,7 +26,7 @@ p("HP_Fc");
 p("HP_points");
 */
 	
-	public static Parameter createParameter(Processor processor, String type){
+	public static Parameter createParameter(Parameterized processor, String type){
 //		if(type.equals("chunkNorm") || type.equals("chunkEnv") || type.equals("toNoise")) {
 //			return new BooleanParameter(type);
 //		}

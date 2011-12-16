@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.decode.ChunkDetector;
+import org.hyperdata.beeps.decode.Chunker;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.encode.WaveMaker;
 import org.hyperdata.beeps.util.Plotter;
@@ -28,9 +28,9 @@ public class TestCorr {
 		////////////////////////////////////////////
 		 Encoder encoder = new Encoder();
 		List<Double> testTone = encoder.encode("o");
-		int startx = ChunkDetector.findStartThreshold(testTone,
+		int startx = Chunker.findStartThreshold(testTone,
 				Constants.SILENCE_THRESHOLD);
-		int endx = ChunkDetector.findEndThreshold(testTone,
+		int endx = Chunker.findEndThreshold(testTone,
 				Constants.SILENCE_THRESHOLD);
 		testTone = testTone.subList(startx, endx);
 		

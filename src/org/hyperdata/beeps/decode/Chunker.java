@@ -8,33 +8,34 @@ import java.util.List;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.encode.Encoder;
+import org.hyperdata.beeps.pipelines.DefaultParameterized;
+import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.util.WavCodec;
 
 /**
  * @author danny
  * 
- *         rectifier+ simple moving-average filter
- * 
- *         used to locate start of tone
  */
-public class ChunkDetector {
-
-	// static double WINDOW_TIME = 0.04; // seconds
-
-	/** make all values positive
-	 * 
-	 * @param tones input signal
-	 * @return rectified signal
+public class Chunker extends DefaultParameterized implements SplittingProcessor {
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
 	 */
-	public static List<Double> rectify(List<Double> tones) {
+	@Override
+	public void initFromParameters() {
+		// TODO Auto-generated method stub
+		
+	}
 
-		List<Double> rectified = new ArrayList<Double>();
-
-		for (int i = 0; i < tones.size();i++ ) {
-			double sum = 0;
-			rectified.add(Math.abs(tones.get(i)));
-			}
-		return rectified;
+	/* (non-Javadoc) REFACTOR!!!
+	 * @see org.hyperdata.beeps.pipelines.SplittingProcessor#process(java.util.List)
+	 */
+	@Override
+	public List<List<Double>> process(List<Double> input) {
+		int cropLength = (int) (Constants.CROP_PROPORTION
+				* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
+		List<List<Double>> chunks = Chunker.chunk(input, 0, cropLength);
+		return chunks;
 	}
 	
 	public static int findStartThreshold(List<Double> tones, double threshold){
@@ -100,4 +101,6 @@ public class ChunkDetector {
 		System.out.println(start);
 		WavCodec.save(filename, tones);
 	}
+
+
 }

@@ -24,10 +24,7 @@ public class ParameterizedCodecTest {
 	public static void main(String[] args) {
 
 		// String input = "http://danbri.org/foaf.rdf#danbri";
-		String input = "iffff";
-		for (char i = 70; i < 128; i++) {
-			input += new Character(i);
-		}
+		String input = Helpers.getRandomASCII();
 		// http://danbri.org/foaf.rdf#danbri
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 
@@ -35,10 +32,13 @@ public class ParameterizedCodecTest {
 		Debug.inform(input.length() + " characters\n");
 
 		long startTime = System.currentTimeMillis();
-		int runs = 100;
+		int runs = 10;
 		int successCount = 0;
+		double mostAccurate = 0;
+		
 		for (int j = 0; j < runs; j++) { // start for loop
 			System.out.println("============== Start Run =========");
+		//	Encoder encoder = new Encoder();
 			Encoder encoder = new ParameterizedEncoder();
 			Debug.debug(((ParameterizedEncoder) encoder));
 
@@ -47,7 +47,7 @@ public class ParameterizedCodecTest {
 
 			List<Double> outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 
-			// WavCodec.save(filename, outTones); SAVE
+			// WavCodec.save(filename, outTones); // SAVE
 
 			if (Debug.showPlots) {
 				Plotter.plot(outTones, "encoder OutTones");
@@ -66,7 +66,9 @@ public class ParameterizedCodecTest {
 			// List<Double> inTones = WavCodec.read(filename);
 
 			startTime = System.currentTimeMillis();
+			// Decoder decoder = new Decoder();
 			Decoder decoder = new ParameterizedDecoder();
+			System.out.println("inTones.size()="+inTones.size());
 			String output = decoder.decode(inTones);
 			thisTime = System.currentTimeMillis();
 
@@ -95,6 +97,12 @@ public class ParameterizedCodecTest {
 				} catch (Exception e) {
 					// ignore
 				}
+				
+			}
+			double percent = 100 * (double) hits
+					/ (double) input.length();
+			if(percent > mostAccurate){
+				mostAccurate = percent;
 			}
 			System.out.println("Hits = " + 100 * (double) hits
 					/ (double) input.length() + " %");
@@ -106,5 +114,6 @@ public class ParameterizedCodecTest {
 		} // end for loop
 		System.out.println("Success count = " + successCount + " out of "
 				+ runs);
+		System.out.println("Most accurate = "+mostAccurate);
 	}
 }

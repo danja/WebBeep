@@ -52,8 +52,9 @@ public class Constants {
 		
 		// proportion between actual min/max freqs and filter cutoff freqs
 		public static double CUTOFF_PADDING = 1.1;
-		public static double LP_LOW = 900;
+		
+		public static double LP_LOW = 1000;
 		public static double LP_HIGH = 12000;
-		public static double HP_LOW = 30;
+		public static double HP_LOW = 60;
 		public static double HP_HIGH = 300;
 }

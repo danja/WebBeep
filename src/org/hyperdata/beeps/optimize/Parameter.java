@@ -3,7 +3,7 @@
  */
 package org.hyperdata.beeps.optimize;
 
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.pipelines.Parameterized;
 
 /**
  * @author danny
@@ -16,5 +16,5 @@ public interface Parameter {
 	// public void init();
 	public void initRandom();
 	public Object getValue();
-	public Processor getProcessor();
+	public Parameterized getProcessor();
 }

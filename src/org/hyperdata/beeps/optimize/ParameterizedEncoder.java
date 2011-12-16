@@ -10,10 +10,11 @@ import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.encode.EnvelopeShaper;
 import org.hyperdata.beeps.filters.FIRFilterImpl;
-import org.hyperdata.beeps.pipelines.AllToNoiseProcessor;
+import org.hyperdata.beeps.pipelines.Parameterized;
 import org.hyperdata.beeps.pipelines.Processor;
-import org.hyperdata.beeps.process.FIRProcessor;
-import org.hyperdata.beeps.process.Normalise;
+import org.hyperdata.beeps.processors.AllToNoiseProcessor;
+import org.hyperdata.beeps.processors.FIRProcessor;
+import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.optimize.*;
 
 /**
@@ -90,7 +91,7 @@ public class ParameterizedEncoder extends Encoder {
 		}
 	}
 
-	private void createParameter(Processor processor, String name) {
+	private void createParameter(Parameterized processor, String name) {
 		Parameter parameter = ParameterFactory.createParameter(processor, name);
 		processor.setParameter(parameter);
 		Debug.debug("Created : " + parameter);

@@ -6,7 +6,7 @@ package org.hyperdata.beeps.degrade;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.beeps.decode.ChunkDetector;
+import org.hyperdata.beeps.decode.Chunker;
 
 /**
  * @author danny

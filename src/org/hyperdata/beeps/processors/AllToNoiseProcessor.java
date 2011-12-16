@@ -1,10 +1,11 @@
 /**
  * 
  */
-package org.hyperdata.beeps.pipelines;
+package org.hyperdata.beeps.processors;
 
 import java.util.List;
 
+import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Noise;
 
 /**
