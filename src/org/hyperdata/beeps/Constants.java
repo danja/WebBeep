@@ -31,10 +31,11 @@ public class Constants {
 	 * Chunk parameters
 	 */
 		public static double TONE_DURATION = 0.145833333/1.5;
-		// public static double TONE_DURATION = 0.145833333;
-		public static double END_PAD_DURATION = 0.145833333;
-		public static double SILENCE_DURATION = 0.01;
+		// Silence between tones not handled correctly : tone/tone/gap etc
+		public static double SILENCE_DURATION = 0;
+		
 		public static double START_PAD_DURATION = 0.0729166667;
+		public static double END_PAD_DURATION = 0.145833333;
 		
 		/* 
 		 * Encode parameters
@@ -45,11 +46,14 @@ public class Constants {
 		/* 
 		 * Decode parameters
 		 */
-		public static double SILENCE_THRESHOLD = 0.3; // for cropping - below this level assumed no sound
-		public static double CROP_PROPORTION = 0.5;
+		public static double SILENCE_THRESHOLD = 0.5; // was 0.3 for cropping - below this level assumed no sound
+		public static double CROP_PROPORTION = 0.5; // was 0.5
 		public static double EDGE_WINDOW_PROPORTION = 0.01;
 		
 		// proportion between actual min/max freqs and filter cutoff freqs
 		public static double CUTOFF_PADDING = 1.1;
-
+		public static double LP_LOW = 900;
+		public static double LP_HIGH = 12000;
+		public static double HP_LOW = 30;
+		public static double HP_HIGH = 300;
 }

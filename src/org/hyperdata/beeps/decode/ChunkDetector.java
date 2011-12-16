@@ -54,6 +54,7 @@ public class ChunkDetector {
 
 	/**
 	 * Splits up continuous series into separate (per-char) blocks
+	 * Silence between tones not handled correctly : tone/tone/gap etc
 	 * 
 	 * @param tones
 	 * @return

@@ -90,7 +90,7 @@ public class Decoder extends DefaultCodec {
 		tones = tones.subList(start, end);
 		}catch(Exception exception){
 			System.out.println("DETECTOR problem");
-			Plotter.plot(tones, "DETECTOR");
+		//	Plotter.plot(tones, "DETECTOR");
 		}
 		// }
 

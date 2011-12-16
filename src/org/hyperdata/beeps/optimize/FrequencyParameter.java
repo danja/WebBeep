@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.optimize;
 
+import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.pipelines.Processor;
 
@@ -12,13 +13,6 @@ import org.hyperdata.beeps.pipelines.Processor;
  *         LP FIR Fc 1kHz...12kHz HP FIR Fc 30Hz...250Hz
  */
 public class FrequencyParameter extends DefaultParameter {
-
-	static double LP_LOW = 1000;
-	static double LP_HIGH = 12000;
-//	static double HP_LOW = 30;
-//	static double HP_HIGH = 250;
-	static double HP_LOW = 1000;
-	static double HP_HIGH = 2000;
 
 	public FrequencyParameter(Processor processor, String name) {
 		super(processor, name);
@@ -34,10 +28,10 @@ public class FrequencyParameter extends DefaultParameter {
 		String shape = (String)getProcessor().getParameter("shape");
 		Debug.debug("Initializing a "+shape);
 		if (shape.equals("LP")) {
-			value = scaledFreq(LP_LOW, LP_HIGH);
+			value = scaledFreq(Constants.LP_LOW, Constants.LP_HIGH);
 		}
 		if (shape.equals("HP")) {
-			value = scaledFreq(HP_LOW, HP_HIGH);
+			value = scaledFreq(Constants.HP_LOW, Constants.HP_HIGH);
 		}
 	}
 	
