@@ -6,6 +6,7 @@ package org.hyperdata.beeps.pipelines;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
 
@@ -15,8 +16,8 @@ import org.hyperdata.beeps.util.Tone;
  */
 public abstract class DefaultCodec implements Codec {
 
-	private Pipeline preprocessors;
-	private Pipeline postprocessors;
+	private Pipeline preProcessors;
+	private Pipeline postProcessors;
 	
 	public DefaultCodec(){
 		 initProcessors();
@@ -36,7 +37,7 @@ public abstract class DefaultCodec implements Codec {
 	@Override
 	public void addPreProcessor(Processor processor) {
 		Debug.verbose("Adding Processor : "+processor);
-		preprocessors.addProcessor(processor);
+		preProcessors.addProcessor(processor);
 	}
 
 	/* (non-Javadoc)
@@ -44,7 +45,7 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void addPostProcessor(Processor processor) {
-		postprocessors.addProcessor(processor);
+		postProcessors.addProcessor(processor);
 	}
 
 	/* (non-Javadoc)
@@ -76,8 +77,8 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void initProcessors() {
-		preprocessors = new DefaultPipeline();
-		postprocessors = new DefaultPipeline();
+		preProcessors = new DefaultPipeline();
+		postProcessors = new DefaultPipeline();
 		Debug.debug("Processes cleared in "+this);
 	}
 	
@@ -86,9 +87,14 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public Tone applyPreProcessors(Tone input) {
-		if(preprocessors.size() == 0) return input;
+		if(preProcessors.size() == 0) return input;
 		Debug.verbose("Preprocessing...");
-		return preprocessors.applyProcessors(input);
+		return preProcessors.applyProcessors(input);
+	}
+	
+	public Chunks applyPreProcessors(Chunks chunks){
+		if(preProcessors.size() == 0) return chunks;
+		return preProcessors.applyProcessors(chunks);
 	}
 
 
@@ -97,8 +103,13 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public Tone applyPostProcessors(Tone input) {
-		if(postprocessors.size() == 0) return input;
+		if(postProcessors.size() == 0) return input;
 		Debug.verbose("Postprocessing...");
-		return postprocessors.applyProcessors(input);
+		return postProcessors.applyProcessors(input);
+	}
+	
+	public Chunks applyPostProcessors(Chunks chunks){
+		if(postProcessors.size() == 0) return chunks;
+		return postProcessors.applyProcessors(chunks);
 	}
 }

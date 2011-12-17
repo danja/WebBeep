@@ -23,31 +23,26 @@ import org.hyperdata.beeps.util.Tone;
 /**
  * @author danny
  * 
- *         * preprocessors in Decoder are applied to the whole incoming waveform
- *         postprocessors are applied to individual dual-tone chunks
+ * Sequence of processors and the their parameters are hardcoded
  */
-public class Decoder extends DefaultCodec {
+public class Decoder  {
 
 	public Decoder() {
 		super();
 	}
 
-	public void initProcessors() {
-		super.initProcessors();
-		addPostProcessor(new Normalise());
-
-		Processor envelope = new EnvelopeShaper();
-		envelope.setParameter("attackProportion",
-				Constants.EDGE_WINDOW_PROPORTION);
-		envelope.setParameter("decayProportion",
-				Constants.EDGE_WINDOW_PROPORTION);
-		addPostProcessor(envelope);
-	}
-
 	public String decode(Tone tones) {
 		Debug.inform("Decoding");
-
-		tones = applyPreProcessors(tones);
+		
+		Normalise norm = new Normalise();
+		tones = norm.process(tones);
+		
+//		EnvelopeShaper envelope = new EnvelopeShaper();
+//		envelope.setAttackProportion(Constants.EDGE_WINDOW_PROPORTION);
+//		envelope.setDecayProportion(Constants.EDGE_WINDOW_PROPORTION);
+//		tones = envelope.process(tones);
+		
+		// tones = applyPreProcessors(tones);
 
 		if (Debug.showPlots) {
 			Plotter.plot(tones, "in decoder");
@@ -61,23 +56,12 @@ public class Decoder extends DefaultCodec {
 		SplittingProcessor chunker = new Chunker();
 		Chunks chunks = chunker.process(tones);
 
-		for (int i = 0; i < chunks.size(); i++) {
-			Tone chunk = chunks.get(i);
-			chunk = applyPostProcessors(chunk);
-			chunks.set(i, chunk);
-			// Plotter.plot(chunks.get(i), "Chunk " + i);
-		}
-		String ascii = "";
-		for (int i = 0; i < chunks.size() - 1; i = i + 2) {
-			// System.out.println("CHUNK " + i + " and "+ (i+1));
-			Tone leftChunk = chunks.get(i);
-			Tone rightChunk = chunks.get(i + 1);
-			// System.out.println("leftChunk.size()="+leftChunk.size());
-			// System.out.println("rightChunk.size()="+rightChunk.size());
-			ascii += chunksToCharacter(leftChunk, rightChunk);
-		}
+		// chunks = applyPostProcessors(chunks);
+		
+		String ascii = ASCIICodec.chunksToASCII(chunks);
+
 		try {
-			ascii = doChecksum(ascii);
+			ascii = Checksum.checksum(ascii);
 			Debug.debug("ascii=" + ascii);
 		} catch (Exception exception) {
 			exception.printStackTrace();
@@ -86,26 +70,11 @@ public class Decoder extends DefaultCodec {
 	}
 
 	/**
-	 * @param ascii
-	 * @return
-	 */
-	private static String doChecksum(String ascii) throws Exception {
-		String checkString = ascii.substring(0, 1);
-		ascii = ascii.substring(1);
-		String checkSum = Checksum.makeChecksumString(ascii);
-		if (!checkSum.equals(checkString)) {
-			// throw new Exception("checksum failed");
-			Debug.inform("Checksum failed!");
-		}
-		return ascii;
-	}
-
-	/**
 	 * @param leftChunk
 	 * @param rightChunk
 	 * @return
 	 */
-	private static String chunksToCharacter(Tone leftChunk,
+	static String chunksToCharacter(Tone leftChunk,
 			Tone rightChunk) {
 
 		Processor normalise = new Normalise();

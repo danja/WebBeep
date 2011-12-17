@@ -32,10 +32,6 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 		return new Tone(filter.filter(input));
 	}
 
-//	public List<Double> process(List<Double> input) {
-//		return filter.filter(input);
-//	}
-
 	// delegate methods
 
 	/*
@@ -116,6 +112,7 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 	 */
 	@Override
 	public void initWeights() {
+		// System.out.println("init weights in "+this.getName());
 		filter.initWeights();
 	}
 

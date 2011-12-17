@@ -25,7 +25,7 @@ public class BasicCodecTest {
 //		for (char i = 70; i < 128; i++) {
 //			input += new Character(i);
 //		}
-		String input = Helpers.getRandomASCII();
+		String input = ASCIICodec.getRandomASCII();
 		// http://danbri.org/foaf.rdf#danbri
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 

@@ -17,12 +17,12 @@ import org.hyperdata.beeps.filters.FIRFilter;
  */
 public class Organism {
 
-	private Encoder encoder = new ParameterizedEncoder();
+	private ParameterizedEncoder encoder = new ParameterizedEncoder();
 //	private FIRFilter encoderLP = new ParameterizedFilter();
 //	private FIRFilter encoderHP = new ParameterizedFilter();
 	
 	
-	private Decoder decoder = new ParameterizedDecoder();
+	private ParameterizedDecoder decoder = new ParameterizedDecoder();
 //	private FIRFilter decoderLP1 = new ParameterizedFilter();
 //	private FIRFilter decoderLP2 = new ParameterizedFilter();
 //	private FIRFilter decoderHP = new ParameterizedFilter();

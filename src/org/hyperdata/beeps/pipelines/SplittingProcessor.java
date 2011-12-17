@@ -13,6 +13,6 @@ import org.hyperdata.beeps.util.Tone;
  *
  */
 public interface SplittingProcessor extends Parameterized {
-	public List<List<Double>> process(List<Double> input);
+	// public List<List<Double>> process(List<Double> input);
 	public Chunks process(Tone input);
 }

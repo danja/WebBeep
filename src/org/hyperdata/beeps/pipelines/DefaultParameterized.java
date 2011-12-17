@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hyperdata.beeps.optimize.Parameter;
+import org.hyperdata.beeps.parameters.Parameter;
 
 /**
  * @author danny

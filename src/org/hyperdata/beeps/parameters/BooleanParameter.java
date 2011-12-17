@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.optimize;
+package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.pipelines.Parameterized;
 
@@ -10,8 +10,6 @@ import org.hyperdata.beeps.pipelines.Parameterized;
  *
  */
 public class BooleanParameter extends DefaultParameter {
-	
-
 	
 	public BooleanParameter(Parameterized processor, String name){
 		super(processor, name);

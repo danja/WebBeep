@@ -19,6 +19,10 @@ public class Debug {
 	public static char level = 0;
 	public static boolean showPlots = false;
 
+	public static void log(String message) {
+		//	System.out.println(message);
+	}
+	
 	// Apache logger etc uses DEBUG, INFO, WARN, ERROR and FATAL
 	
 	public static void inform(String message) {

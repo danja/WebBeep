@@ -18,5 +18,5 @@ public interface Processor extends Parameterized {
 //	public List<List<Double>> processMulti(List<List<Double>> input);
 	
 	public Tone process(Tone input);
-	public Chunks processMulti(Chunks input);
+	public Chunks process(Chunks input);
 }

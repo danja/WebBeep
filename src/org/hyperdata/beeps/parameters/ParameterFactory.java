@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.optimize;
+package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.pipelines.Parameterized;
@@ -37,7 +37,7 @@ p("HP_points");
 		if(type.equals("attackProportion") || type.equals("decayProportion")) {
 			return new EnvelopeParameter(processor, type);
 		} 
-		if(type.equals("LP_FIR") || type.equals("HP_FIR")){
+		if(type.equals("LP_FIR") || type.equals("HP_FIR") || type.equals("LP_FIR1") || type.equals("LP_FIR2") ){
 			return new BooleanParameter(processor, type);
 		}
 		if(type.equals("npoints")){
@@ -49,6 +49,11 @@ p("HP_points");
 		if(type.equals("cutoff")){
 		//	System.out.println("HERE processor = "+processor);
 			return new FrequencyParameter(processor, type);
+		}
+		
+		
+		if(type.equals("silenceThreshold") || type.equals("cropProportion")){
+			return new NormalParameter(processor, type);
 		}
 		
 		Debug.error("Parameter "+type+" not available in ParameterFactory.");

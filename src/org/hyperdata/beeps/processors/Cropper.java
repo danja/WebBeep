@@ -17,6 +17,8 @@ import org.hyperdata.beeps.util.Tone;
  */
 public class Cropper extends DefaultProcessor {
 
+	private double silenceThreshold = Constants.SILENCE_THRESHOLD;
+	
 	public Cropper(){
 		super("Cropper");
 	}
@@ -26,20 +28,17 @@ public class Cropper extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
-		
+		silenceThreshold = (Double) parameters.get("silenceThreshold");
 	}
-	
+			
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
 	 */
 	@Override
 	public Tone process(Tone input) {
 		Debug.inform("DETECTOR - do something with me");
-		int start = Chunker.findStartThreshold(input,
-				Constants.SILENCE_THRESHOLD);
-		int end = Chunker.findEndThreshold(input,
-				Constants.SILENCE_THRESHOLD);
+		int start = Cropper.findStartThreshold(input, silenceThreshold);
+		int end = Cropper.findEndThreshold(input, silenceThreshold);
 		// System.out.println("cropping");
 
 		try {
@@ -50,25 +49,18 @@ public class Cropper extends DefaultProcessor {
 		}
 		return input;
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.pipelines.Processor#process(java.util.List)
-	 */
-//	@Override
-//	public List<Double> process(List<Double> input) {
-//		Debug.inform("DETECTOR - do something with me");
-//		int start = Chunker.findStartThreshold(input,
-//				Constants.SILENCE_THRESHOLD);
-//		int end = Chunker.findEndThreshold(input,
-//				Constants.SILENCE_THRESHOLD);
-//		// System.out.println("cropping");
-//
-//		try {
-//			input = input.subList(start, end);
-//		} catch (Exception exception) {
-//			System.out.println("DETECTOR problem");
-//			// Plotter.plot(tones, "DETECTOR");
-//		}
-//		return input;
-//	}
+
+	public static int findStartThreshold(List<Double> tones, double threshold){
+		for(int i=0;i<tones.size();i++){
+			if(tones.get(i)>threshold) return i;
+		}
+		return -1;
+	}
+
+	public static int findEndThreshold(List<Double> tones, double threshold){
+		for(int i=tones.size()-1;i>=0;i--){
+			if(tones.get(i)>threshold) return i;
+		}
+		return -1;
+	}
 }

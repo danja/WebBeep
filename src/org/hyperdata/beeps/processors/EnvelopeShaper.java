@@ -16,16 +16,12 @@ import org.hyperdata.beeps.util.Tone;
  */
 public class EnvelopeShaper extends DefaultProcessor {
 	
-
-
 	private double attackProportion = 0;
 	private double decayProportion = 0;
 
 	public EnvelopeShaper(){
 		super("EnvelopeShaper");
 	}
-	
-
 	
 //	public List<Double> process(List<Double> samples){
 //		return applyEnvelope(samples, (Double)getParameter("attackProportion"), (Double)getParameter("decayProportion"));

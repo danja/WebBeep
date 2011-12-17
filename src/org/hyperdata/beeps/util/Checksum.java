@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.IDN;
 import java.util.zip.CRC32;
 
+import org.hyperdata.beeps.Debug;
+
 /**
  * @author danny
  * 
@@ -33,5 +35,20 @@ public class Checksum {
 	//	System.out.println(sum+"   "+sum % 128);
 		String s = new Character((char)(sum % 128)).toString();
 		return s;
+	}
+
+	/**
+	 * @param ascii
+	 * @return
+	 */
+	public static String checksum(String ascii) throws Exception {
+		String checkString = ascii.substring(0, 1);
+		ascii = ascii.substring(1);
+		String checkSum = makeChecksumString(ascii);
+		if (!checkSum.equals(checkString)) {
+			// throw new Exception("checksum failed");
+			Debug.inform("Checksum failed!");
+		}
+		return ascii;
 	}
 }

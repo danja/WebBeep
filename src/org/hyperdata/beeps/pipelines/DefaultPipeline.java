@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
 
@@ -48,6 +49,18 @@ public class DefaultPipeline implements Pipeline {
 			tone = processor.process(tone);
 		}
 		return tone;
+	}
+	
+	public Chunks applyProcessors(Chunks chunks) {
+		if(processors.size() == 0) return chunks;
+		Debug.verbose("Applying "+processors.size()+" processors");
+		//Tone output = input;
+		for(int i=0;i<processors.size();i++){
+			Processor processor = processors.get(i);
+			Debug.verbose("Applying process : "+processor);
+			chunks = processor.process(chunks);
+		}
+		return chunks;
 	}
 	
 	/**

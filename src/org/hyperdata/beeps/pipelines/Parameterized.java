@@ -5,7 +5,7 @@ package org.hyperdata.beeps.pipelines;
 
 import java.util.Set;
 
-import org.hyperdata.beeps.optimize.Parameter;
+import org.hyperdata.beeps.parameters.Parameter;
 
 /**
  * @author danny

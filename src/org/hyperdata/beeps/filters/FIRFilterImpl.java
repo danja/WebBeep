@@ -182,8 +182,8 @@ public FIRFilterImpl(){
 		// double in[] = input.toArray<Double>();
 
 		List<Double> output = new ArrayList<Double>();
-// System.out.println("input.size()="+input.size());
-// System.out.println("weights.length="+weights.length);
+// System.out.println("FIRFilterImpl input.size()="+input.size());
+//  System.out.println("weights.length="+weights.length);
 		for (int i = 0; i < input.size() - weights.length; i++) {
 
 			double y = 0;

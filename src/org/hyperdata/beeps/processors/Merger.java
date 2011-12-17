@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.WaveMaker;
-import org.hyperdata.beeps.optimize.Parameter;
+import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.MergingProcessor;
@@ -40,23 +40,7 @@ public class Merger extends DefaultParameterized implements MergingProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.pipelines.MergingProcessor#process(java.util.List)
-	 */
-	@Override
-	public List<Double> process(List<List<Double>> input) {
-		List<Double> output = new ArrayList<Double>();
-		output.addAll(WaveMaker.makeSilence(Constants.START_PAD_DURATION));
-		for (int i = 0; i < input.size(); i++) {
-			output.addAll(input.get(i));
-			output.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
-		}
-		output.addAll(WaveMaker.makeSilence(Constants.END_PAD_DURATION));
-		return output;
+		// no parameters (yet)
 	}
 
 	/* (non-Javadoc)

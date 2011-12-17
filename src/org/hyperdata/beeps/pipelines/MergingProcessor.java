@@ -13,6 +13,6 @@ import org.hyperdata.beeps.util.Tone;
  *
  */
 public interface MergingProcessor extends Parameterized {
-	public List<Double> process(List<List<Double>> input);
+	// public List<Double> process(List<List<Double>> input);
 	public Tone process(Chunks input);
 }

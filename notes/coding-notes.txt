@@ -1,5 +1,11 @@
 used block-level functional tests rather than unit tests, mostly with results that needed to be humanly observed
 
+1. hack together processors with individual processing methods, guessed constants for parameters
+2. standardize to process() interface
+3. standardize processor parameters
+
+Data Structures
+===============
 initially used List<Double>, List<List<Double>> for data structures, 
 with 
 public List<Double> process(List<Double>)

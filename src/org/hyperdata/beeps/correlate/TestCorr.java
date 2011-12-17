@@ -9,7 +9,7 @@ import java.util.List;
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.WaveMaker;
-import org.hyperdata.beeps.processors.Chunker;
+import org.hyperdata.beeps.processors.Cropper;
 import org.hyperdata.beeps.util.Plotter;
 
 /**
@@ -28,9 +28,9 @@ public class TestCorr {
 		////////////////////////////////////////////
 		 Encoder encoder = new Encoder();
 		List<Double> testTone = encoder.encode("o");
-		int startx = Chunker.findStartThreshold(testTone,
+		int startx = Cropper.findStartThreshold(testTone,
 				Constants.SILENCE_THRESHOLD);
-		int endx = Chunker.findEndThreshold(testTone,
+		int endx = Cropper.findEndThreshold(testTone,
 				Constants.SILENCE_THRESHOLD);
 		testTone = testTone.subList(startx, endx);
 		

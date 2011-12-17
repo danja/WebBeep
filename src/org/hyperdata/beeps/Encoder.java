@@ -20,8 +20,10 @@ import org.hyperdata.beeps.util.WavCodec;
 /**
  * @author danny
  * 
+ * Sequence of processors and the their parameters are hardcoded
+ * 
  */
-public class Encoder extends DefaultCodec {
+public class Encoder {
 
 	public Encoder() {
 		super();
@@ -30,36 +32,15 @@ public class Encoder extends DefaultCodec {
 
 	/**
 	 * 
-	 * preprocessors in Encoder are applied to individual dual-tone chunks
-	 * postprocessors are applied to the whole outgoing constructed waveform
 	 */
 	public Tone encode(String idn) {
 
 		String ascii = IDN.toASCII(idn); // Punycode encode
-
 		ascii = Checksum.makeChecksumString(ascii) + ascii;
-
-		// List<List<Double>> chunks = new ArrayList<List<Double>>();
-
-		Chunks chunks = new Chunks();
-		
-		for (int i = 0; i < ascii.length(); i++) {
-
-			int val = (int) ascii.charAt(i);
-			int lsVal = val % 16; // least significant hex digit of val is for
-									// high tone
-			int msVal = (val - val % 16) / 16;
-			
-			Tone chunk = WaveMaker.makeDualTone(msVal, lsVal,
-					Constants.TONE_DURATION);
-			
-			chunk = applyPreProcessors(chunk);
-			chunks.add(chunk);
-		}
-//		Tone tones = new Tone(merge(chunks));
+		Chunks chunks = ASCIICodec.asciiToChunks(ascii);
 		Merger merger = new Merger();
-		Tone tones = new Tone(merger.process(chunks));
-		tones = new Tone(applyPostProcessors(tones));
+		Tone tones = merger.process(chunks);
+		// tones = applyPostProcessors(tones);
 		return tones;
 	}
 
