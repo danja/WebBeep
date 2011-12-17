@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Encoder;
-import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
+import org.hyperdata.go.parameters.DefaultParameterized;
 
 /**
  * @author danny

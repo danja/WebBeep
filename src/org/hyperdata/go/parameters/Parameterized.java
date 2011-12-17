@@ -1,11 +1,10 @@
 /**
  * 
  */
-package org.hyperdata.beeps.pipelines;
+package org.hyperdata.go.parameters;
 
 import java.util.Set;
 
-import org.hyperdata.beeps.parameters.Parameter;
 
 /**
  * @author danny

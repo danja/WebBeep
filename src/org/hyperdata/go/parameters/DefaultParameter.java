@@ -1,9 +1,8 @@
 /**
  * 
  */
-package org.hyperdata.beeps.parameters;
+package org.hyperdata.go.parameters;
 
-import org.hyperdata.beeps.pipelines.Parameterized;
 
 /**
  * @author danny

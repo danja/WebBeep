@@ -4,7 +4,8 @@
 package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.pipelines.Parameterized;
+import org.hyperdata.go.parameters.Parameter;
+import org.hyperdata.go.parameters.Parameterized;
 
 /**
  * @author danny
@@ -48,7 +49,7 @@ p("HP_points");
 		}
 		if(type.equals("cutoff")){
 		//	System.out.println("HERE processor = "+processor);
-			return new FrequencyParameter(processor, type);
+			return new ExponentialParameter(processor, type);
 		}
 		
 		// Decoder

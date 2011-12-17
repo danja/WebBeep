@@ -17,11 +17,11 @@ import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.fft.FFT;
 import org.hyperdata.beeps.fft.PeakDetector;
-import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.go.parameters.DefaultParameterized;
 
 /**
  * @author danny
@@ -52,7 +52,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 		fftBits = (Integer) parameters.get("fftBits");
 		fftMax = (int)Math.pow(2, fftBits);
 		peakDelta = (Double) parameters.get("peakDelta");
-		repeatToFit = (Boolean)parameters.get("repeat");
+		repeatToFit = ((String)parameters.get("repeatToFit")).equals("on");
 	}
 	
 	/* (non-Javadoc)
@@ -106,10 +106,10 @@ public class FFTPitchFinder extends DefaultProcessor {
 			Debug.log("tones.size()==0");
 			return new HashMap<Double, Double>();
 		}
-		if(repeatToFit && (tones.size()< fftMax)){
+		if(repeatToFit && (tones.size() < fftMax)){
 			Tone tonesCopy = new Tone(tones);
 			while(tones.size()< fftMax){
-				System.out.println("tones.size()="+tones.size()+" fftMax="+fftMax);
+			//	System.out.println("tones.size()="+tones.size()+" fftMax="+fftMax);
 				tones.addAll(tonesCopy);
 			}
 		}

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.parameters;
+package org.hyperdata.go.parameters;
 
 import java.util.ArrayList;
 import java.util.HashMap;

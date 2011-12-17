@@ -5,16 +5,17 @@ package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.pipelines.Parameterized;
+import org.hyperdata.go.parameters.DefaultParameter;
+import org.hyperdata.go.parameters.Parameterized;
 
 /**
  * @author danny
  * 
  *         FIR Filters, ranges are in Constants
  */
-public class FrequencyParameter extends DefaultParameter {
+public class ExponentialParameter extends DefaultParameter {
 
-	public FrequencyParameter(Parameterized processor, String name) {
+	public ExponentialParameter(Parameterized processor, String name) {
 		super(processor, name);
 	}
 

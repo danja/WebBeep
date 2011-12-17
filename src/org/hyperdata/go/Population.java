@@ -1,9 +1,10 @@
 /**
  * 
  */
-package org.hyperdata.beeps.optimize;
+package org.hyperdata.go;
 
 import java.util.*;
+
 
 /**
  * @author danny

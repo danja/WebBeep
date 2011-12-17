@@ -6,9 +6,9 @@ package org.hyperdata.beeps.processors;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.go.parameters.DefaultParameterized;
 
 /**
  * @author danny
