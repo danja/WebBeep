@@ -28,6 +28,10 @@ import org.hyperdata.beeps.util.Tone;
  */
 public class FFTPitchFinder extends DefaultProcessor {
 	
+	int fftBits = Constants.FFT_BITS;
+	int fftMax = Constants.FFT_MAX;
+	double peakDelta = Constants.PEAK_DELTA;
+	
 	public FFTPitchFinder(){
 		super("FFTPitchFinder");
 	}
@@ -37,8 +41,9 @@ public class FFTPitchFinder extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
-		
+		fftBits = (Integer) parameters.get("fftBits");
+		fftMax = (int)Math.pow(2, fftBits);
+		peakDelta = (Double) parameters.get("peakDelta");
 	}
 	
 	/* (non-Javadoc)
@@ -83,11 +88,11 @@ public class FFTPitchFinder extends DefaultProcessor {
 	
 	public Map<Double, Double> findPairs(Tone tones) {
 
-		FFT fft = new FFT(Constants.FFT_BITS);
+		FFT fft = new FFT(fftBits);
 
 		// only need the chunk of the FFT up to the max expected freq
 		int trim = (int) (Maps.MAX_HIGH_FREQ_CUTOFF
-				* (double) Constants.FFT_MAX / (double) Constants.SAMPLE_RATE);
+				* (double) fftMax / (double) Constants.SAMPLE_RATE);
 
 		List<Double> f = fft.doPowerFFT(tones, false).subList(0, trim);
 
@@ -99,7 +104,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 //		Plotter plotter = Plotter.plot(freqs, "Freqs", 4, true);
 		
 		// If... she.. weighs the same as a duck, she's made of wood.
-		List<Map<Integer, Double>> peaks = PeakDetector.peak_detection(freqs, 0.5);
+		List<Map<Integer, Double>> peaks = PeakDetector.peak_detection(freqs, peakDelta);
 
 		Map<Integer, Double> peak = peaks.get(0); // only peaks (get(i) gives
 													// minima)

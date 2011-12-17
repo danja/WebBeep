@@ -9,6 +9,8 @@ package org.hyperdata.beeps.fft;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hyperdata.beeps.Debug;
+
 public class FFT {
 
 	private static final double TWOPI = 2.0 * Math.PI;
@@ -27,8 +29,14 @@ public class FFT {
 		this.bits = bits;
 
 		if (bits > LOG2_MAXFFTSIZE) {
-			System.out.println("" + bits + " is too big");
-			System.exit(1);
+			Debug.log("FFT" + bits + " is too big");
+			System.out.println("FFT" + bits + " is too big");
+			while (bits > LOG2_MAXFFTSIZE) {
+				bits = bits/2;
+			//	System.exit(1);
+			}
+			Debug.log("trimmed bits to " + bits);
+			System.out.println("trimmed bits to " + bits);
 		}
 		for (int i = (1 << bits) - 1; i >= 0; --i) {
 			int k = 0;
@@ -46,8 +54,12 @@ public class FFT {
 	}
 	
 	public List<Double> doPowerFFT(List<Double> xrL, boolean invFlag) {
+//		try{
 		// int size = xrL.size();
 		int size = (int) Math.pow(2, bits);
+		if(xrL.size()>size){ // ?????????????????????
+			xrL = xrL.subList(0, size);
+		}
 //		System.out.println("size="+size);
 //		System.out.println("xrl size="+xrL.size());
 		double[] xr = new double[size];
@@ -69,6 +81,10 @@ public class FFT {
 			powers.add(new Double(power));
 		}
 		return powers;
+//		}catch(Exception exception){
+//			Debug.log("in FFT : "+exception.getMessage());
+//		}
+//		return null;
 	}
 
 	/**

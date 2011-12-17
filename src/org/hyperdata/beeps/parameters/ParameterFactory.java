@@ -51,9 +51,11 @@ p("HP_points");
 			return new FrequencyParameter(processor, type);
 		}
 		
-		
-		if(type.equals("silenceThreshold") || type.equals("cropProportion")){
+		if(type.equals("silenceThreshold") || type.equals("cropProportion") || type.equals("cropProportion") || type.equals("peakDelta")){
 			return new NormalParameter(processor, type);
+		}
+		if(type.equals("fftBits")){
+			return new FFTBitsParameter(processor, type);
 		}
 		
 		Debug.error("Parameter "+type+" not available in ParameterFactory.");

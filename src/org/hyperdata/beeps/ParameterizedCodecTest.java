@@ -29,15 +29,19 @@ public class ParameterizedCodecTest {
 		Debug.inform("Input : " + input);
 		Debug.inform(input.length() + " characters\n");
 
+		int runs = 1000;
 		
-		int runs = 2;
 		int successCount = 0;
 		double mostAccurate = 0;
+		double accuracySum = 0;
 		long encodeTimeSum = 0;
 		long decodeTimeSum = 0;
+		long encodeHitTimeSum = 0;
+		long decodeHitTimeSum = 0;
 		
 		for (int j = 0; j < runs; j++) { // start for loop
-			System.out.println("============== Start Run =========");
+			System.out.println(j);
+//			System.out.println("============== Start Run =========");
 		//	Encoder encoder = new Encoder();
 			ParameterizedEncoder encoder = new ParameterizedEncoder();
 			Debug.debug(((ParameterizedEncoder) encoder));
@@ -56,8 +60,8 @@ public class ParameterizedCodecTest {
 				Plotter.plot(outTones, "encoder OutTones");
 			}
 			
-			System.out.println("Encode time: " + (float) (encodeTime)
-					/ 1000 + " seconds");
+//			System.out.println("Encode time: " + (float) (encodeTime)
+//					/ 1000 + " seconds");
 
 			Debug.inform("Encode time: " + (float) (encodeTime)
 					/ 1000 + " seconds");
@@ -66,7 +70,6 @@ public class ParameterizedCodecTest {
 
 			// line will be the Real World between systems
 			DefaultPipeline line = new DefaultPipeline();
-			
 			Tone inTones = line.applyProcessors(outTones); // skip saving
 			
 			// List<Double> inTones = WavCodec.read(filename);
@@ -78,8 +81,8 @@ public class ParameterizedCodecTest {
 			long decodeTime = System.currentTimeMillis() - startTime;
 			decodeTimeSum += decodeTime;
 
-			System.out.println("Decode time: " + (float) (decodeTime)
-					/ 1000 + " seconds");
+//			System.out.println("Decode time: " + (float) (decodeTime)
+//					/ 1000 + " seconds");
 			
 			Debug.inform("Decode time: " + (float) (decodeTime)
 					/ 1000 + " seconds");
@@ -87,9 +90,11 @@ public class ParameterizedCodecTest {
 					+ " mS per char");
 
 			Debug.inform("Output : " + output);
-			System.out.println("Output : " + output);
+		//	System.out.println("Output : " + output);
 			if (output.equals(input)) {
 				successCount++;
+				decodeHitTimeSum += decodeTime;
+				encodeHitTimeSum += encodeTime;
 				Debug.inform("\n*** Success!!! ***");
 			} else {
 				Debug.inform("\n*** FAIL! ***");
@@ -107,13 +112,14 @@ public class ParameterizedCodecTest {
 					// ignore
 				}
 			}
-			double percent = 100 * (double) hits
+			double accuracy = 100 * (double) hits
 					/ (double) input.length();
-			if(percent > mostAccurate){
-				mostAccurate = percent;
+			accuracySum += accuracy;
+			if(accuracy > mostAccurate){
+				mostAccurate = accuracy;
 			}
-			System.out.println("Hits = " + 100 * (double) hits
-					/ (double) input.length() + " %");
+//			System.out.println("Hits = " + 100 * (double) hits
+//					/ (double) input.length() + " %");
 			Debug.inform("Hits = " + 100 * (double) hits
 					/ (double) input.length() + " %");
 			if (errs.length() > 0) {
@@ -123,8 +129,11 @@ public class ParameterizedCodecTest {
 		System.out.println("Success count = " + successCount + " out of "
 				+ runs);
 		System.out.println("Most accurate = "+mostAccurate + " %");
+		System.out.println("Mean accuracy = "+accuracySum/runs + " %");
 		System.out.println("Average encode time = "+Plotter.roundToSignificantFigures((float)encodeTimeSum/(1000*runs), 2)+" seconds");
 		System.out.println("Average decode time = "+Plotter.roundToSignificantFigures((float)decodeTimeSum/(1000*runs), 2)+" seconds");
 		System.out.println("Average total time = "+Plotter.roundToSignificantFigures(((float)encodeTimeSum+decodeTimeSum)/(1000*runs), 2)+" seconds");
+		System.out.println("Mean encode time for 100% transfer = "+Plotter.roundToSignificantFigures((float)encodeHitTimeSum/(1000*runs), 2)+" seconds");
+		System.out.println("Mean decode time for 100% transfer = "+Plotter.roundToSignificantFigures((float)decodeHitTimeSum/(1000*runs), 2)+" seconds");
 	}
 }

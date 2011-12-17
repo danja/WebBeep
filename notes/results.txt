@@ -27,3 +27,14 @@ Output : http://danbri.org/foaf.rdf#danbri
 
 *** Success!!! ***
 
+----
+just after full parameterizing, parameters selected at random:
+
+Success count = 15 out of 1000
+Most accurate = 100.0 %
+Mean accuracy = 17.79 %
+Average encode time = 0.61 seconds
+Average decode time = 0.55 seconds
+Average total time = 1.2 seconds
+
+

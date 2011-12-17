@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps;
 
+import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
@@ -35,7 +36,7 @@ public class ASCIICodec {
 	 * @param chunks
 	 * @return
 	 */
-	public static String chunksToASCII(Chunks chunks) {
+	public static String chunksToASCII(Chunks chunks, Processor processor) {
 		String ascii = "";
 		for (int i = 0; i < chunks.size() - 1; i = i + 2) {
 			// System.out.println("CHUNK " + i + " and "+ (i+1));
@@ -43,7 +44,7 @@ public class ASCIICodec {
 			Tone rightChunk = chunks.get(i + 1);
 			// System.out.println("leftChunk.size()="+leftChunk.size());
 			// System.out.println("rightChunk.size()="+rightChunk.size());
-			ascii += Decoder.chunksToCharacter(leftChunk, rightChunk);
+			ascii += CharacterDecoder.chunksToCharacter(leftChunk, rightChunk, processor);
 		}
 		return ascii;
 	}

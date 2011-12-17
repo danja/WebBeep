@@ -16,6 +16,7 @@ import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.processors.Chunker;
 import org.hyperdata.beeps.processors.Cropper;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
+import org.hyperdata.beeps.processors.FFTPitchFinder;
 import org.hyperdata.beeps.processors.FIRProcessor;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Checksum;
@@ -37,6 +38,8 @@ public class ParameterizedDecoder extends DefaultCodec {
 
 	Chunker chunker;
 	Cropper cropper;
+
+	private FFTPitchFinder pitchFinder;
 	
 	public String decode(Tone tones) {
 		Debug.inform("Decoding");
@@ -64,8 +67,10 @@ public class ParameterizedDecoder extends DefaultCodec {
 		Chunks chunks = chunker.process(tones);
 
 	    chunks = applyPostProcessors(chunks);
+	    
+	    
 		
-		String ascii = ASCIICodec.chunksToASCII(chunks);
+		String ascii = ASCIICodec.chunksToASCII(chunks, pitchFinder);
 
 		try {
 			ascii = Checksum.checksum(ascii);
@@ -165,6 +170,12 @@ public class ParameterizedDecoder extends DefaultCodec {
 			if (parameters.getValue("LP_FIR2").equals("on")) {
 				addPostProcessor(lp2);
 			}
+			
+			pitchFinder = new FFTPitchFinder();
+			createParameter(pitchFinder, "fftBits");
+			createParameter(pitchFinder, "peakDelta");
+			pitchFinder.initFromParameters();
+			
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}

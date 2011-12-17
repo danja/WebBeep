@@ -50,11 +50,13 @@ public class BasicCodecTest {
 		System.out.println((float) (thisTime - startTime) / input.length()
 				+ " mS per char");
 
-		Tone inTones = WavCodec.readTone(filename);
+		// Tone inTones = WavCodec.readTone(filename);
 
 		startTime = System.currentTimeMillis();
 		Decoder decoder = new Decoder();
+		Tone inTones = new Tone(outTones);
 		String output = decoder.decode(inTones);
+	
 		System.out.println();
 		thisTime = System.currentTimeMillis();
 
