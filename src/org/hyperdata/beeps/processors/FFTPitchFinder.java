@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.fft;
+package org.hyperdata.beeps.processors;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +13,13 @@ import java.util.Set;
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.encode.Encoder;
+import org.hyperdata.beeps.fft.FFT;
+import org.hyperdata.beeps.fft.PeakDetector;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
-import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Plotter;
+import org.hyperdata.beeps.util.Tone;
 
 /**
  * @author danny
@@ -27,6 +29,23 @@ public class FFTPitchFinder extends DefaultProcessor {
 	
 	public FFTPitchFinder(){
 		super("FFTPitchFinder");
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
+	 */
+	@Override
+	public void initFromParameters() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Tone process(Tone input) {
+		return process(input);
 	}
 
 	public static void main(String[] args) {
@@ -103,14 +122,4 @@ public class FFTPitchFinder extends DefaultProcessor {
 		
 		return pitches;
 	}
-
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
-	 */
-	@Override
-	public void initFromParameters() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

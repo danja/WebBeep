@@ -9,15 +9,15 @@ import java.util.List;
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.Maps;
-import org.hyperdata.beeps.decode.correlate.Correlator;
 import org.hyperdata.beeps.encode.Checksum;
 import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.encode.EnvelopeShaper;
-import org.hyperdata.beeps.fft.FFTPitchFinder;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
+import org.hyperdata.beeps.processors.Correlator;
 import org.hyperdata.beeps.processors.Cropper;
+import org.hyperdata.beeps.processors.EnvelopeShaper;
+import org.hyperdata.beeps.processors.FFTPitchFinder;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 
@@ -45,59 +45,22 @@ public class Decoder extends DefaultCodec {
 		addPostProcessor(envelope);
 	}
 
-	/**
-	 * @param list
-	 * @return
-	 */
-	// /// MOVE to external process
-	// private static List<Double> processChunk(List<Double> chunk) {
-	// Processor normalise = new Normalise();
-	// List<Double> modChunk = normalise.process(chunk);
-	//
-	// // slope intro/outro of chunk, does it help?
-	// // modChunk = EnvelopeShaper.applyEnvelope(modChunk,
-	// // Constants.EDGE_WINDOW_PROPORTION,
-	// // Constants.EDGE_WINDOW_PROPORTION);
-	// Processor envelope = new EnvelopeShaper();
-	// envelope.setParameter("attackProportion",
-	// Constants.EDGE_WINDOW_PROPORTION);
-	// envelope.setParameter("decayProportion",
-	// Constants.EDGE_WINDOW_PROPORTION);
-	// modChunk = envelope.process(modChunk);
-	// return modChunk;
-	// }
-
 	public String decode(List<Double> tones) {
 		Debug.inform("Decoding");
 
 		tones = applyPreProcessors(tones);
 
-		// tones = PreProcess.normalise(tones, true, true);
-		// tones = ChunkDetector.rectify(tones);
-		// tones = RunningAverage.filter(tones, 100);
-
 		if (Debug.showPlots) {
 			Plotter.plot(tones, "in decoder");
 		}
 
-		// CROPPER - processor
-
 		Processor cropper = new Cropper();
-
 		tones = cropper.process(tones);
-		// }
 
 		// Plotter.plot(tones, "Cropped");
 
-		// MOVE TO CHUNKER - SplittingProcessor
-
-//		int cropLength = (int) (Constants.CROP_PROPORTION
-//				* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
-//		List<List<Double>> chunks = Chunker.chunk(tones, 0, cropLength);
-
 		SplittingProcessor chunker = new Chunker();
 		List<List<Double>> chunks = chunker.process(tones);
-		// System.out.println("windowing chunks");
 
 		for (int i = 0; i < chunks.size(); i++) {
 			List<Double> chunk = chunks.get(i);
@@ -105,9 +68,6 @@ public class Decoder extends DefaultCodec {
 			chunks.set(i, chunk);
 			// Plotter.plot(chunks.get(i), "Chunk " + i);
 		}
-
-		// System.out.println("finding pitches");
-		// System.out.println("chunks.size() = " + chunks.size());
 		String ascii = "";
 		for (int i = 0; i < chunks.size() - 1; i = i + 2) {
 			// System.out.println("CHUNK " + i + " and "+ (i+1));
@@ -115,11 +75,7 @@ public class Decoder extends DefaultCodec {
 			List<Double> rightChunk = chunks.get(i + 1);
 			// System.out.println("leftChunk.size()="+leftChunk.size());
 			// System.out.println("rightChunk.size()="+rightChunk.size());
-			String c = chunksToCharacter(leftChunk, rightChunk);
-
-			// System.out.println(c);
-			ascii += c;
-			// System.out.println("ascii=" + ascii);
+			ascii += chunksToCharacter(leftChunk, rightChunk);
 		}
 		try {
 			ascii = doChecksum(ascii);
@@ -127,7 +83,6 @@ public class Decoder extends DefaultCodec {
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-
 		return IDN.toUnicode(ascii);
 	}
 

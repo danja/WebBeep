@@ -11,6 +11,7 @@ import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.util.Plotter;
+import org.hyperdata.beeps.util.Tone;
 
 
 
@@ -22,6 +23,14 @@ public class Normalise extends DefaultProcessor {
 
 	public Normalise(){
 		super("Normalise");
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Tone process(Tone input) {
+		return process(input);
 	}
 	
 	public static void main(String[] args) {

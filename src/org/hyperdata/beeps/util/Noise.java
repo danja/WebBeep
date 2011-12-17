@@ -16,6 +16,10 @@ import org.hyperdata.beeps.Constants;
 public class Noise {
 
 	  private static  Random random = new Random();
+
+	  public static Tone whiteTone(double duration){
+		  return new Tone(white(duration));
+	  }
 	  
 	  public static List<Double> white(double duration){
 		  List<Double> white = new ArrayList<Double>();

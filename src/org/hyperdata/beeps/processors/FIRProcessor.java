@@ -10,6 +10,7 @@ import org.hyperdata.beeps.filters.FIRFilterImpl;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.util.Tone;
 
 /**
  * @author danny
@@ -21,6 +22,14 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 
 	public FIRProcessor(String name) {
 		super(name);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Tone process(Tone input) {
+		return process(input);
 	}
 
 	public List<Double> process(List<Double> input) {

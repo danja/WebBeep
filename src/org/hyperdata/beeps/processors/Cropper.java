@@ -10,6 +10,7 @@ import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.decode.Chunker;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.util.Tone;
 
 /**
  * @author danny
@@ -20,6 +21,7 @@ public class Cropper extends DefaultProcessor {
 	public Cropper(){
 		super("Cropper");
 	}
+	
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
 	 */
@@ -27,6 +29,14 @@ public class Cropper extends DefaultProcessor {
 	public void initFromParameters() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Tone process(Tone input) {
+		return process(input);
 	}
 	
 	/* (non-Javadoc)

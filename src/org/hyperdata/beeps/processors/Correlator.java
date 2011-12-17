@@ -4,7 +4,7 @@ need tweak to look like version in TestCorr (return List)
 
  * 
  */
-package org.hyperdata.beeps.decode.correlate;
+package org.hyperdata.beeps.processors;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,12 +14,14 @@ import java.util.Map;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.decode.Chunker;
+import org.hyperdata.beeps.decode.correlate.ReferenceTones;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.encode.WaveMaker;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
-import org.hyperdata.beeps.processors.Normalise;
+import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
+import org.hyperdata.beeps.util.Tone;
 
 /**
  * @author danny
@@ -29,6 +31,14 @@ public class Correlator extends DefaultProcessor {
 	
 	public Correlator(){
 		super("Correlator");
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Tone process(Tone input) {
+		return process(input);
 	}
 
 	/* (non-Javadoc)
@@ -84,42 +94,6 @@ public class Correlator extends DefaultProcessor {
 				Constants.TONE_DURATION);
 		
 		
-		////////////////////////////////////////////
-//		List<Double> testTone = Encoder.encode("o");
-//		int startx = ChunkDetector.findStartThreshold(testTone,
-//				Constants.SILENCE_THRESHOLD);
-//		int endx = ChunkDetector.findEndThreshold(testTone,
-//				Constants.SILENCE_THRESHOLD);
-//		testTone = testTone.subList(startx, endx);
-		
-		
-//	good	[1571.923828125, 290.6982421875]
-//		bad		[293.66, 261.63]
-		///////////////////////////////////////////////////
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		double sampleProportion = 1;
-//		
-//		int midPoint = testTone.size()/2;
-//		int start = midPoint-(int)(testTone.size()*sampleProportion/2);
-//		
-//		int end = midPoint+(int)(testTone.size()*sampleProportion/2);
-//	//	System.out.println(start+"   "+end);
-//	//	System.out.println("original size : "+testTone.size());
-//		testTone = testTone.subList(start,end);
-	//	System.out.println("cropped size : "+testTone.size());
 		Plotter.plot(testTone, "Test Tone", "Time", "Amplitude", 2, true);
 		double max = 0;
 		int maxPoint = 0;

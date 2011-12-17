@@ -51,27 +51,19 @@ public class Encoder extends DefaultCodec {
 		List<List<Double>> chunks = new ArrayList<List<Double>>();
 
 		for (int i = 0; i < ascii.length(); i++) {
-			// System.out.println(ascii.charAt(i));
 
 			int val = (int) ascii.charAt(i);
-			// System.out.println(val);
 			int lsVal = val % 16; // least significant hex digit of val is for
 									// high tone
-
 			int msVal = (val - val % 16) / 16;
+			
 			List<Double> chunk = WaveMaker.makeDualtone(msVal, lsVal,
 					Constants.TONE_DURATION);
+			
 			chunk = applyPreProcessors(chunk);
 			chunks.add(chunk);
 		}
-	//	System.out.println("Chunks=");
-	//	checkType(chunks);
 		Tone tones = new Tone(merge(chunks));
-	//	System.out.println("Tones=");
-		// checkType(tones);
-	//	System.out.println("Merge=");
-	//	checkType(merge(chunks));
-
 		tones = new Tone(applyPostProcessors(tones));
 		return tones;
 	}

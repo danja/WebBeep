@@ -8,11 +8,11 @@ import java.util.Random;
 
 import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.encode.EnvelopeShaper;
 import org.hyperdata.beeps.filters.FIRFilterImpl;
 import org.hyperdata.beeps.pipelines.Parameterized;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.processors.AllToNoiseProcessor;
+import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.FIRProcessor;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.optimize.*;

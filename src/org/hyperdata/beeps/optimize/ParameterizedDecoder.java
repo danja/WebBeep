@@ -5,9 +5,9 @@ package org.hyperdata.beeps.optimize;
 
 import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.decode.Decoder;
-import org.hyperdata.beeps.encode.EnvelopeShaper;
 import org.hyperdata.beeps.pipelines.Parameterized;
 import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.FIRProcessor;
 import org.hyperdata.beeps.processors.Normalise;
 

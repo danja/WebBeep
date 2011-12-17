@@ -6,7 +6,6 @@ package org.hyperdata.beeps.optimize;
 import org.hyperdata.beeps.decode.Decoder;
 import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.filters.FIRFilter;
-import org.hyperdata.beeps.degrade.Corruptor;
 
 /**
  * @author danny
@@ -20,7 +19,6 @@ public class Organism {
 //	private FIRFilter encoderLP = new ParameterizedFilter();
 //	private FIRFilter encoderHP = new ParameterizedFilter();
 	
-	private Corruptor corruptor = new Corruptor();
 	
 	private Decoder decoder = new ParameterizedDecoder();
 //	private FIRFilter decoderLP1 = new ParameterizedFilter();

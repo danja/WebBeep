@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Maps;
+import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.util.WavCodec;
 
 public final class WaveMaker {

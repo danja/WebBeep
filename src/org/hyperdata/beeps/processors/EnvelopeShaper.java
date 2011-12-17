@@ -1,13 +1,14 @@
 /**
  * 
  */
-package org.hyperdata.beeps.encode;
+package org.hyperdata.beeps.processors;
 
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.util.Tone;
 
 /**
  * @author danny
@@ -22,6 +23,14 @@ public class EnvelopeShaper extends DefaultProcessor {
 
 	public EnvelopeShaper(){
 		super("EnvelopeShaper");
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Tone process(Tone input) {
+		return process(input);
 	}
 	
 //	public List<Double> process(List<Double> samples){
