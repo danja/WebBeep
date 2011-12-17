@@ -15,7 +15,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
 import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.encode.WaveMaker;
+import org.hyperdata.beeps.WaveMaker;
 
 /**
  * @author danny
@@ -106,6 +106,14 @@ public class WavCodec {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @param filename
+	 * @return
+	 */
+	public static Tone readTone(String filename) {
+		return new Tone(read(filename));
 	}
 
 }

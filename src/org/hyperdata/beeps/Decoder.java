@@ -1,25 +1,24 @@
 /**
  * sadly I had to lose the interface PitchFinderGeneral
  */
-package org.hyperdata.beeps.decode;
+package org.hyperdata.beeps;
 
 import java.net.IDN;
 import java.util.List;
 
-import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.Maps;
-import org.hyperdata.beeps.encode.Checksum;
-import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
+import org.hyperdata.beeps.processors.Chunker;
 import org.hyperdata.beeps.processors.Correlator;
 import org.hyperdata.beeps.processors.Cropper;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.FFTPitchFinder;
 import org.hyperdata.beeps.processors.Normalise;
+import org.hyperdata.beeps.util.Checksum;
+import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
+import org.hyperdata.beeps.util.Tone;
 
 /**
  * @author danny
@@ -45,7 +44,7 @@ public class Decoder extends DefaultCodec {
 		addPostProcessor(envelope);
 	}
 
-	public String decode(List<Double> tones) {
+	public String decode(Tone tones) {
 		Debug.inform("Decoding");
 
 		tones = applyPreProcessors(tones);
@@ -60,10 +59,10 @@ public class Decoder extends DefaultCodec {
 		// Plotter.plot(tones, "Cropped");
 
 		SplittingProcessor chunker = new Chunker();
-		List<List<Double>> chunks = chunker.process(tones);
+		Chunks chunks = chunker.process(tones);
 
 		for (int i = 0; i < chunks.size(); i++) {
-			List<Double> chunk = chunks.get(i);
+			Tone chunk = chunks.get(i);
 			chunk = applyPostProcessors(chunk);
 			chunks.set(i, chunk);
 			// Plotter.plot(chunks.get(i), "Chunk " + i);
@@ -71,8 +70,8 @@ public class Decoder extends DefaultCodec {
 		String ascii = "";
 		for (int i = 0; i < chunks.size() - 1; i = i + 2) {
 			// System.out.println("CHUNK " + i + " and "+ (i+1));
-			List<Double> leftChunk = chunks.get(i);
-			List<Double> rightChunk = chunks.get(i + 1);
+			Tone leftChunk = chunks.get(i);
+			Tone rightChunk = chunks.get(i + 1);
 			// System.out.println("leftChunk.size()="+leftChunk.size());
 			// System.out.println("rightChunk.size()="+rightChunk.size());
 			ascii += chunksToCharacter(leftChunk, rightChunk);
@@ -106,8 +105,8 @@ public class Decoder extends DefaultCodec {
 	 * @param rightChunk
 	 * @return
 	 */
-	private static String chunksToCharacter(List<Double> leftChunk,
-			List<Double> rightChunk) {
+	private static String chunksToCharacter(Tone leftChunk,
+			Tone rightChunk) {
 
 		Processor normalise = new Normalise();
 		try {
@@ -239,7 +238,7 @@ public class Decoder extends DefaultCodec {
 
 	public static void main(String[] args) {
 		Encoder encoder = new Encoder();
-		List<Double> tones = encoder
+		Tone tones = encoder
 				.encode("http://danbri.org/foaf.rdf#danbri"); // "http://danbri.org/foaf.rdf#danbri"
 		Decoder decoder = new Decoder();
 		System.out.println("Decoded = " + decoder.decode(tones));

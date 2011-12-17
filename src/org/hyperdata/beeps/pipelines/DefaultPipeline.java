@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.util.Tone;
 
 
 /**
@@ -25,16 +26,28 @@ public class DefaultPipeline implements Pipeline {
 		processors.add(processor);
 	}
 
-	public List<Double> applyProcessors(List<Double> input) {
-		if(processors.size() == 0) return input;
+//	public List<Double> applyProcessors(List<Double> input) {
+//		if(processors.size() == 0) return input;
+//		Debug.verbose("Applying "+processors.size()+" processors");
+//		List<Double> output = input;
+//		for(int i=0;i<processors.size();i++){
+//			Processor processor = processors.get(i);
+//			Debug.verbose("Applying process : "+processor);
+//			output = processor.process(output);
+//		}
+//		return output;
+//	}
+	
+	public Tone applyProcessors(Tone tone) {
+		if(processors.size() == 0) return tone;
 		Debug.verbose("Applying "+processors.size()+" processors");
-		List<Double> output = input;
+		//Tone output = input;
 		for(int i=0;i<processors.size();i++){
 			Processor processor = processors.get(i);
 			Debug.verbose("Applying process : "+processor);
-			output = processor.process(output);
+			tone = processor.process(tone);
 		}
-		return output;
+		return tone;
 	}
 	
 	/**

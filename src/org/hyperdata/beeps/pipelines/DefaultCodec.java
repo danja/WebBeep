@@ -6,6 +6,7 @@ package org.hyperdata.beeps.pipelines;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.util.Tone;
 
 
 /**
@@ -49,12 +50,12 @@ public abstract class DefaultCodec implements Codec {
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.Codec#applyPreProcessors(java.util.List)
 	 */
-	@Override
-	public List<Double> applyPreProcessors(List<Double> input) {
-		if(preprocessors.size() == 0) return input;
-		Debug.verbose("Preprocessing...");
-		return preprocessors.applyProcessors(input);
-	}
+//	@Override
+//	public List<Double> applyPreProcessors(List<Double> input) {
+//		if(preprocessors.size() == 0) return input;
+//		Debug.verbose("Preprocessing...");
+//		return preprocessors.applyProcessors(input);
+//	}
 	
 	public void checkType(List list){
 		System.out.println(list.getClass());
@@ -63,12 +64,12 @@ public abstract class DefaultCodec implements Codec {
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.Codec#applyPostProcessors(java.util.List)
 	 */
-	@Override
-	public List<Double> applyPostProcessors(List<Double> input) {
-		if(postprocessors.size() == 0) return input;
-		Debug.verbose("Postprocessing...");
-		return postprocessors.applyProcessors(input);
-	}
+//	@Override
+//	public List<Double> applyPostProcessors(List<Double> input) {
+//		if(postprocessors.size() == 0) return input;
+//		Debug.verbose("Postprocessing...");
+//		return postprocessors.applyProcessors(input);
+//	}
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Codec#initProcessors()
@@ -78,5 +79,26 @@ public abstract class DefaultCodec implements Codec {
 		preprocessors = new DefaultPipeline();
 		postprocessors = new DefaultPipeline();
 		Debug.debug("Processes cleared in "+this);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Codec#applyPreProcessors(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Tone applyPreProcessors(Tone input) {
+		if(preprocessors.size() == 0) return input;
+		Debug.verbose("Preprocessing...");
+		return preprocessors.applyProcessors(input);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Codec#applyPostProcessors(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Tone applyPostProcessors(Tone input) {
+		if(postprocessors.size() == 0) return input;
+		Debug.verbose("Postprocessing...");
+		return postprocessors.applyProcessors(input);
 	}
 }

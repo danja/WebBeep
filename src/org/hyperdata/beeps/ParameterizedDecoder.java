@@ -1,40 +1,31 @@
 /**
  * 
  */
-package org.hyperdata.beeps.optimize;
+package org.hyperdata.beeps;
 
-import java.util.Iterator;
-import java.util.Random;
-
-import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.filters.FIRFilterImpl;
+import org.hyperdata.beeps.optimize.DefaultParameterSet;
+import org.hyperdata.beeps.optimize.Parameter;
+import org.hyperdata.beeps.optimize.ParameterFactory;
+import org.hyperdata.beeps.optimize.ParameterSet;
 import org.hyperdata.beeps.pipelines.Parameterized;
 import org.hyperdata.beeps.pipelines.Processor;
-import org.hyperdata.beeps.processors.AllToNoiseProcessor;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.FIRProcessor;
 import org.hyperdata.beeps.processors.Normalise;
-import org.hyperdata.beeps.optimize.*;
 
 /**
  * @author danny
  * 
- *         preprocessors in Encoder are applied to individual dual-tone chunks
+ *  *         preprocessors in Encoder are applied to individual dual-tone chunks
  *         postprocessors are applied to the whole outgoing constructed waveform
- * 
- *         gen Fs 44, 22, 11, 6 kHz chunknorm on/off chunkEnv on/off
- *         attackProportion tone length/2...tone length/8 decayProportion "
- *         LP_FIR on/off LP_window Blackman/Hanning/Hamming LP_Fc 1kHz...12kHz
- *         LP_points 64...4096 HP_FIR on/off HP_window Blackman/Hanning/Hamming
- *         HP_Fc 30Hz...250Hz HP_points 64...4096
+ *         
+ *         NEED TO CHECK SILENCE
+ *
  */
-public class ParameterizedEncoder extends Encoder {
-
+public class ParameterizedDecoder extends Decoder {
 	public ParameterSet parameters = new DefaultParameterSet();
 
-	public ParameterizedEncoder() {
-		// createRandomParameters();
+	public ParameterizedDecoder() {
 		init();
 	}
 
@@ -43,7 +34,29 @@ public class ParameterizedEncoder extends Encoder {
 	public void init() {
 		initProcessors(); // clears them
 		try {
-
+/*
+ *     cropper start threshold     0.1...0.9
+ *     ChunkDetector snip duration       0.1...0.9
+ *     
+ *     chunkEnv         on/off
+ *     attackProportion       tone length/2...tone length/8
+ *     decayProportion  
+ *
+ *
+ *     HP FIR              on/off
+ *     HP FIR window       Blackman/Hanning/Hamming
+ *     HP FIR Fc           30Hz...250Hz
+ *     HP stages           64...4096
+ *     LP1 FIR             on/off
+ *     LP1 FIR window      Blackman/Hanning/Hamming
+ *     LP1 FIR Fc          1kHz...12kHz
+ *     LP1 stages          64...4096
+ *     LP2 FIR window      Blackman/Hanning/Hamming
+ *     LP2 FIR Fc          1kHz...12kHz
+ *     LP2 stages          64...4096
+ *     FFT bits            8...16
+ *     peak detector       0.05...0.9
+ */
 			Processor chunknorm = new Normalise();
 			createParameter(chunknorm, "chunkNorm");
 			if (parameters.getValue("chunkNorm").equals("on")) {

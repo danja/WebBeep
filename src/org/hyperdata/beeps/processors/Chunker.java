@@ -1,15 +1,17 @@
 /**
  * 
  */
-package org.hyperdata.beeps.decode;
+package org.hyperdata.beeps.processors;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.encode.Encoder;
+import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
+import org.hyperdata.beeps.util.Chunks;
+import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
 
 /**
@@ -17,6 +19,9 @@ import org.hyperdata.beeps.util.WavCodec;
  * 
  */
 public class Chunker extends DefaultParameterized implements SplittingProcessor {
+	
+	int cropLength = (int) (Constants.CROP_PROPORTION
+			* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
 	
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
@@ -27,16 +32,15 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 		
 	}
 
-	/* (non-Javadoc) REFACTOR!!!
-	 * @see org.hyperdata.beeps.pipelines.SplittingProcessor#process(java.util.List)
-	 */
-	@Override
-	public List<List<Double>> process(List<Double> input) {
-		int cropLength = (int) (Constants.CROP_PROPORTION
-				* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
-		List<List<Double>> chunks = Chunker.chunk(input, 0, cropLength);
-		return chunks;
-	}
+//	/* (non-Javadoc) REFACTOR!!!
+//	 * @see org.hyperdata.beeps.pipelines.SplittingProcessor#process(java.util.List)
+//	 */
+//	@Override
+//	public List<List<Double>> process(List<Double> input) {
+//		Chunker chunker = new Chunker();
+//		List<List<Double>> chunks = chunker.chunk(input);
+//		return chunks;
+//	}
 	
 	public static int findStartThreshold(List<Double> tones, double threshold){
 		for(int i=0;i<tones.size();i++){
@@ -60,11 +64,10 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	 * @param tones
 	 * @return
 	 */
-	public static List<List<Double>> chunk(List<Double> tones, int startTime,
-			int cropLength) {
+	public List<List<Double>> process(List<Double> tones) {
 		// System.out.println("tones.size()=" + tones.size());
 		List<List<Double>> chunks = new ArrayList<List<Double>>();
-		int chunkStart = startTime;
+		int chunkStart = 0;
 		
 		while (chunkStart + cropLength < tones.size()-1) {	
 			int chunkEnd = chunkStart + cropLength;
@@ -100,6 +103,40 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 		int start = findStartThreshold(tones, 0.75);
 		System.out.println(start);
 		WavCodec.save(filename, tones);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.SplittingProcessor#process(org.hyperdata.beeps.util.Tone)
+	 */
+	@Override
+	public Chunks process(Tone tones) {
+		// System.out.println("tones.size()=" + tones.size());
+		Chunks chunks = new Chunks();
+		int chunkStart = 0;
+		
+		while (chunkStart + cropLength < tones.size()-1) {	
+			int chunkEnd = chunkStart + cropLength;
+//			System.out.println("cropLength=" + cropLength);
+//			System.out.println("chunkStart=" + chunkStart);
+//			System.out.println("chunkEnd=" + chunkEnd);
+//			System.out.println();
+			
+			Tone chunk = new Tone(tones.subList(chunkStart, chunkEnd)); // without decay section
+			chunks.add(chunk);
+	//		System.out.println("chunks found="+chunks.size());
+			chunkStart += (int) ((Constants.SILENCE_DURATION + Constants.TONE_DURATION) * Constants.SAMPLE_RATE/2);
+		} 
+		// UGLY HACK
+		if(chunks.size() % 2 != 0){
+	//		System.out.println("chunk size = "+chunks.size()+"  so adding dummy");
+			Tone dummychunk = new Tone();
+			for(int i=0;i<cropLength;i++){
+				dummychunk.add(0.0);
+			}
+			chunks.add(dummychunk);
+		}
+		
+		return chunks;
 	}
 
 

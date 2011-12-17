@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.encode;
+package org.hyperdata.beeps.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

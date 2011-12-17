@@ -32,11 +32,11 @@ public class AllToNoiseProcessor extends DefaultProcessor {
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Processor#process(java.util.List)
 	 */
-	@Override
-	public List<Double> process(List<Double> input) {
-		
-		return Noise.white(1.0);
-	}
+//	@Override
+//	public List<Double> process(List<Double> input) {
+//		
+//		return Noise.white(1.0);
+//	}
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)

@@ -1,10 +1,9 @@
-package org.hyperdata.beeps.encode;
+package org.hyperdata.beeps;
 
 import java.util.*;
 
-import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
+import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
 
 public final class WaveMaker {
@@ -29,11 +28,16 @@ public final class WaveMaker {
 	// return a;
 	// }
 
-	public static List<Double> makeDualtone(int noteLow, int noteHigh,
+	public static Tone makeDualTone(int noteLow, int noteHigh,
+			double duration) {
+		return new Tone(makeDualtone(noteLow, noteHigh, duration));
+	}
+	
+	public static Tone makeDualtone(int noteLow, int noteHigh,
 			double duration) {
 
-		List<Double> dataLow = null;
-		List<Double> dataHigh = null;
+		Tone dataLow = null;
+		Tone dataHigh = null;
 
 //		System.out.println();
 //		System.out.println("Maps.LOW_BEATS[noteLow]="+Maps.LOW_BEATS[noteLow]);
@@ -59,16 +63,16 @@ public final class WaveMaker {
 		return dataLow;
 	}
 
-	public static List<Double> makeShapedWaveform(double freq,double amplitude, double duration) {
-		List<Double> data = makeWaveform(freq, amplitude, duration);
+	public static Tone makeShapedWaveform(double freq,double amplitude, double duration) {
+		Tone data = makeWaveform(freq, amplitude, duration);
 		EnvelopeShaper env = new EnvelopeShaper();
 		env.setAttackProportion(Constants.ENCODE_ATTACK_PROPORTION);
 		env.setDecayProportion(Constants.ENCODE_DECAY_PROPORTION);		
 		return env.process(data);
 		
 	}
-	public static List<Double> makeWaveform(double freq, double amplitude, double duration) {
-		List<Double> data = new ArrayList<Double>();
+	public static Tone makeWaveform(double freq, double amplitude, double duration) {
+		Tone data = new Tone();
 		for (int i = 0; i < ((double)Constants.SAMPLE_RATE) * duration; i++) {
 			data.add(amplitude * Math.sin(2 * Math.PI * freq * i / (double)Constants.SAMPLE_RATE));
 		}

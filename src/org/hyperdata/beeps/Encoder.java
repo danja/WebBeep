@@ -1,17 +1,18 @@
 /**
  * 
  */
-package org.hyperdata.beeps.encode;
+package org.hyperdata.beeps;
 
 import java.net.IDN;
 import java.util.*;
 
-import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.fft.FFT;
 import org.hyperdata.beeps.fft.PeakDetector;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
+import org.hyperdata.beeps.processors.Merger;
 import org.hyperdata.beeps.processors.Normalise;
+import org.hyperdata.beeps.util.Checksum;
+import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
@@ -26,30 +27,22 @@ public class Encoder extends DefaultCodec {
 		super();
 	}
 
-	public List<Double> merge(List<List<Double>> input) {
-		List<Double> output = new ArrayList<Double>();
-		output.addAll(WaveMaker.makeSilence(Constants.START_PAD_DURATION));
-		for (int i = 0; i < input.size(); i++) {
-			output.addAll(input.get(i));
-			output.addAll(WaveMaker.makeSilence(Constants.SILENCE_DURATION));
-		}
-		output.addAll(WaveMaker.makeSilence(Constants.END_PAD_DURATION));
-		return output;
-	}
 
 	/**
 	 * 
 	 * preprocessors in Encoder are applied to individual dual-tone chunks
 	 * postprocessors are applied to the whole outgoing constructed waveform
 	 */
-	public List<Double> encode(String idn) {
+	public Tone encode(String idn) {
 
 		String ascii = IDN.toASCII(idn); // Punycode encode
 
 		ascii = Checksum.makeChecksumString(ascii) + ascii;
 
-		List<List<Double>> chunks = new ArrayList<List<Double>>();
+		// List<List<Double>> chunks = new ArrayList<List<Double>>();
 
+		Chunks chunks = new Chunks();
+		
 		for (int i = 0; i < ascii.length(); i++) {
 
 			int val = (int) ascii.charAt(i);
@@ -57,13 +50,15 @@ public class Encoder extends DefaultCodec {
 									// high tone
 			int msVal = (val - val % 16) / 16;
 			
-			List<Double> chunk = WaveMaker.makeDualtone(msVal, lsVal,
+			Tone chunk = WaveMaker.makeDualTone(msVal, lsVal,
 					Constants.TONE_DURATION);
 			
 			chunk = applyPreProcessors(chunk);
 			chunks.add(chunk);
 		}
-		Tone tones = new Tone(merge(chunks));
+//		Tone tones = new Tone(merge(chunks));
+		Merger merger = new Merger();
+		Tone tones = new Tone(merger.process(chunks));
 		tones = new Tone(applyPostProcessors(tones));
 		return tones;
 	}
@@ -89,4 +84,7 @@ public class Encoder extends DefaultCodec {
 		// WavCodec.save("/home/danny/workspace/WebBeep/data/beeps1.wav",
 		// tones);
 	}
+
+
+
 }

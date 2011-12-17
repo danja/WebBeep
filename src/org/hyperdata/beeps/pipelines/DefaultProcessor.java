@@ -31,13 +31,12 @@ public abstract class DefaultProcessor extends DefaultParameterized implements P
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Processor#processMulti(java.util.List)
 	 */
-	@Override
-	public List<List<Double>> processMulti(List<List<Double>> input) {
-		List<List<Double>> output = new ArrayList<List<Double>>();
-		for(int i=0;i<input.size();i++){
-			List<Double> chunk = input.get(i);
-			output.add(process(chunk));
-		}
-		return output;
-	}
+//	public List<List<Double>> processMulti(List<List<Double>> input) {
+//		List<List<Double>> output = new ArrayList<List<Double>>();
+//		for(int i=0;i<input.size();i++){
+//			List<Double> chunk = input.get(i);
+//			output.add(process(chunk));
+//		}
+//		return output;
+//	}
 }

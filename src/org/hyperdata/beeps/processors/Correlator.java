@@ -13,10 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.decode.Chunker;
-import org.hyperdata.beeps.decode.correlate.ReferenceTones;
-import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.encode.WaveMaker;
+import org.hyperdata.beeps.Encoder;
+import org.hyperdata.beeps.WaveMaker;
+import org.hyperdata.beeps.correlate.ReferenceTones;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Chunks;
@@ -37,30 +36,21 @@ public class Correlator extends DefaultProcessor {
 	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
 	 */
 	@Override
-	public Tone process(Tone input) {
-		return process(input);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.hyperdata.urltone.decode.PitchFinderGeneral#findPitches(java.util.List)
-	 */
-	@Override
-	public List<Double> process(List<Double> tones) {
-
+	public Tone process(Tone tones) {
 		Map<Double,Double> correlations = new HashMap<Double,Double>();
 		
 		Iterator<Double> refFreqs = ReferenceTones.tones.keySet().iterator();
 		double max = 0;
 		while(refFreqs.hasNext()){
 			double refFreq = refFreqs.next();
-			List<Double> ref = ReferenceTones.tones.get(refFreq);
+			Tone ref = ReferenceTones.tones.get(refFreq);
 			double correlate = Math.abs(correlate(tones,ref));
 			correlations.put(refFreq, correlate);
 			if(correlate > max) max = correlate;
 		}
 		
-		List<Double> pitches = new ArrayList<Double>();
-		List<Double> all = new ArrayList<Double>();
+		Tone pitches = new Tone();
+		Tone all = new Tone();
 		
 		Iterator<Double> freqs = correlations.keySet().iterator();
 		double gold = 0;
@@ -86,6 +76,52 @@ public class Correlator extends DefaultProcessor {
 		pitches.add(silverFreq);
 		return pitches;
 	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.urltone.decode.PitchFinderGeneral#findPitches(java.util.List)
+//	 */
+//	@Override
+//	public Tone process(Tone tones) {
+//
+//		Map<Double,Double> correlations = new HashMap<Double,Double>();
+//		
+//		Iterator<Double> refFreqs = ReferenceTones.tones.keySet().iterator();
+//		double max = 0;
+//		while(refFreqs.hasNext()){
+//			double refFreq = refFreqs.next();
+//			List<Double> ref = ReferenceTones.tones.get(refFreq);
+//			double correlate = Math.abs(correlate(tones,ref));
+//			correlations.put(refFreq, correlate);
+//			if(correlate > max) max = correlate;
+//		}
+//		
+//		List<Double> pitches = new ArrayList<Double>();
+//		List<Double> all = new ArrayList<Double>();
+//		
+//		Iterator<Double> freqs = correlations.keySet().iterator();
+//		double gold = 0;
+//		double goldFreq = 0;
+//		double silver = 0;
+//		double silverFreq = 0;
+//		while(freqs.hasNext()){
+//			double freq = freqs.next();
+//			double correlate = correlations.get(freq);
+//			all.add(correlate);
+//			if(correlate > gold) {
+//				gold = correlate;
+//				goldFreq = freq;
+//			}
+//			
+//			if(correlate > silver && correlate != gold){
+//				silver = correlate;
+//				silverFreq = freq;
+//			}
+//		}
+//		Plotter plotter = Plotter.plot(all, "eek", 8);
+//		pitches.add(goldFreq);
+//		pitches.add(silverFreq);
+//		return pitches;
+//	}
 	
 	public static void main(String[] args) {
 		 double testFreq = 571;

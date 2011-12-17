@@ -5,11 +5,8 @@ package org.hyperdata.beeps;
 
 import java.util.List;
 
-import org.hyperdata.beeps.decode.Decoder;
-import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.optimize.ParameterizedDecoder;
-import org.hyperdata.beeps.optimize.ParameterizedEncoder;
 import org.hyperdata.beeps.util.Plotter;
+import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
 
 /**
@@ -45,7 +42,7 @@ public class ParameterizedCodecTest {
 			System.out.println("Encoder prams "
 					+ ((ParameterizedEncoder) encoder).parameters);
 
-			List<Double> outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
+			Tone outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 
 			// WavCodec.save(filename, outTones); // SAVE
 
@@ -62,7 +59,7 @@ public class ParameterizedCodecTest {
 			Debug.inform((float) (thisTime - startTime) / input.length()
 					+ " mS per char");
 
-			List<Double> inTones = outTones; // skip saving
+			Tone inTones = outTones; // skip saving
 			// List<Double> inTones = WavCodec.read(filename);
 
 			startTime = System.currentTimeMillis();

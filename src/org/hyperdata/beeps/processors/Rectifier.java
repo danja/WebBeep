@@ -34,7 +34,12 @@ public class Rectifier extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
-		return process(input);
+		Tone rectified = new Tone();
+
+		for (int i = 0; i < input.size(); i++) {
+			rectified.add(Math.abs(input.get(i)));
+		}
+		return rectified;
 	}
 	
 	/*
@@ -42,14 +47,14 @@ public class Rectifier extends DefaultProcessor {
 	 * 
 	 * @see org.hyperdata.beeps.pipelines.Processor#process(java.util.List)
 	 */
-	@Override
-	public List<Double> process(List<Double> input) {
-		List<Double> rectified = new ArrayList<Double>();
-
-		for (int i = 0; i < input.size(); i++) {
-			rectified.add(Math.abs(input.get(i)));
-		}
-		return rectified;
-	}
+//	@Override
+//	public List<Double> process(List<Double> input) {
+//		List<Double> rectified = new ArrayList<Double>();
+//
+//		for (int i = 0; i < input.size(); i++) {
+//			rectified.add(Math.abs(input.get(i)));
+//		}
+//		return rectified;
+//	}
 
 }

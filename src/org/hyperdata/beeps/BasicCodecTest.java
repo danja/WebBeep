@@ -5,9 +5,8 @@ package org.hyperdata.beeps;
 
 import java.util.List;
 
-import org.hyperdata.beeps.decode.Decoder;
-import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.util.Plotter;
+import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
 
 /**
@@ -51,7 +50,7 @@ public class BasicCodecTest {
 		System.out.println((float) (thisTime - startTime) / input.length()
 				+ " mS per char");
 
-		List<Double> inTones = WavCodec.read(filename);
+		Tone inTones = WavCodec.readTone(filename);
 
 		startTime = System.currentTimeMillis();
 		Decoder decoder = new Decoder();

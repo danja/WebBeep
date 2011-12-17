@@ -1,15 +1,15 @@
 /**
  * 
  */
-package org.hyperdata.beeps.decode.correlate;
+package org.hyperdata.beeps.correlate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.decode.Chunker;
-import org.hyperdata.beeps.encode.Encoder;
-import org.hyperdata.beeps.encode.WaveMaker;
+import org.hyperdata.beeps.Encoder;
+import org.hyperdata.beeps.WaveMaker;
+import org.hyperdata.beeps.processors.Chunker;
 import org.hyperdata.beeps.util.Plotter;
 
 /**

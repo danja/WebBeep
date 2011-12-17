@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.Maps;
-import org.hyperdata.beeps.encode.Encoder;
 import org.hyperdata.beeps.fft.FFT;
 import org.hyperdata.beeps.fft.PeakDetector;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
@@ -43,14 +44,14 @@ public class FFTPitchFinder extends DefaultProcessor {
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
 	 */
-	@Override
-	public Tone process(Tone input) {
-		return process(input);
-	}
+//	@Override
+//	public Tone process(Tone input) {
+//		return process(input);
+//	}
 
 	public static void main(String[] args) {
 		Encoder encoder = new Encoder();
-		List<Double> tones = encoder.encode("a");
+		Tone tones = encoder.encode("a");
 	//	Plotter.plot(tones, "Tones");
 //		System.out.println("tones=" + tones.size());
 
@@ -68,11 +69,11 @@ public class FFTPitchFinder extends DefaultProcessor {
 
 	}
 
-	public List<Double> process(List<Double> tones) {
+	public Tone process(Tone tones) {
 		Map<Double, Double> pitches = findPairs(tones);
 		Set<Double> keys = pitches.keySet();
 		Iterator<Double> iterator = keys.iterator();
-		List<Double> freqs = new ArrayList<Double>();
+		Tone freqs = new Tone();
 		
 		while (iterator.hasNext()) {
 			freqs.add(iterator.next());
@@ -80,7 +81,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 		return freqs;
 	}
 	
-	public Map<Double, Double> findPairs(List<Double> tones) {
+	public Map<Double, Double> findPairs(Tone tones) {
 
 		FFT fft = new FFT(Constants.FFT_BITS);
 
@@ -88,8 +89,9 @@ public class FFTPitchFinder extends DefaultProcessor {
 		int trim = (int) (Maps.MAX_HIGH_FREQ_CUTOFF
 				* (double) Constants.FFT_MAX / (double) Constants.SAMPLE_RATE);
 
-		List<Double> freqs = fft.doPowerFFT(tones, false).subList(0, trim);
+		List<Double> f = fft.doPowerFFT(tones, false).subList(0, trim);
 
+		Tone freqs = new Tone(f);
 		// values from the FFT are very small
 		Processor normalise = new Normalise();
 		freqs = normalise.process(freqs);

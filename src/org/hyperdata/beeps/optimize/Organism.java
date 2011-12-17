@@ -3,8 +3,10 @@
  */
 package org.hyperdata.beeps.optimize;
 
-import org.hyperdata.beeps.decode.Decoder;
-import org.hyperdata.beeps.encode.Encoder;
+import org.hyperdata.beeps.Decoder;
+import org.hyperdata.beeps.Encoder;
+import org.hyperdata.beeps.ParameterizedDecoder;
+import org.hyperdata.beeps.ParameterizedEncoder;
 import org.hyperdata.beeps.filters.FIRFilter;
 
 /**

@@ -29,12 +29,12 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 	 */
 	@Override
 	public Tone process(Tone input) {
-		return process(input);
+		return new Tone(filter.filter(input));
 	}
 
-	public List<Double> process(List<Double> input) {
-		return filter.filter(input);
-	}
+//	public List<Double> process(List<Double> input) {
+//		return filter.filter(input);
+//	}
 
 	// delegate methods
 

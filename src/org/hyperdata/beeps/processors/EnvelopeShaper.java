@@ -25,19 +25,13 @@ public class EnvelopeShaper extends DefaultProcessor {
 		super("EnvelopeShaper");
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
-	 */
-	@Override
-	public Tone process(Tone input) {
-		return process(input);
-	}
+
 	
 //	public List<Double> process(List<Double> samples){
 //		return applyEnvelope(samples, (Double)getParameter("attackProportion"), (Double)getParameter("decayProportion"));
 //	}
 	
-	public List<Double> process(List<Double> samples) {
+	public Tone process(Tone samples) {
 		// System.out.println("SAMPLES="+samples.size());
 		double attackMarker = ((double) samples.size()) * attackProportion;
 		// System.out.println("Attack marker="+attackMarker);

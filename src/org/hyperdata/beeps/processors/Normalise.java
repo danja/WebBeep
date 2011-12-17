@@ -30,7 +30,7 @@ public class Normalise extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
-		return process(input);
+		return normalise(input,true,true);
 	}
 	
 	public static void main(String[] args) {
@@ -46,9 +46,7 @@ public class Normalise extends DefaultProcessor {
 	//	Plotter.plot(normalise(data, true, true),"Normalised", 8, true);
 	}
 	
-	public List<Double> process(List<Double> tones) {
-		return normalise(tones,true,true);
-	}
+
 	/**
 	 * Normalises values in List scaling to peak value = +/- 1 and/or removing
 	 * zero offset)
@@ -57,9 +55,9 @@ public class Normalise extends DefaultProcessor {
 	 *            input data
 	 * @return normalised data
 	 */
-	public List<Double> normalise(List<Double> tones,
+	public Tone normalise(Tone tones,
 			boolean normaliseScale, boolean normaliseOffset) {
-		List<Double> normals = new ArrayList<Double>();
+		Tone normals = new Tone();
 		if (!normaliseScale && !normaliseOffset) {
 			return tones; // silly caller
 		}

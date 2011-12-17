@@ -1,0 +1,24 @@
+used block-level functional tests rather than unit tests, mostly with results that needed to be humanly observed
+
+initially used List<Double>, List<List<Double>> for data structures, 
+with 
+public List<Double> process(List<Double>)
+etc.
+
+refactor to:
+Tone extends List<Double>
+Chunks extends List<List<Double>>
+adding
+public Tone process(Tone)
+etc.
+which delegate to
+public List<Double> process(List<Double>)
+etc.
+
+swap processing across and remove
+public List<Double> process(List<Double>)
+etc.
+
+[next]
+Tone, Chunks not extending Collections, delegating to them
+
