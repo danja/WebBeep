@@ -26,6 +26,6 @@ public class EnvelopeParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
-		value = Plotter.roundToSignificantFigures(Math.random()/2,2); // 0...0.5
+		value = Plotter.roundToSignificantFigures(Math.random()/4,2); // 0...0.125
 	}
 }

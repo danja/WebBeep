@@ -60,10 +60,10 @@ public class DefaultPipeline implements Pipeline {
 			Debug.verbose("Applying process : "+processor);
 			chunks = processor.process(chunks);
 			if(chunks.size() == 0){
-				Debug.log("Zero chunks :"+processor);
+				Debug.log("DefaultPipeline****************************** Zero chunks :"+processor);
 			}else {
 			if(chunks.get(0).size() == 0){
-				Debug.log("Zero *in* chunk(0) : "+processor);
+				Debug.log("DefaultPipeline****************************** Zero *in* chunk(0) : "+processor);
 			}
 			}
 		}

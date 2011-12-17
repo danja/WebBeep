@@ -51,11 +51,18 @@ p("HP_points");
 			return new FrequencyParameter(processor, type);
 		}
 		
-		if(type.equals("silenceThreshold") || type.equals("cropProportion") || type.equals("cropProportion")){
+		// Decoder
+		if(type.equals("silenceThreshold")){
+			return new NormalParameter(processor, type);
+		}
+		if(type.equals("cropProportion")){
 			return new NormalParameter(processor, type);
 		}
 		if(type.equals("fftBits")){
 			return new FFTBitsParameter(processor, type);
+		}
+		if(type.equals("repeatToFit")){
+			return new BooleanParameter(processor, type);
 		}
 		if(type.equals("peakDelta")){
 			Parameter p = new NormalParameter(processor, type);

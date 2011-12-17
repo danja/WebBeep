@@ -32,7 +32,7 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	public void initFromParameters() {
 		cropProportion = (Double) parameters.get("cropProportion");
 		cropLength = (int) (cropProportion
-				* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
+				* Constants.TONE_DURATION * Constants.SAMPLE_RATE); // was /2
 	}
 	
 	static String IRI = "http://dannyayers.com/stuff"; // "OK" is good!
@@ -41,7 +41,8 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	public static void main(String[] args) {
 		Encoder encoder = new Encoder();
 		List<Double> tones = encoder.encode(IRI);
-		int start = Cropper.findStartThreshold(tones, 0.75);
+		Cropper cropper = new Cropper();
+		int start = cropper.findStart(tones, 0.75);
 		System.out.println(start);
 		WavCodec.save(filename, tones);
 	}
@@ -60,7 +61,8 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 			Tone chunk = new Tone(tones.subList(chunkStart, chunkEnd)); // without decay section
 			chunks.add(chunk);
 	//		System.out.println("chunks found="+chunks.size());
-			chunkStart += (int) ((Constants.SILENCE_DURATION + Constants.TONE_DURATION) * Constants.SAMPLE_RATE/2);
+			// why /2 below !?
+			chunkStart += (int) ((Constants.SILENCE_DURATION + Constants.TONE_DURATION) * Constants.SAMPLE_RATE/2); // /2
 		} 
 		// UGLY HACK
 		if(chunks.size() % 2 != 0){

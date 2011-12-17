@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Encoder;
@@ -24,13 +25,20 @@ import org.hyperdata.beeps.util.Tone;
 
 /**
  * @author danny
- * 
+
+		* sensible
+		 * fftBits = 10
+         * fftMax = 1024
+         * peakDelta = 0.5
+		 *
+
  */
 public class FFTPitchFinder extends DefaultProcessor {
 	
 	int fftBits = Constants.FFT_BITS;
 	int fftMax = Constants.FFT_MAX;
 	double peakDelta = Constants.PEAK_DELTA;
+	boolean repeatToFit = false;
 	
 	public FFTPitchFinder(){
 		super("FFTPitchFinder");
@@ -44,6 +52,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 		fftBits = (Integer) parameters.get("fftBits");
 		fftMax = (int)Math.pow(2, fftBits);
 		peakDelta = (Double) parameters.get("peakDelta");
+		repeatToFit = (Boolean)parameters.get("repeat");
 	}
 	
 	/* (non-Javadoc)
@@ -87,6 +96,26 @@ public class FFTPitchFinder extends DefaultProcessor {
 	}
 	
 	public Map<Double, Double> findPairs(Tone tones) {
+
+//		System.out.println("\nfftBits = "+fftBits);
+//		
+//		System.out.println("tones.size() = "+tones.size());
+//		System.out.println("fftMax = "+fftMax);
+//		System.out.println("peakDelta = "+peakDelta);
+		if(tones.size() ==0){
+			Debug.log("tones.size()==0");
+			return new HashMap<Double, Double>();
+		}
+		if(repeatToFit && (tones.size()< fftMax)){
+			Tone tonesCopy = new Tone(tones);
+			while(tones.size()< fftMax){
+				System.out.println("tones.size()="+tones.size()+" fftMax="+fftMax);
+				tones.addAll(tonesCopy);
+			}
+		}
+		if(tones.size()> fftMax){
+			tones = new Tone(tones.subList(0,fftMax));
+		}
 
 		FFT fft = new FFT(fftBits);
 

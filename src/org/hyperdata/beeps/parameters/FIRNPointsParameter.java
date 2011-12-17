@@ -21,11 +21,11 @@ public class FIRNPointsParameter extends DefaultParameter {
 	 * 
 	 * 64...4096
 	 * 
-	 * 2^6 = 64 2^12 = 4096
+	 * 2^7 = 128, 2^13 = 8192
 	 */
 	@Override
 	public void initRandom() {
-		double exponent = Math.random() * 6 + 6;
+		double exponent = Math.random() * 7 + 7;
 		value = (int)Math.pow(2, exponent);
 	}
 

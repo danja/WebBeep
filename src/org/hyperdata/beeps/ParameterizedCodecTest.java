@@ -29,7 +29,7 @@ Debug debug = new Debug();
 		Debug.inform("Input : " + input);
 		Debug.inform(input.length() + " characters\n");
 
-		int runs = 100;
+		int runs = 10;
 		
 		int successCount = 0;
 		double mostAccurate = 0;
@@ -125,6 +125,7 @@ Debug debug = new Debug();
 			if (errs.length() > 0) {
 				Debug.verbose("Bad chars = " + errs);
 			}
+			Debug.log(encoder.parameters +"\n\n"+decoder.parameters);
 		} // end for loop
 		System.out.println("Success count = " + successCount + " out of "
 				+ runs);
@@ -133,7 +134,7 @@ Debug debug = new Debug();
 		System.out.println("Average encode time = "+Plotter.roundToSignificantFigures((float)encodeTimeSum/(1000*runs), 2)+" seconds");
 		System.out.println("Average decode time = "+Plotter.roundToSignificantFigures((float)decodeTimeSum/(1000*runs), 2)+" seconds");
 		System.out.println("Average total time = "+Plotter.roundToSignificantFigures(((float)encodeTimeSum+decodeTimeSum)/(1000*runs), 2)+" seconds");
-		System.out.println("Mean encode time for 100% transfer = "+Plotter.roundToSignificantFigures((float)encodeHitTimeSum/(1000*runs), 2)+" seconds");
-		System.out.println("Mean decode time for 100% transfer = "+Plotter.roundToSignificantFigures((float)decodeHitTimeSum/(1000*runs), 2)+" seconds");
+		System.out.println("Mean encode time for 100% transfer = "+Plotter.roundToSignificantFigures((float)encodeHitTimeSum/(1000*successCount), 2)+" seconds");
+		System.out.println("Mean decode time for 100% transfer = "+Plotter.roundToSignificantFigures((float)decodeHitTimeSum/(1000*successCount), 2)+" seconds");
 	}
 }

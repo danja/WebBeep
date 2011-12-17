@@ -28,9 +28,10 @@ public class TestCorr {
 		////////////////////////////////////////////
 		 Encoder encoder = new Encoder();
 		List<Double> testTone = encoder.encode("o");
-		int startx = Cropper.findStartThreshold(testTone,
+		Cropper cropper = new Cropper();
+		int startx = cropper.findStart(testTone,
 				Constants.SILENCE_THRESHOLD);
-		int endx = Cropper.findEndThreshold(testTone,
+		int endx = cropper.findEnd(testTone,
 				Constants.SILENCE_THRESHOLD);
 		testTone = testTone.subList(startx, endx);
 		

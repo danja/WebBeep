@@ -97,7 +97,6 @@ public abstract class DefaultParameterized implements Parameterized {
 		while(iterator.hasNext()){
 			String name = iterator.next();
 			string += "\n" + name + " = " + parameters.get(name);
-			string += "\n";
 		}
 		return string;
 	}

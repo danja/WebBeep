@@ -82,7 +82,7 @@ public class ParameterizedEncoder extends DefaultCodec {
 //			if (parameters.getValue("toNoise").equals("on")) { // test dummy
 //				addPreProcessor(toNoise);
 //			}
-			Processor lp = new FIRProcessor("LP_FIR");
+			Processor lp = new FIRProcessor("Encoder LP FIR");
 			lp.setParameter("shape", "LP"); // overwrite - bit clunky
 			createParameter(lp, "LP_FIR");
 			createParameter(lp, "window");
@@ -93,7 +93,7 @@ public class ParameterizedEncoder extends DefaultCodec {
 			if (parameters.getValue("LP_FIR").equals("on")) {
 				addPostProcessor(lp);
 			}
-			Processor hp = new FIRProcessor("HP_FIR");
+			Processor hp = new FIRProcessor("Encoder HP FIR");
 			hp.setParameter("shape", "HP"); // overwrite - bit clunky
 			// parameters.copyParametersToProcessor(hp);
 			createParameter(hp, "HP_FIR");

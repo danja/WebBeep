@@ -37,4 +37,51 @@ Average encode time = 0.61 seconds
 Average decode time = 0.55 seconds
 Average total time = 1.2 seconds
 
+fft params bit broken, but trying to improve other params first
+
+Success count = 3 out of 100
+Most accurate = 100.0 %
+Mean accuracy = 15.42 %
+Average encode time = 0.74 seconds
+Average decode time = 0.21 seconds
+Average total time = 0.96 seconds
+Mean encode time for 100% transfer = 0.002 seconds
+Mean decode time for 100% transfer = 0.0082 seconds
+
+--------------
+		
+value = (int) (8 + 5.0 * Math.random());
+
+Success count = 0 out of 10
+Most accurate = 58.0 %
+Mean accuracy = 5.8 %
+Average encode time = 2.9 seconds
+Average decode time = 0.59 seconds
+Average total time = 3.5 seconds
+Mean encode time for 100% transfer = 0.0 seconds
+Mean decode time for 100% transfer = 0.0 seconds
+
+fixed values
+fftBits = 10
+fftMax = 1024
+peakDelta = 0.5
+Success count = 0 out of 10
+Most accurate = 22.0 %
+Mean accuracy = 3.8 %
+Average encode time = 0.18 seconds
+Average decode time = 0.34 seconds
+Average total time = 0.52 seconds
+Mean encode time for 100% transfer = 0.0 seconds
+Mean decode time for 100% transfer = 0.0 seconds
+
+		value = (int) (9 + 5.0 * Math.random());
+
+Success count = 0 out of 10
+Most accurate = 54.0 %
+Mean accuracy = 5.4 %
+Average encode time = 2.6 seconds
+Average decode time = 0.42 seconds
+Average total time = 3.0 seconds
+Mean encode time for 100% transfer = 0.0 seconds
+Mean decode time for 100% transfer = 0.0 seconds
 

@@ -134,7 +134,7 @@ public class ParameterizedDecoder extends DefaultCodec {
 			}
 
 			// *** HP ***
-			Processor hp = new FIRProcessor("HP_FIR");
+			Processor hp = new FIRProcessor("Decoder HP FIR");
 			hp.setParameter("shape", "HP"); // overwrite - bit clunky
 			// parameters.copyParametersToProcessor(hp);
 			createParameter(hp, "HP_FIR");
@@ -147,7 +147,7 @@ public class ParameterizedDecoder extends DefaultCodec {
 				addPostProcessor(hp);
 			}
 			
-			Processor lp1 = new FIRProcessor("LP_FIR1");
+			Processor lp1 = new FIRProcessor("Decoder LP FIR 1");
 			lp1.setParameter("shape", "LP"); // overwrite - bit clunky
 			createParameter(lp1, "LP_FIR1");
 			createParameter(lp1, "window");
@@ -159,7 +159,7 @@ public class ParameterizedDecoder extends DefaultCodec {
 				addPostProcessor(lp1);
 			}
 			
-			Processor lp2 = new FIRProcessor("LP_FIR2");
+			Processor lp2 = new FIRProcessor("Decoder LP FIR2");
 			lp2.setParameter("shape", "LP"); // overwrite - bit clunky
 			createParameter(lp2, "LP_FIR2");
 			createParameter(lp2, "window");
@@ -170,11 +170,11 @@ public class ParameterizedDecoder extends DefaultCodec {
 			if (parameters.getValue("LP_FIR2").equals("on")) {
 				addPostProcessor(lp2);
 			}
-			
 			pitchFinder = new FFTPitchFinder();
-//			createParameter(pitchFinder, "fftBits");
-//			createParameter(pitchFinder, "peakDelta");
-//			pitchFinder.initFromParameters();
+			createParameter(pitchFinder, "fftBits");
+			createParameter(pitchFinder, "peakDelta");
+			createParameter(pitchFinder, "repeatToFit");
+			pitchFinder.initFromParameters();
 			
 		} catch (Exception exception) {
 			exception.printStackTrace();

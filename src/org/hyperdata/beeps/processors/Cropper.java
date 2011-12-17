@@ -37,8 +37,8 @@ public class Cropper extends DefaultProcessor {
 	@Override
 	public Tone process(Tone input) {
 		Debug.inform("DETECTOR - do something with me");
-		int start = Cropper.findStartThreshold(input, silenceThreshold);
-		int end = Cropper.findEndThreshold(input, silenceThreshold);
+		int start = findStart(input, silenceThreshold);
+		int end = findEnd(input, silenceThreshold);
 		// System.out.println("cropping");
 
 		try {
@@ -50,14 +50,15 @@ public class Cropper extends DefaultProcessor {
 		return input;
 	}
 
-	public static int findStartThreshold(List<Double> tones, double threshold){
+	public int findStart(List<Double> tones, double threshold){
 		for(int i=0;i<tones.size();i++){
 			if(tones.get(i)>threshold) return i;
 		}
+		System.out.println("START not found");
 		return -1;
 	}
 
-	public static int findEndThreshold(List<Double> tones, double threshold){
+	public int findEnd(List<Double> tones, double threshold){
 		for(int i=tones.size()-1;i>=0;i--){
 			if(tones.get(i)>threshold) return i;
 		}

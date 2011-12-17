@@ -26,8 +26,14 @@ public class FFTBitsParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
-		value = (int) (4 + 4.0 * Math.random());
+		value = (int) (7 + 6.0 * Math.random()); // (int) (8 + 6.0 * Math.random());
 	}
+	
+	/* sensible
+	 * fftBits = 10
+     * fftMax = 1024
+     * peakDelta = 0.5
+	 */
 
 	public static void main(String[] args) {
 		for (int i = 0; i < 10; i++) {
