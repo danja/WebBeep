@@ -17,4 +17,8 @@ public interface Parameter {
 	public void initRandom();
 	public Object getValue();
 	public Parameterized getProcessor();
+	/**
+	 * @param d
+	 */
+	public void setValue(Object object);
 }

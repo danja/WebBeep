@@ -20,7 +20,7 @@ public class ParameterizedCodecTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+Debug debug = new Debug();
 		// String input = "http://danbri.org/foaf.rdf#danbri";
 		String input = ASCIICodec.getRandomASCII();
 		// http://danbri.org/foaf.rdf#danbri
@@ -29,7 +29,7 @@ public class ParameterizedCodecTest {
 		Debug.inform("Input : " + input);
 		Debug.inform(input.length() + " characters\n");
 
-		int runs = 1000;
+		int runs = 100;
 		
 		int successCount = 0;
 		double mostAccurate = 0;

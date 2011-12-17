@@ -172,9 +172,9 @@ public class ParameterizedDecoder extends DefaultCodec {
 			}
 			
 			pitchFinder = new FFTPitchFinder();
-			createParameter(pitchFinder, "fftBits");
-			createParameter(pitchFinder, "peakDelta");
-			pitchFinder.initFromParameters();
+//			createParameter(pitchFinder, "fftBits");
+//			createParameter(pitchFinder, "peakDelta");
+//			pitchFinder.initFromParameters();
 			
 		} catch (Exception exception) {
 			exception.printStackTrace();

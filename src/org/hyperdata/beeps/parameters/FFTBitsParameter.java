@@ -26,7 +26,7 @@ public class FFTBitsParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
-		value = (int) (5 + 10.0 * Math.random());
+		value = (int) (4 + 4.0 * Math.random());
 	}
 
 	public static void main(String[] args) {

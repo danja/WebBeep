@@ -18,6 +18,23 @@ import org.hyperdata.beeps.parameters.Parameter;
  */
 public abstract class DefaultParameterized implements Parameterized {
 
+	/**
+	 * @return the parameters
+	 */
+	public Map<String, Object> getParameters() {
+		return this.parameters;
+	}
+
+
+	/**
+	 * @param parameters the parameters to set
+	 */
+	public void setParameters(Map<String, Object> parameters) {
+		this.parameters = parameters;
+	}
+
+
+
 	private String name = "anonymous";
 	protected Map<String, Object> parameters = new HashMap<String, Object>();
 	

@@ -25,9 +25,11 @@ public abstract class DefaultProcessor extends DefaultParameterized implements P
 		for(int i=0;i<input.size();i++){
 			Tone chunk = input.get(i);
 			Tone processed = process(chunk);
-			if(processed.size() == 0){
-				Debug.log("[DefaultProcessor] output from processor "+getName());
-			}
+//			if(processed.size() == 0){
+//				Debug.log("[DefaultProcessor] zero output from processor "+getName());
+//				Debug.log("parameters:\n"+getParameters());
+//				Debug.log("input.size() "+input.size());
+//			}
 			output.add(processed);
 		}
 		return output;

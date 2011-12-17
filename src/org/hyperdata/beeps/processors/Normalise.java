@@ -7,6 +7,7 @@ package org.hyperdata.beeps.processors;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.pipelines.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
@@ -57,6 +58,10 @@ public class Normalise extends DefaultProcessor {
 	 */
 	public Tone normalise(Tone tones,
 			boolean normaliseScale, boolean normaliseOffset) {
+		if(tones.size() == 0){
+		//	Debug.log("in normalize, tones.size()=0");
+			return tones;
+		}
 		Tone normals = new Tone();
 		if (!normaliseScale && !normaliseOffset) {
 			return tones; // silly caller

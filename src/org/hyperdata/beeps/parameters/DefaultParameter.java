@@ -56,5 +56,13 @@ public abstract class DefaultParameter implements Parameter {
 	public Object getValue() {
 		return value;
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.optimize.Parameter#getValue()
+	 */
+	@Override
+	public void setValue(Object value) {
+		this.value = value;
+	}
 
 }
