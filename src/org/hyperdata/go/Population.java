@@ -17,10 +17,11 @@ import org.hyperdata.go.parameters.ParameterList;
  */
 public class Population {
 
-	static int populationSize = 128; // must be multiple of 4
-	static int generations = 100;
-	static int characters = 30; // is prepended with "http://"
-
+	static int populationSize = 256; // must be multiple of 4
+	static int generations = 200;
+	static int minCharacters = 2; 
+	static int maxCharacters = 33; 
+	
 	private List<Organism> organisms = new ArrayList<Organism>();
 
 	public void add(Organism system) {
@@ -41,7 +42,8 @@ public class Population {
 		for (int i = 0; i < populationSize; i++) {
 			System.out.print(i + " ");
 			ParameterizedCodec codec = new ParameterizedCodec();
-			codec.setnCharacters(characters);
+			codec.setnCharacters(minCharacters, maxCharacters);
+
 			codec.init();
 			population.add(codec);
 		}
@@ -57,6 +59,9 @@ public class Population {
 			population.sort();
 
 			Organism fittest = population.get(0);
+			
+			System.out.println(fittest.getParameters());
+			
 			System.out.println("Worst fitness = "
 					+ population.get(population.size() - 1).getFitness());
 			System.out.println("Fittest = " + fittest.getFitness());
@@ -72,6 +77,8 @@ public class Population {
 			population.breed();
 		}
 		Organism fittest = population.get(0);
+		System.out.println("*******************************");
+	
 		System.out.println("Total time = "
 				+ ((double) System.currentTimeMillis() - (double) startTime)
 				/ 1000);

@@ -19,14 +19,21 @@ import org.hyperdata.go.parameters.ParameterList;
  * @author danny
  * 
  */
-public class ParameterizedCodec implements Organism { // somehow pass this
+public class ParameterizedCodec implements Organism { 
+	
+	private int minCharacters = 5;
+private int maxCharacters = 30;
+
+// somehow pass this
 														// parameters
 
 	/**
 	 * @param characters the characters to set
+	 * @param maxCharacters 
 	 */
-	public void setnCharacters(int characters) {
-		this.nCharacters = characters;
+	public void setnCharacters(int minCharacters, int maxCharacters) {
+		this.minCharacters = minCharacters;
+		this.maxCharacters = maxCharacters;
 	}
 
 	/**
@@ -51,7 +58,6 @@ public class ParameterizedCodec implements Organism { // somehow pass this
 	DefaultPipeline line;
 	private double runTime;
 	private double accuracy;
-	private int nCharacters;
 
 	public ParameterizedCodec() {
 
@@ -73,7 +79,10 @@ public class ParameterizedCodec implements Organism { // somehow pass this
 
 	public void run() {
 	//	String input = "http://dannyayers.com";
-		String input = "http://"+ASCIICodec.getRandomASCII(nCharacters);
+		String input = ASCIICodec.getRandomASCII(minCharacters, maxCharacters);
+		if(Math.random() > 0.6){
+			input = "http://"+input;
+		}
 		// System.out.println("Input:"+input);
 		Debug debug = new Debug();
 

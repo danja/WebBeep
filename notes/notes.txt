@@ -1,3 +1,13 @@
+should really average fitness over time - remember history
+
+
+
+
+
+
+
+
+-------------------------
 Install
 octave
 cantor 

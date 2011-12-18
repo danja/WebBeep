@@ -27,8 +27,6 @@ import org.hyperdata.go.parameters.Parameterized;
 /**
  * @author danny
  * 
- *         * preprocessors in Encoder are applied to individual dual-tone chunks
- *         postprocessors are applied to the whole outgoing constructed waveform
  * 
  *         NEED TO CHECK SILENCE
  * 
@@ -101,12 +99,14 @@ public class ParameterizedDecoder extends DefaultCodec {
 	private Processor hp;
 	private Processor lp1;
 	private Processor lp2;
+	
+	private Processor norm1;
+	private Processor norm2;
+	private Processor norm3;
+	private Processor norm4;
 
 	public void init() {
 		cropper = new Cropper("Decoder.cropper");
-		chunker = new Chunker("Decoder.chunker");
-		chunknorm = new Normalise("Decoder.normalise");
-		chunkEnv = new EnvelopeShaper("Decoder.chunkEnv");
 		
 		hp = new FIRProcessor("Decoder.HP_FIR");
 		hp.setParameter("Decoder.HP_FIR.shape", "HP");  // fixed parameter
@@ -116,6 +116,14 @@ public class ParameterizedDecoder extends DefaultCodec {
 		
 		lp2 = new FIRProcessor("Decoder.LP_FIR2");
 		lp2.setParameter("Decoder.LP_FIR2.shape", "LP");  // fixed parameter
+		
+		chunker = new Chunker("Decoder.chunker");
+		chunknorm = new Normalise("Decoder.normalise");
+		chunkEnv = new EnvelopeShaper("Decoder.chunkEnv");
+		
+		norm1 = new Normalise("Decoder.norm1");
+		norm2 = new Normalise("Decoder.norm2");
+		norm3 = new Normalise("Decoder.norm3");
 		
 		pitchFinder = new FFTPitchFinder("Decoder.pitchFinder");
 
@@ -129,6 +137,28 @@ public class ParameterizedDecoder extends DefaultCodec {
 		try {
 			// *** Cropper - applied in main path ***
 			cropper.initFromParameters();
+			
+			// *** HP ***
+			hp.initFromParameters();
+			if (parameters.getValue("Decoder.HP_FIR.on").equals("true")) {
+				addPreProcessor(hp);
+			}
+			
+			addPreProcessor(norm1);
+			
+			lp1.initFromParameters();
+			if (parameters.getValue("Decoder.LP_FIR1.on").equals("true")) {
+				addPreProcessor(lp1);
+			}
+			
+			addPreProcessor(norm2);
+
+			lp2.initFromParameters();
+			if (parameters.getValue("Decoder.LP_FIR2.on").equals("true")) {
+				addPreProcessor(lp2);
+			}
+			
+			addPreProcessor(norm3);
 
 			// *** Chunker - applied in main path ***
 			chunker.initFromParameters();
@@ -143,22 +173,6 @@ public class ParameterizedDecoder extends DefaultCodec {
 			chunkEnv.initFromParameters();
 			if (parameters.getValue("Decoder.chunkEnv.on").equals("true")) {
 				addPreProcessor(chunkEnv);
-			}
-
-			// *** HP ***
-			hp.initFromParameters();
-			if (parameters.getValue("Decoder.HP_FIR.on").equals("true")) {
-				addPostProcessor(hp);
-			}
-			
-			lp1.initFromParameters();
-			if (parameters.getValue("Decoder.LP_FIR1.on").equals("true")) {
-				addPostProcessor(lp1);
-			}
-
-			lp2.initFromParameters();
-			if (parameters.getValue("Decoder.LP_FIR2.on").equals("true")) {
-				addPostProcessor(lp2);
 			}
 			pitchFinder.initFromParameters();
 		} catch (Exception exception) {

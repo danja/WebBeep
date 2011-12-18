@@ -72,6 +72,10 @@ public class ParameterizedEncoder extends DefaultCodec {
 	private Processor chunkEnv;
 	private Processor lp;
 	private Processor hp;
+	
+	private Processor norm1;
+	private Processor norm2;
+	private Processor norm3;
 
 	public void init() {
 		chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
@@ -82,6 +86,10 @@ public class ParameterizedEncoder extends DefaultCodec {
 		hp = new FIRProcessor("Encoder.HP_FIR");
 		hp.setParameter("Encoder.HP_FIR.shape", "HP"); // fixed parameter
 
+		norm1 = new Normalise("Encoder.norm1");
+		norm2 = new Normalise("Encoder.norm1");
+		norm3 = new Normalise("Encoder.norm1");
+		
 		initRandomParameters();
 		initFromParameters();
 	}
@@ -93,16 +101,22 @@ public class ParameterizedEncoder extends DefaultCodec {
 			if (parameters.getValue("Encoder.chunkEnv.on").equals("true")) {
 				addPreProcessor(chunkEnv);
 			}
+			
+			addPreProcessor(norm1);
 
 			lp.initFromParameters();
 			if (parameters.getValue("Encoder.LP_FIR.on").equals("true")) {
 				addPostProcessor(lp);
 			}
+			
+			addPostProcessor(norm2);
 
 			hp.initFromParameters();
 			if (parameters.getValue("Encoder.HP_FIR.on").equals("true")) {
 				addPostProcessor(hp);
 			}
+			
+			addPostProcessor(norm3);
 
 		} catch (Exception exception) {
 			exception.printStackTrace();

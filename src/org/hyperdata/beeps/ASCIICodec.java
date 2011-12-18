@@ -74,4 +74,14 @@ return getRandomASCII(50);
 		}
 	}
 
+	/**
+	 * @param minCharacters
+	 * @param maxCharacters
+	 * @return
+	 */
+	public static String getRandomASCII(int minCharacters, int maxCharacters) {
+		int count = minCharacters + (int)((maxCharacters-minCharacters)*Math.random());
+		return getRandomASCII(count);
+	}
+
 }
