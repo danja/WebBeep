@@ -33,7 +33,7 @@ public class Decoder  {
 	public String decode(Tone tones) {
 		Debug.inform("Decoding");
 		
-		Normalise norm = new Normalise();
+		Normalise norm = new Normalise("Decoder.normalise");
 		tones = norm.process(tones);
 		
 //		EnvelopeShaper envelope = new EnvelopeShaper();
@@ -47,17 +47,17 @@ public class Decoder  {
 			Plotter.plot(tones, "in decoder");
 		}
 
-		Processor cropper = new Cropper();
+		Processor cropper = new Cropper("Decoder.cropper");
 		tones = cropper.process(tones);
 
 		// Plotter.plot(tones, "Cropped");
 
-		SplittingProcessor chunker = new Chunker();
+		SplittingProcessor chunker = new Chunker("Decoder.chunker");
 		Chunks chunks = chunker.process(tones);
 
 		// chunks = applyPostProcessors(chunks);
 		
-		String ascii = ASCIICodec.chunksToASCII(chunks, new FFTPitchFinder());
+		String ascii = ASCIICodec.chunksToASCII(chunks, new FFTPitchFinder("Decoder.pitchFinder"));
 
 		try {
 			ascii = Checksum.checksum(ascii);

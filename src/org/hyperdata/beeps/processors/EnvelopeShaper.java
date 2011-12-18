@@ -19,8 +19,8 @@ public class EnvelopeShaper extends DefaultProcessor {
 	private double attackProportion = 0;
 	private double decayProportion = 0;
 
-	public EnvelopeShaper(){
-		super("EnvelopeShaper");
+	public EnvelopeShaper(String name){
+		super(name);
 	}
 	
 //	public List<Double> process(List<Double> samples){
@@ -70,11 +70,11 @@ public class EnvelopeShaper extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		Debug.debug("parameters="+parameters);
+	//	Debug.debug("parameters="+parameters);
 //		Debug.halt(this);
 // System.out.println("parameters.get(attackProportion)="+parameters.get("attackProportion"));
-		setAttackProportion((Double)parameters.get("attackProportion"));
-		setDecayProportion((Double)parameters.get("decayProportion"));
+		setAttackProportion((Double)getLocal("attackProportion"));
+		setDecayProportion((Double)getLocal("decayProportion"));
 		
 	}
 }

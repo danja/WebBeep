@@ -16,8 +16,8 @@ import org.hyperdata.beeps.util.Tone;
  */
 public class AllToNoiseProcessor extends DefaultProcessor {
 	
-	public AllToNoiseProcessor(){
-		super("All to Noise");
+	public AllToNoiseProcessor(String name){
+		super(name);
 	}
 
 	/* (non-Javadoc)

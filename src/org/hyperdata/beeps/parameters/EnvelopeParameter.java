@@ -15,6 +15,10 @@ import org.hyperdata.go.parameters.Parameterized;
  */
 public class EnvelopeParameter extends DefaultParameter {
 	
+	public EnvelopeParameter(){
+		
+	}
+	
 	public EnvelopeParameter(Parameterized processor, String name){
 		super(processor, name);
 		// initRandom();

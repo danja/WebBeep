@@ -50,14 +50,28 @@ public class ASCIICodec {
 	}
 
 	public static String getRandomASCII(){
+return getRandomASCII(50);
+	}
+
+	/**
+	 * @param i
+	 * @return
+	 */
+	public static String getRandomASCII(int count) {
 		String input = "";
-		for (char i = 0; i < 50; i++) {
+		for (char i = 0; i < count; i++) {
 			int r = (int)(70 + Math.random() * 58);
 		//	System.out.println(r);
 			input += (char)r;
 		}
 	//	System.out.println(input);
 		return input;
+	}
+	
+	public static void main(String[] args){
+		for(int i=0;i<10;i++){
+			System.out.println("----"+getRandomASCII(i));
+		}
 	}
 
 }

@@ -28,8 +28,8 @@ import org.hyperdata.go.parameters.DefaultParameterized;
  */
 public class Correlator extends DefaultProcessor {
 	
-	public Correlator(){
-		super("Correlator");
+	public Correlator(String name){
+		super(name);
 	}
 	
 	/* (non-Javadoc)

@@ -19,9 +19,9 @@ import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.DefaultParameterSet;
+import org.hyperdata.go.parameters.DefaultParameterList;
 import org.hyperdata.go.parameters.Parameter;
-import org.hyperdata.go.parameters.ParameterSet;
+import org.hyperdata.go.parameters.ParameterList;
 import org.hyperdata.go.parameters.Parameterized;
 
 /**
@@ -32,7 +32,22 @@ import org.hyperdata.go.parameters.Parameterized;
  */
 public class ParameterizedEncoder extends DefaultCodec {
 
-	public ParameterSet parameters = new DefaultParameterSet();
+	/**
+	 * @return the parameters
+	 */
+	public ParameterList getParameters() {
+		return this.parameters;
+	}
+
+	/**
+	 * @param parameters the parameters to set
+	 */
+	public void setParameters(ParameterList parameters) {
+		this.parameters = parameters;
+		initFromParameters();
+	}
+
+	public ParameterList parameters = new DefaultParameterList();
 
 	public ParameterizedEncoder() {
 		init();
@@ -59,33 +74,33 @@ public class ParameterizedEncoder extends DefaultCodec {
 	private Processor hp;
 
 	public void init() {
-		chunkEnv = new EnvelopeShaper();
+		chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
 
-		lp = new FIRProcessor("Encoder LP FIR");
-		lp.setParameter("shape", "LP");
+		lp = new FIRProcessor("Encoder.LP_FIR");
+		lp.setParameter("Encoder.LP_FIR.shape", "LP"); // fixed parameter
 
-		hp = new FIRProcessor("Encoder HP FIR");
-		hp.setParameter("shape", "HP");
+		hp = new FIRProcessor("Encoder.HP_FIR");
+		hp.setParameter("Encoder.HP_FIR.shape", "HP"); // fixed parameter
 
 		initRandomParameters();
-		initProcessors(); // clears pre/post
 		initFromParameters();
 	}
 
 	public void initFromParameters() {
+		initProcessors(); // clears pre/post lists
 		try {
 			chunkEnv.initFromParameters();
-			if (parameters.getValue("chunkEnv").equals("on")) {
+			if (parameters.getValue("Encoder.chunkEnv.on").equals("true")) {
 				addPreProcessor(chunkEnv);
 			}
 
 			lp.initFromParameters();
-			if (parameters.getValue("LP_FIR").equals("on")) {
+			if (parameters.getValue("Encoder.LP_FIR.on").equals("true")) {
 				addPostProcessor(lp);
 			}
 
 			hp.initFromParameters();
-			if (parameters.getValue("HP_FIR").equals("on")) {
+			if (parameters.getValue("Encoder.HP_FIR.on").equals("true")) {
 				addPostProcessor(hp);
 			}
 
@@ -95,24 +110,24 @@ public class ParameterizedEncoder extends DefaultCodec {
 	}
 
 	public void initRandomParameters() {
-		createParameter(chunkEnv, "chunkEnv");
-		createParameter(chunkEnv, "attackProportion");
-		createParameter(chunkEnv, "decayProportion");
-		createParameter(lp, "LP_FIR");
-		createParameter(lp, "window");
-		createParameter(lp, "cutoff");
-		createParameter(lp, "npoints");
-		createParameter(hp, "HP_FIR");
-		createParameter(hp, "window");
-		createParameter(hp, "cutoff");
-		createParameter(hp, "npoints");
+		createParameter(chunkEnv, "Encoder.chunkEnv.on");
+		createParameter(chunkEnv, "Encoder.chunkEnv.attackProportion");
+		createParameter(chunkEnv, "Encoder.chunkEnv.decayProportion");
+		createParameter(lp, "Encoder.LP_FIR.on");
+		createParameter(lp, "Encoder.LP_FIR.window");
+		createParameter(lp, "Encoder.LP_FIR.cutoff");
+		createParameter(lp, "Encoder.LP_FIR.npoints");
+		createParameter(hp, "Encoder.HP_FIR.on");
+		createParameter(hp, "Encoder.HP_FIR.window");
+		createParameter(hp, "Encoder.HP_FIR.cutoff");
+		createParameter(hp, "Encoder.HP_FIR.npoints");
 	}
 
 	private void createParameter(Parameterized processor, String name) {
 		Parameter parameter = ParameterFactory.createParameter(processor, name);
 		processor.setParameter(parameter);
 		Debug.debug("Created : " + parameter);
-		parameters.addParameter(parameter);
+		parameters.add(parameter);
 	}
 
 	public String toString() {

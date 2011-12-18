@@ -42,6 +42,10 @@ public class Checksum {
 	 * @return
 	 */
 	public static String checksum(String ascii) throws Exception {
+		if(ascii.length()==0){
+			Debug.inform("ascii zero-length in checksum");
+			return "0"; 
+		}
 		String checkString = ascii.substring(0, 1);
 		ascii = ascii.substring(1);
 		String checkSum = makeChecksumString(ascii);

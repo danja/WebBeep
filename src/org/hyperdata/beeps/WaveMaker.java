@@ -65,7 +65,7 @@ public final class WaveMaker {
 
 	public static Tone makeShapedWaveform(double freq,double amplitude, double duration) {
 		Tone data = makeWaveform(freq, amplitude, duration);
-		EnvelopeShaper env = new EnvelopeShaper();
+		EnvelopeShaper env = new EnvelopeShaper("WaveMaker.envelopeShaper");
 		env.setAttackProportion(Constants.ENCODE_ATTACK_PROPORTION);
 		env.setDecayProportion(Constants.ENCODE_DECAY_PROPORTION);		
 		return env.process(data);

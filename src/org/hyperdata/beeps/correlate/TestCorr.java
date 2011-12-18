@@ -28,7 +28,7 @@ public class TestCorr {
 		////////////////////////////////////////////
 		 Encoder encoder = new Encoder();
 		List<Double> testTone = encoder.encode("o");
-		Cropper cropper = new Cropper();
+		Cropper cropper = new Cropper("TestCorr.cropper");
 		int startx = cropper.findStart(testTone,
 				Constants.SILENCE_THRESHOLD);
 		int endx = cropper.findEnd(testTone,

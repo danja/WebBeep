@@ -15,16 +15,42 @@ import org.hyperdata.beeps.pipelines.Processor;
  * @author danny
  *
  */
-public class DefaultParameterSet implements ParameterSet {
+public class DefaultParameterList implements ParameterList {
 
 	private List<Parameter> parameters = new ArrayList<Parameter>();
+	
+	public DefaultParameterList() {
+		
+	}
+	/**
+	 * @param parameters2
+	 */
+	public DefaultParameterList(ParameterList parameters) {
+		for(int i=0;i<parameters.size();i++){
+			this.parameters.add(parameters.get(i).clone());
+		}
+	}
+
+	public int size(){
+		return parameters.size();
+	}
+	
+	public Parameter get(int i){
+		return parameters.get(i);
+	}
 	
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.optimize.ParameterSet#addParameter(org.hyperdata.beeps.optimize.Parameter)
 	 */
 	@Override
-	public void addParameter(Parameter param) {
+	public void add(Parameter param) {
 		parameters.add(param);
+	}
+	
+	public void addAll(ParameterList parameters){
+		for(int i=0;i<parameters.size();i++){
+			this.parameters.add(parameters.get(i));
+		}
 	}
 	
 //	public void copyParametersToProcessor(Processor processor){

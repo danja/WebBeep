@@ -30,22 +30,22 @@ public class Debug {
 	private static Logger log = null;
 
 	public Debug(){
-		try {
+	//	try {
 			log = Logger.getLogger(Debug.class.getName());
 			log.setUseParentHandlers(false);
-			FileHandler simpleHandler = new FileHandler("beeps.log", 0, 1, false); // append
-			SimpleFormatter fmt = new SimpleFormatter();
-			simpleHandler.setFormatter(fmt);
-			log.addHandler(simpleHandler);
+//			FileHandler simpleHandler = new FileHandler("beeps.log", 0, 1, false); // append
+//			SimpleFormatter fmt = new SimpleFormatter();
+//			simpleHandler.setFormatter(fmt);
+	//		log.addHandler(simpleHandler);
 	// log.info("123");
 			// log.setLevel(Level.ALL);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public static void log(String message) {
-		log.info(message);
+	//	log.info(message);
 		// System.out.println(message);
 	}
 

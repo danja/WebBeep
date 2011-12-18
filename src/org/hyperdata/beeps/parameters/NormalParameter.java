@@ -14,6 +14,9 @@ import org.hyperdata.go.parameters.Parameterized;
  */
 public class NormalParameter extends DefaultParameter {
 
+	public NormalParameter(){
+		
+	}
 	/**
 	 * @param processor
 	 * @param name

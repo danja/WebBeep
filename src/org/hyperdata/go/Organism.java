@@ -3,7 +3,7 @@
  */
 package org.hyperdata.go;
 
-import org.hyperdata.go.parameters.ParameterSet;
+import org.hyperdata.go.parameters.ParameterList;
 
 
 /**
@@ -14,6 +14,11 @@ public interface Organism {
 	
 	public double getFitness();
 
-	public void setParameters(ParameterSet parameters);
-	public ParameterSet getParameters();
+	public void setParameters(ParameterList parameters);
+	public ParameterList getParameters();
+
+	/**
+	 * 
+	 */
+	public void run();
 }

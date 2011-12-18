@@ -29,7 +29,7 @@ Debug debug = new Debug();
 		Debug.inform("Input : " + input);
 		Debug.inform(input.length() + " characters\n");
 
-		int runs = 10;
+		int runs = 100;
 		
 		int successCount = 0;
 		double mostAccurate = 0;

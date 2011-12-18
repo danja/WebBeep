@@ -35,12 +35,29 @@ public abstract class DefaultParameterized implements Parameterized {
 
 
 	private String name = "anonymous";
-	protected Map<String, Object> parameters = new HashMap<String, Object>();
+	private Map<String, Object> parameters = new HashMap<String, Object>();
 	
 
 	public DefaultParameterized(){
 	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#getParameter(java.lang.String)
+	 */
+	@Override // REFACTOR
+	public Object getParameter(String name) {
+		return getLocal(name);
+	}
 	
+	public Object getGlobal(String key){// i.e.  get("window")
+		return parameters.get(key);
+	}
+	
+	public Object getLocal(String key){ // i.e. get("Encoder.HP.window")
+//		System.out.println("key="+key);
+//		System.out.println("key2="+getName()+"."+key);
+		return parameters.get(getName()+"."+key);
+	}
 	
 	public DefaultParameterized(String name){
 		this.name = name;
@@ -109,13 +126,7 @@ public abstract class DefaultParameterized implements Parameterized {
 
 
 
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.pipelines.Processor#getParameter(java.lang.String)
-	 */
-	@Override
-	public Object getParameter(String name) {
-		return parameters.get(name);
-	}
+
 
 
 

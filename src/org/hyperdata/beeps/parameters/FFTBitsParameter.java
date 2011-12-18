@@ -12,6 +12,9 @@ import org.hyperdata.go.parameters.Parameterized;
  */
 public class FFTBitsParameter extends DefaultParameter {
 
+	public FFTBitsParameter(){
+		
+	}
 	/**
 	 * @param processor
 	 * @param name

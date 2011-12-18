@@ -22,8 +22,8 @@ import org.hyperdata.go.parameters.DefaultParameterized;
  */
 public class Normalise extends DefaultProcessor {
 
-	public Normalise(){
-		super("Normalise");
+	public Normalise(String name){
+		super(name);
 	}
 	
 	/* (non-Javadoc)

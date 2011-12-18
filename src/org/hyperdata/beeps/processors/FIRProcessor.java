@@ -41,12 +41,12 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 	 */
 	@Override
 	public void initFromParameters() {
-		String shape = (String) parameters.get("shape");
+		String shape = (String)  getLocal("shape");
 		setShapeName(shape);
-		setFc((Integer) parameters.get("cutoff"));
-		setnPoints((Integer) parameters.get("npoints"));
+		setFc((Integer) getLocal("cutoff"));
+		setnPoints((Integer)  getLocal("npoints"));
 		if (shape.equals("BP") || shape.equals("BS")) {
-			setFc2((Integer) parameters.get("cutoff2"));
+			setFc2((Integer)  getLocal("cutoff2"));
 		}
 		initWeights();
 	}

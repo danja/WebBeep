@@ -20,4 +20,13 @@ public interface Parameter {
 	 * @param d
 	 */
 	public void setValue(Object object);
+	/**
+	 * @return
+	 */
+	public Parameter clone();
+	/**
+	 * @param processor
+	 */
+	public void setProcessor(Parameterized processor);
+
 }

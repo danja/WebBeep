@@ -16,8 +16,8 @@ import org.hyperdata.go.parameters.DefaultParameterized;
  */
 public class Rectifier extends DefaultProcessor {
 
-	public Rectifier(){
-		super("Rectifier");
+	public Rectifier(String name){
+		super(name);
 	}
 	/*
 	 * (non-Javadoc)

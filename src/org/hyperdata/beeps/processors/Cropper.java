@@ -19,8 +19,8 @@ public class Cropper extends DefaultProcessor {
 
 	private double silenceThreshold = Constants.SILENCE_THRESHOLD;
 	
-	public Cropper(){
-		super("Cropper");
+	public Cropper(String name){
+		super(name);
 	}
 	
 	/* (non-Javadoc)
@@ -28,7 +28,7 @@ public class Cropper extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		silenceThreshold = (Double) parameters.get("silenceThreshold");
+		silenceThreshold = (Double) getLocal("silenceThreshold");
 	}
 			
 	/* (non-Javadoc)

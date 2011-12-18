@@ -13,6 +13,10 @@ import org.hyperdata.go.parameters.Parameterized;
  */
 public class FIRWindowParameter extends DefaultParameter {
 
+	public FIRWindowParameter(){
+		
+	}
+	
 	public FIRWindowParameter(Parameterized processor, String name){
 		super(processor, name);
 	}

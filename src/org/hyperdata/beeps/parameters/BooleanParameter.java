@@ -12,6 +12,10 @@ import org.hyperdata.go.parameters.Parameterized;
  */
 public class BooleanParameter extends DefaultParameter {
 	
+	public BooleanParameter(){
+		
+	}
+	
 	public BooleanParameter(Parameterized processor, String name){
 		super(processor, name);
 	}
@@ -33,9 +37,9 @@ public class BooleanParameter extends DefaultParameter {
 	@Override
 	public void initRandom() {
 		if(Math.random() > 0.5){
-			value = "on";
+			value = "true";
 		} else {
-			value = "off";
+			value = "false";
 		}
 	}
 	

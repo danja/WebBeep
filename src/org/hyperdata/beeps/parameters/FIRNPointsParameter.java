@@ -11,6 +11,10 @@ import org.hyperdata.go.parameters.Parameterized;
  */
 public class FIRNPointsParameter extends DefaultParameter {
 
+	public FIRNPointsParameter(){
+		
+	}
+	
 	public FIRNPointsParameter(Parameterized processor, String name) {
 		super(processor, name);
 	}

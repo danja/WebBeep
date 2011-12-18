@@ -1,0 +1,982 @@
+Initializing :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 
+******   Generation : 0   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6764069264069263
+time = 0.056
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = true
+Encoder.chunkEnv.attackProportion = 0.19
+Encoder.chunkEnv.decayProportion = 0.11
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Blackman
+Encoder.LP_FIR.cutoff = 2598
+Encoder.LP_FIR.npoints = 517
+Encoder.HP_FIR.on = false
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 122
+Encoder.HP_FIR.npoints = 1412
+Decoder.cropper.silenceThreshold = 0.0821453510690977
+Decoder.chunker.cropProportion = 0.22756730262045455
+Decoder.chunkNorm.on = false
+Decoder.chunkEnv.on = true
+Decoder.chunkEnv.attackProportion = 0.078
+Decoder.chunkEnv.decayProportion = 0.04
+Decoder.HP_FIR.on = false
+Decoder.HP_FIR.window = Hamming
+Decoder.HP_FIR.cutoff = 269
+Decoder.HP_FIR.npoints = 720
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 3195
+Decoder.LP_FIR1.npoints = 848
+Decoder.LP_FIR2.on = false
+Decoder.LP_FIR2.window = Hamming
+Decoder.LP_FIR2.cutoff = 11961
+Decoder.LP_FIR2.npoints = 6656
+Decoder.pitchFinder.fftBits = 10
+Decoder.pitchFinder.peakDelta = 0.4786237942478697
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 1   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.680920604657497
+time = 0.049
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = true
+Encoder.chunkEnv.attackProportion = 0.082
+Encoder.chunkEnv.decayProportion = 0.065
+Encoder.LP_FIR.on = true
+Encoder.LP_FIR.window = Hamming
+Encoder.LP_FIR.cutoff = 3322
+Encoder.LP_FIR.npoints = 1194
+Encoder.HP_FIR.on = false
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 61
+Encoder.HP_FIR.npoints = 4621
+Decoder.cropper.silenceThreshold = 0.10079638016664205
+Decoder.chunker.cropProportion = 0.47153579533441337
+Decoder.chunkNorm.on = false
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.18
+Decoder.chunkEnv.decayProportion = 0.052
+Decoder.HP_FIR.on = false
+Decoder.HP_FIR.window = Hanning
+Decoder.HP_FIR.cutoff = 181
+Decoder.HP_FIR.npoints = 4713
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 11542
+Decoder.LP_FIR1.npoints = 780
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 3629
+Decoder.LP_FIR2.npoints = 338
+Decoder.pitchFinder.fftBits = 10
+Decoder.pitchFinder.peakDelta = 0.6286546048846189
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 2   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = true
+Encoder.chunkEnv.attackProportion = 0.24
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 11346
+Encoder.LP_FIR.npoints = 1043
+Encoder.HP_FIR.on = true
+Encoder.HP_FIR.window = Blackman
+Encoder.HP_FIR.cutoff = 285
+Encoder.HP_FIR.npoints = 801
+Decoder.cropper.silenceThreshold = 0.49310942446948636
+Decoder.chunker.cropProportion = 0.350677504608228
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.082
+Decoder.chunkEnv.decayProportion = 0.076
+Decoder.HP_FIR.on = true
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 233
+Decoder.HP_FIR.npoints = 10821
+Decoder.LP_FIR1.on = false
+Decoder.LP_FIR1.window = Blackman
+Decoder.LP_FIR1.cutoff = 1036
+Decoder.LP_FIR1.npoints = 235
+Decoder.LP_FIR2.on = false
+Decoder.LP_FIR2.window = Hamming
+Decoder.LP_FIR2.cutoff = 6936
+Decoder.LP_FIR2.npoints = 513
+Decoder.pitchFinder.fftBits = 8
+Decoder.pitchFinder.peakDelta = 0.6369632978598753
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 3   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.042
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = true
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 6549
+Encoder.LP_FIR.npoints = 320
+Encoder.HP_FIR.on = false
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 128
+Encoder.HP_FIR.npoints = 375
+Decoder.cropper.silenceThreshold = 0.8773678264740591
+Decoder.chunker.cropProportion = 0.5727625602045737
+Decoder.chunkNorm.on = false
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.11
+Decoder.chunkEnv.decayProportion = 0.012
+Decoder.HP_FIR.on = false
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 104
+Decoder.HP_FIR.npoints = 7439
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 1672
+Decoder.LP_FIR1.npoints = 1711
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hamming
+Decoder.LP_FIR2.cutoff = 2664
+Decoder.LP_FIR2.npoints = 13087
+Decoder.pitchFinder.fftBits = 11
+Decoder.pitchFinder.peakDelta = 0.3985683158136164
+Decoder.pitchFinder.repeatToFit = false
+
+******   Generation : 4   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6815703380588877
+time = 0.048
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = true
+Encoder.chunkEnv.attackProportion = 0.19
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = true
+Encoder.LP_FIR.window = Hamming
+Encoder.LP_FIR.cutoff = 1471
+Encoder.LP_FIR.npoints = 821
+Encoder.HP_FIR.on = true
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 125
+Encoder.HP_FIR.npoints = 748
+Decoder.cropper.silenceThreshold = 0.012473215379438019
+Decoder.chunker.cropProportion = 0.5225733032643979
+Decoder.chunkNorm.on = false
+Decoder.chunkEnv.on = true
+Decoder.chunkEnv.attackProportion = 0.17
+Decoder.chunkEnv.decayProportion = 0.13
+Decoder.HP_FIR.on = false
+Decoder.HP_FIR.window = Hanning
+Decoder.HP_FIR.cutoff = 263
+Decoder.HP_FIR.npoints = 741
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 4118
+Decoder.LP_FIR1.npoints = 1653
+Decoder.LP_FIR2.on = false
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 3957
+Decoder.LP_FIR2.npoints = 1479
+Decoder.pitchFinder.fftBits = 10
+Decoder.pitchFinder.peakDelta = 0.4904767761864765
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 5   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.2
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hamming
+Encoder.LP_FIR.cutoff = 1471
+Encoder.LP_FIR.npoints = 3006
+Encoder.HP_FIR.on = false
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 128
+Encoder.HP_FIR.npoints = 375
+Decoder.cropper.silenceThreshold = 0.10079638016664205
+Decoder.chunker.cropProportion = 0.5727625602045737
+Decoder.chunkNorm.on = false
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.18
+Decoder.chunkEnv.decayProportion = 0.076
+Decoder.HP_FIR.on = true
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 104
+Decoder.HP_FIR.npoints = 7439
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Blackman
+Decoder.LP_FIR1.cutoff = 1036
+Decoder.LP_FIR1.npoints = 235
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 3957
+Decoder.LP_FIR2.npoints = 943
+Decoder.pitchFinder.fftBits = 11
+Decoder.pitchFinder.peakDelta = 0.4786237942478697
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 6   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.2
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 6549
+Encoder.LP_FIR.npoints = 1043
+Encoder.HP_FIR.on = true
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 125
+Encoder.HP_FIR.npoints = 748
+Decoder.cropper.silenceThreshold = 0.49310942446948636
+Decoder.chunker.cropProportion = 0.350677504608228
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.17
+Decoder.chunkEnv.decayProportion = 0.13
+Decoder.HP_FIR.on = true
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 104
+Decoder.HP_FIR.npoints = 7439
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 1036
+Decoder.LP_FIR1.npoints = 1653
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 3957
+Decoder.LP_FIR2.npoints = 943
+Decoder.pitchFinder.fftBits = 11
+Decoder.pitchFinder.peakDelta = 0.4786237942478697
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 7   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.2
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 6549
+Encoder.LP_FIR.npoints = 1043
+Encoder.HP_FIR.on = true
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 125
+Encoder.HP_FIR.npoints = 748
+Decoder.cropper.silenceThreshold = 0.49310942446948636
+Decoder.chunker.cropProportion = 0.350677504608228
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.17
+Decoder.chunkEnv.decayProportion = 0.13
+Decoder.HP_FIR.on = true
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 104
+Decoder.HP_FIR.npoints = 7439
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 1036
+Decoder.LP_FIR1.npoints = 1653
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 3957
+Decoder.LP_FIR2.npoints = 943
+Decoder.pitchFinder.fftBits = 11
+Decoder.pitchFinder.peakDelta = 0.4786237942478697
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 8   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.2
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 6549
+Encoder.LP_FIR.npoints = 1043
+Encoder.HP_FIR.on = true
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 125
+Encoder.HP_FIR.npoints = 748
+Decoder.cropper.silenceThreshold = 0.49310942446948636
+Decoder.chunker.cropProportion = 0.350677504608228
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.17
+Decoder.chunkEnv.decayProportion = 0.13
+Decoder.HP_FIR.on = true
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 104
+Decoder.HP_FIR.npoints = 7439
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 1036
+Decoder.LP_FIR1.npoints = 1653
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 3957
+Decoder.LP_FIR2.npoints = 943
+Decoder.pitchFinder.fftBits = 11
+Decoder.pitchFinder.peakDelta = 0.4786237942478697
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 9   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.2
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 6549
+Encoder.LP_FIR.npoints = 1043
+Encoder.HP_FIR.on = true
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 125
+Encoder.HP_FIR.npoints = 748
+Decoder.cropper.silenceThreshold = 0.49310942446948636
+Decoder.chunker.cropProportion = 0.350677504608228
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.17
+Decoder.chunkEnv.decayProportion = 0.13
+Decoder.HP_FIR.on = true
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 104
+Decoder.HP_FIR.npoints = 7439
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 1036
+Decoder.LP_FIR1.npoints = 1653
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 3957
+Decoder.LP_FIR2.npoints = 943
+Decoder.pitchFinder.fftBits = 11
+Decoder.pitchFinder.peakDelta = 0.4786237942478697
+Decoder.pitchFinder.repeatToFit = true
+
+******   Generation : 10   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 11   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 12   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 13   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 14   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6789788158609451
+time = 0.052
+accuracy = 0.71
+******   Generation : 15   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 16   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 17   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 18   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 19   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 20   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 21   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+******   Generation : 22   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 23   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 24   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 25   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 26   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 27   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+******   Generation : 28   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 29   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 30   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6815703380588877
+time = 0.048
+accuracy = 0.71
+******   Generation : 31   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 32   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6841817186644773
+time = 0.044
+accuracy = 0.71
+******   Generation : 33   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 34   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 35   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 36   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 37   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 38   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 39   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 40   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 41   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 42   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 43   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 44   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 45   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 46   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 47   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+******   Generation : 48   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6841817186644773
+time = 0.044
+accuracy = 0.71
+******   Generation : 49   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6841817186644773
+time = 0.044
+accuracy = 0.71
+******   Generation : 50   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 51   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 52   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6841817186644773
+time = 0.044
+accuracy = 0.71
+******   Generation : 53   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 54   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 55   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 56   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 57   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 58   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 59   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6828735318219066
+time = 0.046
+accuracy = 0.71
+******   Generation : 60   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 61   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6828735318219066
+time = 0.046
+accuracy = 0.71
+******   Generation : 62   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+******   Generation : 63   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 64   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 65   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 66   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 67   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 68   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 69   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 70   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 71   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 72   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 73   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+******   Generation : 74   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 75   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 76   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+******   Generation : 77   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 78   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 79   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 80   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 81   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 82   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 83   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 84   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 85   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 86   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 87   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 88   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 89   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 90   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 91   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 92   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 93   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 94   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 95   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+******   Generation : 96   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6848376934666485
+time = 0.043
+accuracy = 0.71
+******   Generation : 97   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6861534239055853
+time = 0.041
+accuracy = 0.71
+******   Generation : 98   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+******   Generation : 99   ******
+Testing organism :
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 Worst fitness = 0.0
+Fittest = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+Total time = 1157.31
+Worst fitness = 0.0
+Fittess = 0.6854949273375377
+time = 0.042
+accuracy = 0.71
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.2
+Encoder.chunkEnv.decayProportion = 0.19
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 6549
+Encoder.LP_FIR.npoints = 1043
+Encoder.HP_FIR.on = true
+Encoder.HP_FIR.window = Hamming
+Encoder.HP_FIR.cutoff = 125
+Encoder.HP_FIR.npoints = 748
+Decoder.cropper.silenceThreshold = 0.49310942446948636
+Decoder.chunker.cropProportion = 0.350677504608228
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.17
+Decoder.chunkEnv.decayProportion = 0.13
+Decoder.HP_FIR.on = true
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 104
+Decoder.HP_FIR.npoints = 7439
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 1036
+Decoder.LP_FIR1.npoints = 1653
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 3957
+Decoder.LP_FIR2.npoints = 943
+Decoder.pitchFinder.fftBits = 11
+Decoder.pitchFinder.peakDelta = 0.4786237942478697
+Decoder.pitchFinder.repeatToFit = true
+
+

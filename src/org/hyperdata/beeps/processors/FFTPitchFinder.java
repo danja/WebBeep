@@ -40,8 +40,8 @@ public class FFTPitchFinder extends DefaultProcessor {
 	double peakDelta = Constants.PEAK_DELTA;
 	boolean repeatToFit = false;
 	
-	public FFTPitchFinder(){
-		super("FFTPitchFinder");
+	public FFTPitchFinder(String name){
+		super(name);
 	}
 	
 	/* (non-Javadoc)
@@ -49,10 +49,10 @@ public class FFTPitchFinder extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		fftBits = (Integer) parameters.get("fftBits");
+		fftBits = (Integer) getLocal("fftBits");
 		fftMax = (int)Math.pow(2, fftBits);
-		peakDelta = (Double) parameters.get("peakDelta");
-		repeatToFit = ((String)parameters.get("repeatToFit")).equals("on");
+		peakDelta = (Double) getLocal("peakDelta");
+		repeatToFit = ((String)getLocal("repeatToFit")).equals("on");
 	}
 	
 	/* (non-Javadoc)
@@ -69,7 +69,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 	//	Plotter.plot(tones, "Tones");
 //		System.out.println("tones=" + tones.size());
 
-		FFTPitchFinder finder = new FFTPitchFinder();
+		FFTPitchFinder finder = new FFTPitchFinder("test");
 		Map<Double, Double> pitches = finder.findPairs(tones);
 
 		Set<Double> keys = pitches.keySet();
@@ -127,7 +127,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 
 		Tone freqs = new Tone(f);
 		// values from the FFT are very small
-		Processor normalise = new Normalise();
+		Processor normalise = new Normalise("FFT.normalise");
 		freqs = normalise.process(freqs);
 
 //		Plotter plotter = Plotter.plot(freqs, "Freqs", 4, true);

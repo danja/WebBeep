@@ -15,6 +15,10 @@ import org.hyperdata.go.parameters.Parameterized;
  */
 public class ExponentialParameter extends DefaultParameter {
 
+	public ExponentialParameter(){
+		
+	}
+	
 	public ExponentialParameter(Parameterized processor, String name) {
 		super(processor, name);
 	}
@@ -26,7 +30,9 @@ public class ExponentialParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
+		// System.out.println(getProcessor());
 		String shape = (String)getProcessor().getParameter("shape");
+	
 		Debug.debug("Initializing a "+shape);
 		if (shape.equals("LP")) {
 			value = scaledFreq(Constants.LP_LOW, Constants.LP_HIGH);

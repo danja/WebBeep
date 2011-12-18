@@ -20,6 +20,10 @@ import org.hyperdata.go.parameters.DefaultParameterized;
  */
 public class Chunker extends DefaultParameterized implements SplittingProcessor {
 	
+	public Chunker(String name){
+		super(name);
+	}
+	
 	private double cropProportion = Constants.CROP_PROPORTION;
 	
 	int cropLength = (int) (cropProportion
@@ -30,7 +34,7 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	 */
 	@Override
 	public void initFromParameters() {
-		cropProportion = (Double) parameters.get("cropProportion");
+		cropProportion = (Double) getLocal("cropProportion");
 		cropLength = (int) (cropProportion
 				* Constants.TONE_DURATION * Constants.SAMPLE_RATE); // was /2
 	}
@@ -41,7 +45,7 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	public static void main(String[] args) {
 		Encoder encoder = new Encoder();
 		List<Double> tones = encoder.encode(IRI);
-		Cropper cropper = new Cropper();
+		Cropper cropper = new Cropper("test");
 		int start = cropper.findStart(tones, 0.75);
 		System.out.println(start);
 		WavCodec.save(filename, tones);

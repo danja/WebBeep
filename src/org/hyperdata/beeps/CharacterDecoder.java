@@ -24,7 +24,7 @@ public class CharacterDecoder {
 	static String chunksToCharacter(Tone leftChunk,
 			Tone rightChunk, Processor finder) {
 	
-		Processor normalise = new Normalise();
+		Processor normalise = new Normalise("CharacterDecoder.normalise");
 		try {
 			leftChunk = normalise.process(leftChunk);
 	

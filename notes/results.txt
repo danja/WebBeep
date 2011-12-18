@@ -85,3 +85,22 @@ Average total time = 3.0 seconds
 Mean encode time for 100% transfer = 0.0 seconds
 Mean decode time for 100% transfer = 0.0 seconds
 
+----
+Success count = 1 out of 1000
+Most accurate = 100.0 %
+Mean accuracy = 1.704 %
+Average encode time = 2.3 seconds
+Average decode time = 0.29 seconds
+Average total time = 2.6 seconds
+Mean encode time for 100% transfer = 0.074 seconds
+Mean decode time for 100% transfer = 0.32 seconds
+fed up of tweaking manually, now to have a crack at optimizing
+
+interesting:
+******   Generation : 5   ******
+Testing organism :
+0 Output: ￯ttp://dann￯a￯￯rs.c￯o   71.0%
+1 Output: ttp://dannyayers.co   14.0%
+
+
+
