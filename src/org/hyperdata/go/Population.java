@@ -19,7 +19,7 @@ public class Population {
 
 	static int populationSize = 256; // must be multiple of 4
 	static int generations = 200;
-	static int minCharacters = 2; 
+	static int minCharacters = 10; 
 	static int maxCharacters = 33; 
 	
 	private List<Organism> organisms = new ArrayList<Organism>();

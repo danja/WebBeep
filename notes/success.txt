@@ -1,0 +1,161 @@
+Total time = 5294.551
+Worst fitness = -1.0
+Fittess = 10.0
+time = 0.0
+accuracy = 1.0
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.02
+Encoder.chunkEnv.decayProportion = 0.23
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hamming
+Encoder.LP_FIR.cutoff = 5071
+Encoder.LP_FIR.npoints = 161
+Encoder.HP_FIR.on = false
+Encoder.HP_FIR.window = Blackman
+Encoder.HP_FIR.cutoff = 60
+Encoder.HP_FIR.npoints = 993
+Decoder.cropper.silenceThreshold = 0.4152717870590391
+Decoder.chunker.cropProportion = 0.2428750684027038
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.23
+Decoder.chunkEnv.decayProportion = 0.11
+Decoder.HP_FIR.on = false
+Decoder.HP_FIR.window = Hanning
+Decoder.HP_FIR.cutoff = 175
+Decoder.HP_FIR.npoints = 3748
+Decoder.LP_FIR1.on = false
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 1261
+Decoder.LP_FIR1.npoints = 316
+Decoder.LP_FIR2.on = false
+Decoder.LP_FIR2.window = Hamming
+Decoder.LP_FIR2.cutoff = 1767
+Decoder.LP_FIR2.npoints = 11671
+Decoder.pitchFinder.fftBits = 10
+Decoder.pitchFinder.peakDelta = 0.28814533628474476
+Decoder.pitchFinder.repeatToFit = false
+
+******   Generation : 99   ******
+Testing organism :
+0 Output: http://YJ]XW[JjZWn{pO\rninyHw   100.0%
+1 Output: http://IMorqbZrjpKRkLqf   100.0%
+2 Output: http://UZ~zY_wuY|ysOGTUwxfSdO[mjJ   100.0%
+3 Output: http://fnU}oOXLOGpodhp[_Z^qGxeQR}   100.0%
+4 Output: Q[ilz{IPQ`PG]jgJw|dHmLPkpP   100.0%
+5 Output: ZZmHqPG^cu`JGs_OX\hujg|   100.0%
+6 Output: http://^ITMXZiFNxqRteG   100.0%
+7 Output: TF`rrXugf^Nmchz[h   100.0%
+8 Output: G^qWSVlb   100.0%
+9 Output: TWLhGSYrZuT{gLJw`\sg[T   100.0%
+10 Output: qqwHX   100.0%
+11 Output: hO[NKuGOF}X   100.0%
+12 Output: http://dVIJ_{veJuz]\|t_   100.0%
+13 Output: jNY^K\d\k^KWm   100.0%
+14 Output: ^Xpn^Ix[]FWr   100.0%
+15 Output: http://hKKUb~nOXaJOgygpifHzagxma]F   100.0%
+16 Output: VKRUlHejSgZdP]LyYW~beY__f   100.0%
+17 Output: http://Hc}K^HHKM\Z_qi^wxcvNn{urbZv   100.0%
+18 Output: O^yoVGq`h[umIUSctUyV   100.0%
+19 Output: http://nkQT|Y   100.0%
+20 Output: http://iHXYgLWVhjqgjhQawH   100.0%
+21 Output: ccaTg_VNKjm   100.0%
+22 Output: qV{qKnmTcO{L   100.0%
+23 Output: http://V`t{a^XjkaSFLYoSr\Fpfy]M   100.0%
+24 Output: iZuqoGvx   100.0%
+25 Output: http://bgMKSPr}Lh\Xmpgka   100.0%
+26 Output: uspW\wxd|}   100.0%
+27 Output: }rkSaS_VUu~   100.0%
+28 Output: http://InL~[m|Kxxzjek^   100.0%
+29 Output: http://plKg~^t]NtQ[NfIJH}bMGeZvlM   100.0%
+30 Output: s]gW|F_Zb   100.0%
+31 Output: http://|}Mzhfo   93.0%
+32 Output: \ufffe\uffef\ufffe\uffef\uffef\uffef\uffef\uffef\ufffe\uffef\uffef\ufffe\ufffe\uffef\uffef\uffef\uffef\uffef\ufffe\ufffe   0.0%
+33 Output: \uffef\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9   0.0%
+34 Output: \uffef\ufffe\ufffe\uffef\ufffe\ufffe\uffef\uffef\ufffe\uffef\ufffe\ufffe\ufffe\ufffe\ufffe\ufffe\uffef   0.0%
+35 Output: \ufffe\ufffe\uffef\uffef\ufffd\uffef\uffef\ufffe\uffef\ufffe\ufffe\ufffe   0.0%
+36 Output: \uffef\uffef\uffef\ufff9\uffef\uffef\uffef\uffef\ufff9\ufff9\ufff9\uffef\ufff9\ufff9\uffef\ufff9   0.0%
+37 Output: \ufff9\ufff9\uffef\ufff9\ufff9\uffef\ufff9\ufff9\uffef\uffef\ufff4\ufff9\ufff9\ufff9\ufff9   0.0%
+38 Output: \ufff9\uffef\uffef\ufff9\uffef\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\ufff9\uffef\ufff9\ufff9\ufff9\ufff9\ufff9\uffef\ufff9\ufff9\uffef\ufff9\ufff9\ufff9\uffef\ufff9   0.0%
+39 Output: \uffefttp://\uffefsJGK\uffef^\uffef\uffefkM\uffefq\uffefn\uffefa\uffefki   63.0%
+40 Output: \uffef\ufffe\ufffe\uffef\ufffe\uffef\uffef\ufffe\ufffe\uffef\ufffe\ufffe\uffff\ufffe\uffef\uffef\uffef\ufffe\uffef\ufffe\uffef\ufffe\uffef   0.0%
+41 Output: \uffef\ufffe\ufffe\ufffe\ufffe\uffef\uffef\ufffe\ufffe\ufffe\ufffe\ufffe\uffef\ufffe\ufffe\ufffe\ufffe\ufffe\uffef\uffef\uffef   0.0%
+42 Output: \ufffe\ufffd\ufffe\ufffc\ufffc\ufffc\ufffe\ufffe\ufffc\ufffe\uffef\ufffe\ufffe\ufffa\ufffe\uffef\ufffb\ufffe\ufffe\ufffc\ufffe\ufffe   0.0%
+43 Output: \uffef\ufff9\ufff9\uffef\uffef\ufff9\uffef\ufff9\uffef\uffef\ufff9\ufff9\ufff9\ufff9\uffef   0.0%
+44 Output: \uffefttp://Ol\uffef\uffefNzH{QcLG\uffef\uffef\uffefRm\uffefs   70.0%
+45 Output: \uffefOO	
+
+*** Parameter Set ***
+Encoder.chunkEnv.on = true
+Encoder.chunkEnv.attackProportion = 0.024
+Encoder.chunkEnv.decayProportion = 0.018
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 1114
+Encoder.LP_FIR.npoints = 4347
+Encoder.HP_FIR.on = false
+Encoder.HP_FIR.window = Blackman
+Encoder.HP_FIR.cutoff = 63
+Encoder.HP_FIR.npoints = 10331
+Decoder.cropper.silenceThreshold = 0.7597993006643997
+Decoder.chunker.cropProportion = 0.7643770262770057
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.16
+Decoder.chunkEnv.decayProportion = 0.1
+Decoder.HP_FIR.on = false
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 264
+Decoder.HP_FIR.npoints = 3277
+Decoder.LP_FIR1.on = false
+Decoder.LP_FIR1.window = Blackman
+Decoder.LP_FIR1.cutoff = 2577
+Decoder.LP_FIR1.npoints = 1771
+Decoder.LP_FIR2.on = false
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 6603
+Decoder.LP_FIR2.npoints = 1212
+Decoder.pitchFinder.fftBits = 10
+Decoder.pitchFinder.peakDelta = 0.5594650957669809
+Decoder.pitchFinder.repeatToFit = true
+
+Worst fitness = 0.0
+Fittest = 10.0
+time = 0.0
+accuracy = 1.0
+
+
+Encoder.chunkEnv.on = true
+Encoder.chunkEnv.attackProportion = 0.024
+Encoder.chunkEnv.decayProportion = 0.018
+Encoder.LP_FIR.on = false
+Encoder.LP_FIR.window = Hanning
+Encoder.LP_FIR.cutoff = 1114
+Encoder.LP_FIR.npoints = 4347
+Encoder.HP_FIR.on = false
+Encoder.HP_FIR.window = Blackman
+Encoder.HP_FIR.cutoff = 63
+Encoder.HP_FIR.npoints = 10331
+Decoder.cropper.silenceThreshold = 0.7597993006643997
+Decoder.chunker.cropProportion = 0.7643770262770057
+Decoder.chunkNorm.on = true
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.16
+Decoder.chunkEnv.decayProportion = 0.1
+Decoder.HP_FIR.on = false
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 264
+Decoder.HP_FIR.npoints = 3277
+Decoder.LP_FIR1.on = false
+Decoder.LP_FIR1.window = Blackman
+Decoder.LP_FIR1.cutoff = 2577
+Decoder.LP_FIR1.npoints = 1771
+Decoder.LP_FIR2.on = false
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 6603
+Decoder.LP_FIR2.npoints = 1212
+Decoder.pitchFinder.fftBits = 10
+Decoder.pitchFinder.peakDelta = 0.5594650957669809
+Decoder.pitchFinder.repeatToFit = true
+

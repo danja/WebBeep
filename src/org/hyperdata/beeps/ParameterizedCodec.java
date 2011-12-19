@@ -74,7 +74,7 @@ private int maxCharacters = 30;
 	public void init() {
 		encoder = new ParameterizedEncoder();
 		decoder = new ParameterizedDecoder();
-		line = new DefaultPipeline();
+		line = new Line();
 	}
 
 	public void run() {
