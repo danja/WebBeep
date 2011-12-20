@@ -10,6 +10,7 @@ import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.processors.Chunker;
+import org.hyperdata.beeps.processors.Compressor;
 import org.hyperdata.beeps.processors.Cropper;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.FFTPitchFinder;
@@ -104,9 +105,12 @@ public class ParameterizedDecoder extends DefaultCodec {
 	private Processor norm2;
 	private Processor norm3;
 	private Processor norm4;
+	
+	private Compressor compressor;
 
 	public void init() {
 		cropper = new Cropper("Decoder.cropper");
+		compressor = new Compressor("Decoder.compressor");
 		
 		hp = new FIRProcessor("Decoder.HP_FIR");
 		hp.setParameter("Decoder.HP_FIR.shape", "HP");  // fixed parameter
@@ -159,6 +163,11 @@ public class ParameterizedDecoder extends DefaultCodec {
 			}
 			
 			addPreProcessor(norm3);
+			
+			compressor.initFromParameters();
+			if (parameters.getValue("Decoder.compressor.on").equals("true")) {
+			addPreProcessor(compressor);
+			}
 
 			// *** Chunker - applied in main path ***
 			chunker.initFromParameters();
@@ -199,6 +208,10 @@ public class ParameterizedDecoder extends DefaultCodec {
 		createParameter(lp2, "Decoder.LP_FIR2.window");
 		createParameter(lp2, "Decoder.LP_FIR2.cutoff");
 		createParameter(lp2, "Decoder.LP_FIR2.npoints");
+		createParameter(compressor, "Decoder.compressor.on");
+		createParameter(compressor, "Decoder.compressor.windowLength");
+		createParameter(compressor, "Decoder.compressor.lowThreshold");
+		createParameter(compressor, "Decoder.compressor.highThreshold");
 		createParameter(pitchFinder, "Decoder.pitchFinder.fftBits");
 		createParameter(pitchFinder, "Decoder.pitchFinder.peakDelta");
 		createParameter(pitchFinder, "Decoder.pitchFinder.repeatToFit");

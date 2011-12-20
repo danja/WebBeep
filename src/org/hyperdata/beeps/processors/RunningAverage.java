@@ -52,8 +52,6 @@ public class RunningAverage extends DefaultProcessor {
 		for (int i = 0; i < tones.size(); i++) {
 			double sum = 0;
 			for (int j = 0; j < windowLength; j++) {
-				// sum += Math.abs(tones.get(i + j))/windowLength;
-
 				if (i + j < tones.size()) {
 					sum += tones.get(i + j);
 				}

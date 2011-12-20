@@ -17,10 +17,10 @@ import org.hyperdata.go.parameters.ParameterList;
  */
 public class Population {
 
-	static int populationSize = 256; // must be multiple of 4
-	static int generations = 200;
-	static int minCharacters = 10; 
-	static int maxCharacters = 33; 
+	static int populationSize = 256; // must be multiple of 8
+	static int generations = 100;
+	static int minCharacters = 5; 
+	static int maxCharacters = 23; 
 	
 	private List<Organism> organisms = new ArrayList<Organism>();
 
@@ -60,17 +60,21 @@ public class Population {
 
 			Organism fittest = population.get(0);
 			
-			System.out.println(fittest.getParameters());
-			
-			System.out.println("Worst fitness = "
-					+ population.get(population.size() - 1).getFitness());
-			System.out.println("Fittest = " + fittest.getFitness());
-			System.out.println("time = "
-					+ Plotter.roundToSignificantFigures(
-							((ParameterizedCodec) fittest).getRunTime(), 2));
+			System.out.println("------vvvv----------------");
+			System.out.println("Top fitness = "+fittest.getFitness());
+			System.out.println("age = "+fittest.getAge());
 			System.out.println("accuracy = "
 					+ Plotter.roundToSignificantFigures(
 							((ParameterizedCodec) fittest).getAccuracy(), 2));
+			System.out.println("time = "
+					+ Plotter.roundToSignificantFigures(
+							((ParameterizedCodec) fittest).getRunTime(), 2));
+			System.out.println(fittest.getParameters());
+			System.out.println("------^^^^^----------------");
+			
+			System.out.println("Worst fitness = "
+					+ population.get(population.size() - 1).getFitness());
+
 			if (generation % 10 == 0) {
 				// System.out.println(fittest.getParameters());
 			}
@@ -115,17 +119,10 @@ public class Population {
 
 		// copy across the best 1/4
 		for (int i = 0; i < populationSize/4; i++) {
-			nextGeneration.add(organisms.get(i));
+			Organism organism = organisms.get(i);
+			organism.setAge(organism.getAge()+1);
+			nextGeneration.add(organism);
 		}
-		
-		// replace all zero-fitness with new random
-//		for (int i = 0; i < populationSize; i++) {
-//			if(organisms.get(i).getFitness() == 0){
-//				ParameterizedCodec codec = new ParameterizedCodec();
-//				codec.init();
-//				organisms.set(i, codec);
-//			}
-//		}
 		
 		// middle 1/2 are products of breeding
 		for (int i = 0; i < populationSize/2; i++) {

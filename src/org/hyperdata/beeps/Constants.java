@@ -15,7 +15,7 @@ public class Constants {
 	public static final int BITS_PER_SAMPLE = 16; 
 	public static final int BYTES_PER_SAMPLE = 2; 
 	public static final double MAX_VALUE = 32767;
-	public static final int SAMPLE_RATE = 44100; // 22050;44100
+	public static final int SAMPLE_RATE = 22050; // 22050;44100
 //	public static final int N_SAMPLES = SAMPLE_RATE;
 	// 140 bpm
 	//	0.58333333 barsps

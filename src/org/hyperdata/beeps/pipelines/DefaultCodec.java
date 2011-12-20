@@ -77,8 +77,8 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void initProcessors() {
-		preProcessors = new DefaultPipeline();
-		postProcessors = new DefaultPipeline();
+		preProcessors = new DefaultPipeline("preprocessors");
+		postProcessors = new DefaultPipeline("postprocessors");
 		Debug.debug("Processes cleared in "+this);
 	}
 	
@@ -89,12 +89,12 @@ public abstract class DefaultCodec implements Codec {
 	public Tone applyPreProcessors(Tone input) {
 		if(preProcessors.size() == 0) return input;
 		Debug.verbose("Preprocessing...");
-		return preProcessors.applyProcessors(input);
+		return preProcessors.process(input);
 	}
 	
 	public Chunks applyPreProcessors(Chunks chunks){
 		if(preProcessors.size() == 0) return chunks;
-		return preProcessors.applyProcessors(chunks);
+		return preProcessors.process(chunks);
 	}
 
 
@@ -105,11 +105,11 @@ public abstract class DefaultCodec implements Codec {
 	public Tone applyPostProcessors(Tone input) {
 		if(postProcessors.size() == 0) return input;
 		Debug.verbose("Postprocessing...");
-		return postProcessors.applyProcessors(input);
+		return postProcessors.process(input);
 	}
 	
 	public Chunks applyPostProcessors(Chunks chunks){
 		if(postProcessors.size() == 0) return chunks;
-		return postProcessors.applyProcessors(chunks);
+		return postProcessors.process(chunks);
 	}
 }

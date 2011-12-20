@@ -31,7 +31,7 @@ public class ParameterFactory {
 		if(type.equals("attackProportion") || type.equals("decayProportion")) {
 			return new EnvelopeParameter(processor, parameterName);
 		} 
-		if(type.equals("LP_FIR") || type.equals("HP_FIR") || type.equals("LP_FIR1") || type.equals("LP_FIR2") ){
+		if(type.equals("chunkNorm") || type.equals("LP_FIR") || type.equals("HP_FIR") || type.equals("LP_FIR1") || type.equals("LP_FIR2") ){
 			return new BooleanParameter(processor, parameterName);
 		}
 		if(type.equals("npoints")){
@@ -63,6 +63,16 @@ public class ParameterFactory {
 			p.setValue(new Double(0.25+Math.random()/2));
 			return p;
 			}
+		if(type.equals("windowLength")){
+			return new RunningAverageWindowLengthParameter(processor, parameterName);
+		}
+		if(type.equals("lowThreshold")){
+			return new NormalParameter(processor, parameterName);
+		}
+		if(type.equals("highThreshold")){
+			return new HighThresholdParameter(processor, parameterName);
+		}
+		
 		Debug.error("Parameter "+type+" not available in ParameterFactory.");
 		return null;
 	}

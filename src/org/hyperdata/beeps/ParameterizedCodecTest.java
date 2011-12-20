@@ -69,8 +69,8 @@ Debug debug = new Debug();
 					+ " mS per char");
 
 			// line will be the Real World between systems
-			DefaultPipeline line = new DefaultPipeline();
-			Tone inTones = line.applyProcessors(outTones); // skip saving
+			Line line = new Line();;
+			Tone inTones = line.process(outTones); // skip saving
 			
 			// List<Double> inTones = WavCodec.read(filename);
 			ParameterizedDecoder decoder = new ParameterizedDecoder();

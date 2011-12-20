@@ -70,25 +70,13 @@ public class ParameterizedEncoder extends DefaultCodec {
 	}
 
 	private Processor chunkEnv;
-	private Processor lp;
-	private Processor hp;
 	
-	private Processor norm1;
-	private Processor norm2;
-	private Processor norm3;
+	private Processor chunkNorm;
+
 
 	public void init() {
 		chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
-
-		lp = new FIRProcessor("Encoder.LP_FIR");
-		lp.setParameter("Encoder.LP_FIR.shape", "LP"); // fixed parameter
-
-		hp = new FIRProcessor("Encoder.HP_FIR");
-		hp.setParameter("Encoder.HP_FIR.shape", "HP"); // fixed parameter
-
-		norm1 = new Normalise("Encoder.norm1");
-		norm2 = new Normalise("Encoder.norm1");
-		norm3 = new Normalise("Encoder.norm1");
+		chunkNorm = new Normalise("Encoder.chunkNorm");
 		
 		initRandomParameters();
 		initFromParameters();
@@ -102,22 +90,10 @@ public class ParameterizedEncoder extends DefaultCodec {
 				addPreProcessor(chunkEnv);
 			}
 			
-			addPreProcessor(norm1);
-
-			lp.initFromParameters();
-			if (parameters.getValue("Encoder.LP_FIR.on").equals("true")) {
-				addPostProcessor(lp);
+			chunkNorm.initFromParameters();
+			if (parameters.getValue("Encoder.chunkNorm.on").equals("true")) {
+				addPreProcessor(chunkNorm);
 			}
-			
-			addPostProcessor(norm2);
-
-			hp.initFromParameters();
-			if (parameters.getValue("Encoder.HP_FIR.on").equals("true")) {
-				addPostProcessor(hp);
-			}
-			
-			addPostProcessor(norm3);
-
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
@@ -127,14 +103,8 @@ public class ParameterizedEncoder extends DefaultCodec {
 		createParameter(chunkEnv, "Encoder.chunkEnv.on");
 		createParameter(chunkEnv, "Encoder.chunkEnv.attackProportion");
 		createParameter(chunkEnv, "Encoder.chunkEnv.decayProportion");
-		createParameter(lp, "Encoder.LP_FIR.on");
-		createParameter(lp, "Encoder.LP_FIR.window");
-		createParameter(lp, "Encoder.LP_FIR.cutoff");
-		createParameter(lp, "Encoder.LP_FIR.npoints");
-		createParameter(hp, "Encoder.HP_FIR.on");
-		createParameter(hp, "Encoder.HP_FIR.window");
-		createParameter(hp, "Encoder.HP_FIR.cutoff");
-		createParameter(hp, "Encoder.HP_FIR.npoints");
+
+		createParameter(chunkNorm, "Encoder.chunkNorm.on");
 	}
 
 	private void createParameter(Parameterized processor, String name) {

@@ -23,6 +23,7 @@ public class ParameterizedCodec implements Organism {
 	
 	private int minCharacters = 5;
 private int maxCharacters = 30;
+private int age = 0;
 
 // somehow pass this
 														// parameters
@@ -83,6 +84,7 @@ private int maxCharacters = 30;
 		if(Math.random() > 0.6){
 			input = "http://"+input;
 		}
+		// input = "http://dannyayers.com";
 		// System.out.println("Input:"+input);
 		Debug debug = new Debug();
 
@@ -109,7 +111,7 @@ private int maxCharacters = 30;
 
 		// line will be the Real World between systems
 
-		Tone inTones = line.applyProcessors(outTones); // skip saving
+		Tone inTones = line.process(outTones); // skip saving
 		
 		startTime = System.currentTimeMillis();
 		String output = decoder.decode(inTones);
@@ -144,11 +146,11 @@ private int maxCharacters = 30;
 
 		this.runTime = (encodeTime + decodeTime) / 1000;
 		
-		this.fitness = accuracy * accuracy / (runTime + 1);
-	//	this.fitness = accuracy;
-		if(accuracy == 1.0){
-			fitness = fitness * 10;
-		}
+	//	this.fitness = accuracy * accuracy / (runTime + 1);
+		this.fitness = accuracy;
+//		if(accuracy == 1.0){
+//			fitness = fitness * 10;
+//		}
 	}
 
 	/*
@@ -185,5 +187,21 @@ private int maxCharacters = 30;
 		all.addAll(encoder.getParameters());
 		all.addAll(decoder.getParameters());
 		return all;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.go.Organism#getAge()
+	 */
+	@Override
+	public int getAge() {
+		return age;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.go.Organism#setAge(int)
+	 */
+	@Override
+	public void setAge(int age) {
+		this.age = age;
 	}
 }

@@ -16,6 +16,9 @@ public interface Organism {
 
 	public void setParameters(ParameterList parameters);
 	public ParameterList getParameters();
+	
+	public int getAge();
+	public void setAge(int age);
 
 	/**
 	 * 

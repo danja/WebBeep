@@ -15,7 +15,21 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public class DefaultPipeline implements Pipeline {
+
+
+
+
+
+
+
+public class DefaultPipeline extends DefaultProcessor implements Pipeline {
+
+	/**
+	 * @param name
+	 */
+	public DefaultPipeline(String name) {
+		super(name);
+	}
 
 	List<Processor> processors = new ArrayList<Processor>();
 
@@ -39,19 +53,20 @@ public class DefaultPipeline implements Pipeline {
 //		return output;
 //	}
 	
-	public Tone applyProcessors(Tone tone) {
+	public Tone process(Tone tone) {
 		if(processors.size() == 0) return tone;
 		Debug.verbose("Applying "+processors.size()+" processors");
 		//Tone output = input;
 		for(int i=0;i<processors.size();i++){
 			Processor processor = processors.get(i);
 			Debug.verbose("Applying process : "+processor);
+			// System.out.println("Applying process : "+processor);
 			tone = processor.process(tone);
 		}
 		return tone;
 	}
 	
-	public Chunks applyProcessors(Chunks chunks) {
+	public Chunks process(Chunks chunks) {
 		if(processors.size() == 0) return chunks;
 		Debug.verbose("Applying "+processors.size()+" processors");
 		//Tone output = input;
@@ -76,5 +91,14 @@ public class DefaultPipeline implements Pipeline {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.go.parameters.Parameterized#initFromParameters()
+	 */
+	@Override
+	public void initFromParameters() {
+		// TODO Auto-generated method stub
+		
 	}
 }
