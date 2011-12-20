@@ -6,7 +6,6 @@ package org.hyperdata.beeps;
 import java.util.List;
 
 import org.hyperdata.beeps.pipelines.Processor;
-import org.hyperdata.beeps.processors.FFTPitchFinder;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Tone;
 
@@ -22,7 +21,7 @@ public class CharacterDecoder {
 	 * @return
 	 */
 	static String chunksToCharacter(Tone leftChunk,
-			Tone rightChunk, Processor finder) {
+			Tone rightChunk, PitchfinderGeneral finder) {
 	
 		Processor normalise = new Normalise("CharacterDecoder.normalise");
 		try {
@@ -35,9 +34,13 @@ public class CharacterDecoder {
 	
 		// Plotter.plot(leftChunk, "leftChunk");
 	
-		List<Double> leftFreqs = finder.process(leftChunk);
-		List<Double> rightFreqs = finder.process(rightChunk);
-	
+		List<Double> leftFreqs = finder.findPitches(leftChunk);
+		List<Double> rightFreqs = finder.findPitches(rightChunk);
+		
+		for(int i=0;i<leftFreqs.size();i++){
+
+		System.out.println("f="+leftFreqs.get(i));
+		}
 		String c = CharacterDecoder.decodeChar(leftFreqs, rightFreqs);
 		return c;
 	}

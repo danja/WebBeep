@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.processors;
+package org.hyperdata.beeps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,15 +10,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.Encoder;
-import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.Encoder;
-import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.fft.FFT;
 import org.hyperdata.beeps.fft.PeakDetector;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.go.parameters.DefaultParameterized;
@@ -33,7 +30,7 @@ import org.hyperdata.go.parameters.DefaultParameterized;
 		 *
 
  */
-public class FFTPitchFinder extends DefaultProcessor {
+public class FFTPitchFinder extends DefaultPitchFinder { // was  extends DefaultProcessor
 	
 	int fftBits = Constants.FFT_BITS;
 	int fftMax = Constants.FFT_MAX;
@@ -66,7 +63,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 	public static void main(String[] args) {
 		Encoder encoder = new Encoder();
 		Tone tones = encoder.encode("a");
-	//	Plotter.plot(tones, "Tones");
+//		Plotter.plot(tones, "Tones");
 //		System.out.println("tones=" + tones.size());
 
 		FFTPitchFinder finder = new FFTPitchFinder("test");
@@ -77,14 +74,14 @@ public class FFTPitchFinder extends DefaultProcessor {
 		while (iterator.hasNext()) {
 			Double freq = iterator.next();
 			Double amplitude = pitches.get(freq);
-//			System.out
-//					.println("Freq : " + freq + "    amplitude :" + amplitude);
+			System.out
+					.println("Freq : " + freq + "    amplitude=" + amplitude+"?");
 		}
 
 	}
-
-	public Tone process(Tone tones) {
-		Map<Double, Double> pitches = findPairs(tones);
+	
+	public List<Double> findPitches(Tone tone){
+		Map<Double, Double> pitches = findPairs(tone);
 		Set<Double> keys = pitches.keySet();
 		Iterator<Double> iterator = keys.iterator();
 		Tone freqs = new Tone();
@@ -94,6 +91,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 		}
 		return freqs;
 	}
+
 	
 	public Map<Double, Double> findPairs(Tone tones) {
 
@@ -109,7 +107,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 		if(repeatToFit && (tones.size() < fftMax)){
 			Tone tonesCopy = new Tone(tones);
 			while(tones.size()< fftMax){
-			//	System.out.println("tones.size()="+tones.size()+" fftMax="+fftMax);
+				System.out.println("tones.size()="+tones.size()+" fftMax="+fftMax);
 				tones.addAll(tonesCopy);
 			}
 		}
@@ -130,7 +128,7 @@ public class FFTPitchFinder extends DefaultProcessor {
 		Processor normalise = new Normalise("FFT.normalise");
 		freqs = normalise.process(freqs);
 
-//		Plotter plotter = Plotter.plot(freqs, "Freqs", 4, true);
+		Plotter plotter = Plotter.plot(freqs, "Freqs", 4, true);
 		
 		// If... she.. weighs the same as a duck, she's made of wood.
 		List<Map<Integer, Double>> peaks = PeakDetector.peak_detection(freqs, peakDelta);
@@ -150,10 +148,9 @@ public class FFTPitchFinder extends DefaultProcessor {
 			// n * SAMPLE_RATE / FFT_SIZE = 43.1 Hz
 			Double amplitude = peak.get(key);
 			
-		//	plotter.addPoint(key, amplitude);
-		//	System.out.println("adding point "+key+"   "+amplitude);
+		 plotter.addPoint(key, amplitude);
+			System.out.println("adding point freq="+key+"   amplitude="+amplitude);
 			pitches.put(freq, amplitude);
-			// System.out.println("pitches.size()="+pitches.size());
 		}
 		
 		return pitches;

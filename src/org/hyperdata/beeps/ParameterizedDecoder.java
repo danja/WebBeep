@@ -13,7 +13,6 @@ import org.hyperdata.beeps.processors.Chunker;
 import org.hyperdata.beeps.processors.Compressor;
 import org.hyperdata.beeps.processors.Cropper;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
-import org.hyperdata.beeps.processors.FFTPitchFinder;
 import org.hyperdata.beeps.processors.FIRProcessor;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Checksum;

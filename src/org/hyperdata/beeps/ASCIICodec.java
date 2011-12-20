@@ -36,7 +36,7 @@ public class ASCIICodec {
 	 * @param chunks
 	 * @return
 	 */
-	public static String chunksToASCII(Chunks chunks, Processor processor) {
+	public static String chunksToASCII(Chunks chunks, PitchfinderGeneral finder) {
 		String ascii = "";
 		for (int i = 0; i < chunks.size() - 1; i = i + 2) {
 			// System.out.println("CHUNK " + i + " and "+ (i+1));
@@ -44,7 +44,7 @@ public class ASCIICodec {
 			Tone rightChunk = chunks.get(i + 1);
 			// System.out.println("leftChunk.size()="+leftChunk.size());
 			// System.out.println("rightChunk.size()="+rightChunk.size());
-			ascii += CharacterDecoder.chunksToCharacter(leftChunk, rightChunk, processor);
+			ascii += CharacterDecoder.chunksToCharacter(leftChunk, rightChunk, finder);
 		}
 		return ascii;
 	}

@@ -20,9 +20,9 @@ import org.hyperdata.beeps.util.Tone;
  * end
  * power = s_prev2*s_prev2 + s_prev*s_prev - coeff*s_prev*s_prev2;
  */
-public class GoertzelDecoder {
+public class Goertzel {
 
-	double getPower(Tone tone, double targetFreq){
+	public double getPower(Tone tone, double targetFreq){
 		 double sPrevious = 0;
 		 double sPrevious2 = 0;
 		 

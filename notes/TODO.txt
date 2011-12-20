@@ -5,6 +5,7 @@ Parameters read/write to file  (Properties)
 Hard-code version
 
 Goertzel
+the pitchfinding stuff is a bit inefficient - get nearest is applied to goetzler, refactor
 
 getDescription()
 toTurtle()
@@ -15,6 +16,7 @@ Web service
 
 refactor : swap out List<Double> for Tone etc
 
-
 add tests
+
+morse and DTFM for comparison
 

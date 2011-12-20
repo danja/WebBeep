@@ -1,0 +1,39 @@
+with 22050, slight distortion, through mp3
+
+------vvvv----------------
+Top fitness = 10.0
+age = 11
+accuracy = 1.0
+time = 0.0
+*** Parameter Set ***
+Encoder.chunkEnv.on = false
+Encoder.chunkEnv.attackProportion = 0.23
+Encoder.chunkEnv.decayProportion = 0.14
+Encoder.chunkNorm.on = true
+Decoder.cropper.silenceThreshold = 0.1745717178317685
+Decoder.chunker.cropProportion = 0.1297064416679613
+Decoder.chunkNorm.on = false
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.11
+Decoder.chunkEnv.decayProportion = 0.16
+Decoder.HP_FIR.on = false
+Decoder.HP_FIR.window = Hamming
+Decoder.HP_FIR.cutoff = 73
+Decoder.HP_FIR.npoints = 5980
+Decoder.LP_FIR1.on = false
+Decoder.LP_FIR1.window = Hanning
+Decoder.LP_FIR1.cutoff = 5703
+Decoder.LP_FIR1.npoints = 498
+Decoder.LP_FIR2.on = false
+Decoder.LP_FIR2.window = Hamming
+Decoder.LP_FIR2.cutoff = 1611
+Decoder.LP_FIR2.npoints = 744
+Decoder.compressor.on = false
+Decoder.compressor.windowLength = 136
+Decoder.compressor.lowThreshold = 0.8180423423446248
+Decoder.compressor.highThreshold = 0.8902064275409922
+Decoder.pitchFinder.fftBits = 10
+Decoder.pitchFinder.peakDelta = 0.4633346490138311
+Decoder.pitchFinder.repeatToFit = true
+
+------^^^^^----------------
