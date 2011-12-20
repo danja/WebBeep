@@ -3,6 +3,9 @@
  */
 package org.hyperdata.beeps.goertzel;
 
+import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.util.Tone;
+
 /**
  * @author danny
  *
@@ -19,4 +22,18 @@ package org.hyperdata.beeps.goertzel;
  */
 public class GoertzelDecoder {
 
+	double getPower(Tone tone, double targetFreq){
+		 double sPrevious = 0;
+		 double sPrevious2 = 0;
+		 
+		 double coeff = 2*Math.cos(2 * Math.PI * targetFreq/Constants.SAMPLE_RATE);
+		 
+		 for(int i=0;i<tone.size();i++){
+			 double val = tone.get(i);
+			double s = val + coeff*sPrevious - sPrevious2;
+			sPrevious2 = sPrevious;
+			sPrevious = s;
+		 }
+		return sPrevious2 * sPrevious2 + sPrevious * sPrevious - coeff * sPrevious * sPrevious2;
+	}
 }
