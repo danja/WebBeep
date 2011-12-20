@@ -1,15 +1,17 @@
-Line codec - for between output and input 
 
-Improvements:
-compressor
 
-Distortion:
-x3/2 distortion
-noise
-reverb
-clipping
+Parameters read/write to file  (Properties)
 
-GA
+Hard-code version
+
+Goertzel
+
+getDescription()
+toTurtle()
+
+Make array of succesful organisms, save to file
+
+Web service
 
 refactor : swap out List<Double> for Tone etc
 

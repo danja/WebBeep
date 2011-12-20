@@ -117,7 +117,7 @@ private int age = 0;
 		String output = decoder.decode(inTones);
 		long decodeTime = System.currentTimeMillis() - startTime;
 
-		System.out.print("Output: "+ output + "   ");
+		// System.out.print("Output: "+ output + "   ");
 		Debug.inform("Decode time: " + (float) (decodeTime) / 1000 + " seconds");
 		Debug.verbose((float) (decodeTime) / input.length() + " mS per char");
 
@@ -137,7 +137,7 @@ private int age = 0;
 		}
 		this.accuracy =  (double) hits / (double) input.length();
 		double percent = 100 * (double) hits / (double) input.length();
-		System.out.println(Plotter.roundToSignificantFigures(percent,2)+"%");
+		System.out.print(Plotter.roundToSignificantFigures(percent,2)+"% ");
 		Debug.inform("Hits = " + percent + " %");
 		if (errs.length() > 0) {
 			Debug.verbose("Bad chars = " + errs);
@@ -146,11 +146,14 @@ private int age = 0;
 
 		this.runTime = (encodeTime + decodeTime) / 1000;
 		
-	//	this.fitness = accuracy * accuracy / (runTime + 1);
-		this.fitness = accuracy;
-//		if(accuracy == 1.0){
-//			fitness = fitness * 10;
-//		}
+		this.fitness = accuracy * accuracy / (runTime + 1);
+		if(accuracy < 0.02){
+			fitness = fitness / 2; 
+		}
+	//	this.fitness = accuracy;
+		if(accuracy == 1.0){
+			fitness = fitness * 10;
+		}
 	}
 
 	/*
