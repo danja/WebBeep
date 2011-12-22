@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.pitchfinders;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.Encoder;
-import org.hyperdata.beeps.fft.FFT;
-import org.hyperdata.beeps.fft.PeakDetector;
+import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.processors.Normalise;

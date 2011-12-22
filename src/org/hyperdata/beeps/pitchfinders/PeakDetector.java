@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.fft;
+package org.hyperdata.beeps.pitchfinders;
 
 import java.util.*;
 

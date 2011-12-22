@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.goertzel;
+package org.hyperdata.beeps.pitchfinders;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.util.Tone;

@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.pitchfinders.PitchFinderGeneral;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Tone;
 

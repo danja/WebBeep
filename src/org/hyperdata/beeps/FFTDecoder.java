@@ -8,6 +8,7 @@ import java.net.IDN;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
+import org.hyperdata.beeps.pitchfinders.FFTPitchFinder;
 import org.hyperdata.beeps.processors.Chunker;
 import org.hyperdata.beeps.processors.Correlator;
 import org.hyperdata.beeps.processors.Cropper;

@@ -6,9 +6,9 @@ package org.hyperdata.beeps;
 import java.net.IDN;
 import java.util.*;
 
-import org.hyperdata.beeps.fft.FFT;
-import org.hyperdata.beeps.fft.PeakDetector;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
+import org.hyperdata.beeps.pitchfinders.FFT;
+import org.hyperdata.beeps.pitchfinders.PeakDetector;
 import org.hyperdata.beeps.processors.Merger;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Checksum;

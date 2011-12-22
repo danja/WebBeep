@@ -4,7 +4,7 @@
  * in turn derived from libfft.c by by Jef Poskanzer (public domain)
  */
 
-package org.hyperdata.beeps.fft;
+package org.hyperdata.beeps.pitchfinders;
 
 import java.util.ArrayList;
 import java.util.List;

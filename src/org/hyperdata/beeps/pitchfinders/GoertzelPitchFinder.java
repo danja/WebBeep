@@ -1,14 +1,14 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.pitchfinders;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.hyperdata.beeps.goertzel.Goertzel;
+import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.go.parameters.DefaultParameterized;
