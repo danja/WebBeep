@@ -82,4 +82,31 @@ public class Maps {
 		}
 
 	}
+
+	public static double findNearestNote(double freq) {
+	
+		double nearestNote = 0;
+		double bestDiff = Math.abs(nearestNote - freq);
+	
+		for (int i = 1; i < ALL_FREQS.length; i++) {
+			double current = ALL_FREQS[i];
+			double diff = Math.abs(current - freq);
+			if (diff < bestDiff) {
+				bestDiff = diff;
+				nearestNote = current;
+			}
+		}
+		return nearestNote;
+	}
+
+	public static int unmapValue(double note, int beat, double[] freqs,
+			int[] beats) throws Exception {
+		// System.out.println(beat);
+		for (int i = 0; i < freqs.length; i++) {
+			if (note == freqs[i] && beat == beats[i]) {
+				return i;
+			}
+		}
+		throw new Exception("Not Found");
+	}
 }

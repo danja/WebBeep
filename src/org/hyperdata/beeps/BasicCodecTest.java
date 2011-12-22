@@ -27,7 +27,7 @@ public class BasicCodecTest {
 //		}
 		String input = ASCIICodec.getRandomASCII();
 		
-		input = "a";
+		// input = "a";
 		
 		// http://danbri.org/foaf.rdf#danbri
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
@@ -61,8 +61,10 @@ public class BasicCodecTest {
 		
 		// 
 		
-		//FFTDecoder decoder = new FFTDecoder();
+	//	 FFTDecoder decoder = new FFTDecoder();
 		GoertzelDecoder decoder = new GoertzelDecoder();
+		
+		
 		startTime = System.currentTimeMillis();
 		String output = decoder.decode(inTones);
 	

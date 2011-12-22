@@ -12,7 +12,7 @@ import org.hyperdata.go.parameters.DefaultParameterized;
  * @author danny
  *
  */
-public abstract class DefaultPitchFinder extends DefaultParameterized implements PitchfinderGeneral {
+public abstract class DefaultPitchFinder extends DefaultParameterized implements PitchFinderGeneral {
 
 	public DefaultPitchFinder(String name){
 		super(name);

@@ -22,7 +22,7 @@ public class Debug {
 	public static final char DEBUG = 4;
 
 	public static char level = 0;
-	public static boolean showPlots = true;
+	public static boolean showPlots = false;
 
 	/*
 	 * SEVERE (highest) WARNING INFO CONFIG FINE FINER FINEST

@@ -4,6 +4,7 @@
 package org.hyperdata.beeps;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hyperdata.beeps.util.Tone;
 
@@ -11,6 +12,6 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public interface PitchfinderGeneral {
-	public List<Double> findPitches(Tone tone);
+public interface PitchFinderGeneral {
+	public Set<Double> findPitches(Tone tone);
 }

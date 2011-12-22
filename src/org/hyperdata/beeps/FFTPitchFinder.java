@@ -5,6 +5,7 @@ package org.hyperdata.beeps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -80,15 +81,18 @@ public class FFTPitchFinder extends DefaultPitchFinder { // was  extends Default
 
 	}
 	
-	public List<Double> findPitches(Tone tone){
+	public Set<Double> findPitches(Tone tone){
 		Map<Double, Double> pitches = findPairs(tone);
 		Set<Double> keys = pitches.keySet();
 		Iterator<Double> iterator = keys.iterator();
-		Tone freqs = new Tone();
+		Set<Double> freqs = new HashSet<Double>();
 		
 		while (iterator.hasNext()) {
-			freqs.add(iterator.next());
+			double freq = iterator.next();
+			freq = Maps.findNearestNote(freq); // tweak to known nots
+			freqs.add(freq);
 		}
+		
 		return freqs;
 	}
 
@@ -149,7 +153,11 @@ public class FFTPitchFinder extends DefaultPitchFinder { // was  extends Default
 			Double amplitude = peak.get(key);
 			
 		 plotter.addPoint(key, amplitude);
-			System.out.println("adding point freq="+key+"   amplitude="+amplitude);
+		//	System.out.println("adding point freq="+key+"   amplitude="+amplitude);
+			
+			System.out.println("adding  point="+key+"  freq="+freq+"  power="+amplitude);
+		
+			
 			pitches.put(freq, amplitude);
 		}
 		

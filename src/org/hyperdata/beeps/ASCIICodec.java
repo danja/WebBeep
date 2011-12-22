@@ -36,7 +36,7 @@ public class ASCIICodec {
 	 * @param chunks
 	 * @return
 	 */
-	public static String chunksToASCII(Chunks chunks, PitchfinderGeneral finder) {
+	public static String chunksToASCII(Chunks chunks, PitchFinderGeneral finder) {
 		String ascii = "";
 		for (int i = 0; i < chunks.size() - 1; i = i + 2) {
 			// System.out.println("CHUNK " + i + " and "+ (i+1));

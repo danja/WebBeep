@@ -4,7 +4,9 @@
 package org.hyperdata.beeps;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hyperdata.beeps.goertzel.Goertzel;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
@@ -33,24 +35,14 @@ public class GoertzelPitchFinder  extends DefaultPitchFinder {
 	 * 
 	 */
 	@Override
-	public List<Double> findPitches(Tone tone) {
-		List<Double> pitches = new ArrayList<Double>();
-
-		for(int i=0;i<Maps.LOW_FREQ.length;i++){
-			double power = goertzel.getPower(tone, Maps.LOW_FREQ[i]);
+	public Set<Double> findPitches(Tone tone) {
+		Set<Double> pitches = new HashSet<Double>();
+		for(int i=0;i<Maps.ALL_FREQS.length;i++){
+			double power = goertzel.getPower(tone, Maps.ALL_FREQS[i]);
 			
 			if(power > threshold){
-				System.out.println("adding low freq="+Maps.LOW_FREQ[i]+"  power="+power);
-				pitches.add(Maps.LOW_FREQ[i]);
-			}
-		}
-		
-		for(int i=0;i<Maps.HIGH_FREQ.length;i++){
-			double power = goertzel.getPower(tone, Maps.HIGH_FREQ[i]);
-			
-			if(power > threshold){
-				System.out.println("adding high freq="+Maps.HIGH_FREQ[i]+"  power="+power);
-				pitches.add(Maps.HIGH_FREQ[i]);
+				System.out.println("adding point="+i+"  freq="+Maps.ALL_FREQS[i]+"  power="+power);
+				pitches.add(Maps.ALL_FREQS[i]);
 			}
 		}
 		return pitches;
