@@ -24,15 +24,15 @@ public class Line extends DefaultPipeline {
 	public Line(){
 		super("Line");
 		Distort distort = new Distort("Line.distort");
-		distort.setDistortProportion(0.2); // 0.5
+		distort.setDistortProportion(0.5); // 0.5
 		addProcessor(distort);
 		
 		Noisy noisy = new Noisy("Line.noisy");
-		noisy.setNoiseProportion(0.05); // 0.3
+		noisy.setNoiseProportion(0.2); // 0.3
 		addProcessor(noisy);
 		
 		LFNoisy lfNoisy = new LFNoisy("Line.lfNoisy");
-		lfNoisy.setNoiseProportion(0.05); // 0.2
+		lfNoisy.setNoiseProportion(0.2); // 0.2
 		addProcessor(lfNoisy);
 		
 		Reverb reverb = new Reverb("Line.reverb");
@@ -40,7 +40,7 @@ public class Line extends DefaultPipeline {
 		addProcessor(reverb);
 		
 		Clip clip = new Clip("Line.clip");
-		clip.setClipLevel(0.9); // 0.6
+		clip.setClipLevel(0.6); // 0.6
 		addProcessor(clip);
 		
 		ThroughMP3 mp3 = new ThroughMP3 ("Line.throughMP3");
