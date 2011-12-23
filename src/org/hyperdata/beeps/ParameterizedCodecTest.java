@@ -22,12 +22,7 @@ public class ParameterizedCodecTest {
 	public static void main(String[] args) {
 Debug debug = new Debug();
 		// String input = "http://danbri.org/foaf.rdf#danbri";
-		String input = ASCIICodec.getRandomASCII();
-		// http://danbri.org/foaf.rdf#danbri
-		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 
-		Debug.inform("Input : " + input);
-		Debug.inform(input.length() + " characters\n");
 
 		int runs = 100;
 		
@@ -40,9 +35,15 @@ Debug debug = new Debug();
 		long decodeHitTimeSum = 0;
 		
 		for (int j = 0; j < runs; j++) { // start for loop
+			
+			String input = ASCIICodec.getRandomASCII();
+			input =  "http://danbri.org/foaf.rdf#danbri";
+			
+			String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
+
+			Debug.inform("Input : " + input);
+			Debug.inform(input.length() + " characters\n");
 			System.out.println(j);
-//			System.out.println("============== Start Run =========");
-		//	Encoder encoder = new Encoder();
 			ParameterizedEncoder encoder = new ParameterizedEncoder();
 			Debug.debug(((ParameterizedEncoder) encoder));
 
@@ -73,7 +74,7 @@ Debug debug = new Debug();
 			Tone inTones = line.process(outTones); // skip saving
 			
 			// List<Double> inTones = WavCodec.read(filename);
-			ParameterizedDecoder decoder = new ParameterizedDecoder();
+			ParameterizedDecoderGoertzel decoder = new ParameterizedDecoderGoertzel();
 			
 			startTime = System.currentTimeMillis();
 			// read here

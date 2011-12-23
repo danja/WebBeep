@@ -12,13 +12,19 @@ import org.hyperdata.go.parameters.Parameterized;
  * @author danny
  * 
  *         FIR Filters, ranges are in Constants
+ * 
+ *         should refactor, replace this with an ExponentialParameter suitable
+ *         configured
  */
 public class ExponentialParameter extends DefaultParameter {
 
-	public ExponentialParameter(){
-		
+	private double low = 1;
+	private double high = 100;
+
+	public ExponentialParameter() {
+
 	}
-	
+
 	public ExponentialParameter(Parameterized processor, String name) {
 		super(processor, name);
 	}
@@ -30,30 +36,32 @@ public class ExponentialParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
-		// System.out.println(getProcessor());
-		String shape = (String)getProcessor().getParameter("shape");
-	
-		Debug.debug("Initializing a "+shape);
-		if (shape.equals("LP")) {
-			value = scaledFreq(Constants.LP_LOW, Constants.LP_HIGH);
-		}
-		if (shape.equals("HP")) {
-			value = scaledFreq(Constants.HP_LOW, Constants.HP_HIGH);
-		}
+		value = scaledRandom(low, high);
+		
+	//	value = 10000;
 	}
-	
-	public static int scaledFreq(double low, double high){
+
+	public void setRange(double low, double high) {
+		this.low = low;
+		this.high = high;
+		initRandom();
+	}
+
+	public static int scaledRandom(double low, double high) {
 		double top = Math.log(high);
 		double bottom = Math.log(low);
 		double diff = top - bottom;
 		double r = Math.random() * diff;
 		double exponent = bottom + r;
-		return (int)Math.exp(exponent);
+		return (int) Math.exp(exponent);
 	}
 
 	public static void main(String args[]) {
-		for (int i = 0; i < 10; i++) {
-		//	System.out.println(new FrequencyParameter("HP_Fc"));
+		for (int i = 0; i < 100; i++) {
+			ExponentialParameter ep = new ExponentialParameter(null, "g");
+			ep.setRange(100, 100000);
+			
+			System.out.println(ep.getValue());
 		}
 	}
 }

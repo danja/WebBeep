@@ -10,6 +10,8 @@ the pitchfinding stuff is a bit inefficient - get nearest is applied to goetzler
 getDescription()
 toTurtle()
 
+there's a lot of code repetition around ParamerisedCodec/..Test/ etc (check the inputs inside loop)
+
 Make array of succesful organisms, save to file
 
 Web service

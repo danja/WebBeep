@@ -8,8 +8,7 @@ import java.net.IDN;
 import org.hyperdata.beeps.parameters.ParameterFactory;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
-import org.hyperdata.beeps.pipelines.SplittingProcessor;
-import org.hyperdata.beeps.pitchfinders.FFTPitchFinder;
+import org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder;
 import org.hyperdata.beeps.processors.Chunker;
 import org.hyperdata.beeps.processors.Compressor;
 import org.hyperdata.beeps.processors.Cropper;
@@ -32,7 +31,7 @@ import org.hyperdata.go.parameters.Parameterized;
  *         NEED TO CHECK SILENCE
  * 
  */
-public class ParameterizedDecoder extends DefaultCodec {
+public class ParameterizedDecoderGoertzel extends DefaultCodec {
 	/**
 	 * @return the parameters
 	 */
@@ -41,7 +40,8 @@ public class ParameterizedDecoder extends DefaultCodec {
 	}
 
 	/**
-	 * @param parameters the parameters to set
+	 * @param parameters
+	 *            the parameters to set
 	 */
 	public void setParameters(ParameterList parameters) {
 		this.parameters = parameters;
@@ -88,50 +88,49 @@ public class ParameterizedDecoder extends DefaultCodec {
 		return IDN.toUnicode(ascii);
 	}
 
-	public ParameterizedDecoder() {
+	public ParameterizedDecoderGoertzel() {
 		init();
 	}
 
 	private Chunker chunker;
 	private Cropper cropper;
-	private FFTPitchFinder pitchFinder;
+	private GoertzelPitchFinder pitchFinder;
 	private Processor chunknorm;
 	private Processor chunkEnv;
 	private Processor hp;
 	private Processor lp1;
 	private Processor lp2;
-	
+
 	private Processor norm1;
 	private Processor norm2;
 	private Processor norm3;
 	private Processor norm4;
-	
+
 	private Compressor compressor;
 
 	public void init() {
 		cropper = new Cropper("Decoder.cropper");
 		compressor = new Compressor("Decoder.compressor");
-		
+
 		hp = new FIRProcessor("Decoder.HP_FIR");
-		hp.setParameter("Decoder.HP_FIR.shape", "HP");  // fixed parameter
-		
+		hp.setParameter("Decoder.HP_FIR.shape", "HP"); // fixed parameter
+
 		lp1 = new FIRProcessor("Decoder.LP_FIR1");
-		lp1.setParameter("Decoder.LP_FIR1.shape", "LP"); // fixed parameter 
-		
+		lp1.setParameter("Decoder.LP_FIR1.shape", "LP"); // fixed parameter
+
 		lp2 = new FIRProcessor("Decoder.LP_FIR2");
-		lp2.setParameter("Decoder.LP_FIR2.shape", "LP");  // fixed parameter
-		
+		lp2.setParameter("Decoder.LP_FIR2.shape", "LP"); // fixed parameter
+
 		chunker = new Chunker("Decoder.chunker");
 		chunknorm = new Normalise("Decoder.normalise");
 		chunkEnv = new EnvelopeShaper("Decoder.chunkEnv");
-		
+
 		norm1 = new Normalise("Decoder.norm1");
 		norm2 = new Normalise("Decoder.norm2");
 		norm3 = new Normalise("Decoder.norm3");
-		
-		pitchFinder = new FFTPitchFinder("Decoder.pitchFinder");
 
-		
+		pitchFinder = new GoertzelPitchFinder("Decoder.pitchFinder");
+
 		initRandomParameters();
 		initFromParameters();
 	}
@@ -141,38 +140,38 @@ public class ParameterizedDecoder extends DefaultCodec {
 		try {
 			// *** Cropper - applied in main path ***
 			cropper.initFromParameters();
-			
+
 			// *** HP ***
 			hp.initFromParameters();
 			if (parameters.getValue("Decoder.HP_FIR.on").equals("true")) {
 				addPreProcessor(hp);
 			}
-			
+
 			addPreProcessor(norm1);
-			
+
 			lp1.initFromParameters();
 			if (parameters.getValue("Decoder.LP_FIR1.on").equals("true")) {
 				addPreProcessor(lp1);
 			}
-			
+
 			addPreProcessor(norm2);
 
 			lp2.initFromParameters();
 			if (parameters.getValue("Decoder.LP_FIR2.on").equals("true")) {
 				addPreProcessor(lp2);
 			}
-			
+
 			addPreProcessor(norm3);
-			
+
 			compressor.initFromParameters();
 			if (parameters.getValue("Decoder.compressor.on").equals("true")) {
-			addPreProcessor(compressor);
+				addPreProcessor(compressor);
 			}
 
 			// *** Chunker - applied in main path ***
 			chunker.initFromParameters();
 
-		//	System.out.println(parameters);
+			// System.out.println(parameters);
 			// chunknorm.initFromParameters();
 			// *** chunknorm - normalise individual chunks ***
 			if (parameters.getValue("Decoder.chunkNorm.on").equals("true")) {
@@ -183,13 +182,16 @@ public class ParameterizedDecoder extends DefaultCodec {
 			if (parameters.getValue("Decoder.chunkEnv.on").equals("true")) {
 				addPreProcessor(chunkEnv);
 			}
+			
 			pitchFinder.initFromParameters();
+			
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}
 
-	public void initRandomParameters() { // rename to encoder.silenceThreshold etc?
+	public void initRandomParameters() { // rename to encoder.silenceThreshold
+											// etc?
 		createParameter(cropper, "Decoder.cropper.silenceThreshold");
 		createParameter(chunker, "Decoder.chunker.cropProportion");
 		createParameter(chunknorm, "Decoder.chunkNorm.on");
@@ -212,14 +214,15 @@ public class ParameterizedDecoder extends DefaultCodec {
 		createParameter(compressor, "Decoder.compressor.windowLength");
 		createParameter(compressor, "Decoder.compressor.lowThreshold");
 		createParameter(compressor, "Decoder.compressor.highThreshold");
-		createParameter(pitchFinder, "Decoder.pitchFinder.fftBits");
-		createParameter(pitchFinder, "Decoder.pitchFinder.peakDelta");
-		createParameter(pitchFinder, "Decoder.pitchFinder.repeatToFit");
+		createParameter(pitchFinder, "Decoder.pitchFinder.gThreshold");
 	}
 
-	private void createParameter(Parameterized processor, String name) {
-		Parameter parameter = ParameterFactory.createParameter(processor, name);
-		processor.setParameter(parameter);
+	private void createParameter(Parameterized parameterized, String name) {
+		Parameter parameter = ParameterFactory.createParameter(parameterized, name);
+//		System.out.println("parameter="+parameter);
+//		System.out.println("name="+name);
+//		System.out.println("parameterized="+parameterized);
+		parameterized.setParameter(parameter);
 		Debug.debug("Created : " + parameter);
 		parameters.add(parameter);
 	}

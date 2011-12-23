@@ -5,7 +5,7 @@ package org.hyperdata.go;
 
 import java.util.*;
 
-import org.hyperdata.beeps.ParameterizedCodec;
+import org.hyperdata.beeps.ParameterizedCodecGoertzel;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.go.parameters.DefaultParameterList;
 import org.hyperdata.go.parameters.FitnessComparator;
@@ -17,8 +17,8 @@ import org.hyperdata.go.parameters.ParameterList;
  */
 public class Population {
 
-	static int populationSize = 256; // must be multiple of 8
-	static int generations = 100;
+	static int populationSize = 16; // must be multiple of 8
+	static int generations = 10;
 	static int minCharacters = 5; 
 	static int maxCharacters = 23; 
 	
@@ -41,7 +41,7 @@ public class Population {
 		System.out.println("Initializing :");
 		for (int i = 0; i < populationSize; i++) {
 			System.out.print(i + " ");
-			ParameterizedCodec codec = new ParameterizedCodec();
+			ParameterizedCodecGoertzel codec = new ParameterizedCodecGoertzel();
 			codec.setnCharacters(minCharacters, maxCharacters);
 
 			codec.init();
@@ -65,15 +65,12 @@ public class Population {
 			System.out.println("age = "+fittest.getAge());
 			System.out.println("accuracy = "
 					+ Plotter.roundToSignificantFigures(
-							((ParameterizedCodec) fittest).getAccuracy(), 2));
+							((ParameterizedCodecGoertzel) fittest).getAccuracy(), 2));
 			System.out.println("time = "
 					+ Plotter.roundToSignificantFigures(
-							((ParameterizedCodec) fittest).getRunTime(), 2));
+							((ParameterizedCodecGoertzel) fittest).getRunTime(), 2));
 			System.out.println(fittest.getParameters());
 			System.out.println("------^^^^^----------------");
-			
-			System.out.println("Worst fitness = "
-					+ population.get(population.size() - 1).getFitness());
 
 			if (generation % 10 == 0) {
 				// System.out.println(fittest.getParameters());
@@ -86,15 +83,13 @@ public class Population {
 		System.out.println("Total time = "
 				+ ((double) System.currentTimeMillis() - (double) startTime)
 				/ 1000);
-		System.out.println("Worst fitness = "
-				+ population.get(population.size() - 1).getFitness());
 		System.out.println("Fittess = " + fittest.getFitness());
 		System.out.println("time = "
 				+ Plotter.roundToSignificantFigures(
-						((ParameterizedCodec) fittest).getRunTime(), 2));
+						((ParameterizedCodecGoertzel) fittest).getRunTime(), 2));
 		System.out.println("accuracy = "
 				+ Plotter.roundToSignificantFigures(
-						((ParameterizedCodec) fittest).getAccuracy(), 2));
+						((ParameterizedCodecGoertzel) fittest).getAccuracy(), 2));
 		System.out.println(fittest.getParameters());
 	}
 
@@ -154,7 +149,7 @@ public class Population {
 		}
 		// last 1/8, totally random
 		for (int i = 0; i < populationSize/8; i++) {
-			ParameterizedCodec codec = new ParameterizedCodec();
+			ParameterizedCodecGoertzel codec = new ParameterizedCodecGoertzel();
 			codec.init();
 			nextGeneration.add(codec);
 		}
@@ -165,7 +160,7 @@ public class Population {
 	 * @param target
 	 */
 	private Organism mutate(Organism target) {
-		ParameterizedCodec mutant = new ParameterizedCodec();
+		ParameterizedCodecGoertzel mutant = new ParameterizedCodecGoertzel();
 		mutant.init();
 		ParameterList pl = new DefaultParameterList(mutant.getParameters());
 		int r = (int)((double)pl.size() * Math.random());
@@ -197,7 +192,7 @@ public class Population {
 //		System.out.println("**** PARENT 2 ****");
 //		System.out.println(pl2);
 //		System.out.println("**** CHILD ****");
-		ParameterizedCodec child = new ParameterizedCodec();
+		ParameterizedCodecGoertzel child = new ParameterizedCodecGoertzel();
 		child.init();
 		child.setParameters(childParameters);
 		

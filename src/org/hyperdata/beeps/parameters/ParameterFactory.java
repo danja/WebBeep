@@ -42,7 +42,7 @@ public class ParameterFactory {
 		}
 		if(type.equals("cutoff")){
 		//	System.out.println("HERE processor = "+processor);
-			return new ExponentialParameter(processor, parameterName);
+			return new FrequencyParameter(processor, parameterName);
 		}
 		
 		// Decoder
@@ -52,17 +52,17 @@ public class ParameterFactory {
 		if(type.equals("cropProportion")){
 			return new NormalParameter(processor, parameterName);
 		}
-		if(type.equals("fftBits")){
-			return new FFTBitsParameter(processor, parameterName);
-		}
-		if(type.equals("repeatToFit")){
-			return new BooleanParameter(processor, parameterName);
-		}
-		if(type.equals("peakDelta")){
-			Parameter p = new NormalParameter(processor, parameterName);
-			p.setValue(new Double(0.25+Math.random()/2));
-			return p;
-			}
+//		if(type.equals("fftBits")){
+//			return new FFTBitsParameter(processor, parameterName);
+//		}
+//		if(type.equals("repeatToFit")){
+//			return new BooleanParameter(processor, parameterName);
+//		}
+//		if(type.equals("peakDelta")){
+//			Parameter p = new NormalParameter(processor, parameterName);
+//			p.setValue(new Double(0.25+Math.random()/2));
+//			return p;
+//			}
 		if(type.equals("windowLength")){
 			return new RunningAverageWindowLengthParameter(processor, parameterName);
 		}
@@ -71,6 +71,13 @@ public class ParameterFactory {
 		}
 		if(type.equals("highThreshold")){
 			return new HighThresholdParameter(processor, parameterName);
+		}
+		// System.out.println("type="+type);
+		if(type.equals("gThreshold")){ // Decoder.pitchFinder.goertzelThreshold
+		//	System.out.println("gottype="+type);
+			ExponentialParameter ep = new ExponentialParameter(processor, parameterName);
+			ep.setRange(100, 100000);
+			return ep;
 		}
 		
 		Debug.error("Parameter "+type+" not available in ParameterFactory.");

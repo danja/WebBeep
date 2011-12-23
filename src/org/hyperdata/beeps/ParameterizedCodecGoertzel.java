@@ -19,18 +19,19 @@ import org.hyperdata.go.parameters.ParameterList;
  * @author danny
  * 
  */
-public class ParameterizedCodec implements Organism { 
-	
-	private int minCharacters = 5;
-private int maxCharacters = 30;
-private int age = 0;
+public class ParameterizedCodecGoertzel implements Organism {
 
-// somehow pass this
-														// parameters
+	private int minCharacters = 5;
+	private int maxCharacters = 30;
+	private int age = 0;
+
+	// somehow pass this
+	// parameters
 
 	/**
-	 * @param characters the characters to set
-	 * @param maxCharacters 
+	 * @param characters
+	 *            the characters to set
+	 * @param maxCharacters
 	 */
 	public void setnCharacters(int minCharacters, int maxCharacters) {
 		this.minCharacters = minCharacters;
@@ -55,12 +56,12 @@ private int age = 0;
 	double fitness = -1;
 
 	ParameterizedEncoder encoder;
-	ParameterizedDecoder decoder;
+	ParameterizedDecoderGoertzel decoder;
 	DefaultPipeline line;
 	private double runTime;
 	private double accuracy;
 
-	public ParameterizedCodec() {
+	public ParameterizedCodecGoertzel() {
 
 	}
 
@@ -74,27 +75,30 @@ private int age = 0;
 
 	public void init() {
 		encoder = new ParameterizedEncoder();
-		decoder = new ParameterizedDecoder();
+		decoder = new ParameterizedDecoderGoertzel();
 		line = new Line();
 	}
 
 	public void run() {
-	//	String input = "http://dannyayers.com";
+		// String input = "http://dannyayers.com";
 		String input = ASCIICodec.getRandomASCII(minCharacters, maxCharacters);
-		if(Math.random() > 0.6){
-			input = "http://"+input;
+		
+		 input = "http://dannyayers.com";
+		
+		if (Math.random() > 0.6) {
+			input = "http://" + input;
 		}
 		// input = "http://dannyayers.com";
 		// System.out.println("Input:"+input);
 		Debug debug = new Debug();
 
-		//String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
+		// String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 
 		Debug.inform("Input : " + input);
 		Debug.inform(input.length() + " characters\n");
 
 		Debug.debug(((ParameterizedEncoder) encoder));
-		
+
 		long startTime = System.currentTimeMillis();
 		Tone outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 		long encodeTime = System.currentTimeMillis() - startTime;
@@ -112,7 +116,7 @@ private int age = 0;
 		// line will be the Real World between systems
 
 		Tone inTones = line.process(outTones); // skip saving
-		
+
 		startTime = System.currentTimeMillis();
 		String output = decoder.decode(inTones);
 		long decodeTime = System.currentTimeMillis() - startTime;
@@ -135,23 +139,23 @@ private int age = 0;
 				// ignore
 			}
 		}
-		this.accuracy =  (double) hits / (double) input.length();
+		this.accuracy = (double) hits / (double) input.length();
 		double percent = 100 * (double) hits / (double) input.length();
-		System.out.print(Plotter.roundToSignificantFigures(percent,2)+"% ");
+		System.out.print(Plotter.roundToSignificantFigures(percent, 2) + "% ");
 		Debug.inform("Hits = " + percent + " %");
 		if (errs.length() > 0) {
 			Debug.verbose("Bad chars = " + errs);
 		}
 		Debug.log(encoder.parameters + "\n\n" + decoder.parameters);
 
-		this.runTime = (encodeTime + decodeTime) / 1000;
-		
+		this.runTime = ((double)encodeTime + (double)decodeTime) / 1000;
+
 		this.fitness = accuracy * accuracy / (runTime + 1);
-		if(accuracy < 0.02){
-			fitness = fitness / 2; 
+		if (accuracy < 0.02) {
+			fitness = fitness / 2;
 		}
-	//	this.fitness = accuracy;
-		if(accuracy == 1.0){
+		// this.fitness = accuracy;
+		if (accuracy == 1.0) {
 			fitness = fitness * 10;
 		}
 	}
@@ -166,16 +170,16 @@ private int age = 0;
 	public void setParameters(ParameterList parameters) { // clunky
 		ParameterList encoderParameters = new DefaultParameterList();
 		ParameterList decoderParameters = new DefaultParameterList();
-		for(int i=0;i<parameters.size();i++){
+		for (int i = 0; i < parameters.size(); i++) {
 			Parameter parameter = parameters.get(i);
-			if(parameter.getName().startsWith("Encoder")){
+			if (parameter.getName().startsWith("Encoder")) {
 				encoderParameters.add(parameter);
 			}
-			if(parameter.getName().startsWith("Decoder")){
+			if (parameter.getName().startsWith("Decoder")) {
 				decoderParameters.add(parameter);
 			}
 		}
-		encoder.setParameters(encoderParameters); 
+		encoder.setParameters(encoderParameters);
 		decoder.setParameters(decoderParameters);
 	}
 
@@ -192,7 +196,9 @@ private int age = 0;
 		return all;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.hyperdata.go.Organism#getAge()
 	 */
 	@Override
@@ -200,7 +206,9 @@ private int age = 0;
 		return age;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.hyperdata.go.Organism#setAge(int)
 	 */
 	@Override

@@ -41,7 +41,7 @@ public class GoertzelPitchFinder  extends DefaultPitchFinder {
 			double power = goertzel.getPower(tone, Maps.ALL_FREQS[i]);
 			
 			if(power > threshold){
-				System.out.println("adding point="+i+"  freq="+Maps.ALL_FREQS[i]+"  power="+power);
+			//	System.out.println("adding point="+i+"  freq="+Maps.ALL_FREQS[i]+"  power="+power);
 				pitches.add(Maps.ALL_FREQS[i]);
 			}
 		}
@@ -54,8 +54,7 @@ public class GoertzelPitchFinder  extends DefaultPitchFinder {
 	 */
 	@Override
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
-		
+		threshold = (Integer) getLocal("gThreshold");
 	}
 
 
