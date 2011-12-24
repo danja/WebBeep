@@ -1,43 +1,31 @@
-THE ONES USED
-Goertzel
-
-Top fitness = 14.91395793499044
-age = 56
+age = 47
 accuracy = 1.0
-time = 0.046
+time = 0.24
 *** Parameter Set ***
 Encoder.chunkEnv.on = true
-Encoder.chunkEnv.attackProportion = 0.032
-Encoder.chunkEnv.decayProportion = 0.23
-Encoder.chunkNorm.on = false
-
-Decoder.cropper.silenceThreshold = 0.13993034980633667
-
-Decoder.chunker.cropProportion = 0.37868873750062637
-
-Decoder.chunkNorm.on = false
+Encoder.chunkEnv.attackProportion = 0.0026
+Encoder.chunkEnv.decayProportion = 0.074
+Encoder.chunkNorm.on = true
+Decoder.cropper.silenceThreshold = 0.7084046416645495
+Decoder.chunker.cropProportion = 0.45721267053282977
+Decoder.chunkNorm.on = true
 Decoder.chunkEnv.on = false
-Decoder.chunkEnv.attackProportion = 0.0035
-Decoder.chunkEnv.decayProportion = 0.12
-
+Decoder.chunkEnv.attackProportion = 0.012
+Decoder.chunkEnv.decayProportion = 0.16
 Decoder.HP_FIR.on = true
 Decoder.HP_FIR.window = Blackman
-Decoder.HP_FIR.cutoff = 290
-Decoder.HP_FIR.npoints = 2573
-
-Decoder.LP_FIR1.on = false
-Decoder.LP_FIR1.window = Blackman
-Decoder.LP_FIR1.cutoff = 3805
-Decoder.LP_FIR1.npoints = 1861
-
-Decoder.LP_FIR2.on = false
-Decoder.LP_FIR2.window = Blackman
-Decoder.LP_FIR2.cutoff = 3923
-Decoder.LP_FIR2.npoints = 2634
-
+Decoder.HP_FIR.cutoff = 138.9024498404787
+Decoder.HP_FIR.npoints = 150
+Decoder.LP_FIR1.on = true
+Decoder.LP_FIR1.window = Hamming
+Decoder.LP_FIR1.cutoff = 9715.229855119975
+Decoder.LP_FIR1.npoints = 641
+Decoder.LP_FIR2.on = true
+Decoder.LP_FIR2.window = Hanning
+Decoder.LP_FIR2.cutoff = 1964.144685360184
+Decoder.LP_FIR2.npoints = 282
 Decoder.compressor.on = false
-Decoder.compressor.windowLength = 264
-Decoder.compressor.lowThreshold = 0.5449990744198846
-Decoder.compressor.highThreshold = 0.813867292938133
-
-Decoder.pitchFinder.gThreshold = 365
+Decoder.compressor.windowLength = 180
+Decoder.compressor.lowThreshold = 0.8766644588813811
+Decoder.compressor.highThreshold = 0.9452762478171666
+Decoder.pitchFinder.gThreshold = 11182.517334247968

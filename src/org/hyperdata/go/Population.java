@@ -10,6 +10,7 @@ import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.go.parameters.DefaultParameterList;
 import org.hyperdata.go.parameters.FitnessComparator;
 import org.hyperdata.go.parameters.ParameterList;
+import org.hyperdata.go.parameters.ParameterListFile;
 
 /**
  * @author danny
@@ -92,6 +93,9 @@ public class Population {
 				+ Plotter.roundToSignificantFigures(
 						((ParameterizedCodecGoertzel) fittest).getAccuracy(), 2));
 		System.out.println(fittest.getParameters());
+		
+		ParameterListFile plf = new ParameterListFile();
+		plf.save(fittest.getParameters(), "/home/danny/workspace/WebBeep/data/fittest.xml");
 	}
 
 	/**

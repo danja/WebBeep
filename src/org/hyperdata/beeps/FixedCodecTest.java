@@ -57,8 +57,10 @@ public class FixedCodecTest {
 
 		
 		
-		Tone inTones = new Tone(outTones);
 		
+	//	Line line = new Line();
+		Tone inTones = new Tone(outTones);
+		// Tone inTones = line.process(new Tone(outTones));
 		// 
 		
 	//	 FFTDecoder decoder = new FFTDecoder();

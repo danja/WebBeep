@@ -44,13 +44,13 @@ public class FrequencyParameter extends DefaultParameter {
 		}
 	}
 	
-	public static int scaledFreq(double low, double high){
+	public static double scaledFreq(double low, double high){
 		double top = Math.log(high);
 		double bottom = Math.log(low);
 		double diff = top - bottom;
 		double r = Math.random() * diff;
 		double exponent = bottom + r;
-		return (int)Math.exp(exponent);
+		return Math.exp(exponent);
 	}
 
 	public static void main(String args[]) {

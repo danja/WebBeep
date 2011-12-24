@@ -16,6 +16,8 @@ public interface Parameter {
 	public void initRandom();
 	public Object getValue();
 	public Parameterized getProcessor();
+//	public void setDatatype(String datatype);
+//	public String getDatatype();
 	/**
 	 * @param d
 	 */

@@ -54,7 +54,7 @@ public class GoertzelPitchFinder  extends DefaultPitchFinder {
 	 */
 	@Override
 	public void initFromParameters() {
-		threshold = (Integer) getLocal("gThreshold");
+		threshold = (Double) getLocal("gThreshold");
 	}
 
 

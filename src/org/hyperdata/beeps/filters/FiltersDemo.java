@@ -18,20 +18,25 @@ import org.hyperdata.go.parameters.SimpleParameter;
  */
 public class FiltersDemo {
 
+	static int trimStart = 50;
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		double cutoff = 2900;
-		double upperCutoff = 5000;
+		double cutoff = 290;
+		double upperCutoff = 3000;
 		
 		int nPoints = 2573;
+		
+		int fftBits = 16;
 
 		double duration = 1;
 		int step = 100; // 10
 		int max = 10000; // 1000
 		Tone markers = WaveMaker.makeWaveform(step, 0.9 * (double) step
 				/ (double) max, duration);
+		
 		for (int i = 0; i < max; i += step) {
 			// double val = (double)(i+100)/100.0;
 
@@ -45,13 +50,13 @@ public class FiltersDemo {
 		Normalise norm0 = new Normalise("norm0");
 		markers = norm0.process(markers);
 
-		markers = Noise.whiteTone(duration);
+	//	markers = Noise.whiteTone(duration);
 		
 		Plotter.plot(markers, "Markers");
 
 		
 		
-		FFT fft = new FFT(16);
+		FFT fft = new FFT(fftBits);
 		Tone markersSpectrum = new Tone(fft.doPowerFFT(markers, false));
 		markersSpectrum = trim(markersSpectrum);
 
@@ -80,6 +85,8 @@ public class FiltersDemo {
 		 filters[3] = new FIRProcessor("Demo.BS_FIR");
 		 filters[3].setShape(FIRFilter.BS); 
 		 
+		 filters[2].setFc2(upperCutoff); 
+		 filters[3].setFc2(upperCutoff);
 		 
 		 for(int i = 0; i<filters.length;i++){
 			 filters[i].setWindow(FIRFilter.BLACKMAN); // Blackman
@@ -87,9 +94,6 @@ public class FiltersDemo {
 			 filters[i].setnPoints(nPoints); // 2573
 			 filters[i].initWeights();
 		 }
-		 
-		 filters[2].setFc2(upperCutoff); 
-		 filters[3].setFc2(upperCutoff); 
 		 
 		 Tone[] tones = new Tone[4];
 		 Tone[] spectrums = new Tone[4];
@@ -118,7 +122,7 @@ public class FiltersDemo {
 	 */
 	private static Tone trim(Tone tone) {
 
-		return new Tone(tone.subList(50, tone.size() / 2));
+		return new Tone(tone.subList(trimStart, tone.size() / 2));
 	}
 
 	public static Tone sumWith(Tone toneA, Tone toneB) {

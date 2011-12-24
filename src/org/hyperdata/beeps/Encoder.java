@@ -42,10 +42,12 @@ public class Encoder {
 		Chunks chunks = ASCIICodec.asciiToChunks(ascii);
 		
 		EnvelopeShaper chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
-		chunkEnv.setAttackProportion(0.032);
-		chunkEnv.setDecayProportion(0.23);
-		
+		chunkEnv.setAttackProportion(0.003);
+		chunkEnv.setDecayProportion(0.074);
 		chunks = chunkEnv.process(chunks);
+		
+		Processor chunkNorm = new Normalise("Encoder.chunkNorm");
+		chunks = chunkNorm.process(chunks);
 		
 		// preprocess
 		Merger merger = new Merger();

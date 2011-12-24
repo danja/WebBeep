@@ -16,6 +16,9 @@ Make array of succesful organisms, save to file
 
 Web service
 
+refactor parameter naming to be based on actual module/processor names rather than hardcoded
+Decoder.chunker.cropProportion etc.
+
 refactor : swap out List<Double> for Tone etc
 
 add tests

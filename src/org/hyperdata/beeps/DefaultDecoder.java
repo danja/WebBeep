@@ -42,44 +42,56 @@ public abstract class DefaultDecoder implements Decoder {
 		}
 
 		Cropper cropper = new Cropper("Decoder.cropper");
-		cropper.setSilenceThreshold(0.14);
+		cropper.setSilenceThreshold(0.708);
 		tones = cropper.process(tones);
+		
+		tones = norm.process(tones);
 
 		// Plotter.plot(tones, "Cropped");
-		/*
-		 * Decoder.HP_FIR.on = true
-Decoder.HP_FIR.window = Blackman
-Decoder.HP_FIR.cutoff = 290
-Decoder.HP_FIR.npoints = 2573
-		 */
 		
+		// high pass
 		FIRProcessor hp = new FIRProcessor("Decoder.HP_FIR");
-//		hp.setShape(FIRFilter.HP);
-//		hp.setWindow(FIRFilter.BLACKMAN);
-//		hp.setFc(290);
-//		hp.setnPoints(2573);
-		hp.setParameter(new SimpleParameter("Decoder.HP_FIR.shape","HP"));
-		hp.setParameter(new SimpleParameter("Decoder.HP_FIR.window","Blackman"));
-		hp.setParameter(new SimpleParameter("Decoder.HP_FIR.cutoff",new Double(290)));
-		hp.setParameter(new SimpleParameter("Decoder.HP_FIR.npoints",new Integer(2573)));
-		hp.initFromParameters();
+		hp.setShape(FIRFilter.HP);
+		hp.setWindow(FIRFilter.BLACKMAN);
+		hp.setFc(140);
+		hp.setnPoints(150);
 		hp.initWeights();
-		Plotter.plot(tones, "before filter");
-		tones = hp.process(tones);
-		Plotter.plot(tones, "after filter");
-		System.out.println(hp.getShapeName());
-		System.out.println(hp.getWindowName());
-		System.out.println(hp.getFc());
-		System.out.println(hp.getnPoints());
-		
-		Processor norm1 = new Normalise("Decoder.norm1");
-		tones = norm1.process(tones);
+	//	Plotter.plot(tones, "before filter");
+	//	tones = hp.process(tones);
+	//	Plotter.plot(tones, "after filter");
+	
+	//	tones = norm.process(tones);
 
-		// preprocess
+		// low pass 1
+		FIRProcessor lp1 = new FIRProcessor("Decoder.LP_FIR1");
+		lp1.setShape(FIRFilter.LP);
+		lp1.setWindow(FIRFilter.HAMMING);
+		lp1.setFc(9715);
+		lp1.setnPoints(640);
+		lp1.initWeights();
+//		Plotter.plot(tones, "before filter");
+	//	tones = lp1.process(tones);
+//		Plotter.plot(tones, "after filter");
+	
+	//	tones = norm.process(tones);
+		
+		// low pass 2
+		FIRProcessor lp2 = new FIRProcessor("Decoder.LP_FIR2");
+		lp2.setShape(FIRFilter.LP);
+		lp2.setWindow(FIRFilter.HAMMING);
+		lp2.setFc(1964);
+		lp2.setnPoints(282);
+		lp2.initWeights();
+	//	Plotter.plot(tones, "before filter");
+//		tones = lp2.process(tones);
+		Plotter.plot(tones, "after filter");
+//		tones = norm.process(tones);
+		
+		// preprocess ^^^
 		Chunker chunker = new Chunker("Decoder.chunker");
-		chunker.setCropProportion(0.38);
+		chunker.setCropProportion(0.457);
 		Chunks chunks = chunker.process(tones);
-		// postprocess
+		// postprocess vvv
 		
 		
 		String ascii = chunksToASCII(chunks);

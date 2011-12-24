@@ -10,6 +10,11 @@ package org.hyperdata.go.parameters;
  */
 public abstract class DefaultParameter implements Parameter {
 
+	protected String name = "unnamed";
+	protected Object value;
+	private Parameterized processor;
+	// private String datatype = "";
+	
 	public DefaultParameter(){
 	}
 	
@@ -36,9 +41,7 @@ public abstract class DefaultParameter implements Parameter {
 		this.processor = processor;
 	}
 
-	protected String name = "unnamed";
-	protected Object value;
-	private Parameterized processor;
+
 	
 	
 	public Parameter clone(){

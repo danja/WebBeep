@@ -30,7 +30,7 @@ public class FIRNPointsParameter extends DefaultParameter {
 	 */
 	@Override
 	public void initRandom() {
-		double exponent = Math.random() * 7 + 7;
+		double exponent = Math.random() * 8 + 5;
 		value = (int)Math.pow(2, exponent);
 	}
 
@@ -38,8 +38,8 @@ public class FIRNPointsParameter extends DefaultParameter {
 		System.out.println(Math.pow(2, 0 + 6));
 		System.out.println(Math.pow(2, 0.99 * 6+ 6));
 		for (int i = 0; i < 10; i++) {
-		//	FIRNPointsParameter p = new FIRNPointsParameter("test");
-		//	System.out.println(p);
+		FIRNPointsParameter p = new FIRNPointsParameter(null,"test");
+		System.out.println(p.getValue());
 		}
 	}
 }
