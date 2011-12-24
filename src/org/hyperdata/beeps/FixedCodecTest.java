@@ -27,9 +27,9 @@ public class FixedCodecTest {
 //		}
 		String input = ASCIICodec.getRandomASCII();
 		
-		// input = "a";
+		input = "http://danbri.org/foaf.rdf#danbri";
 		
-		// http://danbri.org/foaf.rdf#danbri
+		input = "a";
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 
 		System.out.println("Input : " + input);

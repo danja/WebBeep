@@ -64,4 +64,18 @@ public class Cropper extends DefaultProcessor {
 		}
 		return -1;
 	}
+
+	/**
+	 * @return the silenceThreshold
+	 */
+	public double getSilenceThreshold() {
+		return this.silenceThreshold;
+	}
+
+	/**
+	 * @param silenceThreshold the silenceThreshold to set
+	 */
+	public void setSilenceThreshold(double silenceThreshold) {
+		this.silenceThreshold = silenceThreshold;
+	}
 }

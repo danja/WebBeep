@@ -81,5 +81,19 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 		return chunks;
 	}
 
+	/**
+	 * @return the cropProportion
+	 */
+	public double getCropProportion() {
+		return this.cropProportion;
+	}
+
+	/**
+	 * @param cropProportion the cropProportion to set
+	 */
+	public void setCropProportion(double cropProportion) {
+		this.cropProportion = cropProportion;
+	}
+
 
 }

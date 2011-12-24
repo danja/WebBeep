@@ -24,27 +24,30 @@ public class Line extends DefaultPipeline {
 	public Line(){
 		super("Line");
 		Distort distort = new Distort("Line.distort");
-		distort.setDistortProportion(0.5); // 0.5
+		distort.setDistortProportion(Math.random()); // 0.5
 		addProcessor(distort);
 		
 		Noisy noisy = new Noisy("Line.noisy");
-		noisy.setNoiseProportion(0.2); // 0.3
+		noisy.setNoiseProportion(Math.random()*.8); // 0.3
 		addProcessor(noisy);
 		
 		LFNoisy lfNoisy = new LFNoisy("Line.lfNoisy");
-		lfNoisy.setNoiseProportion(0.2); // 0.2
+		lfNoisy.setNoiseProportion(Math.random()*.5); // 0.2
 		addProcessor(lfNoisy);
 		
 		Reverb reverb = new Reverb("Line.reverb");
-		reverb.setLevel(0.1); // 0.2
+		reverb.setLevel(Math.random()*.5); // 0.2
 		addProcessor(reverb);
 		
 		Clip clip = new Clip("Line.clip");
-		clip.setClipLevel(0.6); // 0.6
+		clip.setClipLevel(Math.random()); // 0.6
 		addProcessor(clip);
 		
+		if(Math.random() > .5){
 		ThroughMP3 mp3 = new ThroughMP3 ("Line.throughMP3");
 		addProcessor(mp3);
+		}
+		
 		
 		
 	}

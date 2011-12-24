@@ -19,6 +19,16 @@ public abstract class DefaultParameter implements Parameter {
 		initRandom();
 	}
 	
+	public DefaultParameter(Parameterized processor, String name, Object value){
+		this.processor = processor;
+		this.name = name;
+		this.value = value;
+	}
+	
+	public DefaultParameter(String name, Object value){
+		this(null, name, value);
+	}
+	
 	/**
 	 * @param processor the processor to set
 	 */

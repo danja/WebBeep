@@ -10,7 +10,7 @@ import org.hyperdata.beeps.util.Tone;
 
 /**
  * @author danny
- *
+ * 
  */
 public class ASCIICodec {
 
@@ -21,13 +21,14 @@ public class ASCIICodec {
 	public static Chunks asciiToChunks(String ascii) {
 		Chunks chunks = new Chunks();
 		for (int i = 0; i < ascii.length(); i++) {
-	
+
 			int val = (int) ascii.charAt(i);
 			int lsVal = val % 16; // least significant hex digit of val is for
 									// high tone
 			int msVal = (val - val % 16) / 16;
-			
-			Tone chunk = WaveMaker.makeDualTone(msVal, lsVal, Constants.TONE_DURATION);
+
+			Tone chunk = WaveMaker.makeDualTone(msVal, lsVal,
+					Constants.TONE_DURATION);
 			chunks.add(chunk);
 		}
 		return chunks;
@@ -45,13 +46,14 @@ public class ASCIICodec {
 			Tone rightChunk = chunks.get(i + 1);
 			// System.out.println("leftChunk.size()="+leftChunk.size());
 			// System.out.println("rightChunk.size()="+rightChunk.size());
-			ascii += CharacterDecoder.chunksToCharacter(leftChunk, rightChunk, finder);
+			ascii += CharacterDecoder.chunksToCharacter(leftChunk, rightChunk,
+					finder);
 		}
 		return ascii;
 	}
 
-	public static String getRandomASCII(){
-return getRandomASCII(50);
+	public static String getRandomASCII() {
+		return getRandomASCII(50);
 	}
 
 	/**
@@ -61,18 +63,53 @@ return getRandomASCII(50);
 	public static String getRandomASCII(int count) {
 		String input = "";
 		for (char i = 0; i < count; i++) {
-			int r = (int)(70 + Math.random() * 58);
-		//	System.out.println(r);
-			input += (char)r;
+			int r = (int) (70 + Math.random() * 58);
+			// System.out.println(r);
+			input += (char) r;
 		}
-	//	System.out.println(input);
+		// System.out.println(input);
 		return input;
 	}
-	
-	public static void main(String[] args){
-		for(int i=0;i<10;i++){
-			System.out.println("----"+getRandomASCII(i));
+
+	public static void main(String[] args) {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("----" + getRandomWebbyASCII(5, 50));
 		}
+	}
+
+	public static String getRandomWebbyASCII(int minCharacters,
+			int maxCharacters) { // ugly but good enough
+			String webby = "http://";
+			int domain = (int) (maxCharacters * Math.random()/4);
+			int path = (int) (maxCharacters * Math.random()/2);
+			int anchor = (int) (maxCharacters * Math.random()/4);	
+			
+			while (webby.length() < domain) {
+				if (Math.random() > 0.1) {
+					int r = (int) (70 + Math.random() * 58); // character
+					webby += (char) r;
+				} else {
+					webby += ".";
+				}
+			}
+			while (webby.length() < domain+path) {
+				if (Math.random() > 0.1) {
+					int r = (int) (70 + Math.random() * 58); // character
+					webby += (char) r;
+				} else {
+					webby += "/";
+				}
+			}
+			webby +="#";
+			while (webby.length() < domain+path+anchor) {
+				if (Math.random() > 0.1) {
+					int r = (int) (70 + Math.random() * 58); // character
+					webby += (char) r;
+				} else {
+					webby += ".";
+				}
+			}
+			return webby;
 	}
 
 	/**
@@ -81,7 +118,8 @@ return getRandomASCII(50);
 	 * @return
 	 */
 	public static String getRandomASCII(int minCharacters, int maxCharacters) {
-		int count = minCharacters + (int)((maxCharacters-minCharacters)*Math.random());
+		int count = minCharacters
+				+ (int) ((maxCharacters - minCharacters) * Math.random());
 		return getRandomASCII(count);
 	}
 

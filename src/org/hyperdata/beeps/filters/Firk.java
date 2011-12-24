@@ -38,14 +38,8 @@ package org.hyperdata.beeps.filters;
 
 public class Firk {
 
-	// Window type constants
-	final static int BLACKMAN = 0;
-	final static int HANNING = 1;
-	final static int HAMMING = 2;
-	final static String[] WINDOW_TYPES = {"Blackman", "Hanning","Hamming"};
-
 	public static String windowName(int val){
-		return WINDOW_TYPES[val];
+		return FIRFilter.WINDOW_TYPES[val];
 	}
 	
 	// Generate lowpass filter
@@ -61,13 +55,13 @@ public class Firk {
 
 		// 2. Generate Window function
 		switch (WINDOW) {
-		case BLACKMAN: // W_BLACKMAN
+		case FIRFilter.BLACKMAN: // W_BLACKMAN
 			w = wBlackman(N);
 			break;
-		case HANNING: // W_HANNING
+		case FIRFilter.HANNING: // W_HANNING
 			w = wHanning(N);
 			break;
-		case HAMMING: // W_HAMMING
+		case FIRFilter.HAMMING: // W_HAMMING
 			w = wHamming(N);
 			break;
 		default:

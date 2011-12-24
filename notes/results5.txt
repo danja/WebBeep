@@ -1,0 +1,43 @@
+THE ONES USED
+Goertzel
+
+Top fitness = 14.91395793499044
+age = 56
+accuracy = 1.0
+time = 0.046
+*** Parameter Set ***
+Encoder.chunkEnv.on = true
+Encoder.chunkEnv.attackProportion = 0.032
+Encoder.chunkEnv.decayProportion = 0.23
+Encoder.chunkNorm.on = false
+
+Decoder.cropper.silenceThreshold = 0.13993034980633667
+
+Decoder.chunker.cropProportion = 0.37868873750062637
+
+Decoder.chunkNorm.on = false
+Decoder.chunkEnv.on = false
+Decoder.chunkEnv.attackProportion = 0.0035
+Decoder.chunkEnv.decayProportion = 0.12
+
+Decoder.HP_FIR.on = true
+Decoder.HP_FIR.window = Blackman
+Decoder.HP_FIR.cutoff = 290
+Decoder.HP_FIR.npoints = 2573
+
+Decoder.LP_FIR1.on = false
+Decoder.LP_FIR1.window = Blackman
+Decoder.LP_FIR1.cutoff = 3805
+Decoder.LP_FIR1.npoints = 1861
+
+Decoder.LP_FIR2.on = false
+Decoder.LP_FIR2.window = Blackman
+Decoder.LP_FIR2.cutoff = 3923
+Decoder.LP_FIR2.npoints = 2634
+
+Decoder.compressor.on = false
+Decoder.compressor.windowLength = 264
+Decoder.compressor.lowThreshold = 0.5449990744198846
+Decoder.compressor.highThreshold = 0.813867292938133
+
+Decoder.pitchFinder.gThreshold = 365

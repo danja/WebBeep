@@ -17,10 +17,10 @@ import org.hyperdata.go.parameters.ParameterList;
  */
 public class Population {
 
-	static int populationSize = 16; // must be multiple of 8
-	static int generations = 10;
+	static int populationSize = 128; // must be multiple of 8
+	static int generations = 100;
 	static int minCharacters = 5; 
-	static int maxCharacters = 23; 
+	static int maxCharacters = 40; 
 	
 	private List<Organism> organisms = new ArrayList<Organism>();
 
@@ -59,6 +59,7 @@ public class Population {
 			population.sort();
 
 			Organism fittest = population.get(0);
+		
 			
 			System.out.println("------vvvv----------------");
 			System.out.println("Top fitness = "+fittest.getFitness());

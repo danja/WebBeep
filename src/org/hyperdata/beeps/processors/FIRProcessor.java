@@ -43,7 +43,7 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 	public void initFromParameters() {
 		String shape = (String)  getLocal("shape");
 		setShapeName(shape);
-		setFc((Integer) getLocal("cutoff"));
+		setFc((Double) getLocal("cutoff"));
 		setnPoints((Integer)  getLocal("npoints"));
 		if (shape.equals("BP") || shape.equals("BS")) {
 			setFc2((Integer)  getLocal("cutoff2"));
@@ -64,6 +64,10 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 	public void setFc2(double fc2) {
 		filter.setFc2(fc2);
 	}
+	
+//	public double getFc2(){
+//		return filter.g
+//	}
 
 	/*
 	 * (non-Javadoc)
@@ -124,6 +128,69 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 	@Override
 	public List<Double> filter(List<Double> input) {
 		return filter.filter(input);
+	}
+
+	/**
+	 * @param blackman
+	 */
+	public void setWindow(int windowType) {
+		filter.setWindow(windowType);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getFc2()
+	 */
+	@Override
+	public double getFc2() {
+		return filter.getFc2();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getShape()
+	 */
+	@Override
+	public int getShape() {
+		return filter.getShape();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getShapeName()
+	 */
+	@Override
+	public String getShapeName() {
+		return filter.getShapeName();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getWindow()
+	 */
+	@Override
+	public int getWindow() {
+		return filter.getWindow();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getnPoints()
+	 */
+	@Override
+	public int getnPoints() {
+		return filter.getnPoints();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getFc()
+	 */
+	@Override
+	public double getFc() {
+		return filter.getFc();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getWindowName()
+	 */
+	@Override
+	public String getWindowName() {
+		return filter.getWindowName();
 	}
 
 }

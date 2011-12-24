@@ -7,8 +7,10 @@ import java.net.IDN;
 import java.util.*;
 
 import org.hyperdata.beeps.pipelines.DefaultCodec;
+import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pitchfinders.FFT;
 import org.hyperdata.beeps.pitchfinders.PeakDetector;
+import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.Merger;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Checksum;
@@ -34,13 +36,22 @@ public class Encoder {
 	 * 
 	 */
 	public Tone encode(String idn) {
-
+		
 		String ascii = IDN.toASCII(idn); // Punycode encode
 		ascii = Checksum.makeChecksumString(ascii) + ascii;
 		Chunks chunks = ASCIICodec.asciiToChunks(ascii);
+		
+		EnvelopeShaper chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
+		chunkEnv.setAttackProportion(0.032);
+		chunkEnv.setDecayProportion(0.23);
+		
+		chunks = chunkEnv.process(chunks);
+		
+		// preprocess
 		Merger merger = new Merger();
 		Tone tones = merger.process(chunks);
-		// tones = applyPostProcessors(tones);
+		// postprocess
+		
 		return tones;
 	}
 

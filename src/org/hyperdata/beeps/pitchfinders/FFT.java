@@ -9,6 +9,7 @@ package org.hyperdata.beeps.pitchfinders;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
 
 public class FFT {
@@ -153,4 +154,13 @@ public class FFT {
 	// Private class data
 	private int bits;
 	private int[] bitreverse = new int[MAXFFTSIZE];
+	
+	public static double frequencyFromIndex(int index){
+		return (double)index * (double) Constants.SAMPLE_RATE
+				/ (double) Constants.FFT_MAX;
+	}
+	
+	public static int indexFromFrequency(double freq){
+		return (int)(   (freq *(double) Constants.FFT_MAX)    /   (double) Constants.SAMPLE_RATE);
+	}
 }

@@ -35,6 +35,14 @@ import org.hyperdata.beeps.util.Plotter;
  */
 public class FIRFilterImpl implements FIRFilter {
 
+	private double[] weights;
+
+	private int shape;
+	private int nPoints;
+	private int window;
+	private double fc1; 
+	private double fc2;
+	
 	/**
 	 * @return the fc2
 	 */
@@ -117,13 +125,7 @@ public class FIRFilterImpl implements FIRFilter {
 		this.fc1 = fc;
 	}
 
-	private double[] weights;
 
-	private int shape;
-	private int nPoints;
-	private int window;
-	private double fc1; 
-	private double fc2;
 	
 public FIRFilterImpl(){
 		super();
@@ -207,7 +209,7 @@ public FIRFilterImpl(){
 
 		long startTime = System.currentTimeMillis();
 
-		FIRFilter filterLP = new FIRFilterImpl(LP, taps, Firk.HAMMING, 1000);
+		FIRFilter filterLP = new FIRFilterImpl(LP, taps, FIRFilter.HAMMING, 1000);
 		List<Double> time = filterLP.filter(white);
 
 		long thisTime = System.currentTimeMillis();
@@ -216,7 +218,7 @@ public FIRFilterImpl(){
 		// Plotter.plot(fft.fft(time), "LP 1kHz, Hamming "+taps+" taps");
 
 		startTime = System.currentTimeMillis();
-		FIRFilter filterHP = new FIRFilterImpl(HP, taps, Firk.HANNING, 1000);
+		FIRFilter filterHP = new FIRFilterImpl(HP, taps, FIRFilter.HANNING, 1000);
 		time = filterHP.filter(white);
 		thisTime = System.currentTimeMillis();
 		// System.out.println("time: " + (float)(thisTime - startTime)/1000 +
@@ -224,7 +226,7 @@ public FIRFilterImpl(){
 		// Plotter.plot(fft.fft(time), "HP 1kHz Hanning "+taps+" taps");
 
 		startTime = System.currentTimeMillis();
-		FIRFilter filterBS = new FIRFilterImpl(BS, taps, Firk.BLACKMAN, 1000, 2000);
+		FIRFilter filterBS = new FIRFilterImpl(BS, taps, FIRFilter.BLACKMAN, 1000, 2000);
 		time = filterBS.filter(white);
 		thisTime = System.currentTimeMillis();
 		// System.out.println("time: " + (float)(thisTime - startTime)/1000 +
@@ -233,7 +235,7 @@ public FIRFilterImpl(){
 
 		taps = 128;
 		startTime = System.currentTimeMillis();
-		FIRFilter filterBP = new FIRFilterImpl(BP, taps, Firk.BLACKMAN, 999, 1001);
+		FIRFilter filterBP = new FIRFilterImpl(BP, taps, FIRFilter.BLACKMAN, 999, 1001);
 		// for(int i=0;i<100;i++){
 		time = filterBP.filter(white);
 		// }
@@ -247,7 +249,7 @@ public FIRFilterImpl(){
 
 		taps = 512;
 		startTime = System.currentTimeMillis();
-		FIRFilter filterBPtight = new FIRFilterImpl(BP, taps, Firk.BLACKMAN, 999,
+		FIRFilter filterBPtight = new FIRFilterImpl(BP, taps, FIRFilter.BLACKMAN, 999,
 				1001);
 		// for(int i=0;i<100;i++){
 		time = filterBPtight.filter(white);
@@ -257,6 +259,50 @@ public FIRFilterImpl(){
 				+ " seconds");
 		Plotter.plot(4, fft.fft(time), "BP fc=999,1001, Hamming " + taps
 				+ " taps");
+	}
+
+	/**
+	 * @return the window
+	 */
+	public int getWindow() {
+		return this.window;
+	}
+
+	/**
+	 * @param window the window to set
+	 */
+	public void setWindow(int window) {
+		this.window = window;
+	}
+
+	/**
+	 * @return the fc1
+	 */
+	public double getFc1() {
+		return this.fc1;
+	}
+
+	/**
+	 * @param fc1 the fc1 to set
+	 */
+	public void setFc1(double fc1) {
+		this.fc1 = fc1;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getShapeName()
+	 */
+	@Override
+	public String getWindowName() {
+		return FIRFilter.WINDOW_TYPES[getShape()];
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.filters.FIRFilter#getShapeName()
+	 */
+	@Override
+	public String getShapeName() {
+		return FIRFilter.SHAPES[getShape()];
 	}
 
 }

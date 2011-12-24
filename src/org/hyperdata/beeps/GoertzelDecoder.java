@@ -31,7 +31,10 @@ public class GoertzelDecoder extends DefaultDecoder  {
 	}
 	
 	public String chunksToASCII(Chunks chunks) {
-		return ASCIICodec.chunksToASCII(chunks, new GoertzelPitchFinder("Decoder.pitchFinder"));
+		GoertzelPitchFinder pitchFinder = new GoertzelPitchFinder("Decoder.pitchFinder");
+		// pitchFinder.setThreshold(365);
+		
+		return ASCIICodec.chunksToASCII(chunks, pitchFinder);
 	}
 
 	public static void main(String[] args) {

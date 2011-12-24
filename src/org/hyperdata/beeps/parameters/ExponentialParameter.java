@@ -47,13 +47,13 @@ public class ExponentialParameter extends DefaultParameter {
 		initRandom();
 	}
 
-	public static int scaledRandom(double low, double high) {
+	public static double scaledRandom(double low, double high) {
 		double top = Math.log(high);
 		double bottom = Math.log(low);
 		double diff = top - bottom;
 		double r = Math.random() * diff;
 		double exponent = bottom + r;
-		return (int) Math.exp(exponent);
+		return (double) Math.exp(exponent);
 	}
 
 	public static void main(String args[]) {

@@ -1,0 +1,46 @@
+with FFT:
+WaveMaker freqlow = 293.66
+WaveMaker freqhigh = 587.33
+WaveMaker freqlow = 293.66
+WaveMaker freqhigh = 587.33
+Encode time: 0.799 seconds
+799.0 mS per char
+adding  point=27  freq=581.396484375  power=0.4235702675661483
+adding  point=14  freq=301.46484375  power=-0.7659917835581518
+adding  point=27  freq=581.396484375  power=0.29348229334529524
+f=301.46484375
+f=581.396484375
+adding  point=27  freq=581.396484375  power=0.44629393804526146
+adding  point=14  freq=301.46484375  power=-0.7675540889785167
+adding  point=27  freq=581.396484375  power=0.29130528351811646
+f=301.46484375
+f=581.396484375
+
+
+with Goertzler:
+WaveMaker freqlow = 293.66
+WaveMaker freqhigh = 587.33
+WaveMaker freqlow = 293.66
+WaveMaker freqhigh = 587.33
+Encode time: 0.682 seconds
+682.0 mS per char
+adding low point=1  freq=293.66  power=24263.238369715866
+adding low point=6  freq=293.66  power=24263.238369715866
+adding high point=1  freq=587.33  power=23634.875611344352
+adding high point=6  freq=587.33  power=23634.875611344352
+adding high point=1  freq=587.33  power=72900.78642072761
+adding high point=6  freq=587.33  power=72900.78642072761
+f=293.66
+f=293.66
+f=587.33
+f=587.33
+adding low point=1  freq=293.66  power=23830.12624646118
+adding low point=6  freq=293.66  power=23830.12624646118
+adding high point=1  freq=587.33  power=23390.3063113878
+adding high point=6  freq=587.33  power=23390.3063113878
+adding high point=1  freq=587.33  power=73166.33440147387
+adding high point=6  freq=587.33  power=73166.33440147387
+f=293.66
+f=293.66
+f=587.33
+f=587.33
