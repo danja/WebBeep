@@ -1,11 +1,10 @@
 /**
  * 
  */
-package org.hyperdata.go.parameters;
+package org.hyperdata.beeps.go;
 
 import java.util.Comparator;
 
-import org.hyperdata.go.Organism;
 
 /**
  * @author danny

@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.hyperdata.beeps.filters.FIRFilter;
 import org.hyperdata.beeps.filters.FIRFilterImpl;
+import org.hyperdata.beeps.parameters.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.DefaultParameterized;
 
 /**
  * @author danny

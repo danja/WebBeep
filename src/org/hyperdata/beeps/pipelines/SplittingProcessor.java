@@ -5,9 +5,9 @@ package org.hyperdata.beeps.pipelines;
 
 import java.util.List;
 
+import org.hyperdata.beeps.parameters.Parameterized;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.Parameterized;
 
 /**
  * @author danny

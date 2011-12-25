@@ -4,8 +4,6 @@
 package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.go.parameters.Parameter;
-import org.hyperdata.go.parameters.Parameterized;
 
 /**
  * @author danny

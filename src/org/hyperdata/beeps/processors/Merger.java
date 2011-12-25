@@ -9,12 +9,12 @@ import java.util.Set;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.WaveMaker;
+import org.hyperdata.beeps.parameters.DefaultParameterized;
+import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.MergingProcessor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.DefaultParameterized;
-import org.hyperdata.go.parameters.Parameter;
 
 /**
  * @author danny

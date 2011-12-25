@@ -8,7 +8,11 @@ import java.util.Iterator;
 import java.util.Random;
 
 import org.hyperdata.beeps.filters.FIRFilterImpl;
+import org.hyperdata.beeps.parameters.DefaultParameterList;
+import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
+import org.hyperdata.beeps.parameters.ParameterList;
+import org.hyperdata.beeps.parameters.Parameterized;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.processors.AllToNoiseProcessor;
@@ -19,10 +23,6 @@ import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.DefaultParameterList;
-import org.hyperdata.go.parameters.Parameter;
-import org.hyperdata.go.parameters.ParameterList;
-import org.hyperdata.go.parameters.Parameterized;
 
 /**
  * @author danny

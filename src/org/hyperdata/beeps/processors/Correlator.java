@@ -16,11 +16,11 @@ import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.WaveMaker;
 import org.hyperdata.beeps.correlate.ReferenceTones;
+import org.hyperdata.beeps.parameters.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.DefaultParameterized;
 
 /**
  * @author danny

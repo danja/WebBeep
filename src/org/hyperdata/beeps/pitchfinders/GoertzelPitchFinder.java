@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.hyperdata.beeps.Maps;
+import org.hyperdata.beeps.parameters.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.DefaultParameterized;
 
 /**
  * @author danny

@@ -6,14 +6,14 @@ package org.hyperdata.beeps;
 import org.hyperdata.beeps.util.Plotter;
 import java.util.List;
 
+import org.hyperdata.beeps.go.Organism;
+import org.hyperdata.beeps.parameters.DefaultParameterList;
+import org.hyperdata.beeps.parameters.Parameter;
+import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.pipelines.DefaultPipeline;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
-import org.hyperdata.go.Organism;
-import org.hyperdata.go.parameters.DefaultParameterList;
-import org.hyperdata.go.parameters.Parameter;
-import org.hyperdata.go.parameters.ParameterList;
 
 /**
  * @author danny

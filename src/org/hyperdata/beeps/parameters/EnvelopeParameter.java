@@ -6,8 +6,6 @@ package org.hyperdata.beeps.parameters;
 import java.util.Random;
 
 import org.hyperdata.beeps.util.Plotter;
-import org.hyperdata.go.parameters.DefaultParameter;
-import org.hyperdata.go.parameters.Parameterized;
 
 /**
  * @author danny

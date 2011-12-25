@@ -1,9 +1,9 @@
 /**
  * 
  */
-package org.hyperdata.go;
+package org.hyperdata.beeps.go;
 
-import org.hyperdata.go.parameters.ParameterList;
+import org.hyperdata.beeps.parameters.ParameterList;
 
 
 /**

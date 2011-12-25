@@ -6,6 +6,8 @@ package org.hyperdata.beeps;
 import java.net.IDN;
 
 import org.hyperdata.beeps.filters.FIRFilter;
+import org.hyperdata.beeps.parameters.DefaultParameter;
+import org.hyperdata.beeps.parameters.SimpleParameter;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.processors.Chunker;
@@ -16,8 +18,6 @@ import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.DefaultParameter;
-import org.hyperdata.go.parameters.SimpleParameter;
 
 /**
  * @author danny
@@ -42,7 +42,7 @@ public abstract class DefaultDecoder implements Decoder {
 		}
 
 		Cropper cropper = new Cropper("Decoder.cropper");
-		cropper.setSilenceThreshold(0.7);
+		cropper.setSilenceThreshold(0.2);
 		tones = cropper.process(tones);
 		
 		tones = norm.process(tones);

@@ -4,8 +4,6 @@
 package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.filters.Firk;
-import org.hyperdata.go.parameters.DefaultParameter;
-import org.hyperdata.go.parameters.Parameterized;
 
 /**
  * @author danny

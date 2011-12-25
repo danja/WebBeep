@@ -4,13 +4,13 @@
 package org.hyperdata.beeps.filters;
 
 import org.hyperdata.beeps.WaveMaker;
+import org.hyperdata.beeps.parameters.SimpleParameter;
 import org.hyperdata.beeps.pitchfinders.FFT;
 import org.hyperdata.beeps.processors.FIRProcessor;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Noise;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.SimpleParameter;
 
 /**
  * @author danny

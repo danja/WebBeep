@@ -15,12 +15,12 @@ import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.Maps;
+import org.hyperdata.beeps.parameters.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.processors.Normalise;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
-import org.hyperdata.go.parameters.DefaultParameterized;
 
 /**
  * @author danny
