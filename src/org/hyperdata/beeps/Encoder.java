@@ -43,7 +43,7 @@ public class Encoder {
 		
 		EnvelopeShaper chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
 		chunkEnv.setAttackProportion(0.003);
-		chunkEnv.setDecayProportion(0.074);
+		chunkEnv.setDecayProportion(0.14);
 		chunks = chunkEnv.process(chunks);
 		
 		Processor chunkNorm = new Normalise("Encoder.chunkNorm");

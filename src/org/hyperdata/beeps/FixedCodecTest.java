@@ -29,7 +29,7 @@ public class FixedCodecTest {
 		
 		input = "http://danbri.org/foaf.rdf#danbri";
 		
-		input = "a";
+		// input = "a";
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 
 		System.out.println("Input : " + input);

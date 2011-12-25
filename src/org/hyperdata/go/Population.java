@@ -18,8 +18,8 @@ import org.hyperdata.go.parameters.ParameterListFile;
  */
 public class Population {
 
-	static int populationSize = 128; // must be multiple of 8
-	static int generations = 100;
+	static int populationSize = 200; // must be multiple of 8
+	static int generations = 500;
 	static int minCharacters = 5; 
 	static int maxCharacters = 40; 
 	

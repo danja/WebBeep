@@ -41,7 +41,9 @@ public class CharacterDecoder {
 		Set<Double> leftFreqs = finder.findPitches(leftChunk);
 		Set<Double> rightFreqs = finder.findPitches(rightChunk);
 
-
+//		System.out.println("leftFreqs = "+leftFreqs);
+//		System.out.println("rightFreqs = "+rightFreqs);
+		
 		String c = CharacterDecoder.decodeChar(leftFreqs, rightFreqs);
 		return c;
 	}

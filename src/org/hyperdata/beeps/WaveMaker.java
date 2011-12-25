@@ -48,18 +48,18 @@ public final class WaveMaker {
 //		System.out.println("Maps.HIGH_FREQ[noteHigh]="+Maps.HIGH_FREQ[noteHigh]);
 		
 		if (Maps.LOW_BEATS[noteLow] == 1) {
-			dataLow = makeShapedWaveform(Maps.LOW_FREQ[noteLow], Constants.AMPLITUDE, duration);
+			dataLow = makeShapedWaveform(Maps.LOW_FREQ[noteLow], Constants.AMPLITUDE, duration*2);
 		} else {
-			dataLow = makeShapedWaveform(Maps.LOW_FREQ[noteLow], Constants.AMPLITUDE, duration / 2);
-			dataLow.addAll(makeSilence(duration / 2));
+			dataLow = makeShapedWaveform(Maps.LOW_FREQ[noteLow], Constants.AMPLITUDE, duration);
+			dataLow.addAll(makeSilence(duration));
 		}
 		if (Maps.HIGH_BEATS[noteHigh] == 1) {
-			dataHigh = makeShapedWaveform(Maps.HIGH_FREQ[noteHigh], Constants.AMPLITUDE, duration);
+			dataHigh = makeShapedWaveform(Maps.HIGH_FREQ[noteHigh], Constants.AMPLITUDE, duration*2);
 		} else {
-			dataHigh = makeShapedWaveform(Maps.HIGH_FREQ[noteHigh], Constants.AMPLITUDE,duration / 2);
-			dataHigh.addAll(makeSilence(duration / 2));
+			dataHigh = makeShapedWaveform(Maps.HIGH_FREQ[noteHigh], Constants.AMPLITUDE,duration);
+			dataHigh.addAll(makeSilence(duration));
 		}
-		for (int i = 0; i < Constants.SAMPLE_RATE * duration; i++) { // merge/mix
+		for (int i = 0; i < Constants.SAMPLE_RATE * duration*2; i++) { // merge/mix
 			dataLow.set(i, dataLow.get(i) + dataHigh.get(i)); // ////////////////////////////////////
 		}
 		return dataLow;

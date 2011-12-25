@@ -26,8 +26,7 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	
 	private double cropProportion = Constants.CROP_PROPORTION;
 	
-	int cropLength = (int) (cropProportion
-			* Constants.TONE_DURATION * Constants.SAMPLE_RATE / 2);
+
 	
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
@@ -35,8 +34,8 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	@Override
 	public void initFromParameters() {
 		cropProportion = (Double) getLocal("cropProportion");
-		cropLength = (int) (cropProportion
-				* Constants.TONE_DURATION * Constants.SAMPLE_RATE); // was /2
+//		cropLength = (int) (cropProportion
+//				* Constants.TONE_DURATION * Constants.SAMPLE_RATE); // was /2
 	}
 	
 	static String IRI = "http://dannyayers.com/stuff"; // "OK" is good!
@@ -56,6 +55,9 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	 */
 	@Override
 	public Chunks process(Tone tones) {
+		int cropLength = (int) (cropProportion
+				* Constants.TONE_DURATION * Constants.SAMPLE_RATE);
+		
 		Chunks chunks = new Chunks();
 		int chunkStart = 0;
 		
@@ -66,7 +68,7 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 			chunks.add(chunk);
 	//		System.out.println("chunks found="+chunks.size());
 			// why /2 below !?
-			chunkStart += (int) ((Constants.SILENCE_DURATION + Constants.TONE_DURATION) * Constants.SAMPLE_RATE/2); // /2
+			chunkStart += (int) ((Constants.SILENCE_DURATION + Constants.TONE_DURATION) * Constants.SAMPLE_RATE); // /2
 		} 
 		// UGLY HACK
 		if(chunks.size() % 2 != 0){

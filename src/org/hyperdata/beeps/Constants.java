@@ -31,7 +31,7 @@ public class Constants {
 	/* 
 	 * Chunk parameters
 	 */
-		public static double TONE_DURATION = 0.145833333/1.5;
+		public static double TONE_DURATION = 0.048611111; // 0.145833333/1.5;
 		// Silence between tones not handled correctly : tone/tone/gap etc
 		public static double SILENCE_DURATION = 0;
 		

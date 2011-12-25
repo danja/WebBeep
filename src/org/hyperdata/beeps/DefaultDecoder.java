@@ -42,12 +42,12 @@ public abstract class DefaultDecoder implements Decoder {
 		}
 
 		Cropper cropper = new Cropper("Decoder.cropper");
-		cropper.setSilenceThreshold(0.708);
+		cropper.setSilenceThreshold(0.7);
 		tones = cropper.process(tones);
 		
 		tones = norm.process(tones);
 
-		// Plotter.plot(tones, "Cropped");
+	//	 Plotter.plot(tones, "Cropped");
 		
 		// high pass
 		FIRProcessor hp = new FIRProcessor("Decoder.HP_FIR");
@@ -60,7 +60,7 @@ public abstract class DefaultDecoder implements Decoder {
 	//	tones = hp.process(tones);
 	//	Plotter.plot(tones, "after filter");
 	
-	//	tones = norm.process(tones);
+		tones = norm.process(tones);
 
 		// low pass 1
 		FIRProcessor lp1 = new FIRProcessor("Decoder.LP_FIR1");
@@ -73,7 +73,7 @@ public abstract class DefaultDecoder implements Decoder {
 	//	tones = lp1.process(tones);
 //		Plotter.plot(tones, "after filter");
 	
-	//	tones = norm.process(tones);
+		tones = norm.process(tones);
 		
 		// low pass 2
 		FIRProcessor lp2 = new FIRProcessor("Decoder.LP_FIR2");
@@ -83,16 +83,18 @@ public abstract class DefaultDecoder implements Decoder {
 		lp2.setnPoints(282);
 		lp2.initWeights();
 	//	Plotter.plot(tones, "before filter");
-//		tones = lp2.process(tones);
-		Plotter.plot(tones, "after filter");
-//		tones = norm.process(tones);
+		tones = lp2.process(tones);
+	//	Plotter.plot(tones, "after filter");
+		tones = norm.process(tones);
 		
 		// preprocess ^^^
 		Chunker chunker = new Chunker("Decoder.chunker");
-		chunker.setCropProportion(0.457);
+		chunker.setCropProportion(0.7);
 		Chunks chunks = chunker.process(tones);
 		// postprocess vvv
-		
+//		for(int i=0;i<chunks.size();i++){
+//			Plotter.plot(chunks.get(i), "chunk");
+//		}
 		
 		String ascii = chunksToASCII(chunks);
 
