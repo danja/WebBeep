@@ -109,12 +109,13 @@ public abstract class DefaultParameterized implements Parameterized {
 	}
 	
 	public String toString(){
-		String string = name;
+		String string = "\t\tName = "+name;
 		Iterator<String> iterator = parameters.keySet().iterator();
 		while(iterator.hasNext()){
 			String name = iterator.next();
-			string += "\n" + name + " = " + parameters.get(name);
+			string += "\n\t\t" + name + " = " + parameters.get(name);
 		}
+		string += "\n";
 		return string;
 	}
 

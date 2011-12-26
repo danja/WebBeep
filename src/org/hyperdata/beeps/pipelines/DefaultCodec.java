@@ -112,4 +112,11 @@ public abstract class DefaultCodec implements Codec {
 		if(postProcessors.size() == 0) return chunks;
 		return postProcessors.process(chunks);
 	}
+	
+	public String toString(){
+		String string = "Codec : "+this.getClass().toString();
+		string += "\nPreProcessors:\n" + preProcessors.toString();
+		string += "\nPostProcessors:\n" + postProcessors.toString();
+		return string;
+	}
 }

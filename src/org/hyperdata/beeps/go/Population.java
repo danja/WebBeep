@@ -15,11 +15,6 @@ import org.hyperdata.beeps.parameters.ParameterList;
  */
 public class Population {
 
-	static int populationSize = 128; // must be multiple of 8
-	static int generations = 100;
-	static int minCharacters = 5; 
-	static int maxCharacters = 40; 
-	
 	private List<Organism> organisms = new ArrayList<Organism>();
 
 	public void add(Organism system) {
@@ -50,23 +45,23 @@ public class Population {
 		List<Organism> nextGeneration = new ArrayList<Organism>();
 
 		// copy across the best 1/4
-		for (int i = 0; i < populationSize/4; i++) {
+		for (int i = 0; i < Go.populationSize/4; i++) {
 			Organism organism = organisms.get(i);
 			organism.setAge(organism.getAge()+1);
 			nextGeneration.add(organism);
 		}
 		
 		// middle 1/2 are products of breeding
-		for (int i = 0; i < populationSize/2; i++) {
+		for (int i = 0; i < Go.populationSize/2; i++) {
 
 			// favour more successful for selection 
 			double cubeRoot = Math.exp(Math.log((double)i)/3);
 			double scale = 1/(1 + cubeRoot);
 			
-			int p1 = (int)(Math.random() * scale *populationSize);
-			int p2 = (int)(Math.random() * scale * populationSize);
+			int p1 = (int)(Math.random() * scale *Go.populationSize);
+			int p2 = (int)(Math.random() * scale * Go.populationSize);
 			while(p2 == p1) { // there's a good chance of it
-				p2 = (int)(Math.random() * scale * populationSize);
+				p2 = (int)(Math.random() * scale * Go.populationSize);
 			}
 
 			Organism parent1 = organisms.get(p1);
@@ -79,13 +74,13 @@ public class Population {
 		// System.out.println("B "+nextGeneration.size());
 		
 		// copy and mutate top 1/8
-		for (int i = 0; i < populationSize/8; i++) {
+		for (int i = 0; i < Go.populationSize/8; i++) {
 			// Organism target = organisms.get((int)(populationSize * Math.random()));
 			Organism mutant = mutate(organisms.get(i));
 			nextGeneration.add(mutant);
 		}
 		// last 1/8, totally random
-		for (int i = 0; i < populationSize/8; i++) {
+		for (int i = 0; i < Go.populationSize/8; i++) {
 			ParameterizedCodecGoertzel codec = new ParameterizedCodecGoertzel();
 			codec.init();
 			nextGeneration.add(codec);

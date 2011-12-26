@@ -11,8 +11,13 @@ import org.hyperdata.beeps.util.Plotter;
  * @author danny
  * 
  */
-public class Runner {
+public class Go {
 
+	static int populationSize = 16; // must be multiple of 8
+	static int generations = 1;
+	static int minCharacters = 5;
+	static int maxCharacters = 40;
+	
 	/**
 	 * @param args
 	 */
@@ -20,21 +25,22 @@ public class Runner {
 		long startTime = System.currentTimeMillis();
 		Population population = new Population();
 		System.out.println("Initializing :");
-		for (int i = 0; i < Population.populationSize; i++) {
+		for (int i = 0; i < Go.populationSize; i++) {
 			System.out.print(i + " ");
 			ParameterizedCodecGoertzel codec = new ParameterizedCodecGoertzel();
-			codec.setnCharacters(Population.minCharacters,
-					Population.maxCharacters);
+			codec.setnCharacters(Go.minCharacters,
+					Go.maxCharacters);
 
 			codec.init();
+			System.out.println(codec);
 			population.add(codec);
 		}
 		System.out.println();
-		for (int generation = 0; generation < Population.generations; generation++) {
+		for (int generation = 0; generation < Go.generations; generation++) {
 			System.out.println("******   Generation : " + generation
 					+ "   ******");
 			System.out.println("Testing organism :");
-			for (int i = 0; i < Population.populationSize; i++) {
+			for (int i = 0; i < Go.populationSize; i++) {
 				System.out.print(i + " ");
 				population.get(i).run();
 			}
@@ -54,7 +60,7 @@ public class Runner {
 							+ Plotter.roundToSignificantFigures(
 									((ParameterizedCodecGoertzel) fittest)
 											.getRunTime(), 2));
-			System.out.println(fittest.getParameters());
+		//	System.out.println(fittest.getParameters());
 			System.out.println("------^^^^^----------------");
 
 			if (generation % 10 == 0) {

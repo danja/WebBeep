@@ -215,4 +215,11 @@ public class ParameterizedCodecGoertzel implements Organism {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
+	public String toString(){
+		String string = "\n"+this.getClass().toString()+"\n";
+		string += "\n"+encoder.toString()+"\n";
+		string += "\n"+decoder.toString()+"\n";		
+		return string;
+	}
 }

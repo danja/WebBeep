@@ -35,4 +35,10 @@ public abstract class DefaultProcessor extends DefaultParameterized implements P
 		}
 		return output;
 	}
+	
+	public String toString(){
+		String string = "Processor : "+this.getClass().toString();
+		string += "\n" + super.toString();
+		return string;
+	}
 }

@@ -114,11 +114,11 @@ public class ParameterizedEncoder extends DefaultCodec {
 		parameters.add(parameter);
 	}
 
-	public String toString() {
-		String string = this.getClass().toString();
-		if (parameters != null) {
-			string += "\n" + parameters;
-		}
-		return string;
-	}
+//	public String toString() {
+//		String string = "Encoder : "+ this.getClass().toString();
+////		if (parameters != null) {
+////			string += "\n" + parameters;
+////		}
+//		return string + "\n" + super.toString();
+//	}
 }

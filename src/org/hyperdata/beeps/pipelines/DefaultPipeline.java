@@ -101,4 +101,15 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public String toString(){
+		String string = "";
+		if(processors.size() == 0){
+			return "\tEmpty Pipeline";
+		}
+		for(int i=0;i<processors.size();i++){
+			string += "\t"+processors.get(i).toString();
+		}
+		return string;
+	}
 }
