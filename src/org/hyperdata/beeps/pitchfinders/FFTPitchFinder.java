@@ -146,7 +146,7 @@ public class FFTPitchFinder extends DefaultPitchFinder { // was extends
 
 		Map<Double, Double> pitches = new HashMap<Double, Double>();
 
-		Set keys = peak.keySet();
+		Set<Integer> keys = peak.keySet();
 		Iterator<Integer> iterator = keys.iterator();
 
 		while (iterator.hasNext()) {

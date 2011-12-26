@@ -104,7 +104,7 @@ public class ParameterizedDecoderFFT extends DefaultCodec {
 	private Processor norm1;
 	private Processor norm2;
 	private Processor norm3;
-	private Processor norm4;
+//	private Processor norm4;
 	
 	private Compressor compressor;
 

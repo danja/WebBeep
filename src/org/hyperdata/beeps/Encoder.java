@@ -72,11 +72,10 @@ public class Encoder {
 		}
 		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 		Encoder encoder = new Encoder();
-		List<Double> tones = encoder.encode(IRI);
+		List<Double> tones = encoder.encode(iri);
 		Plotter.plot(tones, "Tones");
 		System.out.println("tones=" + tones.size());
-		// WavCodec.save("/home/danny/workspace/WebBeep/data/beeps1.wav",
-		// tones);
+		 WavCodec.save(filename, tones);
 	}
 
 

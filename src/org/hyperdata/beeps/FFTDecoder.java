@@ -43,6 +43,6 @@ public class FFTDecoder  extends DefaultDecoder {
 		Tone tones = encoder
 				.encode("http://danbri.org/foaf.rdf#danbri"); // "http://danbri.org/foaf.rdf#danbri"
 		FFTDecoder decoder = new FFTDecoder();
-	//	System.out.println("Decoded = " + decoder.decode(tones));
+		System.out.println("Decoded = " + decoder.decode(tones));
 	}
 }

@@ -46,8 +46,8 @@ public class RunningAverage extends DefaultProcessor {
 		// int WINDOW_LENGTH = (int) ((double) Constants.SAMPLE_RATE *
 		// WINDOW_TIME);
 		// System.out.println(WINDOW_LENGTH);
-		double max = 0;
-		double total = 0;
+	//	double max = 0;
+	//	double total = 0;
 
 		for (int i = 0; i < tones.size(); i++) {
 			double sum = 0;

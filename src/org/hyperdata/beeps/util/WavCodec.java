@@ -62,7 +62,7 @@ public class WavCodec {
 		try {
 			File file = new File(filename);
 			ais = AudioSystem.getAudioInputStream(file);
-			AudioFormat format = ais.getFormat();
+	//		AudioFormat format = ais.getFormat();
 // System.out.println("format = "+format);
 			data = new byte[ais.available()];
 			ais.read(data);

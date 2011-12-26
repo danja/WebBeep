@@ -22,8 +22,6 @@ import org.hyperdata.beeps.util.Tone;
  */
 public class Merger extends DefaultParameterized implements MergingProcessor {
 
-	private String name = "Merger";
-
 	public Merger(){
 		
 	}
@@ -32,7 +30,7 @@ public class Merger extends DefaultParameterized implements MergingProcessor {
 	 * @param name
 	 */
 	public Merger(String name) {
-		this.name =name;
+		super(name);
 	}
 
 	/* (non-Javadoc)

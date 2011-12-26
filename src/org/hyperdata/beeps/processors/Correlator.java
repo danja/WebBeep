@@ -71,7 +71,7 @@ public class Correlator extends DefaultProcessor {
 				silverFreq = freq;
 			}
 		}
-		Plotter plotter = Plotter.plot(all, "eek", 8);
+		Plotter.plot(all, "eek", 8);
 		pitches.add(goldFreq);
 		pitches.add(silverFreq);
 		return pitches;

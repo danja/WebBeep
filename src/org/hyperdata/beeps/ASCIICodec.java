@@ -15,8 +15,8 @@ import org.hyperdata.beeps.util.Tone;
 public class ASCIICodec {
 
 	/**
-	 * @param ascii
-	 * @return
+	 * @param ascii input text
+	 * @return output audio tones
 	 */
 	public static Chunks asciiToChunks(String ascii) {
 		Chunks chunks = new Chunks();
@@ -35,8 +35,8 @@ public class ASCIICodec {
 	}
 
 	/**
-	 * @param chunks
-	 * @return
+	 * @param chunks input audio tones
+	 * @return ASCII string derived from tones
 	 */
 	public static String chunksToASCII(Chunks chunks, PitchFinderGeneral finder) {
 		String ascii = "";
@@ -57,8 +57,8 @@ public class ASCIICodec {
 	}
 
 	/**
-	 * @param i
-	 * @return
+	 * @param i number of characters
+	 * @return String of random ASCII characters
 	 */
 	public static String getRandomASCII(int count) {
 		String input = "";
@@ -113,9 +113,11 @@ public class ASCIICodec {
 	}
 
 	/**
-	 * @param minCharacters
-	 * @param maxCharacters
-	 * @return
+	 * Generate a random string of random ASCII characters
+	 * 
+	 * @param minCharacters lowest size of string
+	 * @param maxCharacters highest size of string
+	 * @return random ASCII string
 	 */
 	public static String getRandomASCII(int minCharacters, int maxCharacters) {
 		int count = minCharacters

@@ -111,7 +111,7 @@ public class FiltersDemo {
 		
 			 spectrums[i] = norm2.process(spectrums[i]); // normalise to -1...1
 			 spectrums[i] = trim(spectrums[i]); // zoom in on FFT results
-		Plotter plotter = Plotter.plot(spectrums[i], "Spectrum after "+filters[i].getShapeName()+" filter",
+		Plotter.plot(spectrums[i], "Spectrum after "+filters[i].getShapeName()+" filter",
 				4, true);
 		 }
 	}

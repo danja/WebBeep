@@ -1,0 +1,65 @@
+<project name="WebBeep" default="build" basedir=".">
+
+	<!-- basic properties -->
+	<property name="name" value="WebBeep" />
+
+	<!-- paths -->
+	<property name="lib.dir" value="lib/" />
+	<property name="src.dir" value="src/" />
+	<property name="doc.dir" value="docs" />
+	<property name="bin.dir" value="bin" />
+	<property name="classes.dir" value="classes" />
+	
+	<!-- compiler flags -->
+	<property name="compile.debug" value="false" />
+	<property name="compile.version" value="1.5" />
+
+	<tstamp>
+		<format property="DATETIME" pattern="yyyy-mm-dd" />
+	</tstamp>
+
+	<!-- derived properties -->
+	<property name="javadoc.dir" value="${doc.dir}/javadoc" />
+	<property name="zipfile" value="${name}_${DATETIME}.zip" />
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+	</path>
+
+	<!-- CLEAN -->
+	<target name="clean">
+		<delete dir="${classes.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<delete dir="${javadoc.dir}" />
+		<mkdir dir="${javadoc.dir}" />
+	</target>
+	
+	<!-- COMPILE -->
+	<target name="compile">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${compile.debug}" classpathref="classpath" source="${compile.version}" includeantruntime="false" />
+	</target>
+
+	<!-- MANIFEST : TODO -->
+	<target name="manifest">
+		<manifest file="MANIFEST.MF">
+			<attribute name="Built-By" value="${manifest.built.by}" />
+			<attribute name="Created-By" value="${manifest.created.by}" />
+			<attribute name="Main-Class" value="${manifest.main.class}" />
+			<attribute name="Implementation-Version" value="${version.number}-b${build.number}" />
+			<attribute name="Built-Date" value="${TODAY}" />
+			<attribute name="Class-Path" value="${mf.classpath}" />
+		</manifest>
+	</target>
+
+	<!-- JAVADOC -->
+	<target name="javadoc" description="make javadoc">
+		<javadoc sourcepath="${src.dir}" destdir="${javadoc.dir}" packagenames="*" classpathref="classpath" additionalparam="-breakiterator -link http://docs.oracle.com/javase/6/docs/api/ java" />
+	</target>
+
+	<!-- BUILD -->
+	<target name="build" depends="clean" />
+
+	<!-- ALL -->
+	<target name="all" depends="build, javadoc" />
+
+</project>

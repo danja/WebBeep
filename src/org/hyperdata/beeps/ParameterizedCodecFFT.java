@@ -86,7 +86,7 @@ private int age = 0;
 		}
 		// input = "http://dannyayers.com";
 		// System.out.println("Input:"+input);
-		Debug debug = new Debug();
+		//Debug debug = new Debug();
 
 		//String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 

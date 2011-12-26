@@ -19,7 +19,7 @@ import org.hyperdata.beeps.util.Plotter;
 public class TestCorr {
 
 	public static void main(String[] args){
-		 double testFreq = 571;
+	//	 double testFreq = 571;
 	//	List<Double> result = new ArrayList<Double>();
 //		List<Double> testTone = WaveMaker.makeWaveform(testFreq, 0.99,
 //				Constants.TONE_DURATION);

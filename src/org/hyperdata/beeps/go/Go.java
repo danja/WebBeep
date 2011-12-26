@@ -6,6 +6,7 @@ package org.hyperdata.beeps.go;
 import org.hyperdata.beeps.ParameterizedCodecGoertzel;
 import org.hyperdata.beeps.parameters.ParameterListFile;
 import org.hyperdata.beeps.util.Plotter;
+import org.hyperdata.common.Describer;
 
 /**
  * @author danny
@@ -13,8 +14,8 @@ import org.hyperdata.beeps.util.Plotter;
  */
 public class Go {
 
-	static int populationSize = 16; // must be multiple of 8
-	static int generations = 1;
+	static int populationSize = 128; // must be multiple of 8
+	static int generations = 100;
 	static int minCharacters = 5;
 	static int maxCharacters = 40;
 	
@@ -22,8 +23,10 @@ public class Go {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		long startTime = System.currentTimeMillis();
 		Population population = new Population();
+		// System.out.println(Describer.extractClassURI(population));
 		System.out.println("Initializing :");
 		for (int i = 0; i < Go.populationSize; i++) {
 			System.out.print(i + " ");

@@ -20,7 +20,7 @@ public class ParameterizedCodecTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-Debug debug = new Debug();
+// Debug debug = new Debug();
 		// String input = "http://danbri.org/foaf.rdf#danbri";
 
 
@@ -39,7 +39,7 @@ Debug debug = new Debug();
 			String input = ASCIICodec.getRandomASCII();
 			input =  "http://danbri.org/foaf.rdf#danbri";
 			
-			String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
+			// String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 
 			Debug.inform("Input : " + input);
 			Debug.inform(input.length() + " characters\n");

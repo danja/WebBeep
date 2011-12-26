@@ -2,5 +2,28 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-ajp-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-all-8.0.4.v20111024-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-annotations-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-client-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-continuation-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-deploy-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-http-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-io-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-jmx-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-jndi-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-overlay-deployer-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-plus-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-policy-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-rewrite-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-security-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-server-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-servlet-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-servlets-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-util-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-webapp-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-websocket-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/jetty-xml-8.0.4.v20111024.jar"/>
+	<classpathentry kind="lib" path="lib/jetty/servlet-api-3.0.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
