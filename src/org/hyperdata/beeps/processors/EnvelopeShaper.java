@@ -28,6 +28,7 @@ public class EnvelopeShaper extends DefaultProcessor {
 //	}
 	
 	public Tone process(Tone samples) {
+		if(!isEnabled()) return samples;
 		// System.out.println("SAMPLES="+samples.size());
 		double attackMarker = ((double) samples.size()) * attackProportion;
 		// System.out.println("Attack marker="+attackMarker);
@@ -73,6 +74,7 @@ public class EnvelopeShaper extends DefaultProcessor {
 	//	Debug.debug("parameters="+parameters);
 //		Debug.halt(this);
 // System.out.println("parameters.get(attackProportion)="+parameters.get("attackProportion"));
+		setEnabled("true".equals((Double)getLocal("on")));
 		setAttackProportion((Double)getLocal("attackProportion"));
 		setDecayProportion((Double)getLocal("decayProportion"));
 		

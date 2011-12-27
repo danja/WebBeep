@@ -27,7 +27,9 @@ public class Cropper extends DefaultProcessor {
 	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
 	 */
 	@Override
-	public void initFromParameters() {
+	public void initFromParameters() { // PARAMETERS AREN'T BEING SET LOCAL TO PROCESSORS
+		setEnabled((Boolean)  getLocal("on"));
+		System.out.println(" getLocal(silenceThreshold); = "+ getLocal("silenceThreshold"));
 		silenceThreshold = (Double) getLocal("silenceThreshold");
 	}
 			
@@ -36,6 +38,7 @@ public class Cropper extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		Debug.inform("DETECTOR - do something with me");
 		int start = findStart(input, silenceThreshold);
 		int end = findEnd(input, silenceThreshold);

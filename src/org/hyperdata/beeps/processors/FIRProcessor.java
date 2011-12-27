@@ -29,6 +29,7 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		return new Tone(filter.filter(input));
 	}
 
@@ -41,6 +42,7 @@ public class FIRProcessor extends DefaultProcessor implements FIRFilter {
 	 */
 	@Override
 	public void initFromParameters() {
+		setEnabled((Boolean)  getLocal("on"));
 		String shape = (String)  getLocal("shape");
 		setShapeName(shape);
 		setFc((Double) getLocal("cutoff"));

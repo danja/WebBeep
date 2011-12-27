@@ -43,6 +43,7 @@ public class Distort extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		for(int i=0;i<input.size();i++){
 			double in = input.get(i);
 			double output = (1 - distortProportion) * in + distortProportion * Math.signum(in) * Math.exp(1.5 * Math.log(Math.abs(in)));
@@ -56,7 +57,7 @@ public class Distort extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
+		setEnabled((Boolean)  getLocal("on"));
 		
 	}
 

@@ -49,6 +49,7 @@ public class LFNoisy extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) { // inefficient, but ok for testing purpose
+		if(!isEnabled()) return input;
 		// System.out.println("input size="+input.size());
 		Tone noise = makeNoise(input.size());
 		// System.out.println("noise size="+noise.size());
@@ -85,6 +86,7 @@ public class LFNoisy extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
+		setEnabled((Boolean)  getLocal("on"));
 		noiseProportion = (Double) getLocal("noiseProportion");
 	}
 

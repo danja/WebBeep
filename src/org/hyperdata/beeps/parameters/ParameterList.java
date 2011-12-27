@@ -29,4 +29,14 @@ public interface ParameterList {
 	 * @param parameters
 	 */
 	public void addAll(ParameterList parameters);
+	
+	/**
+	 * Adds incoming parameters unless parameter already exists, in which case 
+	 * it's given the new value
+	 * 
+	 * @param incoming
+	 */
+	public void consume(ParameterList incoming);
+	
+	public void randomizeValues();
 }

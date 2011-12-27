@@ -31,6 +31,7 @@ public class Normalise extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		return normalise(input,true,true);
 	}
 	
@@ -105,6 +106,6 @@ public class Normalise extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// doesn't have any parameters
+		setEnabled((Boolean)  getLocal("on"));
 	}
 }

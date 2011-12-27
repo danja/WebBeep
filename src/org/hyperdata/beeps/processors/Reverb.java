@@ -104,6 +104,7 @@ public class Reverb extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 
 		Tone output = new Tone();
 
@@ -147,7 +148,7 @@ public class Reverb extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
+		setEnabled((Boolean)  getLocal("on"));
 
 	}
 	

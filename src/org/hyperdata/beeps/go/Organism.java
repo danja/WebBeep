@@ -18,8 +18,9 @@ public interface Organism {
 	public ParameterList getParameters();
 	
 	public int getAge();
-	public void setAge(int age);
-
+	
+	
+	public double getMeanFitness();
 	/**
 	 * 
 	 */

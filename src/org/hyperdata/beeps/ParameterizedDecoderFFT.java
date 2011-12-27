@@ -88,7 +88,8 @@ public class ParameterizedDecoderFFT extends DefaultCodec {
 		return IDN.toUnicode(ascii);
 	}
 
-	public ParameterizedDecoderFFT() {
+	public ParameterizedDecoderFFT(String name) {
+		super(name);
 		init();
 	}
 

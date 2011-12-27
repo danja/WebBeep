@@ -46,6 +46,7 @@ public class Clip extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		for(int i=0;i<input.size();i++){
 			double out = input.get(i);
 			if(Math.abs(out) > clipLevel ){
@@ -63,8 +64,7 @@ public class Clip extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
-		
+		setEnabled((Boolean)  getLocal("on"));	
 	}
 
 	public static void main(String[] args){

@@ -45,6 +45,7 @@ public class Noisy extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		for(int i=0;i<input.size();i++){
 			double in = input.get(i);
 			double output = in * (1 - noiseProportion) + Math.random() * noiseProportion;
@@ -58,6 +59,7 @@ public class Noisy extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
+		setEnabled((Boolean)  getLocal("on"));
 		noiseProportion = (Double) getLocal("noiseProportion");
 	}
 	

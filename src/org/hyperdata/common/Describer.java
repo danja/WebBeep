@@ -3,6 +3,11 @@
  */
 package org.hyperdata.common;
 
+import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 /**
  * @author danny
  * 
@@ -30,6 +35,20 @@ public abstract class Describer implements Described {
 	public String describe() {
 		return defaultDescribe(this);
 	}
+	
+	//Set<String> variables = new HashSet<String>();
+	
+	public void describeVariable(Object object, String variableName){
+		try {
+			Field field = object.getClass().getDeclaredField(variableName);
+			System.out.println("field "+variableName+" = "+field.get(object));
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} 
+	}
+	
+	
+	
 
 	/**
 	 * e.g. org.hyperdata.common.Describer =>
@@ -50,6 +69,14 @@ public abstract class Describer implements Described {
 			uri += "/" + split[i];
 		}
 		return uri;
+	}
+	
+	public static String turtleFromVariable(String name, Object variable){
+		String turtle = "# variable";
+		if(variable instanceof Double){
+			turtle += "Double";
+		}
+		return turtle;
 	}
 
 	public static String getNamespaces() {

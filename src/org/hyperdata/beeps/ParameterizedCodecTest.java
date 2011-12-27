@@ -5,6 +5,8 @@ package org.hyperdata.beeps;
 
 import java.util.List;
 
+import org.hyperdata.beeps.parameters.ParameterList;
+import org.hyperdata.beeps.parameters.ParameterListFile;
 import org.hyperdata.beeps.pipelines.DefaultPipeline;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
@@ -20,33 +22,36 @@ public class ParameterizedCodecTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-// Debug debug = new Debug();
-		// String input = "http://danbri.org/foaf.rdf#danbri";
-
-
-		int runs = 100;
-		
-		int successCount = 0;
-		double mostAccurate = 0;
-		double accuracySum = 0;
-		long encodeTimeSum = 0;
-		long decodeTimeSum = 0;
-		long encodeHitTimeSum = 0;
-		long decodeHitTimeSum = 0;
-		
-		for (int j = 0; j < runs; j++) { // start for loop
 			
 			String input = ASCIICodec.getRandomASCII();
 			input =  "http://danbri.org/foaf.rdf#danbri";
 			
 			// String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 
+			 String configFilename = "/home/danny/workspace/WebBeep/data/config.xml";
+			
+			System.out.println("Input : " + input);
 			Debug.inform("Input : " + input);
 			Debug.inform(input.length() + " characters\n");
-			System.out.println(j);
-			ParameterizedEncoder encoder = new ParameterizedEncoder();
+
+			ParameterizedEncoder encoder = new ParameterizedEncoder("Encoder");
+			ParameterizedDecoderGoertzel decoder = new ParameterizedDecoderGoertzel("Decoder");
+			
+			ParameterListFile plf = new ParameterListFile();
+			ParameterList config = plf.load(configFilename);
+			
+			encoder.setParameters(config);
+			decoder.setParameters(config);
+			
+			System.out.println(encoder);
+			System.out.println(decoder);
+			
+			encoder.initFromParameters();
+			decoder.initFromParameters();
+			
 			Debug.debug(((ParameterizedEncoder) encoder));
 
+			
 //			System.out.println("Encoder prams "
 //					+ ((ParameterizedEncoder) encoder).parameters);
 
@@ -55,7 +60,6 @@ public class ParameterizedCodecTest {
 			// WavCodec.save(filename, outTones); // SAVE
 			long encodeTime = System.currentTimeMillis() - startTime;
 			
-			encodeTimeSum += encodeTime;
 
 			if (Debug.showPlots) {
 				Plotter.plot(outTones, "encoder OutTones");
@@ -74,13 +78,13 @@ public class ParameterizedCodecTest {
 			Tone inTones = line.process(outTones); // skip saving
 			
 			// List<Double> inTones = WavCodec.read(filename);
-			ParameterizedDecoderGoertzel decoder = new ParameterizedDecoderGoertzel();
+
 			
 			startTime = System.currentTimeMillis();
 			// read here
 			String output = decoder.decode(inTones);
 			long decodeTime = System.currentTimeMillis() - startTime;
-			decodeTimeSum += decodeTime;
+
 
 //			System.out.println("Decode time: " + (float) (decodeTime)
 //					/ 1000 + " seconds");
@@ -91,15 +95,8 @@ public class ParameterizedCodecTest {
 					+ " mS per char");
 
 			Debug.inform("Output : " + output);
-		//	System.out.println("Output : " + output);
-			if (output.equals(input)) {
-				successCount++;
-				decodeHitTimeSum += decodeTime;
-				encodeHitTimeSum += encodeTime;
-				Debug.inform("\n*** Success!!! ***");
-			} else {
-				Debug.inform("\n*** FAIL! ***");
-			}
+			System.out.println("Output : " + output);
+	
 			int hits = 0;
 			String errs = "";
 			for (int i = 0; i < input.length(); i++) {
@@ -115,27 +112,14 @@ public class ParameterizedCodecTest {
 			}
 			double accuracy = 100 * (double) hits
 					/ (double) input.length();
-			accuracySum += accuracy;
-			if(accuracy > mostAccurate){
-				mostAccurate = accuracy;
-			}
-//			System.out.println("Hits = " + 100 * (double) hits
-//					/ (double) input.length() + " %");
+		
+			System.out.println("Hits = " + 100 * (double) hits
+					/ (double) input.length() + " %");
 			Debug.inform("Hits = " + 100 * (double) hits
 					/ (double) input.length() + " %");
 			if (errs.length() > 0) {
 				Debug.verbose("Bad chars = " + errs);
 			}
 			Debug.log(encoder.parameters +"\n\n"+decoder.parameters);
-		} // end for loop
-		System.out.println("Success count = " + successCount + " out of "
-				+ runs);
-		System.out.println("Most accurate = "+mostAccurate + " %");
-		System.out.println("Mean accuracy = "+accuracySum/runs + " %");
-		System.out.println("Average encode time = "+Plotter.roundToSignificantFigures((float)encodeTimeSum/(1000*runs), 2)+" seconds");
-		System.out.println("Average decode time = "+Plotter.roundToSignificantFigures((float)decodeTimeSum/(1000*runs), 2)+" seconds");
-		System.out.println("Average total time = "+Plotter.roundToSignificantFigures(((float)encodeTimeSum+decodeTimeSum)/(1000*runs), 2)+" seconds");
-		System.out.println("Mean encode time for 100% transfer = "+Plotter.roundToSignificantFigures((float)encodeHitTimeSum/(1000*successCount), 2)+" seconds");
-		System.out.println("Mean decode time for 100% transfer = "+Plotter.roundToSignificantFigures((float)decodeHitTimeSum/(1000*successCount), 2)+" seconds");
-	}
+			}
 }

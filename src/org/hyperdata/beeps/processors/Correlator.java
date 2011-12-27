@@ -37,6 +37,7 @@ public class Correlator extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone tones) {
+		if(!isEnabled()) return tones;
 		Map<Double,Double> correlations = new HashMap<Double,Double>();
 		
 		Iterator<Double> refFreqs = ReferenceTones.tones.keySet().iterator();
@@ -256,7 +257,7 @@ public class Correlator extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
+		setEnabled((Boolean)  getLocal("on"));
 		
 	}
 }

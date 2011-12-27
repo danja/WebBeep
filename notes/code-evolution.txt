@@ -1,0 +1,16 @@
+1. everything hardcoded
+2. hardcoded structure, modules with name/value parameters
+
+persistence - tried Properties, structure a pain
+
+...
+modules made to implement self-description
+structure & parameters extracted from 2.
+structure & parameters loaded from description
+
+
+Java/RDF mapping
+object - resource
+class - class
+variable - x:parameter(x:name, x:value)
+

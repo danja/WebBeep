@@ -26,7 +26,7 @@ public class Rectifier extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		// no parameters
+		setEnabled((Boolean)  getLocal("on"));
 	}
 
 	/* (non-Javadoc)
@@ -34,6 +34,7 @@ public class Rectifier extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		Tone rectified = new Tone();
 
 		for (int i = 0; i < input.size(); i++) {

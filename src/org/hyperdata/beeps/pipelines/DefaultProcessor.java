@@ -17,6 +17,8 @@ import org.hyperdata.beeps.util.Tone;
  */
 public abstract class DefaultProcessor extends DefaultParameterized implements Processor {
 
+	private boolean enabled = true;
+	
 	public DefaultProcessor(String name){
 		super(name);
 	}
@@ -40,5 +42,19 @@ public abstract class DefaultProcessor extends DefaultParameterized implements P
 		String string = "Processor : "+this.getClass().toString();
 		string += "\n" + super.toString();
 		return string;
+	}
+
+	/**
+	 * @return the enabled
+	 */
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+
+	/**
+	 * @param enabled the enabled to set
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }

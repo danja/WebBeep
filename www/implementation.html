@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+      "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Web Beep Implementation Notes</title>
+  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+</head>
+
+<body>
+<h1>Web Beeps Implementation</h1>
+
+<h2>Introduction</h2>
+
+<p>I started this write-up just after I had initial rough code running that
+suggested the project was feasible (I wanted notes for myself before I forgot),
+so the writing tense varies. Hopefully it contains enough information (however
+incoherent) to explain how it works. There is some digital signal processing
+jargon, but DSP can be treated as black-box stuff, there's no real need to go
+into the details to build things. (It's been years since I studied this stuff
+and my maths is totally rusted, the revision I did for this was basically
+skimming the corresponding Wikipedia articles).</p>
+<ul>
+  <li><a href="#Design">Design Considerations</a></li>
+  <li><a href="#Encoding">Encoding</a></li>
+  <li><a href="#Decoding">Decoding</a></li>
+  <li><a href="#Initial">Reference Implementation</a></li>
+  <li><a href="#Notes">Notes</a></li>
+</ul>
+
+<h2><a id="Design">Design Considerations</a></h2>
+
+<p>The original idea was to encode HTTP URLs as little tunes, with the
+characters in URLs <em>somehow</em> mapping to musical notes. It's essentially
+the same idea as used in <a
+href="http://en.wikipedia.org/wiki/Touch_tone">touch-tone</a> phone signals,
+but tweaked to make the beeps easier on the ear. </p>
+
+<h3>Text Pre-Processing</h3>
+
+<p>International coverage (i.e. <a
+href="http://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRI</a>s)
+is fairly essential, which basically means supporting <strong><a
+href="http://en.wikipedia.org/wiki/Unicode">Unicode</a></strong>. Because of
+this it was decided not to include any optimisations or other special features
+for URLs, and simply support <strong>arbitrary text</strong>. Unicode contains
+a <em>lot</em> of characters, and mapping from these to musical pitches
+directly is almost certainly unfeasible. However <a
+href="http://en.wikipedia.org/wiki/Punycode">Punycode</a> is an encoding syntax
+by which a string of Unicode characters can be transformed uniquely and
+reversibly into a much smaller character set. Roughly speaking, characters that
+can be expressed in ASCII are expressed that way, but multiple ASCII characters
+are used to represent other individual Unicode characters. In general, the cost
+of reducing the size of the character set is an increase in the resulting
+string length. </p>
+
+<h3>Phonic Constraints</h3>
+
+<p>To achieve a reasonable compromise between length of (beep) messages,
+musicality and implementation complexity, it was decided that a <strong>maximum
+of two concurrent tones</strong> (one bass, one treble) was probably most
+suitable. By restricting these to a <strong><a
+href="http://en.wikipedia.org/wiki/Pentatonic">pentatonic scale</a></strong>,
+arbitrary combinations of notes could be used without major dissonance. Another
+consideration was that generic hardware should be able to transmit and receive
+the beeps, so a range of pitches was chosen that should be suitable for common
+acoustic transducers, i.e. nothing too low or too high (approx. 250-1500Hz,
+which is around female speech range and a bit higher, or an extended soprano
+singer). The restriction to the notes of the pentatonic scale (i.e. 5 per
+octave) meant a little more space for data was desirable, so the treble notes
+may appear as half- or whole-length.</p>
+
+<p>This may give the impression a lot of planning went into this aspect : not
+really, most decisions were made during experimentation, based on what sounded
+about right.</p>
+
+<h2><a id="Encoding">Encoding</a></h2>
+
+<p>Generating Web Beeps is relatively straightforward, details of the
+requirements can be found in the <a href="spec.html">specification</a>, there's
+an example of how this may be implemented in Java in the <a
+href="https://github.com/danja/WebBeep">source code</a>.</p>
+
+<h2><a id="Decoding">Decoding</a></h2>
+
+<p>Getting the text back out from the beeps is rather more convoluted
+(<em>literally!</em>), though is based on standard digital signal processing
+(<a href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a>)
+techniques. </p>
+
+<h3>Pre-processing</h3>
+
+<p>Normalisation (before &amp; after chunking)</p>
+
+<p>Filtering (before &amp; after chunking)</p>
+
+<p>reduce harmonic distorion artifacts and out-of-band noise</p>
+
+<p>Although some </p>
+
+<h3>Pitch Detection</h3>
+
+<p>Many pitch detection algorithms are available, here are some examples ranked
+in order of guesstimated suitability:</p>
+<ol>
+  <li>Cross-correlation (against reference waves) : should be the most accurate
+    and efficient</li>
+  <li>Pisarenko decomposition : can take advantage of prior knowledge (there
+    are max 2 tones)</li>
+  <li>FFT : brute force, computationally expensive (lots of irrelevant
+    cross-correlation) but very well known and easy to see what's going on</li>
+  <li>Bandpass filters (one per note) : could maybe be good, as a variation of
+    1, need to figure out what to convolve</li>
+  <li>Zero-crossing detection/timing : likely to be unreliable</li>
+</ol>
+
+<p>Performance shouldn't really be a problem on a PC-like machine or even a
+smartphone, though experimentation needed. For accuracy it'd be nice to have
+(say) 3 parallel decoding algorithms going, let them vote for the best match.
+</p>
+
+<h2><a id="Initial">Reference Implementation</a></h2>
+
+<p>The reference implementation has been written in Java. </p>
+
+<p></p>
+
+<p>The decoder was initially developed using FFT pitch detection - a suitable
+FFT class was easily found online (a port of a C version), then a
+cross-correlation approach was tried.</p>
+
+<h4>FFT Detection</h4>
+
+<p>plus peak detection</p>
+
+<p><em>timing</em></p>
+
+<h4>Cross-Correlation</h4>
+
+<p>The second approach to pitch detection I tried was cross-correlation, the
+idea being to have reference tones corresponding to all the note frequencies
+that are likely to be present, and comparing each of these with a given chunk
+in the Web Beep. Intuitively, this should rock - it's totally targetted and so
+should be very accurate and efficient.</p>
+
+<p>Correlation is essentially comparing two signals point-by-point. The only
+problem with that for the current problem is that the phase may vary.
+Cross-correlation addresses this by sliding the values of one signal against
+another and doing comparisons for each step. I'm sure plenty of libraries exist
+for this, but none jumped out at me and the principle seems simple enough, so I
+hacked it. </p>
+
+<p>As a trial I started with a sampled sinewave signal (aka Test Tone) of known
+frequency (300Hz) with enough cycles (23?) that the frequency should be pretty
+obvious. </p>
+
+<p><img alt="test tone plot" src="images/correlation-tone-plot.png" width="800"
+height="200" /></p>
+
+<p>I then set up the code to generate a load of reference waveforms, a series
+that I knew would include the Test Tone frequency - I went from half it's
+frequency to double it, in steps of 1Hz. </p>
+
+<p></p>
+
+<p><img alt="reference wave" src="images/correlation-reference-plot.png"
+width="800" height="200" /></p>
+
+<p>The code that did the comparisons is a loop within a loop, moving the
+starting point of the reference through the Test Tone, for each
+signal/reference comparison the reference values being shunted along as many
+times as necessary to cover the whole test tone (to give the same effect as
+calculating a reference signal of the same length as the Test Tone - this way
+might be marginally quicker).</p>
+
+<p>Assuming I've understood cross-correlation correctly, the comparisons are
+simply point-by-point multiplications. These are summed for each reference
+frequency across all steps through the Test Tone. This produced a result as
+below. As well as a bit of low amplitude oscillation, in the middle there's a
+big peak followed by a big trough.</p>
+
+<p></p>
+
+<p><img alt="correlation plot" src="images/correlation-plot.png" width="800"
+height="200" /></p>
+
+<p></p>
+
+<p>Pulling out the values (rounded here), the top of the peak corresponds to
+294Hz, the bottom of the trough 304Hz. Taking the mean of these gives a value
+of 299Hz, not a bad estimate for the target frequency of 300Hz - it's about
+0.33% out.</p>
+
+<p>This is a brilliant result, only not the one called for by this application.
+I don't want to have to sweep through reference tones in 1Hz steps, I want to
+give it just a handful of known reference frequencies (e.g. the note A at
+440HZ) and see if they're present or not.</p>
+
+<p>So I pulled out the point corresponding to the target frequency (it's the
+red dot on the plot above), here it is compared with the "visible" values:</p>
+
+<p><strong>peak point</strong> : (294, 50000)</p>
+
+<p><strong>trough point</strong> : (304, -67000)</p>
+
+<p><strong>target freq point</strong> : (300, -57000)</p>
+
+<p><strong>mean of abs(y) values</strong> : 4900</p>
+
+<p>- so the point corresponding to the frequency in question does seem to be
+significantly away from the background noise. It's a bit worrying that it's
+close to a zero-crossing point, but this seems promising enough to glue
+together the rest of the pitch detection implementation and see how well it
+behaves with some real data.</p>
+
+<p></p>
+
+<h3>Test Results</h3>
+
+<h2><a id="Notes">Notes</a></h2>
+
+<h2></h2>
+
+<h3>Applications</h3>
+
+<p>As a kind of QR Code for the ear, Web Beeps should be useful in a lot of
+places. <em>Suggestions please...</em></p>
+
+<p>Ring Tone - use your email, Home Page or personal URI.</p>
+
+<p></p>
+
+<h3>Prior Art?</h3>
+
+<p>I'm sure many variations of this have been done before, though it's hard to
+find out what there is - searches I've tried mostly led to something related to
+mobile/cellphone ringtones (grr, I wanted the name "Web Tone" but it's already
+taken). Whatever, the basic idea is straightforward: what if you had something
+like DTFM tones only not so hard on the ear? Given that, implementations are
+pretty obvious given minimal background knowledge of character encoding, music
+and DSP techniques. Simple matter of guesswork, experimentation &amp; banging
+out the code. The implementation described here is pretty arbitrary, mostly
+based on what seemed like a good idea at the time.</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p style="text-align:right;margin-left:auto;margin-right:0;"><a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/"><img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/"></a></p>
+
+<p style="text-align:right;margin-left:auto;margin-right:0;"><a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
+3.0 Unported License</a>. </p>
+
+<p style="text-align:right;margin-left:auto;margin-right:0;">(c) <a
+href="http://dannyayers.com">Danny Ayers</a> 2011</p>
+
+<p></p>
+</body>
+</html>

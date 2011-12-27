@@ -37,6 +37,7 @@ public class ShellProcess extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		WavCodec.save(wavFilename, input);
 		doShell();
 		return new Tone(WavCodec.read(mp3Filename));

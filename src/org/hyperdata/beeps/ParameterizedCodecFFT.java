@@ -16,6 +16,8 @@ import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
 
 /**
+ * 
+ * PROBABLY NEEDS FIXING
  * @author danny
  * 
  */
@@ -73,8 +75,8 @@ private int age = 0;
 	 */
 
 	public void init() {
-		encoder = new ParameterizedEncoder();
-		decoder = new ParameterizedDecoderGoertzel();
+		encoder = new ParameterizedEncoder("Encoder");
+		decoder = new ParameterizedDecoderGoertzel("Decoder");
 		line = new Line();
 	}
 
@@ -200,11 +202,15 @@ private int age = 0;
 		return age;
 	}
 
+
 	/* (non-Javadoc)
-	 * @see org.hyperdata.go.Organism#setAge(int)
+	 * @see org.hyperdata.beeps.go.Organism#getAgeFactor()
 	 */
 	@Override
-	public void setAge(int age) {
-		this.age = age;
+	public double getMeanFitness() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+
 }

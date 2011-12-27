@@ -73,6 +73,7 @@ public class RunningAverage extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		//System.out.println("this.windowLength" + this.windowLength);
 		return new Tone(filter(input, this.windowLength));
 	}
@@ -84,6 +85,7 @@ public class RunningAverage extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
+		setEnabled((Boolean)  getLocal("on"));
 		windowLength = (Integer) getLocal("windowLength");
 
 	}

@@ -44,8 +44,12 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 	 *            the parameters to set
 	 */
 	public void setParameters(ParameterList parameters) {
-		this.parameters = parameters;
-		initFromParameters();
+		super.setParameters(parameters);
+	//	 this.parameters = parameters;
+		System.out.println("BEFORE\n"+this.parameters);
+		this.parameters.consume(parameters);
+		System.out.println("AFTER\n"+this.parameters);
+		// initFromParameters();
 	}
 
 	public ParameterList parameters = new DefaultParameterList();
@@ -55,7 +59,7 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 
 		// always normalise
 		Normalise norm = new Normalise("Decoder.input.normalise");
-		tones = norm.process(tones);
+//		tones = norm.process(tones);
 
 		tones = applyPreProcessors(tones);
 
@@ -83,7 +87,8 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		return IDN.toUnicode(ascii);
 	}
 
-	public ParameterizedDecoderGoertzel() {
+	public ParameterizedDecoderGoertzel(String name) {
+		super(name);
 		init();
 	}
 
@@ -120,57 +125,47 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 
 		pitchFinder = new GoertzelPitchFinder("Decoder.pitchFinder");
 
-		initRandomParameters();
-		initFromParameters();
+		createParameters();
+		//parameters.
+	//	initFromParameters();
 	}
 
 	public void initFromParameters() {
 		initProcessors();// clears pre/post lists
+		
 		try {
 			// *** Cropper - applied in main path ***
 			cropper.initFromParameters();
 
 			// *** HP ***
 			hp.initFromParameters();
-			if (parameters.getValue("Decoder.HP_FIR.on").equals("true")) {
 				addPreProcessor(hp);
-			}
 
 			addPreProcessor(norm);
 
 			lp1.initFromParameters();
-			if (parameters.getValue("Decoder.LP_FIR1.on").equals("true")) {
 				addPreProcessor(lp1);
-			}
 
 			addPreProcessor(norm);
 
 			lp2.initFromParameters();
-			if (parameters.getValue("Decoder.LP_FIR2.on").equals("true")) {
 				addPreProcessor(lp2);
-			}
 
 			addPreProcessor(norm);
 
 			compressor.initFromParameters();
-			if (parameters.getValue("Decoder.compressor.on").equals("true")) {
 				addPreProcessor(compressor);
-			}
 
 			// *** Chunker - applied in main path ***
 			chunker.initFromParameters();
 
 			// System.out.println(parameters);
-			// chunknorm.initFromParameters();
+			chunknorm.initFromParameters();
 			// *** chunknorm - normalise individual chunks ***
-			if (parameters.getValue("Decoder.chunkNorm.on").equals("true")) {
 				addPostProcessor(chunknorm);
-			}
 
 			chunkEnv.initFromParameters();
-			if (parameters.getValue("Decoder.chunkEnv.on").equals("true")) {
 				addPostProcessor(chunkEnv);
-			}
 			
 			pitchFinder.initFromParameters();
 			
@@ -179,7 +174,7 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		}
 	}
 
-	public void initRandomParameters() { // rename to encoder.silenceThreshold
+	public void createParameters() { // rename to encoder.silenceThreshold
 											// etc?
 		createParameter(cropper, "Decoder.cropper.silenceThreshold");
 		createParameter(chunker, "Decoder.chunker.cropProportion");

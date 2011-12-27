@@ -22,7 +22,7 @@ public abstract class DefaultParameter implements Parameter {
 	public DefaultParameter(Parameterized processor, String name){
 		this.processor = processor;
 		this.name = name;
-		initRandom();
+	//	initRandom();
 	}
 	
 	public DefaultParameter(Parameterized processor, String name, Object value){

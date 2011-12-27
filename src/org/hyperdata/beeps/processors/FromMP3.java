@@ -28,6 +28,7 @@ public class FromMP3 extends ShellProcess {
 	 */
 	@Override
 	public Tone process(Tone input) { // input is ignored
+		if(!isEnabled()) return input;
 		setShellCommand("lame --decode "+getMp3Filename() + " " + getWavFilename());
 		doShell();
 		

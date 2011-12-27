@@ -1,0 +1,8 @@
+Static HTML pages
+
+index.html
+
+log file
+
+cache
+

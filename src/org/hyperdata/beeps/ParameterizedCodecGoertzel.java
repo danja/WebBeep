@@ -6,6 +6,7 @@ package org.hyperdata.beeps;
 import org.hyperdata.beeps.util.Plotter;
 import java.util.List;
 
+import org.hyperdata.beeps.go.DefaultOrganism;
 import org.hyperdata.beeps.go.Organism;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
@@ -19,15 +20,10 @@ import org.hyperdata.beeps.util.WavCodec;
  * @author danny
  * 
  */
-public class ParameterizedCodecGoertzel implements Organism {
+public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 
 	private int minCharacters = 5;
 	private int maxCharacters = 30;
-	private int age = 0;
-
-	// somehow pass this
-	// parameters
-
 	/**
 	 * @param characters
 	 *            the characters to set
@@ -38,35 +34,11 @@ public class ParameterizedCodecGoertzel implements Organism {
 		this.maxCharacters = maxCharacters;
 	}
 
-	/**
-	 * @return the runTime
-	 */
-	public double getRunTime() {
-		return this.runTime;
-	}
-
-	/**
-	 * @return the accuracy
-	 */
-	public double getAccuracy() {
-		return this.accuracy;
-	}
-
-	boolean hasRun = false;
-	double fitness = -1;
-
 	ParameterizedEncoder encoder;
 	ParameterizedDecoderGoertzel decoder;
 	DefaultPipeline line;
-	private double runTime;
-	private double accuracy;
-
 	public ParameterizedCodecGoertzel() {
 
-	}
-
-	public double getFitness() {
-		return fitness;
 	}
 
 	/**
@@ -74,22 +46,23 @@ public class ParameterizedCodecGoertzel implements Organism {
 	 */
 
 	public void init() {
-		encoder = new ParameterizedEncoder();
-		decoder = new ParameterizedDecoderGoertzel();
+		encoder = new ParameterizedEncoder("Encoder");
+		decoder = new ParameterizedDecoderGoertzel("Decoder");
 		line = new Line();
 	}
 
 	public void run() {
+		super.run(); // ages it
 		// String input = "http://dannyayers.com";
 		String input = ASCIICodec.getRandomASCII(minCharacters, maxCharacters);
-		if(Math.random() > 0.7){
-			input = ASCIICodec.getRandomWebbyASCII(minCharacters, maxCharacters);
+		if (Math.random() > 0.7) {
+			input = ASCIICodec
+					.getRandomWebbyASCII(minCharacters, maxCharacters);
 		}
 		// input = "http://dannyayers.com";
-		
 
 		// input = "http://dannyayers.com";
-	//	 System.out.println("Input:"+input);
+		// System.out.println("Input:"+input);
 		// Debug debug = new Debug();
 
 		// String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
@@ -115,8 +88,12 @@ public class ParameterizedCodecGoertzel implements Organism {
 
 		// line will be the Real World between systems
 
-		Tone inTones = line.process(outTones); // skip saving
-
+		Tone inTones;
+		if (Math.random() > .75) { // 1/4 of the time, zero distortion
+			inTones = outTones;
+		} else {
+			inTones = line.process(outTones); // skip saving
+		}
 		startTime = System.currentTimeMillis();
 		String output = decoder.decode(inTones);
 		long decodeTime = System.currentTimeMillis() - startTime;
@@ -148,16 +125,9 @@ public class ParameterizedCodecGoertzel implements Organism {
 		}
 		Debug.log(encoder.parameters + "\n\n" + decoder.parameters);
 
-		this.runTime = ((double)encodeTime + (double)decodeTime) / 1000;
+		this.runTime = ((double) encodeTime + (double) decodeTime) / 1000;
 
-		this.fitness = (1+(double)age/100)  * accuracy * accuracy / (runTime + 1); // need to tweak age bit
-		if (accuracy < 0.02) {
-			fitness = fitness / 2;
-		}
-		// this.fitness = accuracy;
-		if (accuracy == 1.0) {
-			fitness = fitness * 10;
-		}
+
 	}
 
 	/*
@@ -196,30 +166,27 @@ public class ParameterizedCodecGoertzel implements Organism {
 		return all;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.hyperdata.go.Organism#getAge()
-	 */
-	@Override
-	public int getAge() {
-		return age;
+	public String toString() {
+		String string = "\n" + this.getClass().toString() + "\n";
+		string += "\n" + encoder.toString() + "\n";
+		string += "\n" + decoder.toString() + "\n";
+		return string;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.hyperdata.go.Organism#setAge(int)
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.go.Organism#getFitness()
 	 */
 	@Override
-	public void setAge(int age) {
-		this.age = age;
-	}
-	
-	public String toString(){
-		String string = "\n"+this.getClass().toString()+"\n";
-		string += "\n"+encoder.toString()+"\n";
-		string += "\n"+decoder.toString()+"\n";		
-		return string;
+	public double getFitness() {
+		double fitness = (1 + (double) getAge() / 100) * getAccuracy() * getAccuracy()
+				/ (getRunTime() + 1); // need to tweak age bit
+		if (getAccuracy() < 0.02) {
+			fitness = fitness / 2;
+		}
+		// this.fitness = accuracy;
+		if (getAccuracy() == 1.0) {
+			fitness = fitness * 10;
+		}
+		return fitness;
 	}
 }

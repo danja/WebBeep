@@ -25,6 +25,7 @@ public class AllToNoiseProcessor extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
+		setEnabled((Boolean)  getLocal("on"));
 		// TODO Auto-generated method stub
 		
 	}

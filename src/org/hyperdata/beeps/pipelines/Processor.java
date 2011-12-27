@@ -20,4 +20,6 @@ public interface Processor extends Parameterized {
 	
 	public Tone process(Tone input);
 	public Chunks process(Chunks input);
+	public void setEnabled(boolean enabled);
+	public boolean isEnabled();
 }

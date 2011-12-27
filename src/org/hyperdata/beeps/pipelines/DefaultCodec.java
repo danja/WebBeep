@@ -6,6 +6,7 @@ package org.hyperdata.beeps.pipelines;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
@@ -18,9 +19,21 @@ public abstract class DefaultCodec implements Codec {
 
 	private Pipeline preProcessors;
 	private Pipeline postProcessors;
+	private String name = null;
 	
-	public DefaultCodec(){
-		 initProcessors();
+	public DefaultCodec(String name){
+		this.name  = name;
+		 // initProcessors();
+	}
+	
+	/**
+	 * @param parameters the parameters to set
+	 */
+	public void setParameters(ParameterList parameters) {
+		initProcessors();
+preProcessors.setParameters(parameters);
+postProcessors.setParameters(parameters);
+	//	initFromParameters();
 	}
 	
 	/**
@@ -77,8 +90,9 @@ public abstract class DefaultCodec implements Codec {
 	 */
 	@Override
 	public void initProcessors() {
-		preProcessors = new DefaultPipeline("preprocessors");
-		postProcessors = new DefaultPipeline("postprocessors");
+	//	System.out.println("MYNAMEHERE="+getName());
+		preProcessors = new DefaultPipeline(getName());
+		postProcessors = new DefaultPipeline(getName());
 		Debug.debug("Processes cleared in "+this);
 	}
 	
@@ -118,5 +132,19 @@ public abstract class DefaultCodec implements Codec {
 		string += "\nPreProcessors:\n" + preProcessors.toString();
 		string += "\nPostProcessors:\n" + postProcessors.toString();
 		return string;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 }

@@ -48,7 +48,7 @@ public class Population {
 		// copy across the best 1/4
 		for (int i = 0; i < Go.populationSize/4; i++) {
 			Organism organism = organisms.get(i);
-			organism.setAge(organism.getAge()+1);
+		//	organism.setAge(organism.getAge()+1);
 			nextGeneration.add(organism);
 		}
 		

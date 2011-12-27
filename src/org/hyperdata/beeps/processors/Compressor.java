@@ -12,8 +12,6 @@ import org.hyperdata.beeps.util.Tone;
  */
 public class Compressor extends DefaultProcessor {
 
-
-
 	private double lowThreshold = 0.2; // anything below that is noise, leave alone
 	private double highThreshold = 0.8;	// anything above that is signal, leave alone
 	
@@ -30,6 +28,7 @@ public class Compressor extends DefaultProcessor {
 	 */
 	@Override
 	public Tone process(Tone input) {
+		if(!isEnabled()) return input;
 		Rectifier rectifier = new Rectifier("Compressor.rectifier");
 		Tone rectified = rectifier.process(input);
 		RunningAverage runningAverage = new RunningAverage("Compressor.runningAverage");
@@ -52,6 +51,7 @@ public class Compressor extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
+		setEnabled((Boolean)  getLocal("on"));
 		setLowThreshold((Double)getLocal("lowThreshold"));
 		setHighThreshold((Double)getLocal("highThreshold"));
 		setWindowLength((Integer)getLocal("windowLength"));

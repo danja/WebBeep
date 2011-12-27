@@ -29,8 +29,10 @@ import org.hyperdata.beeps.ParameterizedCodecGoertzel;
 public class ParameterListFile {
 	
 	private Properties properties = new Properties();
+	private ParameterList parameters;
 	
 public void save(ParameterList parameters, String filename){
+	this.parameters = parameters;
 	for(int i=0;i<parameters.size();i++){
 		String name = parameters.get(i).getName();
 		Object value = parameters.get(i).getValue();
@@ -51,7 +53,7 @@ public void save(ParameterList parameters, String filename){
 
 public ParameterList load(String filename){
 	properties.clear();
-	ParameterList parameters = new DefaultParameterList();
+	parameters = new DefaultParameterList();
 	InputStream in;
 	try {
 		in = new FileInputStream(filename);
@@ -74,6 +76,9 @@ public ParameterList load(String filename){
 	return parameters;
 }
 
+public String toString(){
+	return parameters.toString();
+}
 /**
  * @param name
  * @param value

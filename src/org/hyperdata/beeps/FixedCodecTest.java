@@ -66,6 +66,9 @@ public class FixedCodecTest {
 	//	 FFTDecoder decoder = new FFTDecoder();
 		GoertzelDecoder decoder = new GoertzelDecoder();
 		
+		System.out.println("==================== Fixed ==========================");
+		System.out.println(encoder);
+		System.out.println(decoder);
 		
 		startTime = System.currentTimeMillis();
 		String output = decoder.decode(inTones);

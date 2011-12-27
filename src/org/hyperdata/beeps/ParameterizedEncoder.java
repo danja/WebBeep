@@ -39,17 +39,10 @@ public class ParameterizedEncoder extends DefaultCodec {
 		return this.parameters;
 	}
 
-	/**
-	 * @param parameters the parameters to set
-	 */
-	public void setParameters(ParameterList parameters) {
-		this.parameters = parameters;
-		initFromParameters();
-	}
-
 	public ParameterList parameters = new DefaultParameterList();
 
-	public ParameterizedEncoder() {
+	public ParameterizedEncoder(String name) {
+		super(name);
 		init();
 	}
 
@@ -70,40 +63,34 @@ public class ParameterizedEncoder extends DefaultCodec {
 	}
 
 	private Processor chunkEnv;
-	
-	private Processor chunkNorm;
 
+	private Processor chunkNorm;
 
 	public void init() {
 		chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
 		chunkNorm = new Normalise("Encoder.chunkNorm");
-		
-		initRandomParameters();
-		initFromParameters();
+
+		createParameters();
+		// initFromParameters();
 	}
 
 	public void initFromParameters() {
-		initProcessors(); // clears pre/post lists
+		// initProcessors(); // clears pre/post lists
 		try {
 			chunkEnv.initFromParameters();
-			if (parameters.getValue("Encoder.chunkEnv.on").equals("true")) {
-				addPreProcessor(chunkEnv);
-			}
-			
+			addPreProcessor(chunkEnv);
 			chunkNorm.initFromParameters();
-			if (parameters.getValue("Encoder.chunkNorm.on").equals("true")) {
-				addPreProcessor(chunkNorm);
-			}
+			addPreProcessor(chunkNorm);
 		} catch (Exception exception) {
+			System.out.println("---- dodgy parameters:\n" + parameters);
 			exception.printStackTrace();
 		}
 	}
 
-	public void initRandomParameters() {
+	public void createParameters() {
 		createParameter(chunkEnv, "Encoder.chunkEnv.on");
 		createParameter(chunkEnv, "Encoder.chunkEnv.attackProportion");
 		createParameter(chunkEnv, "Encoder.chunkEnv.decayProportion");
-
 		createParameter(chunkNorm, "Encoder.chunkNorm.on");
 	}
 
@@ -114,11 +101,18 @@ public class ParameterizedEncoder extends DefaultCodec {
 		parameters.add(parameter);
 	}
 
-//	public String toString() {
-//		String string = "Encoder : "+ this.getClass().toString();
-////		if (parameters != null) {
-////			string += "\n" + parameters;
-////		}
-//		return string + "\n" + super.toString();
-//	}
+	public void setParameters(ParameterList parameters) {
+		super.setParameters(parameters);
+		this.parameters.consume(parameters);
+
+		System.out.println("PARQMETERS=" + parameters);
+	}
+
+	// public String toString() {
+	// String string = "Encoder : "+ this.getClass().toString();
+	// // if (parameters != null) {
+	// // string += "\n" + parameters;
+	// // }
+	// return string + "\n" + super.toString();
+	// }
 }

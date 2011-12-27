@@ -4,9 +4,13 @@
 package org.hyperdata.beeps.pipelines;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.parameters.Parameter;
+import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
@@ -32,26 +36,26 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 	}
 
 	List<Processor> processors = new ArrayList<Processor>();
+	Map<String, Processor> processorNames  = new HashMap<String, Processor>(); // yuck...
+	
+	
 
 	public int size(){
 		return processors.size();
 	}
 	
-	public void addProcessor(Processor processor) {
-		processors.add(processor);
-	}
-
-//	public List<Double> applyProcessors(List<Double> input) {
-//		if(processors.size() == 0) return input;
-//		Debug.verbose("Applying "+processors.size()+" processors");
-//		List<Double> output = input;
-//		for(int i=0;i<processors.size();i++){
-//			Processor processor = processors.get(i);
-//			Debug.verbose("Applying process : "+processor);
-//			output = processor.process(output);
-//		}
-//		return output;
+//	public Processor get(int i){
+//		return processors.get(i);
 //	}
+	
+	public void addProcessor(Processor processor) {
+		processors.add(processor);;
+		processorNames.put(processor.getName(), processor);
+	}
+	
+	public Processor getProcessor(String name){
+		return processorNames.get(name);
+	}
 	
 	public Tone process(Tone tone) {
 		if(processors.size() == 0) return tone;
@@ -103,7 +107,7 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 	}
 	
 	public String toString(){
-		String string = "";
+		String string = getName()+"\n";
 		if(processors.size() == 0){
 			return "\tEmpty Pipeline";
 		}
@@ -111,5 +115,32 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 			string += "\t"+processors.get(i).toString();
 		}
 		return string;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Pipeline#setParameters(org.hyperdata.beeps.parameters.ParameterList)
+	 * 
+	 * this is horrible!
+	 */
+	@Override
+	public void setParameters(ParameterList parameters) {
+		System.out.println("THIS="+this);
+		if(processors.size() == 0) return;
+
+	for(int i=0;i<parameters.size();i++){
+		String name = parameters.get(i).getName();
+		System.out.println("PARAMETERNAME="+name);
+		String[] split = name.split("\\.");
+		System.out.println("PIPENAME="+getName());
+		Processor processor = getProcessor(split[0]+"."+split[1]);
+		
+		System.out.println("Processor="+processor);
+		Parameter parameter = parameters.get(i);
+		if(split[0].equals(getName()) && getProcessor(split[1]) != null) { // Decoder.LP_FIR1.window
+			parameter.setProcessor(processor);
+			processor.setParameter(parameter);
+			System.out.println("Processor="+processor);
+		}
+	}
 	}
 }

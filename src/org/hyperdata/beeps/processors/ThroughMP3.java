@@ -28,6 +28,7 @@ public class ThroughMP3 extends ShellProcess {
 	 */
 	@Override
 	public Tone process(Tone input) { // input is ignored
+		if(!isEnabled()) return input;
 		WavCodec.save(getWavFilename(), input);;
 		
 		// V7 is 100Kbit/s
