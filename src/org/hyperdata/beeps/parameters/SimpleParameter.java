@@ -17,9 +17,9 @@ public class SimpleParameter extends DefaultParameter {
 	/**
 	 * 
 	 */
-	public SimpleParameter() {
-		// TODO Auto-generated constructor stub
-	}
+//	public SimpleParameter() {
+//		// TODO Auto-generated constructor stub
+//	}
 	/* (non-Javadoc)
 	 * @see org.hyperdata.go.parameters.Parameter#initRandom()
 	 */

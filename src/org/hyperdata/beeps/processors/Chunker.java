@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Encoder;
-import org.hyperdata.beeps.parameters.DefaultParameterized;
+import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
@@ -18,7 +18,7 @@ import org.hyperdata.beeps.util.WavCodec;
  * @author danny
  * 
  */
-public class Chunker extends DefaultParameterized implements SplittingProcessor {
+public class Chunker extends DefaultParameterList implements SplittingProcessor {
 	
 	public Chunker(String name){
 		super(name);
@@ -28,12 +28,14 @@ public class Chunker extends DefaultParameterized implements SplittingProcessor 
 	
 
 	
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
-	 */
-	@Override
+
 	public void initFromParameters() {
-		cropProportion = (Double) getLocal("cropProportion");
+		try {
+			cropProportion = (Double) getLocal("cropProportion");
+		} catch (Exception exception) {
+			// TODO Auto-generated catch block
+			exception.printStackTrace();
+		}
 //		cropLength = (int) (cropProportion
 //				* Constants.TONE_DURATION * Constants.SAMPLE_RATE); // was /2
 	}

@@ -12,7 +12,6 @@ import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
 import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.parameters.Parameterized;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.processors.AllToNoiseProcessor;
@@ -36,6 +35,7 @@ public class ParameterizedEncoder extends DefaultCodec {
 	 * @return the parameters
 	 */
 	public ParameterList getParameters() {
+	//	return super.getParameters();
 		return this.parameters;
 	}
 
@@ -68,8 +68,10 @@ public class ParameterizedEncoder extends DefaultCodec {
 
 	public void init() {
 		chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
+		addPreProcessor(chunkEnv);
 		chunkNorm = new Normalise("Encoder.chunkNorm");
-
+		addPreProcessor(chunkNorm);
+		
 		createParameters();
 		// initFromParameters();
 	}
@@ -78,9 +80,7 @@ public class ParameterizedEncoder extends DefaultCodec {
 		// initProcessors(); // clears pre/post lists
 		try {
 			chunkEnv.initFromParameters();
-			addPreProcessor(chunkEnv);
 			chunkNorm.initFromParameters();
-			addPreProcessor(chunkNorm);
 		} catch (Exception exception) {
 			System.out.println("---- dodgy parameters:\n" + parameters);
 			exception.printStackTrace();
@@ -94,7 +94,7 @@ public class ParameterizedEncoder extends DefaultCodec {
 		createParameter(chunkNorm, "Encoder.chunkNorm.on");
 	}
 
-	private void createParameter(Parameterized processor, String name) {
+	private void createParameter(ParameterList processor, String name) {
 		Parameter parameter = ParameterFactory.createParameter(processor, name);
 		processor.setParameter(parameter);
 		Debug.debug("Created : " + parameter);
@@ -105,7 +105,7 @@ public class ParameterizedEncoder extends DefaultCodec {
 		super.setParameters(parameters);
 		this.parameters.consume(parameters);
 
-		System.out.println("PARQMETERS=" + parameters);
+	//	System.out.println("PARQMETERS=" + parameters);
 	}
 
 	// public String toString() {

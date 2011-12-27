@@ -3,20 +3,22 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 
 
 /**
  * @author danny
  *
  */
-public interface Parameter {
+public interface Parameter extends Named {
 
-	public void setName(String name);
-	public String getName();
+//	public void setName(String name);
+//	public String getName();
 	// public void init();
 	public void initRandom();
 	public Object getValue();
-	public Parameterized getProcessor();
+	public ParameterList getProcessor();
 //	public void setDatatype(String datatype);
 //	public String getDatatype();
 	/**
@@ -30,6 +32,6 @@ public interface Parameter {
 	/**
 	 * @param processor
 	 */
-	public void setProcessor(Parameterized processor);
+	public void setProcessor(ParameterList processor);
 
 }

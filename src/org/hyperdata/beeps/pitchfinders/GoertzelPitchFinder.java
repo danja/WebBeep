@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.hyperdata.beeps.Maps;
-import org.hyperdata.beeps.parameters.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
 
@@ -52,7 +51,7 @@ public class GoertzelPitchFinder  extends DefaultPitchFinder {
 	/* (non-Javadoc)
 	 * @see org.hyperdata.go.parameters.Parameterized#initFromParameters()
 	 */
-	@Override
+
 	public void initFromParameters() {
 		threshold = (Double) getLocal("gThreshold");
 	}

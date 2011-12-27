@@ -4,6 +4,7 @@
 package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.pipelines.Processor;
 
 /**
  * @author danny
@@ -11,7 +12,7 @@ import org.hyperdata.beeps.Debug;
  */
 public class ParameterFactory {
 	
-	public static Parameter createParameter(Parameterized processor, String parameterName){
+	public static Parameter createParameter(ParameterList processor, String parameterName){
 		String[] split = parameterName.split("\\.");
 		String type = split[2];
 //		System.out.println("parameterName="+parameterName);

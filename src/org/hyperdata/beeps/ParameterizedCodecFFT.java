@@ -166,8 +166,8 @@ private int age = 0;
 	 */
 	@Override
 	public void setParameters(ParameterList parameters) { // clunky
-		ParameterList encoderParameters = new DefaultParameterList();
-		ParameterList decoderParameters = new DefaultParameterList();
+		ParameterList encoderParameters = new DefaultParameterList("Encoder");
+		ParameterList decoderParameters = new DefaultParameterList("Decoder");
 		for(int i=0;i<parameters.size();i++){
 			Parameter parameter = parameters.get(i);
 			if(parameter.getName().startsWith("Encoder")){

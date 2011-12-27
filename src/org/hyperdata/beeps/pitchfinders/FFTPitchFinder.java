@@ -15,7 +15,6 @@ import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
 import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.Maps;
-import org.hyperdata.beeps.parameters.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.processors.Normalise;
@@ -45,7 +44,7 @@ public class FFTPitchFinder extends DefaultPitchFinder { // was extends
 	 * 
 	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
 	 */
-	@Override
+
 	public void initFromParameters() {
 		fftBits = (Integer) getLocal("fftBits");
 		fftMax = (int) Math.pow(2, fftBits);

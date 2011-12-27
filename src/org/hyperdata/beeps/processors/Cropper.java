@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.parameters.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
 
@@ -28,8 +27,10 @@ public class Cropper extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() { // PARAMETERS AREN'T BEING SET LOCAL TO PROCESSORS
-		setEnabled((Boolean)  getLocal("on"));
-		System.out.println(" getLocal(silenceThreshold); = "+ getLocal("silenceThreshold"));
+		System.out.println("THIS="+this);
+		setEnabled((Boolean)getLocal("on"));
+		
+		// System.out.println(" getLocal(silenceThreshold); = "+ getLocal("silenceThreshold"));
 		silenceThreshold = (Double) getLocal("silenceThreshold");
 	}
 			

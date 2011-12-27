@@ -5,6 +5,7 @@ package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.pipelines.Processor;
 
 /**
  * @author danny
@@ -15,11 +16,11 @@ import org.hyperdata.beeps.Debug;
  */
 public class FrequencyParameter extends DefaultParameter {
 
-	public FrequencyParameter(){
-		
-	}
+//	public FrequencyParameter(){
+//		
+//	}
 	
-	public FrequencyParameter(Parameterized processor, String name) {
+	public FrequencyParameter(ParameterList processor, String name) {
 		super(processor, name);
 	}
 
@@ -31,7 +32,13 @@ public class FrequencyParameter extends DefaultParameter {
 	@Override
 	public void initRandom() {
 		// System.out.println(getProcessor());
-		String shape = (String)getProcessor().getParameter("shape");
+		String shape = null;
+		try {
+			shape = (String)getProcessor().getValue("shape");
+		} catch (Exception exception) {
+			// TODO Auto-generated catch block
+			exception.printStackTrace();
+		}
 	
 		Debug.debug("Initializing a "+shape);
 		if (shape.equals("LP")) {

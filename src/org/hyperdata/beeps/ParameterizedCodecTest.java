@@ -46,6 +46,7 @@ public class ParameterizedCodecTest {
 			System.out.println(encoder);
 			System.out.println(decoder);
 			
+			// PARAMETERS AREN't getting set 
 			encoder.initFromParameters();
 			decoder.initFromParameters();
 			

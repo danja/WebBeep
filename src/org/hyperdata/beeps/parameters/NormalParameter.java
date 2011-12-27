@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 
 /**
  * @author danny
@@ -12,14 +14,14 @@ package org.hyperdata.beeps.parameters;
  */
 public class NormalParameter extends DefaultParameter {
 
-	public NormalParameter(){
-		
-	}
+//	public NormalParameter(){
+//		
+//	}
 	/**
 	 * @param processor
 	 * @param name
 	 */
-	public NormalParameter(Parameterized processor, String name) {
+	public NormalParameter(ParameterList processor, String name) {
 		super(processor, name);
 	}
 

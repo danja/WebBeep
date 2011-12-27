@@ -9,7 +9,6 @@ import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
 import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.parameters.Parameterized;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
@@ -218,7 +217,7 @@ public class ParameterizedDecoderFFT extends DefaultCodec {
 		createParameter(pitchFinder, "Decoder.pitchFinder.repeatToFit");
 	}
 
-	private void createParameter(Parameterized processor, String name) {
+	private void createParameter(ParameterList processor, String name) {
 		Parameter parameter = ParameterFactory.createParameter(processor, name);
 		processor.setParameter(parameter);
 		Debug.debug("Created : " + parameter);

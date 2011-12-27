@@ -9,10 +9,12 @@ import org.hyperdata.beeps.pipelines.Processor;
  * @author danny
  *
  */
-public interface ParameterList {
+public interface ParameterList extends Named {
 	public void add(Parameter param);
 	
 	public Object getValue(String name) throws Exception;
+	
+	public Parameter getParameter(String name);
 	/**
 	 * @param chunkEnv
 	 */
@@ -37,6 +39,9 @@ public interface ParameterList {
 	 * @param incoming
 	 */
 	public void consume(ParameterList incoming);
+	
+	public void setParameter(Parameter parameter);
+
 	
 	public void randomizeValues();
 }

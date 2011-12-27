@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 
 /**
  * @author danny
@@ -10,11 +12,11 @@ package org.hyperdata.beeps.parameters;
  */
 public class RunningAverageWindowLengthParameter extends DefaultParameter {
 
-	public RunningAverageWindowLengthParameter(){
-		
-	}
+//	public RunningAverageWindowLengthParameter(){
+//		
+//	}
 	
-	public RunningAverageWindowLengthParameter(Parameterized processor, String name) {
+	public RunningAverageWindowLengthParameter(ParameterList processor, String name) {
 		super(processor, name);
 	}
 	

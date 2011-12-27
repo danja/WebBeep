@@ -6,7 +6,6 @@ package org.hyperdata.beeps.processors;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.parameters.DefaultParameterized;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
 
@@ -74,7 +73,7 @@ public class EnvelopeShaper extends DefaultProcessor {
 	//	Debug.debug("parameters="+parameters);
 //		Debug.halt(this);
 // System.out.println("parameters.get(attackProportion)="+parameters.get("attackProportion"));
-		setEnabled("true".equals((Double)getLocal("on")));
+		setEnabled((Boolean)getLocal("on"));
 		setAttackProportion((Double)getLocal("attackProportion"));
 		setDecayProportion((Double)getLocal("decayProportion"));
 		

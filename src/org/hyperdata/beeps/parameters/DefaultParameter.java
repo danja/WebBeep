@@ -3,32 +3,32 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 
 
 /**
  * @author danny
  *
  */
-public abstract class DefaultParameter implements Parameter {
+public abstract class DefaultParameter extends DefaultNamed implements Parameter {
 
-	protected String name = "unnamed";
 	protected Object value;
-	private Parameterized processor;
+	private ParameterList processor;
 	// private String datatype = "";
 	
-	public DefaultParameter(){
+	public DefaultParameter(String name){
+		super(name);
 	}
 	
-	public DefaultParameter(Parameterized processor, String name){
-		this.processor = processor;
-		this.name = name;
-	//	initRandom();
+	public DefaultParameter(ParameterList processor, String name){
+		super(name);
+		setProcessor(processor);
 	}
 	
-	public DefaultParameter(Parameterized processor, String name, Object value){
-		this.processor = processor;
-		this.name = name;
-		this.value = value;
+	public DefaultParameter(ParameterList processor, String name, Object value){
+		this(processor, name);
+		setValue(value);
 	}
 	
 	public DefaultParameter(String name, Object value){
@@ -38,19 +38,16 @@ public abstract class DefaultParameter implements Parameter {
 	/**
 	 * @param processor the processor to set
 	 */
-	public void setProcessor(Parameterized processor) {
+	public void setProcessor(ParameterList processor) {
 		this.processor = processor;
 	}
-
-
-	
 	
 	public Parameter clone(){
 		Parameter clone = null;
 		try {
 			clone = this.getClass().newInstance();
 			clone.setProcessor(processor);
-			clone.setName(name);
+			clone.setName(getName());
 			clone.setValue(value);
 		} catch (InstantiationException exception) {
 			exception.printStackTrace();
@@ -63,29 +60,14 @@ public abstract class DefaultParameter implements Parameter {
 	/**
 	 * @return the processor
 	 */
-	public Parameterized getProcessor() {
+	public ParameterList getProcessor() {
 		return this.processor;
 	}
 	
 	public String toString(){
-		return name + " = " + value;
+		return getName() + " = " + value;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.optimize.Parameter#setName(java.lang.String)
-	 */
-	@Override
-	public void setName(String name) {
-		this.name  = name;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.optimize.Parameter#getName()
-	 */
-	@Override
-	public String getName() {
-		return name;
-	}
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.optimize.Parameter#getValue()

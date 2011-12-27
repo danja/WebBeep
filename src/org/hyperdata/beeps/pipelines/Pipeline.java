@@ -24,6 +24,11 @@ public interface Pipeline extends Processor {
 //	public Processor get(int i);
 	
 	public void setParameters(ParameterList parameters);
+
+	/**
+	 * @return
+	 */
+	public ParameterList getParameters();
 	
 
 }

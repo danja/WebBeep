@@ -4,6 +4,7 @@
 package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.filters.Firk;
+import org.hyperdata.beeps.pipelines.Processor;
 
 /**
  * @author danny
@@ -11,11 +12,11 @@ import org.hyperdata.beeps.filters.Firk;
  */
 public class FIRWindowParameter extends DefaultParameter {
 
-	public FIRWindowParameter(){
-		
-	}
+//	public FIRWindowParameter(){
+//		
+//	}
 	
-	public FIRWindowParameter(Parameterized processor, String name){
+	public FIRWindowParameter(ParameterList processor, String name){
 		super(processor, name);
 	}
 	

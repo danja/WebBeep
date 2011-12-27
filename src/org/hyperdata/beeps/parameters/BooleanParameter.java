@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 
 /**
  * @author danny
@@ -10,11 +12,11 @@ package org.hyperdata.beeps.parameters;
  */
 public class BooleanParameter extends DefaultParameter {
 	
-	public BooleanParameter(){
-		
-	}
+//	public BooleanParameter(){
+//		
+//	}
 	
-	public BooleanParameter(Parameterized processor, String name){
+	public BooleanParameter(ParameterList processor, String name){
 		super(processor, name);
 	}
 
@@ -35,9 +37,9 @@ public class BooleanParameter extends DefaultParameter {
 	@Override
 	public void initRandom() {
 		if(Math.random() > 0.5){
-			value = "true";
+			value = true;
 		} else {
-			value = "false";
+			value = false;
 		}
 	}
 	

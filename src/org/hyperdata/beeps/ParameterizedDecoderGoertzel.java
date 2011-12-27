@@ -9,7 +9,6 @@ import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
 import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.parameters.Parameterized;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder;
@@ -46,9 +45,9 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 	public void setParameters(ParameterList parameters) {
 		super.setParameters(parameters);
 	//	 this.parameters = parameters;
-		System.out.println("BEFORE\n"+this.parameters);
+	//	System.out.println("BEFORE\n"+this.parameters);
 		this.parameters.consume(parameters);
-		System.out.println("AFTER\n"+this.parameters);
+	//	System.out.println("AFTER\n"+this.parameters);
 		// initFromParameters();
 	}
 
@@ -112,16 +111,26 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 
 		hp = new FIRProcessor("Decoder.HP_FIR");
 		hp.setParameter("Decoder.HP_FIR.shape", "HP"); // fixed parameter
-
+		addPreProcessor(hp);
+		addPreProcessor(norm);
+		
 		lp1 = new FIRProcessor("Decoder.LP_FIR1");
 		lp1.setParameter("Decoder.LP_FIR1.shape", "LP"); // fixed parameter
-
+		addPreProcessor(lp1);
+		addPreProcessor(norm);
+		
 		lp2 = new FIRProcessor("Decoder.LP_FIR2");
 		lp2.setParameter("Decoder.LP_FIR2.shape", "LP"); // fixed parameter
-
+		addPreProcessor(lp2);
+		addPreProcessor(norm);
+		
 		chunker = new Chunker("Decoder.chunker");
+		
 		chunknorm = new Normalise("Decoder.normalise");
+		addPostProcessor(chunknorm);
+		
 		chunkEnv = new EnvelopeShaper("Decoder.chunkEnv");
+		addPostProcessor(chunkEnv);
 
 		pitchFinder = new GoertzelPitchFinder("Decoder.pitchFinder");
 
@@ -131,41 +140,26 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 	}
 
 	public void initFromParameters() {
-		initProcessors();// clears pre/post lists
-		
+		// initProcessors();// clears pre/post lists
 		try {
 			// *** Cropper - applied in main path ***
 			cropper.initFromParameters();
-
-			// *** HP ***
 			hp.initFromParameters();
-				addPreProcessor(hp);
-
-			addPreProcessor(norm);
-
 			lp1.initFromParameters();
-				addPreProcessor(lp1);
-
-			addPreProcessor(norm);
-
 			lp2.initFromParameters();
-				addPreProcessor(lp2);
-
-			addPreProcessor(norm);
-
 			compressor.initFromParameters();
 				addPreProcessor(compressor);
 
 			// *** Chunker - applied in main path ***
 			chunker.initFromParameters();
 
-			// System.out.println(parameters);
+			 System.out.println("HERE="+parameters);
 			chunknorm.initFromParameters();
 			// *** chunknorm - normalise individual chunks ***
-				addPostProcessor(chunknorm);
+				
 
 			chunkEnv.initFromParameters();
-				addPostProcessor(chunkEnv);
+				
 			
 			pitchFinder.initFromParameters();
 			
@@ -174,11 +168,15 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		}
 	}
 
-	public void createParameters() { // rename to encoder.silenceThreshold
-											// etc?
+	public void createParameters() { 
 		createParameter(cropper, "Decoder.cropper.silenceThreshold");
+		createParameter(cropper, "Decoder.cropper.on");
+		
 		createParameter(chunker, "Decoder.chunker.cropProportion");
+		createParameter(chunker, "Decoder.chunker.on");
+		
 		createParameter(chunknorm, "Decoder.chunkNorm.on");
+		
 		createParameter(chunkEnv, "Decoder.chunkEnv.on");
 		createParameter(chunkEnv, "Decoder.chunkEnv.attackProportion");
 		createParameter(chunkEnv, "Decoder.chunkEnv.decayProportion");
@@ -201,7 +199,7 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		createParameter(pitchFinder, "Decoder.pitchFinder.gThreshold");
 	}
 
-	private void createParameter(Parameterized parameterized, String name) {
+	private void createParameter(ParameterList parameterized, String name) {
 		Parameter parameter = ParameterFactory.createParameter(parameterized, name);
 //		System.out.println("parameter="+parameter);
 //		System.out.println("name="+name);

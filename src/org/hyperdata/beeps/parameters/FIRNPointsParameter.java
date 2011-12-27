@@ -3,17 +3,19 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 
 /**
  * @author danny 64...4096
  */
 public class FIRNPointsParameter extends DefaultParameter {
 
-	public FIRNPointsParameter(){
-		
-	}
+//	public FIRNPointsParameter(){
+//		
+//	}
 	
-	public FIRNPointsParameter(Parameterized processor, String name) {
+	public FIRNPointsParameter(ParameterList processor, String name) {
 		super(processor, name);
 	}
 

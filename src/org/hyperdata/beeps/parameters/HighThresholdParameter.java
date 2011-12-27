@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 
 /**
  * @author danny
@@ -10,15 +12,15 @@ package org.hyperdata.beeps.parameters;
  */
 public class HighThresholdParameter extends DefaultParameter {
 
-	public HighThresholdParameter(){
-		
-	}
+//	public HighThresholdParameter(){
+//		
+//	}
 	
 	/**
 	 * @param processor
 	 * @param parameterName
 	 */
-	public HighThresholdParameter(Parameterized processor, String parameterName) {
+	public HighThresholdParameter(ParameterList processor, String parameterName) {
 		super(processor, parameterName);
 	}
 
@@ -28,7 +30,7 @@ public class HighThresholdParameter extends DefaultParameter {
 	@Override
 	public void initRandom() {
 		// TODO Auto-generated method stub
-		Parameterized p = getProcessor();
+		ParameterList p = getProcessor();
 		Object low = p.getParameter("lowThreshold");
 		
 		

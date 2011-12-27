@@ -53,7 +53,7 @@ public void save(ParameterList parameters, String filename){
 
 public ParameterList load(String filename){
 	properties.clear();
-	parameters = new DefaultParameterList();
+	parameters = new DefaultParameterList("From File");
 	InputStream in;
 	try {
 		in = new FileInputStream(filename);
@@ -86,25 +86,24 @@ public String toString(){
  * @return
  */
 private Parameter makeParameter(String name, String value, String datatype) {
-	Parameter parameter = new SimpleParameter();
-	parameter.setName(name);
+
+	Object valueObject = null;
 	if("java.lang.String".equals(datatype)){
-		parameter.setValue(value);
-		return parameter;
+		valueObject = value;
+	}
+	if("java.lang.Boolean".equals(datatype)){
+		valueObject = Boolean.parseBoolean(value);
 	}
 	if("java.lang.Integer".equals(datatype)){
-		parameter.setValue(Integer.parseInt(value));
-		return parameter;
+		valueObject = Integer.parseInt(value);
 	}
 	if("java.lang.Float".equals(datatype)){
-		parameter.setValue(Float.parseFloat(value));
-		return parameter;
+		valueObject = Float.parseFloat(value);
 	}
 	if("java.lang.Double".equals(datatype)){
-		parameter.setValue(Double.parseDouble(value));
-		return parameter;
+		valueObject = Double.parseDouble(value);
 	}
-	return null;
+	return new SimpleParameter(name, valueObject);
 }
 
 public static void main(String[] args){

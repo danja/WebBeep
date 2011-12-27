@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.parameters.DefaultParameterized;
+import org.hyperdata.beeps.parameters.DefaultParameterList;
+import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
@@ -15,7 +16,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public abstract class DefaultProcessor extends DefaultParameterized implements Processor {
+public abstract class DefaultProcessor extends DefaultParameterList implements Processor {
 
 	private boolean enabled = true;
 	
@@ -39,7 +40,7 @@ public abstract class DefaultProcessor extends DefaultParameterized implements P
 	}
 	
 	public String toString(){
-		String string = "Processor : "+this.getClass().toString();
+		String string = "Processor : "+getName()+" = "+this.getClass().toString();
 		string += "\n" + super.toString();
 		return string;
 	}

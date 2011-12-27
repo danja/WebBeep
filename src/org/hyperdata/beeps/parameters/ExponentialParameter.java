@@ -5,6 +5,7 @@ package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.pipelines.Processor;
 
 /**
  * @author danny
@@ -19,11 +20,11 @@ public class ExponentialParameter extends DefaultParameter {
 	private double low = 1;
 	private double high = 100;
 
-	public ExponentialParameter() {
+//	public ExponentialParameter() {
+//
+//	}
 
-	}
-
-	public ExponentialParameter(Parameterized processor, String name) {
+	public ExponentialParameter(ParameterList processor, String name) {
 		super(processor, name);
 	}
 

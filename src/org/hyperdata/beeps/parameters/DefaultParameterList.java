@@ -18,9 +18,22 @@ import org.hyperdata.beeps.pipelines.Processor;
 public class DefaultParameterList implements ParameterList {
 
 	private List<Parameter> parameters = new ArrayList<Parameter>();
+	private String name;
 
+	public DefaultParameterList(String name) {
+this.name = name;
+	}
+	
 	public DefaultParameterList() {
 
+	}
+	
+
+	
+	public Object getLocal(String key) { // i.e. get("Encoder.HP.window")
+//		System.out.println("key="+key);
+//		System.out.println("key2="+getName()+"."+key);
+		return getValue(getName()+"."+key);
 	}
 
 	/**
@@ -87,6 +100,38 @@ public class DefaultParameterList implements ParameterList {
 		return -1;
 	}
 	
+	/**
+	 * rename?
+	 */
+	public void setParameter(Parameter parameter){
+		int index = findParameter(parameter.getName());
+		if(index != -1){
+		parameters.get(index).setValue(parameter.getValue());
+		return;
+		}
+		parameters.add(parameter);
+	}
+	
+	/**
+	 * rename
+	 * @param name
+	 * @param value
+	 */
+	public void setParameter(String name, String value){
+		int index = findParameter(name);
+		if(index != -1){
+			get(index).setValue(value);
+			return;
+		}
+		add(new SimpleParameter(name, value));
+		
+	}
+	
+	public Parameter getParameter(String name){
+		int index = findParameter(name);
+		return parameters.get(index);
+	}
+	
 	
 	public void randomizeValues(){
 		for(int i=0;i<parameters.size();i++){
@@ -113,13 +158,14 @@ public class DefaultParameterList implements ParameterList {
 	 * @see org.hyperdata.beeps.optimize.ParameterSet#getValue(java.lang.String)
 	 */
 	@Override
-	public Object getValue(String name) throws Exception {
+	public Object getValue(String name) {
 		for (int i = 0; i < parameters.size(); i++) {
 			if (parameters.get(i).getName().equals(name))
 				return parameters.get(i).getValue();
 		}
 		System.out.println("*** Dodgy parameters :\n" + this);
-		throw new Exception("Parameter named " + name + " not found.");
+//		throw new Exception("Parameter named " + name + " not found.");
+		return null;
 	}
 
 	public String toString() {
@@ -128,5 +174,19 @@ public class DefaultParameterList implements ParameterList {
 			string += parameters.get(i).toString() + "\n";
 		}
 		return string;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 }

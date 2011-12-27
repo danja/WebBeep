@@ -16,9 +16,6 @@ public class TimeStampParameter extends SimpleParameter implements Parameter {
 			"yyyy-MM-dd'T'HH:mm:ssz");
 	
 	public TimeStampParameter(){
-		super();
-		setName("Date");
-		setValue(isoDate.format(new Date()));
+		super("Date", isoDate.format(new Date()));
 	}
-
 }

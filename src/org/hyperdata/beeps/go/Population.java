@@ -112,7 +112,7 @@ public class Population {
 		// System.out.println("pl1.size()="+pl1.size());
 		int crossoverPoint = (int) ((double)pl1.size() * Math.random());
 // System.out.println("crossoverPoint = "+crossoverPoint);
-		ParameterList childParameters = new DefaultParameterList();
+		ParameterList childParameters = new DefaultParameterList("Children");
 
 		for (int j = 0; j < crossoverPoint; j++) {
 			childParameters.add(pl1.get(j));

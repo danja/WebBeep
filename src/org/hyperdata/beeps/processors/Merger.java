@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.WaveMaker;
-import org.hyperdata.beeps.parameters.DefaultParameterized;
+import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.MergingProcessor;
@@ -20,7 +20,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public class Merger extends DefaultParameterized implements MergingProcessor {
+public class Merger extends DefaultParameterList implements MergingProcessor {
 
 	public Merger(){
 		
@@ -36,7 +36,7 @@ public class Merger extends DefaultParameterized implements MergingProcessor {
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
 	 */
-	@Override
+
 	public void initFromParameters() {
 		// no parameters (yet)
 	}

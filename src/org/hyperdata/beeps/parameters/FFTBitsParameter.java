@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.pipelines.Processor;
+
 
 /**
  * @author danny
@@ -10,14 +12,14 @@ package org.hyperdata.beeps.parameters;
  */
 public class FFTBitsParameter extends DefaultParameter {
 
-	public FFTBitsParameter(){
-		
-	}
+//	public FFTBitsParameter(){
+//		
+//	}
 	/**
 	 * @param processor
 	 * @param name
 	 */
-	public FFTBitsParameter(Parameterized processor, String name) {
+	public FFTBitsParameter(ParameterList processor, String name) {
 		super(processor, name);
 	}
 
