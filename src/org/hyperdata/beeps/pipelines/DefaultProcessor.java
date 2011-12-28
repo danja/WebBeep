@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.config.Debug;
+import org.hyperdata.beeps.parameters.DefaultComponentList;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.util.Chunks;
@@ -16,7 +17,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public abstract class DefaultProcessor extends DefaultParameterList implements Processor {
+public abstract class DefaultProcessor extends DefaultComponent implements Processor {
 
 	private boolean enabled = true;
 	

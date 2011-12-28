@@ -41,16 +41,16 @@ public class CodecTest {
 			ParameterListFile plf = new ParameterListFile();
 			ParameterList config = plf.load(configFilename);
 			
-			System.out.println("SETTING CONFIG \n"+config);
+		//	System.out.println("SETTING CONFIG \n"+config);
 			
 			encoder.setParameters(config);
 			decoder.setParameters(config);
 			
-			System.out.println("AFTER SET \n");
-			System.out.println(encoder);
-			System.exit(0);
+//			System.out.println("AFTER SET \n");
+//			System.out.println(encoder);
+//			System.exit(0);
 			
-			System.out.println(decoder);
+		//	System.out.println(decoder);
 			
 			// PARAMETERS AREN't getting set 
 			encoder.initFromParameters();

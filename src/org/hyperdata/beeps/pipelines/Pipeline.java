@@ -5,6 +5,7 @@ package org.hyperdata.beeps.pipelines;
 
 import java.util.List;
 
+import org.hyperdata.beeps.parameters.ComponentList;
 import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
@@ -14,7 +15,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public interface Pipeline extends Processor {
+public interface Pipeline extends Processor, ComponentList {
 
 	public void addProcessor(Processor processor);
 //	public List<Double> applyProcessors(List<Double> input);
@@ -23,7 +24,7 @@ public interface Pipeline extends Processor {
 	
 //	public Processor get(int i);
 	
-	public void updateParameters(ParameterList parameters);
+	// public void updateParameters(ParameterList parameters);
 
 	/**
 	 * @return

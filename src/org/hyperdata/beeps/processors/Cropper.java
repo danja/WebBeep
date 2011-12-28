@@ -26,8 +26,8 @@ public class Cropper extends DefaultProcessor {
 	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
 	 */
 	@Override
-	public void initFromParameters() { // PARAMETERS AREN'T BEING SET LOCAL TO PROCESSORS
-		System.out.println("THIS="+this);
+	public void initFromParameters() { 
+	//	System.out.println("THIS="+this);
 		setEnabled((Boolean)getLocal("on"));
 		
 		// System.out.println(" getLocal(silenceThreshold); = "+ getLocal("silenceThreshold"));

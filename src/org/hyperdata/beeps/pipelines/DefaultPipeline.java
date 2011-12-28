@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.hyperdata.beeps.config.Debug;
+import org.hyperdata.beeps.parameters.Component;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
+import org.hyperdata.beeps.parameters.DefaultComponentList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.util.Chunks;
@@ -19,7 +21,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  * 
  */
-public class DefaultPipeline extends DefaultProcessor implements Pipeline {
+public class DefaultPipeline extends DefaultComponentList implements Pipeline, Processor { // extends DefaultProcessor 
 
 	/**
 	 * @param name
@@ -28,35 +30,37 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 		super(name);
 	}
 
-	List<Processor> processors = new ArrayList<Processor>();
-	Map<String, Processor> processorNames = new HashMap<String, Processor>(); // yuck...
+//	List<Processor> processors = new ArrayList<Processor>();
+//	Map<String, Processor> processorNames = new HashMap<String, Processor>(); // yuck...
+	private boolean enabled = true;
 
-	public int size() {
-		return processors.size();
-	}
 
 	// public Processor get(int i){
 	// return processors.get(i);
 	// }
 
 	public void addProcessor(Processor processor) {
-		processors.add(processor);
-		;
-		processorNames.put(processor.getName(), processor);
+		super.addComponent(processor);;
+//		processors.add(processor);
+//		processorNames.put(processor.getName(), processor);
 	}
+	
+	
 
 	public Processor getProcessor(String name) {
-		return processorNames.get(name);
+		// return processorNames.get(name);
+		return (Processor)super.getComponent(name);
 	}
 
 	public Tone process(Tone tone) {
-		if (processors.size() == 0)
+		if(!enabled) return tone;
+		if (size() == 0)
 			return tone;
-		Debug.verbose("Applying " + processors.size() + " processors");
+		Debug.verbose("Applying " + size() + " processors");
 		// Tone output = input;
-		for (int i = 0; i < processors.size(); i++) {
-			Processor processor = processors.get(i);
-			Debug.verbose("Applying process : " + processor);
+		for (int i = 0; i < size(); i++) {
+			Processor processor = (Processor)getComponent(i);
+			//Debug.verbose("Applying process : " + processor);
 			// System.out.println("Applying process : "+processor);
 			tone = processor.process(tone);
 		}
@@ -64,12 +68,14 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 	}
 
 	public Chunks process(Chunks chunks) {
-		if (processors.size() == 0)
+		if(!enabled) return chunks;
+		if (size() == 0)
 			return chunks;
-		Debug.verbose("Applying " + processors.size() + " processors");
+		Debug.verbose("Applying " + size() + " processors");
 		// Tone output = input;
-		for (int i = 0; i < processors.size(); i++) {
-			Processor processor = processors.get(i);
+		for (int i = 0; i < size(); i++) {
+			//Processor processor = processors.get(i);
+			Processor processor = (Processor)getComponent(i);
 			Debug.verbose("Applying process : " + processor);
 			chunks = processor.process(chunks);
 			if (chunks.size() == 0) {
@@ -85,50 +91,46 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 		return chunks;
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.hyperdata.go.parameters.Parameterized#initFromParameters()
 	 */
 
-	public void initFromParameters() {
-		for(int i=0;i<processors.size();i++){
-			processors.get(i).initFromParameters();
-		}
+//	public void initFromParameters() {
+//		
+////		for(int i=0;i<processors.size();i++){
+////			processors.get(i).initFromParameters();
+////		}
+//	}
+
+
+	
+
+
+//	/* (non-Javadoc)
+//	 * @see org.hyperdata.beeps.parameters.ComponentList#addComponent(org.hyperdata.beeps.parameters.Component)
+//	 */
+//	@Override
+//	public void addComponent(Component component) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#setEnabled(boolean)
+	 */
+	@Override
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public String toString() {
-		String string = getName() + "\n";
-		if (processors.size() == 0) {
-			return "\tEmpty Pipeline";
-		}
-		for (int i = 0; i < processors.size(); i++) {
-			string += "\t" + processors.get(i).toString();
-		}
-		return string;
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.pipelines.Processor#isEnabled()
+	 */
+	@Override
+	public boolean isEnabled() {
+		return enabled;
 	}
-	
-	public ParameterList getParameters(){
-		ParameterList parameters =new DefaultParameterList(getName());
-		for(int i=0;i<processors.size();i++){
-			parameters.addAll(processors.get(i)); // .getParameters()
-		}
-		return parameters;
-	}
-	
-	public void updateParameters(ParameterList parameters) {
-		for(int i=0;i<processors.size();i++){
-			processors.get(i).consume(parameters);
-		}
-	}
-
 
 }

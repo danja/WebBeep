@@ -16,7 +16,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public interface Processor extends ParameterList, Component {
+public interface Processor extends Component {
 //	public List<Double> process(List<Double> input);
 //	public List<List<Double>> processMulti(List<List<Double>> input);
 	

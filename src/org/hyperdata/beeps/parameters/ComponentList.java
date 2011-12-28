@@ -9,4 +9,5 @@ package org.hyperdata.beeps.parameters;
  */
 public interface ComponentList extends Named, Component, ParameterList {
 public void addComponent(Component component);
+public void updateParameters(ParameterList parameters);
 }

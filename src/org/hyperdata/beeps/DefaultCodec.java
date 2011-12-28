@@ -47,8 +47,8 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	protected void createParameter(ParameterList component, String name) {
 		Parameter parameter = ParameterFactory.createParameter(component, name);
 		component.setParameter(parameter);
-		System.out.println("PARAMETER="+parameter);
-System.out.println("COMPONENT="+component);
+//		System.out.println("PARAMETER="+parameter);
+//System.out.println("COMPONENT="+component);
 	//	parameters.add(parameter);
 	}
 
@@ -57,9 +57,11 @@ System.out.println("COMPONENT="+component);
 	 *            the parameters to set
 	 */
 	public void setParameters(ParameterList parameters) {
+	//	System.out.println("PRAMS"+parameters);
 		coreComponents.consume(parameters);
-		preProcessors.consume(parameters);
+		preProcessors.updateParameters(parameters);
 		postProcessors.consume(parameters);
+	//	System.out.println("PREEEEEEEEEEEEEEEEEE"+preProcessors);
 	}
 	
 	public void initFromParameters() {

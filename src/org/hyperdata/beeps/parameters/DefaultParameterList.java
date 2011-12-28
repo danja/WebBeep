@@ -85,7 +85,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 				parameters.add(parameter);
 			}
 		}
-		System.out.println("AFTER CONSUME:\n"+parameters);
+	//	System.out.println("AFTER CONSUME:\n"+parameters);
 	}
 	
 	/*
@@ -102,7 +102,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 //
 //		for (int i = 0; i < parameters.size(); i++) {
 //			String name = parameters.get(i).getName();
-//			// System.out.println("PARAMETERNAME=" + name);
+
 //			String[] split = name.split("\\.");
 //			// System.out.println("PIPENAME=" + getName());
 //			Processor processor = getProcessor(split[0] + "." + split[1]);
@@ -131,16 +131,16 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	 * rename?
 	 */
 	public void setParameter(Parameter parameter) {
-		System.out.println("FIND "+parameter);
+	//	System.out.println("FIND "+parameter);
 		int index = findParameter(parameter.getName());
 		if (index != -1) {
-			System.out.println("SETTING "+parameters.get(index));
+		//	System.out.println("SETTING "+parameters.get(index));
 			parameters.get(index).setValue(parameter.getValue());
-			System.out.println("SET "+parameters.get(index));
+		//	System.out.println("SET "+parameters.get(index));
 			return;
 		}
 		parameters.add(parameter);
-		System.out.println("PQ "+parameters);
+	//	System.out.println("PQ "+parameters);
 	}
 
 	/**

@@ -105,6 +105,7 @@ public class Normalise extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
+		System.out.println("NOON in "+this);
 		setEnabled((Boolean)getLocal("on"));
 	}
 }

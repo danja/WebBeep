@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.pipelines;
 
+import org.hyperdata.beeps.parameters.DefaultNamed;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.parameters.Component;
@@ -11,7 +12,14 @@ import org.hyperdata.beeps.parameters.Component;
  * @author danny
  *
  */
-public class DefaultComponent implements Component {
+public class DefaultComponent extends DefaultParameterList implements Component {
+
+	/**
+	 * @param name
+	 */
+	public DefaultComponent(String name) {
+		super(name);
+	}
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.parameters.Parameterized#initFromParameters()
