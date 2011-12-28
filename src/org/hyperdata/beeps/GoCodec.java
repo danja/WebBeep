@@ -23,8 +23,7 @@ import org.hyperdata.beeps.util.WavCodec;
  */
 public class GoCodec extends DefaultOrganism  {
 
-	private int minCharacters = 3;
-	private int maxCharacters = 20;
+
 	/**
 	 * @param characters
 	 *            the characters to set
@@ -38,6 +37,8 @@ public class GoCodec extends DefaultOrganism  {
 	DefaultEncoder encoder;
 	DefaultDecoder decoder;
 	DefaultPipeline line;
+	private String input;
+	private boolean distort;
 	public GoCodec() {
 
 	}
@@ -57,11 +58,8 @@ public class GoCodec extends DefaultOrganism  {
 		// String input = "http://dannyayers.com";
 		initFromParameters();
 		
-		String input = ASCIICodec.getRandomASCII(minCharacters, maxCharacters);
-		if (Math.random() > 0.7) {
-			input = ASCIICodec
-					.getRandomWebbyASCII(minCharacters, maxCharacters);
-		}
+
+		
 		// input = "http://dannyayers.com";
 
 		// input = "http://dannyayers.com";
@@ -95,10 +93,10 @@ public class GoCodec extends DefaultOrganism  {
 		// line will be the Real World between systems
 
 		Tone inTones;
-		if (Math.random() > .75) { // 1/4 of the time, zero distortion
-			inTones = outTones;
+		if (distort) { 
+			inTones = line.process(outTones); 
 		} else {
-			inTones = line.process(outTones); // skip saving
+			inTones = outTones;
 		}
 		startTime = System.currentTimeMillis();
 		String output = decoder.decode(inTones);
@@ -124,7 +122,8 @@ public class GoCodec extends DefaultOrganism  {
 		}
 		this.accuracy = (double) hits / (double) input.length();
 		double percent = 100 * (double) hits / (double) input.length();
-		System.out.print(Plotter.roundToSignificantFigures(percent, 2) + "% ");
+		System.out.print(" (" + getAge()+") ");
+		System.out.println(Plotter.roundToSignificantFigures(percent, 2) + "% ");
 		Debug.inform("Hits = " + percent + " %");
 		if (errs.length() > 0) {
 			Debug.verbose("Bad chars = " + errs);
@@ -132,8 +131,6 @@ public class GoCodec extends DefaultOrganism  {
 		// Debug.log(encoder.parameters + "\n\n" + decoder.parameters);
 
 		this.runTime = ((double) encodeTime + (double) decodeTime) / 1000;
-
-
 	}
 	
 	public void initFromParameters(){
@@ -201,8 +198,8 @@ public class GoCodec extends DefaultOrganism  {
 	 */
 	@Override
 	public double getFitness() {
-		double fitness = (1 + (double) getAge() / 100) * getAccuracy() * getAccuracy()
-				/ (getRunTime() + 1); // need to tweak age bit
+		double fitness = (Math.sqrt((double) getAge()) ) * getAccuracy() * getAccuracy()
+				/ (getRunTime() + 1); // need to tweak age bit..?
 		if (getAccuracy() < 0.02) {
 			fitness = fitness / 2;
 		}
@@ -219,5 +216,21 @@ public class GoCodec extends DefaultOrganism  {
 	public void initRandom() {
 		encoder.initRandom();
 		decoder.initRandom();
+	}
+
+	/**
+	 * @param input
+	 */
+	public void setInput(String input) {
+		this.input = input;
+	}
+	
+	private int minCharacters = 5;
+	private int maxCharacters = 30;
+	/**
+	 * @param distort the distort to set
+	 */
+	public void setDistort(boolean distort) {
+		this.distort = distort;
 	}
 }

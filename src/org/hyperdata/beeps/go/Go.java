@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.go;
 
+import org.hyperdata.beeps.ASCIICodec;
 import org.hyperdata.beeps.GoCodec;
 import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.parameters.ParameterListFile;
@@ -16,10 +17,10 @@ import org.hyperdata.common.Describer;
  */
 public class Go {
 
-	static int populationSize = 64; // must be multiple of 8
-	static int generations = 100;
-	static int minCharacters = 4;
-	static int maxCharacters = 25;
+	static int populationSize = 128; // must be multiple of 8
+	static int generations = 50;
+	static int minCharacters = 5;
+	static int maxCharacters = 30;
 	
 	/**
 	 * @param args
@@ -59,13 +60,30 @@ public class Go {
 			}
 			
 		System.out.println();
-		for (int generation = 0; generation < Go.generations; generation++) {
+		for (int generation = 0; generation < Go.generations; generation++) { // GENERATIONS
+			String input = ASCIICodec.getRandomASCII(minCharacters, maxCharacters);
+			if (Math.random() > 0.7) {
+				input = ASCIICodec
+						.getRandomWebbyASCII(minCharacters, maxCharacters);
+			}
+			
+			boolean distort = Math.random()>0.25;
+			
+			System.out.println("Input: "+input+" ("+input.length()+" chars)");
+			
 			System.out.println("******   Generation : " + generation
 					+ "   ******");
 			System.out.println("Testing organism :");
 			for (int i = 0; i < Go.populationSize; i++) {
 				System.out.print(i + " ");
+				if(distort){
+					System.out.print(" * ");
+				}else {
+					System.out.print(" - ");
+				}
 			//	System.out.println("SIZE = "+((GoCodec) population.get(i)).parametersSize());
+				((GoCodec)population.get(i)).setInput(input);
+				((GoCodec)population.get(i)).setDistort(distort);
 				population.get(i).run();
 			}
 			population.sort();
@@ -86,10 +104,12 @@ public class Go {
 									((DefaultOrganism) fittest)
 											.getRunTime(), 2));
 		//	System.out.println(fittest.getParameters());
-			
+			if(((DefaultOrganism) fittest).getAccuracy() == 1.0){
+				System.out.println("Saving. \n"+fittest.getParameters());
 			plf = new ParameterListFile();
 			plf.save(fittest.getParameters(),
 					"/home/danny/workspace/WebBeep/data/fittest.xml");
+			}
 			
 		/////////////////////////	System.out.println(fittest.getParameters());
 	//		System.out.println("SIZE = "+fittest.getParameters().size());
@@ -99,7 +119,7 @@ public class Go {
 				// System.out.println(fittest.getParameters());
 			}
 			population.breed();
-		}
+		} // END GENERATIONS
 		Organism fittest = population.get(0);
 		System.out.println("*******************************");
 

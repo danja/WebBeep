@@ -50,6 +50,7 @@ public abstract class DefaultOrganism implements Organism {
 
 
 public void run(){
+	// System.out.println("  age="+history.size());
 	history.add(getFitness());
 	// age++;
 }
