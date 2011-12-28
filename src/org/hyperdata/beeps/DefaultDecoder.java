@@ -10,6 +10,7 @@ import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
 import org.hyperdata.beeps.parameters.ParameterList;
+import org.hyperdata.beeps.parameters.SimpleParameter;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder;
 import org.hyperdata.beeps.processors.Chunker;
@@ -36,6 +37,7 @@ public class DefaultDecoder extends DefaultCodec {
 		Debug.inform("Decoding");
 
 		Normalise norm = new Normalise("Decoder.input.normalise");
+		
 		tones = norm.process(tones);
 
 		tones = applyPreProcessors(tones);

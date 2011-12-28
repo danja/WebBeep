@@ -82,8 +82,8 @@ public class CodecTest {
 
 			// line will be the Real World between systems
 			Line line = new Line();;
-			Tone inTones = line.process(outTones); // skip saving
-			
+			// Tone inTones = line.process(outTones); // skip saving
+			Tone 	inTones = outTones;
 			// List<Double> inTones = WavCodec.read(filename);
 
 			

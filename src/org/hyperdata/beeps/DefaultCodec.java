@@ -38,10 +38,10 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	public DefaultCodec(String name) {
 		super(name);
 		// = new DefaultParameterList("DefaultCodec");
-		coreComponents = new DefaultComponentList(name);
+		coreComponents = new DefaultComponentList(name+".core");
 		
-		preProcessors = new DefaultPipeline(name);
-		postProcessors = new DefaultPipeline(name);
+		preProcessors = new DefaultPipeline(name+".pre");
+		postProcessors = new DefaultPipeline(name+".post");
 	}
 	
 	protected void createParameter(ParameterList component, String name) {
@@ -58,9 +58,10 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	 */
 	public void setParameters(ParameterList parameters) {
 	//	System.out.println("PRAMS"+parameters);
+		// TODO make these consistent consume/update
 		coreComponents.consume(parameters);
 		preProcessors.updateParameters(parameters);
-		postProcessors.consume(parameters);
+		postProcessors.updateParameters(parameters);
 	//	System.out.println("PREEEEEEEEEEEEEEEEEE"+preProcessors);
 	}
 	

@@ -24,6 +24,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	}
 
 	public Object getLocal(String key) { // i.e. get("Encoder.pre.HP.window")
+		System.out.println(getName() + "." + key);
 		return getValue(getName() + "." + key);
 	}
 

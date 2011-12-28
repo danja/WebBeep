@@ -57,6 +57,9 @@
 <entry key="Decoder.post.chunkNorm.on">true</entry>
 <entry key="Decoder.post.chunkNorm.on^^datatype">java.lang.Boolean</entry>
 
+<entry key="Decoder.core.normalise.on">true</entry>
+<entry key="Decoder.core.normalise.on^^datatype">java.lang.Boolean</entry>
+
 <entry key="Decoder.core.pitchFinder.gThreshold">8037.127666922361</entry>
 <entry key="Decoder.core.pitchFinder.gThreshold^^datatype">java.lang.Double</entry>
 
