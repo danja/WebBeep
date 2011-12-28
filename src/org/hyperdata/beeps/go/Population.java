@@ -5,7 +5,7 @@ package org.hyperdata.beeps.go;
 
 import java.util.*;
 
-import org.hyperdata.beeps.ParameterizedCodecGoertzel;
+import org.hyperdata.beeps.GoCodec;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.ParameterList;
 
@@ -82,7 +82,7 @@ public class Population {
 		}
 		// last 1/8, totally random
 		for (int i = 0; i < Go.populationSize/8; i++) {
-			ParameterizedCodecGoertzel codec = new ParameterizedCodecGoertzel();
+			GoCodec codec = new GoCodec();
 			codec.init();
 			nextGeneration.add(codec);
 		}
@@ -93,7 +93,7 @@ public class Population {
 	 * @param target
 	 */
 	private Organism mutate(Organism target) {
-		ParameterizedCodecGoertzel mutant = new ParameterizedCodecGoertzel();
+		GoCodec mutant = new GoCodec();
 		mutant.init();
 		ParameterList pl = new DefaultParameterList(mutant.getParameters());
 		int r = (int)((double)pl.size() * Math.random());
@@ -125,7 +125,7 @@ public class Population {
 //		System.out.println("**** PARENT 2 ****");
 //		System.out.println(pl2);
 //		System.out.println("**** CHILD ****");
-		ParameterizedCodecGoertzel child = new ParameterizedCodecGoertzel();
+		GoCodec child = new GoCodec();
 		child.init();
 		child.setParameters(childParameters);
 		

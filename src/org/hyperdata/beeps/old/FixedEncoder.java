@@ -7,7 +7,7 @@ import java.net.IDN;
 import java.util.*;
 
 import org.hyperdata.beeps.ASCIICodec;
-import org.hyperdata.beeps.pipelines.DefaultCodec;
+import org.hyperdata.beeps.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pitchfinders.FFT;
 import org.hyperdata.beeps.pitchfinders.PeakDetector;
@@ -51,7 +51,7 @@ public class FixedEncoder {
 		chunks = chunkNorm.process(chunks);
 		
 		// preprocess
-		Merger merger = new Merger();
+		Merger merger = new Merger("Encoder.merger");
 		Tone tones = merger.process(chunks);
 		// postprocess
 		

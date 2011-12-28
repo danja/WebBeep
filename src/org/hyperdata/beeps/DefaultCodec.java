@@ -1,15 +1,23 @@
 /**
  * 
  */
-package org.hyperdata.beeps.pipelines;
+package org.hyperdata.beeps;
 
 import java.util.List;
 
 import org.hyperdata.beeps.config.Debug;
+import org.hyperdata.beeps.parameters.ComponentList;
+import org.hyperdata.beeps.parameters.DefaultComponentList;
+import org.hyperdata.beeps.parameters.DefaultNamed;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
 import org.hyperdata.beeps.parameters.ParameterList;
+import org.hyperdata.beeps.pipelines.Codec;
+import org.hyperdata.beeps.pipelines.DefaultComponent;
+import org.hyperdata.beeps.pipelines.DefaultPipeline;
+import org.hyperdata.beeps.pipelines.Pipeline;
+import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
@@ -17,17 +25,21 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  * 
  */
-public abstract class DefaultCodec implements Codec {
+public abstract class DefaultCodec extends DefaultNamed implements Codec {
 
-	public ParameterList parameters = new DefaultParameterList();
+	//private ParameterList parameters;
+	
+	private ComponentList coreComponents;
 	
 	private Pipeline preProcessors;
 	private Pipeline postProcessors;
 	private String name = null;
 
 	public DefaultCodec(String name) {
-		this.name = name;
-		// initProcessors();
+		super(name);
+		// = new DefaultParameterList("DefaultCodec");
+		coreComponents = new DefaultComponentList(name);
+		
 		preProcessors = new DefaultPipeline(name);
 		postProcessors = new DefaultPipeline(name);
 	}
@@ -35,8 +47,9 @@ public abstract class DefaultCodec implements Codec {
 	protected void createParameter(ParameterList component, String name) {
 		Parameter parameter = ParameterFactory.createParameter(component, name);
 		component.setParameter(parameter);
-		Debug.debug("Created : " + parameter);
-		parameters.add(parameter);
+		System.out.println("PARAMETER="+parameter);
+System.out.println("COMPONENT="+component);
+	//	parameters.add(parameter);
 	}
 
 	/**
@@ -44,26 +57,38 @@ public abstract class DefaultCodec implements Codec {
 	 *            the parameters to set
 	 */
 	public void setParameters(ParameterList parameters) {
-		initProcessors();
-		preProcessors.setParameters(parameters);
-		postProcessors.setParameters(parameters);
-		// initFromParameters();
+		coreComponents.consume(parameters);
+		preProcessors.consume(parameters);
+		postProcessors.consume(parameters);
+	}
+	
+	public void initFromParameters() {
+		coreComponents.initFromParameters();
+		preProcessors.initFromParameters();
+		postProcessors.initFromParameters();
 	}
 
 	public ParameterList getParameters() {
-		ParameterList parameters = preProcessors.getParameters();
+		ParameterList parameters = new DefaultParameterList("All");
+		parameters.addAll(coreComponents);
+		parameters.addAll(preProcessors.getParameters());
 		parameters.addAll(postProcessors.getParameters());
 		return parameters;
 	}
 
-	/**
-	 * @param args
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.hyperdata.beeps.Codec#addPreProcessor(org.hyperdata.beeps.Processor)
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	@Override
+	public void addCoreComponent(ParameterList component) {
+		coreComponents.consume(component);
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -99,9 +124,7 @@ public abstract class DefaultCodec implements Codec {
 	// return preprocessors.applyProcessors(input);
 	// }
 
-	public void checkType(List list) {
-		System.out.println(list.getClass());
-	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -115,17 +138,6 @@ public abstract class DefaultCodec implements Codec {
 	// return postprocessors.applyProcessors(input);
 	// }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.hyperdata.beeps.pipelines.Codec#initProcessors()
-	 */
-	@Override
-	public void initProcessors() {
-		// System.out.println("MYNAMEHERE="+getName());
-
-		Debug.debug("Processes cleared in " + this);
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -176,18 +188,4 @@ public abstract class DefaultCodec implements Codec {
 		return string;
 	}
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 }

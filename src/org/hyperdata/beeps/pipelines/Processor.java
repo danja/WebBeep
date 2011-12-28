@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterList;
+import org.hyperdata.beeps.parameters.Component;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
@@ -15,7 +16,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public interface Processor extends ParameterList {
+public interface Processor extends ParameterList, Component {
 //	public List<Double> process(List<Double> input);
 //	public List<List<Double>> processMulti(List<List<Double>> input);
 	
@@ -27,10 +28,7 @@ public interface Processor extends ParameterList {
 	 * @param parameter
 	 */
 	public void setParameter(Parameter parameter);
-	/**
-	 * 
-	 */
-	public void initFromParameters();
+
 	/**
 	 * @param string
 	 * @param string2

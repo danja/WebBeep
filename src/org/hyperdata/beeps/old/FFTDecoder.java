@@ -6,7 +6,7 @@ package org.hyperdata.beeps.old;
 import java.net.IDN;
 
 import org.hyperdata.beeps.ASCIICodec;
-import org.hyperdata.beeps.pipelines.DefaultCodec;
+import org.hyperdata.beeps.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.pitchfinders.FFTPitchFinder;

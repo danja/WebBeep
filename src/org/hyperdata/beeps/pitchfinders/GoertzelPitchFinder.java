@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.hyperdata.beeps.Maps;
+import org.hyperdata.beeps.config.Maps;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
 
@@ -16,7 +16,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public class GoertzelPitchFinder  extends DefaultPitchFinder {
+public class GoertzelPitchFinder extends DefaultPitchFinder {
 	
 	private double threshold = 10000;
 	private Goertzel goertzel = new Goertzel();

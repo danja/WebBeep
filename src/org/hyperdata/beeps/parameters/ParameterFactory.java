@@ -14,17 +14,9 @@ public class ParameterFactory {
 	
 	public static Parameter createParameter(ParameterList processor, String parameterName){
 		String[] split = parameterName.split("\\.");
-		String type = split[2];
-//		System.out.println("parameterName="+parameterName);
-//		System.out.println("split.length()="+split.length);
-//		System.out.println("split="+split);
-//
-//		System.out.println("type="+type);
-//		if(type.equals("chunkNorm") || type.equals("chunkEnv") || type.equals("toNoise")) {
-//			return new BooleanParameter(type);
-//		}
+		String type = split[3];
+
 		if(type.equals("on")) {
-		//	return new BooleanParameter(processor, type, "on");
 			return new BooleanParameter(processor, parameterName);
 		}
 		if(type.equals("attackProportion") || type.equals("decayProportion")) {

@@ -15,7 +15,7 @@ import java.util.Properties;
 import java.util.Set;
 
 
-import org.hyperdata.beeps.ParameterizedCodecGoertzel;
+import org.hyperdata.beeps.GoCodec;
 
 /**
  * example:
@@ -107,7 +107,7 @@ private Parameter makeParameter(String name, String value, String datatype) {
 }
 
 public static void main(String[] args){
-	ParameterizedCodecGoertzel codec = new ParameterizedCodecGoertzel();
+	GoCodec codec = new GoCodec();
 	codec.init();
 	ParameterListFile file = new ParameterListFile();
 	String filename = "/home/danny/workspace/WebBeep/data/props.xml";

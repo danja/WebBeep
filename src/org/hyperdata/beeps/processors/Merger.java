@@ -22,10 +22,6 @@ import org.hyperdata.beeps.util.Tone;
  */
 public class Merger extends DefaultParameterList implements MergingProcessor {
 
-	public Merger(){
-		
-	}
-	
 	/**
 	 * @param name
 	 */

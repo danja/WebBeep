@@ -13,7 +13,6 @@ import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
 import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.processors.AllToNoiseProcessor;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
@@ -32,16 +31,6 @@ import org.hyperdata.beeps.util.Tone;
  */
 public class DefaultEncoder extends DefaultCodec implements Encoder {
 
-	/**
-	 * @return the parameters
-	 */
-	public ParameterList getParameters() {
-	//	return super.getParameters();
-		return this.parameters;
-	}
-
-	public ParameterList parameters = new DefaultParameterList();
-
 	public DefaultEncoder(String name) {
 		super(name);
 		init();
@@ -55,10 +44,14 @@ public class DefaultEncoder extends DefaultCodec implements Encoder {
 		String ascii = IDN.toASCII(idn); // Punycode encode
 		ascii = Checksum.makeChecksumString(ascii) + ascii;
 		Chunks chunks = ASCIICodec.asciiToChunks(ascii);
+		
 		chunks = applyPreProcessors(chunks);
-		Merger merger = new Merger();
+		
+		Merger merger = new Merger("Encoder.merger");
 		Tone tones = merger.process(chunks);
+		
 		tones = applyPostProcessors(tones);
+		
 		return tones;
 	}
 
@@ -67,43 +60,24 @@ public class DefaultEncoder extends DefaultCodec implements Encoder {
 	private Processor chunkNorm;
 
 	public void init() {
-		chunkEnv = new EnvelopeShaper("Encoder.chunkEnv");
+		chunkEnv = new EnvelopeShaper("Encoder.pre.chunkEnv");
 		addPreProcessor(chunkEnv);
-		chunkNorm = new Normalise("Encoder.chunkNorm");
+		chunkNorm = new Normalise("Encoder.pre.chunkNorm");
 		addPreProcessor(chunkNorm);
 		
 		createParameters();
-		// initFromParameters();
 	}
 
-	public void initFromParameters() {
-		// initProcessors(); // clears pre/post lists
-	//	try {
-			chunkEnv.initFromParameters();
-			chunkNorm.initFromParameters();
-//		} catch (Exception exception) {
-//			System.out.println("---- dodgy parameters:\n" + parameters);
-//			exception.printStackTrace();
-//		}
-	}
-
-	public void createParameters() {
-		createParameter(chunkEnv, "Encoder.chunkEnv.on");
-		createParameter(chunkEnv, "Encoder.chunkEnv.attackProportion");
-		createParameter(chunkEnv, "Encoder.chunkEnv.decayProportion");
-		
-		createParameter(chunkNorm, "Encoder.chunkNorm.on");
-	}
-
-//	private void createParameter(ParameterList processor, String name) {
-//		Parameter parameter = ParameterFactory.createParameter(processor, name);
-//		processor.setParameter(parameter);
-//		Debug.debug("Created : " + parameter);
-//		parameters.add(parameter);
+//	public void initFromParameters() {
+//			chunkEnv.initFromParameters();
+//			chunkNorm.initFromParameters();
 //	}
 
-	public void setParameters(ParameterList parameters) {
-		super.setParameters(parameters);
-		this.parameters.consume(parameters);
+	public void createParameters() {
+		createParameter(chunkEnv, "Encoder.pre.chunkEnv.on");
+		createParameter(chunkEnv, "Encoder.pre.chunkEnv.attackProportion");
+		createParameter(chunkEnv, "Encoder.pre.chunkEnv.decayProportion");
+		
+		createParameter(chunkNorm, "Encoder.pre.chunkNorm.on");
 	}
 }

@@ -1,9 +1,8 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.config;
 
-import org.hyperdata.beeps.config.Constants;
 
 
 /**

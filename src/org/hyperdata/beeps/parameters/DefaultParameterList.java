@@ -15,29 +15,23 @@ import org.hyperdata.beeps.pipelines.Processor;
  * @author danny
  * 
  */
-public class DefaultParameterList implements ParameterList {
+public class DefaultParameterList extends DefaultNamed implements ParameterList {
 
 	private List<Parameter> parameters = new ArrayList<Parameter>();
-	private String name;
 
 	public DefaultParameterList(String name) {
-this.name = name;
+		super(name);
 	}
-	
-	public DefaultParameterList() {
 
-	}
-	
-
-	
-	public Object getLocal(String key) { // i.e. get("Encoder.HP.window")
-		return getValue(getName()+"."+key);
+	public Object getLocal(String key) { // i.e. get("Encoder.pre.HP.window")
+		return getValue(getName() + "." + key);
 	}
 
 	/**
 	 * @param parameters2
 	 */
 	public DefaultParameterList(ParameterList parameters) {
+		this(parameters.getName());
 		for (int i = 0; i < parameters.size(); i++) {
 			this.parameters.add(parameters.get(i).clone());
 		}
@@ -70,73 +64,111 @@ this.name = name;
 	}
 
 	/**
-	 * Adds incoming parameters unless parameter already exists, in which case 
+	 * Adds incoming parameters unless parameter already exists, in which case
 	 * it's given the new value
 	 * 
 	 * @param incoming
 	 */
 	public void consume(ParameterList incoming) {
+//		System.out.println("EXISTING:\n"+parameters);
+//		System.out.println("INCOMING:\n"+incoming);
 		for (int i = 0; i < incoming.size(); i++) {
 			Parameter parameter = incoming.get(i);
 			int index = findParameter(parameter.getName());
-		//	System.out.println("Incoming parameter = "+parameter);
+//			System.out.println("Incoming parameter = \n"+parameter);
+//			System.out.println(index);
 			if (index != -1) {
 				// parameters.set(index, parameter);
 				parameters.get(index).setValue(parameter.getValue());
 			} else {
+			//	System.out.println("^^^^^^^^^^^^^^^^adding "+parameter);
 				parameters.add(parameter);
 			}
 		}
+		System.out.println("AFTER CONSUME:\n"+parameters);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.hyperdata.beeps.pipelines.Pipeline#setParameters(org.hyperdata.beeps
+	 * .parameters.ParameterList)
+	 * 
+	 * this is horrible!
+	 */
+
+//	public void updateParameters(ParameterList parameters) {
+//
+//		for (int i = 0; i < parameters.size(); i++) {
+//			String name = parameters.get(i).getName();
+//			// System.out.println("PARAMETERNAME=" + name);
+//			String[] split = name.split("\\.");
+//			// System.out.println("PIPENAME=" + getName());
+//			Processor processor = getProcessor(split[0] + "." + split[1]);
+//
+//			// System.out.println("Processor=" + processor);
+//			Parameter parameter = parameters.get(i);
+//			if (split[0].equals(getName()) && getProcessor(split[1]) != null) { // Decoder.LP_FIR1.window
+//				parameter.setProcessor(processor);
+//				processor.setParameter(parameter);
+//				// System.out.println("Processor=" + processor);
+//			}
+//		}
+//	}
 
 	public int findParameter(String parameterName) {
 		for (int i = 0; i < parameters.size(); i++) {
 			if (parameters.get(i).getName().equals(parameterName)) {
+				// System.out.println(parameterName+" == "+parameters.get(i).getName());
 				return i;
 			}
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * rename?
 	 */
-	public void setParameter(Parameter parameter){
+	public void setParameter(Parameter parameter) {
+		System.out.println("FIND "+parameter);
 		int index = findParameter(parameter.getName());
-		if(index != -1){
-		parameters.get(index).setValue(parameter.getValue());
-		return;
+		if (index != -1) {
+			System.out.println("SETTING "+parameters.get(index));
+			parameters.get(index).setValue(parameter.getValue());
+			System.out.println("SET "+parameters.get(index));
+			return;
 		}
 		parameters.add(parameter);
+		System.out.println("PQ "+parameters);
 	}
-	
+
 	/**
 	 * rename
+	 * 
 	 * @param name
 	 * @param value
 	 */
-	public void setParameter(String name, String value){
+	public void setParameter(String name, String value) {
 		int index = findParameter(name);
-		if(index != -1){
+		if (index != -1) {
 			get(index).setValue(value);
 			return;
 		}
 		add(new SimpleParameter(name, value));
-		
+
 	}
-	
-	public Parameter getParameter(String name){
+
+	public Parameter getParameter(String name) {
 		int index = findParameter(name);
 		return parameters.get(index);
 	}
-	
-	
-	public void randomizeValues(){
-		for(int i=0;i<parameters.size();i++){
+
+	public void randomizeValues() {
+		for (int i = 0; i < parameters.size(); i++) {
 			parameters.get(i).initRandom();
 		}
 	}
-
 
 	// public void copyParametersToProcessor(Processor processor){
 	// Iterator<String> nameIterator = processor.parameterNames().iterator();
@@ -162,7 +194,7 @@ this.name = name;
 				return parameters.get(i).getValue();
 		}
 		System.out.println("*** Dodgy parameters :\n" + this);
-//		throw new Exception("Parameter named " + name + " not found.");
+		// throw new Exception("Parameter named " + name + " not found.");
 		return null;
 	}
 
@@ -172,19 +204,5 @@ this.name = name;
 			string += parameters.get(i).toString() + "\n";
 		}
 		return string;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 }

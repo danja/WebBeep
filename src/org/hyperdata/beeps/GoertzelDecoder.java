@@ -7,7 +7,6 @@ import java.net.IDN;
 
 import org.hyperdata.beeps.old.FixedDecoder;
 import org.hyperdata.beeps.old.FixedEncoder;
-import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder;

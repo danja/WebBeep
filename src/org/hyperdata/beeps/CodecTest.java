@@ -17,7 +17,7 @@ import org.hyperdata.beeps.util.WavCodec;
  * @author danny
  * 
  */
-public class ParameterizedCodecTest {
+public class CodecTest {
 
 	/**
 	 * @param args
@@ -36,15 +36,20 @@ public class ParameterizedCodecTest {
 			Debug.inform(input.length() + " characters\n");
 
 			DefaultEncoder encoder = new DefaultEncoder("Encoder");
-			ParameterizedDecoderGoertzel decoder = new ParameterizedDecoderGoertzel("Decoder");
+			DefaultDecoder decoder = new DefaultDecoder("Decoder");
 			
 			ParameterListFile plf = new ParameterListFile();
 			ParameterList config = plf.load(configFilename);
 			
+			System.out.println("SETTING CONFIG \n"+config);
+			
 			encoder.setParameters(config);
 			decoder.setParameters(config);
 			
+			System.out.println("AFTER SET \n");
 			System.out.println(encoder);
+			System.exit(0);
+			
 			System.out.println(decoder);
 			
 			// PARAMETERS AREN't getting set 
@@ -122,6 +127,6 @@ public class ParameterizedCodecTest {
 			if (errs.length() > 0) {
 				Debug.verbose("Bad chars = " + errs);
 			}
-			Debug.log(encoder.parameters +"\n\n"+decoder.parameters);
+		//	Debug.log(encoder.parameters +"\n\n"+decoder.parameters);
 			}
 }

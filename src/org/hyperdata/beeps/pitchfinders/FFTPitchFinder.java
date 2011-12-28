@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hyperdata.beeps.Maps;
 import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.config.Debug;
+import org.hyperdata.beeps.config.Maps;
 import org.hyperdata.beeps.old.FixedEncoder;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;

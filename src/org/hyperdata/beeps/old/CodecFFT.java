@@ -1,8 +1,14 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.old;
 
+import org.hyperdata.beeps.ASCIICodec;
+import org.hyperdata.beeps.DefaultCodec;
+import org.hyperdata.beeps.DefaultDecoder;
+import org.hyperdata.beeps.DefaultEncoder;
+import org.hyperdata.beeps.Encoder;
+import org.hyperdata.beeps.Line;
 import org.hyperdata.beeps.util.Plotter;
 import java.util.List;
 
@@ -22,8 +28,15 @@ import org.hyperdata.beeps.util.WavCodec;
  * @author danny
  * 
  */
-public class ParameterizedCodecFFT implements Organism { 
+public class CodecFFT extends DefaultCodec implements Organism { 
 	
+	/**
+	 * @param name
+	 */
+	public CodecFFT(String name) {
+		super(name);
+	}
+
 	private int minCharacters = 5;
 private int maxCharacters = 30;
 private int age = 0;
@@ -58,14 +71,10 @@ private int age = 0;
 	double fitness = -1;
 
 	DefaultEncoder encoder;
-	ParameterizedDecoderGoertzel decoder;
+	DefaultDecoder decoder;
 	DefaultPipeline line;
 	private double runTime;
 	private double accuracy;
-
-	public ParameterizedCodecFFT() {
-
-	}
 
 	public double getFitness() {
 		return fitness;
@@ -77,7 +86,7 @@ private int age = 0;
 
 	public void init() {
 		encoder = new DefaultEncoder("Encoder");
-		decoder = new ParameterizedDecoderGoertzel("Decoder");
+		decoder = new DefaultDecoder("Decoder");
 		line = new Line();
 	}
 
@@ -145,7 +154,7 @@ private int age = 0;
 		if (errs.length() > 0) {
 			Debug.verbose("Bad chars = " + errs);
 		}
-		Debug.log(encoder.parameters + "\n\n" + decoder.parameters);
+		//Debug.log(encoder.parameters + "\n\n" + decoder.parameters);
 
 		this.runTime = (encodeTime + decodeTime) / 1000;
 		
@@ -182,18 +191,7 @@ private int age = 0;
 		decoder.setParameters(decoderParameters);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.hyperdata.go.Organism#getParameters()
-	 */
-	@Override
-	public ParameterList getParameters() {
-		ParameterList all = new DefaultParameterList();
-		all.addAll(encoder.getParameters());
-		all.addAll(decoder.getParameters());
-		return all;
-	}
+
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.go.Organism#getAge()

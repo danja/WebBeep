@@ -3,7 +3,7 @@
  */
 package org.hyperdata.beeps.go;
 
-import org.hyperdata.beeps.ParameterizedCodecGoertzel;
+import org.hyperdata.beeps.GoCodec;
 import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.parameters.ParameterListFile;
 import org.hyperdata.beeps.parameters.TimeStampParameter;
@@ -32,7 +32,7 @@ public class Go {
 		System.out.println("Initializing :");
 		for (int i = 0; i < Go.populationSize; i++) {
 			System.out.print(i + " ");
-			ParameterizedCodecGoertzel codec = new ParameterizedCodecGoertzel();
+			GoCodec codec = new GoCodec();
 			codec.setnCharacters(Go.minCharacters,
 					Go.maxCharacters);
 

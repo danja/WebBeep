@@ -21,7 +21,7 @@ import org.hyperdata.beeps.util.WavCodec;
  * @author danny
  * 
  */
-public class ParameterizedCodecGoertzel extends DefaultOrganism  {
+public class GoCodec extends DefaultOrganism  {
 
 	private int minCharacters = 5;
 	private int maxCharacters = 30;
@@ -36,9 +36,9 @@ public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 	}
 
 	DefaultEncoder encoder;
-	ParameterizedDecoderGoertzel decoder;
+	DefaultDecoder decoder;
 	DefaultPipeline line;
-	public ParameterizedCodecGoertzel() {
+	public GoCodec() {
 
 	}
 
@@ -48,7 +48,7 @@ public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 
 	public void init() {
 		encoder = new DefaultEncoder("Encoder");
-		decoder = new ParameterizedDecoderGoertzel("Decoder");
+		decoder = new DefaultDecoder("Decoder");
 		line = new Line();
 	}
 
@@ -124,7 +124,7 @@ public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 		if (errs.length() > 0) {
 			Debug.verbose("Bad chars = " + errs);
 		}
-		Debug.log(encoder.parameters + "\n\n" + decoder.parameters);
+		// Debug.log(encoder.parameters + "\n\n" + decoder.parameters);
 
 		this.runTime = ((double) encodeTime + (double) decodeTime) / 1000;
 
@@ -139,8 +139,8 @@ public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 	 */
 	@Override
 	public void setParameters(ParameterList parameters) { // clunky
-		ParameterList encoderParameters = new DefaultParameterList();
-		ParameterList decoderParameters = new DefaultParameterList();
+		ParameterList encoderParameters = new DefaultParameterList("Encoder");
+		ParameterList decoderParameters = new DefaultParameterList("Decoder");
 		for (int i = 0; i < parameters.size(); i++) {
 			Parameter parameter = parameters.get(i);
 			if (parameter.getName().startsWith("Encoder")) {
@@ -161,7 +161,7 @@ public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 	 */
 	@Override
 	public ParameterList getParameters() {
-		ParameterList all = new DefaultParameterList();
+		ParameterList all = new DefaultParameterList("All");
 		all.addAll(encoder.getParameters());
 		all.addAll(decoder.getParameters());
 		return all;

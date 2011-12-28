@@ -100,8 +100,9 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 	 */
 
 	public void initFromParameters() {
-		// TODO Auto-generated method stub
-
+		for(int i=0;i<processors.size();i++){
+			processors.get(i).initFromParameters();
+		}
 	}
 
 	public String toString() {
@@ -116,42 +117,18 @@ public class DefaultPipeline extends DefaultProcessor implements Pipeline {
 	}
 	
 	public ParameterList getParameters(){
-		ParameterList parameters =new DefaultParameterList();
+		ParameterList parameters =new DefaultParameterList(getName());
 		for(int i=0;i<processors.size();i++){
 			parameters.addAll(processors.get(i)); // .getParameters()
 		}
 		return parameters;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.hyperdata.beeps.pipelines.Pipeline#setParameters(org.hyperdata.beeps
-	 * .parameters.ParameterList)
-	 * 
-	 * this is horrible!
-	 */
-	@Override
-	public void setParameters(ParameterList parameters) {
-		// System.out.println("THIS=" + this);
-		if (processors.size() == 0)
-			return;
-
-		for (int i = 0; i < parameters.size(); i++) {
-			String name = parameters.get(i).getName();
-			// System.out.println("PARAMETERNAME=" + name);
-			String[] split = name.split("\\.");
-			// System.out.println("PIPENAME=" + getName());
-			Processor processor = getProcessor(split[0] + "." + split[1]);
-
-			// System.out.println("Processor=" + processor);
-			Parameter parameter = parameters.get(i);
-			if (split[0].equals(getName()) && getProcessor(split[1]) != null) { // Decoder.LP_FIR1.window
-				parameter.setProcessor(processor);
-				processor.setParameter(parameter);
-				// System.out.println("Processor=" + processor);
-			}
+	
+	public void updateParameters(ParameterList parameters) {
+		for(int i=0;i<processors.size();i++){
+			processors.get(i).consume(parameters);
 		}
 	}
+
+
 }
