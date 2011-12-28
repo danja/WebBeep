@@ -5,6 +5,7 @@ package org.hyperdata.beeps;
 
 import java.net.IDN;
 
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
@@ -215,13 +216,6 @@ public class ParameterizedDecoderFFT extends DefaultCodec {
 		createParameter(pitchFinder, "Decoder.pitchFinder.fftBits");
 		createParameter(pitchFinder, "Decoder.pitchFinder.peakDelta");
 		createParameter(pitchFinder, "Decoder.pitchFinder.repeatToFit");
-	}
-
-	private void createParameter(ParameterList processor, String name) {
-		Parameter parameter = ParameterFactory.createParameter(processor, name);
-		processor.setParameter(parameter);
-		Debug.debug("Created : " + parameter);
-		parameters.add(parameter);
 	}
 
 	public String toString() {

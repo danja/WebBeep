@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterList;

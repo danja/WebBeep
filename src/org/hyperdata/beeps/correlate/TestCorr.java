@@ -6,9 +6,9 @@ package org.hyperdata.beeps.correlate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.WaveMaker;
+import org.hyperdata.beeps.config.Constants;
+import org.hyperdata.beeps.old.FixedEncoder;
 import org.hyperdata.beeps.processors.Cropper;
 import org.hyperdata.beeps.util.Plotter;
 
@@ -26,7 +26,7 @@ public class TestCorr {
 		
 		
 		////////////////////////////////////////////
-		 Encoder encoder = new Encoder();
+		 FixedEncoder encoder = new FixedEncoder();
 		List<Double> testTone = encoder.encode("o");
 		Cropper cropper = new Cropper("TestCorr.cropper");
 		int startx = cropper.findStart(testTone,

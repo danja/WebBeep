@@ -2,7 +2,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>testing</comment>
-<entry key="Encoder.chunkEnv.on">false</entry>
 <entry key="Decoder.LP_FIR2.npoints^^datatype">java.lang.Integer</entry>
 <entry key="Decoder.LP_FIR1.cutoff^^datatype">java.lang.Double</entry>
 <entry key="Decoder.LP_FIR1.window^^datatype">java.lang.String</entry>
@@ -56,7 +55,10 @@
 <entry key="Decoder.LP_FIR1.npoints">990</entry>
 <entry key="Decoder.chunker.cropProportion">0.6753265174925338</entry>
 <entry key="Decoder.LP_FIR1.on">false</entry>
+
+<entry key="Encoder.chunkEnv.on">false</entry>
 <entry key="Encoder.chunkEnv.on^^datatype">java.lang.Boolean</entry>
+
 <entry key="Decoder.HP_FIR.cutoff">163.10874570476975</entry>
 <entry key="Encoder.chunkEnv.attackProportion^^datatype">java.lang.Double</entry>
 <entry key="Decoder.LP_FIR1.cutoff">1061.782804581984</entry>

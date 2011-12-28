@@ -5,6 +5,8 @@ package org.hyperdata.beeps;
 
 import java.net.IDN;
 
+import org.hyperdata.beeps.old.FixedDecoder;
+import org.hyperdata.beeps.old.FixedEncoder;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
@@ -24,7 +26,7 @@ import org.hyperdata.beeps.util.Tone;
  * 
  * Sequence of processors and the their parameters are hardcoded
  */
-public class GoertzelDecoder extends DefaultDecoder  {
+public class GoertzelDecoder extends FixedDecoder  {
 
 	public GoertzelDecoder() {
 		super();
@@ -38,7 +40,7 @@ public class GoertzelDecoder extends DefaultDecoder  {
 	}
 
 	public static void main(String[] args) {
-		Encoder encoder = new Encoder();
+		FixedEncoder encoder = new FixedEncoder();
 		Tone tones = encoder
 				.encode("a"); // "http://danbri.org/foaf.rdf#danbri"
 		Decoder decoder = new GoertzelDecoder();

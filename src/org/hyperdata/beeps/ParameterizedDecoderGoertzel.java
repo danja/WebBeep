@@ -5,6 +5,7 @@ package org.hyperdata.beeps;
 
 import java.net.IDN;
 
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.parameters.ParameterFactory;
@@ -51,7 +52,7 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		// initFromParameters();
 	}
 
-	public ParameterList parameters = new DefaultParameterList();
+	
 
 	public String decode(Tone tones) {
 		Debug.inform("Decoding");
@@ -94,7 +95,7 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 	private Chunker chunker;
 	private Cropper cropper;
 	private GoertzelPitchFinder pitchFinder;
-	private Processor chunknorm;
+	private Processor chunkNorm;
 	private Processor chunkEnv;
 	private Processor hp;
 	private Processor lp1;
@@ -109,6 +110,8 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		compressor = new Compressor("Decoder.compressor");
 		norm = new Normalise("Decoder.normalise");
 
+		addPreProcessor(compressor);
+		
 		hp = new FIRProcessor("Decoder.HP_FIR");
 		hp.setParameter("Decoder.HP_FIR.shape", "HP"); // fixed parameter
 		addPreProcessor(hp);
@@ -126,8 +129,8 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		
 		chunker = new Chunker("Decoder.chunker");
 		
-		chunknorm = new Normalise("Decoder.normalise");
-		addPostProcessor(chunknorm);
+		chunkNorm = new Normalise("Decoder.chunkNorm");
+		addPostProcessor(chunkNorm);
 		
 		chunkEnv = new EnvelopeShaper("Decoder.chunkEnv");
 		addPostProcessor(chunkEnv);
@@ -140,7 +143,6 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 	}
 
 	public void initFromParameters() {
-		// initProcessors();// clears pre/post lists
 		try {
 			// *** Cropper - applied in main path ***
 			cropper.initFromParameters();
@@ -148,21 +150,13 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 			lp1.initFromParameters();
 			lp2.initFromParameters();
 			compressor.initFromParameters();
-				addPreProcessor(compressor);
-
+				
 			// *** Chunker - applied in main path ***
 			chunker.initFromParameters();
-
-			 System.out.println("HERE="+parameters);
-			chunknorm.initFromParameters();
-			// *** chunknorm - normalise individual chunks ***
-				
-
+			
+			chunkNorm.initFromParameters();
 			chunkEnv.initFromParameters();
-				
-			
 			pitchFinder.initFromParameters();
-			
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
@@ -175,7 +169,7 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		createParameter(chunker, "Decoder.chunker.cropProportion");
 		createParameter(chunker, "Decoder.chunker.on");
 		
-		createParameter(chunknorm, "Decoder.chunkNorm.on");
+		createParameter(chunkNorm, "Decoder.chunkNorm.on");
 		
 		createParameter(chunkEnv, "Decoder.chunkEnv.on");
 		createParameter(chunkEnv, "Decoder.chunkEnv.attackProportion");
@@ -199,15 +193,7 @@ public class ParameterizedDecoderGoertzel extends DefaultCodec {
 		createParameter(pitchFinder, "Decoder.pitchFinder.gThreshold");
 	}
 
-	private void createParameter(ParameterList parameterized, String name) {
-		Parameter parameter = ParameterFactory.createParameter(parameterized, name);
-//		System.out.println("parameter="+parameter);
-//		System.out.println("name="+name);
-//		System.out.println("parameterized="+parameterized);
-		parameterized.setParameter(parameter);
-		Debug.debug("Created : " + parameter);
-		parameters.add(parameter);
-	}
+
 
 	public String toString() {
 		String string = this.getClass().toString();

@@ -23,8 +23,8 @@ package org.hyperdata.beeps.filters;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.WaveMaker;
+import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.pitchfinders.FFT;
 import org.hyperdata.beeps.util.Noise;
 import org.hyperdata.beeps.util.Plotter;

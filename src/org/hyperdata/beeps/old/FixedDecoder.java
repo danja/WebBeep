@@ -1,10 +1,12 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.old;
 
 import java.net.IDN;
 
+import org.hyperdata.beeps.Decoder;
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.filters.FIRFilter;
 import org.hyperdata.beeps.parameters.DefaultParameter;
 import org.hyperdata.beeps.parameters.SimpleParameter;
@@ -25,7 +27,7 @@ import org.hyperdata.beeps.util.Tone;
  * everything except the pitch detection bit
  *
  */
-public abstract class DefaultDecoder implements Decoder {
+public abstract class FixedDecoder implements Decoder {
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.Decoder#decode(org.hyperdata.beeps.util.Tone)

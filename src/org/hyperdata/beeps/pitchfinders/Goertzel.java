@@ -3,7 +3,7 @@
  */
 package org.hyperdata.beeps.pitchfinders;
 
-import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.util.Tone;
 
 /**

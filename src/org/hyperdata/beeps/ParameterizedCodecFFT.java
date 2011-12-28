@@ -6,6 +6,7 @@ package org.hyperdata.beeps;
 import org.hyperdata.beeps.util.Plotter;
 import java.util.List;
 
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.go.Organism;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
@@ -56,7 +57,7 @@ private int age = 0;
 	boolean hasRun = false;
 	double fitness = -1;
 
-	ParameterizedEncoder encoder;
+	DefaultEncoder encoder;
 	ParameterizedDecoderGoertzel decoder;
 	DefaultPipeline line;
 	private double runTime;
@@ -75,7 +76,7 @@ private int age = 0;
 	 */
 
 	public void init() {
-		encoder = new ParameterizedEncoder("Encoder");
+		encoder = new DefaultEncoder("Encoder");
 		decoder = new ParameterizedDecoderGoertzel("Decoder");
 		line = new Line();
 	}
@@ -95,7 +96,7 @@ private int age = 0;
 		Debug.inform("Input : " + input);
 		Debug.inform(input.length() + " characters\n");
 
-		Debug.debug(((ParameterizedEncoder) encoder));
+		Debug.debug(((Encoder) encoder));
 		
 		long startTime = System.currentTimeMillis();
 		Tone outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"

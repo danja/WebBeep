@@ -31,8 +31,6 @@ this.name = name;
 
 	
 	public Object getLocal(String key) { // i.e. get("Encoder.HP.window")
-//		System.out.println("key="+key);
-//		System.out.println("key2="+getName()+"."+key);
 		return getValue(getName()+"."+key);
 	}
 

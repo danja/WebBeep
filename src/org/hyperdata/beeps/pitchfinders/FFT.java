@@ -9,8 +9,8 @@ package org.hyperdata.beeps.pitchfinders;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.config.Constants;
+import org.hyperdata.beeps.config.Debug;
 
 public class FFT {
 

@@ -6,6 +6,7 @@ package org.hyperdata.beeps;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pitchfinders.PitchFinderGeneral;
 import org.hyperdata.beeps.processors.Normalise;

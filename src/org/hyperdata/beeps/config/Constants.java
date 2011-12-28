@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.config;
 
 /**
  * @author danny

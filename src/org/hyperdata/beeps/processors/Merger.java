@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.WaveMaker;
+import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;

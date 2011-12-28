@@ -14,8 +14,8 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
-import org.hyperdata.beeps.Constants;
 import org.hyperdata.beeps.WaveMaker;
+import org.hyperdata.beeps.config.Constants;
 
 /**
  * @author danny

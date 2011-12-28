@@ -6,7 +6,7 @@ package org.hyperdata.beeps.pipelines;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.parameters.Parameter;
 import org.hyperdata.beeps.util.Chunks;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.config;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;

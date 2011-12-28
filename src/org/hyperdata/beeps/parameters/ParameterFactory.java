@@ -3,7 +3,7 @@
  */
 package org.hyperdata.beeps.parameters;
 
-import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.pipelines.Processor;
 
 /**

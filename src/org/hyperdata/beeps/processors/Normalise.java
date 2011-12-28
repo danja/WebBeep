@@ -7,7 +7,7 @@ package org.hyperdata.beeps.processors;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.util.Plotter;
@@ -105,7 +105,6 @@ public class Normalise extends DefaultProcessor {
 	 */
 	@Override
 	public void initFromParameters() {
-		System.out.println("WERE="+this);
 		setEnabled((Boolean)getLocal("on"));
 	}
 }

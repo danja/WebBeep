@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.Debug;
-import org.hyperdata.beeps.Encoder;
 import org.hyperdata.beeps.Maps;
+import org.hyperdata.beeps.config.Constants;
+import org.hyperdata.beeps.config.Debug;
+import org.hyperdata.beeps.old.FixedEncoder;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.processors.Normalise;
@@ -65,7 +65,7 @@ public class FFTPitchFinder extends DefaultPitchFinder { // was extends
 	// }
 
 	public static void main(String[] args) {
-		Encoder encoder = new Encoder();
+		FixedEncoder encoder = new FixedEncoder();
 		Tone tones = encoder.encode("a");
 		// Plotter.plot(tones, "Tones");
 		// System.out.println("tones=" + tones.size());

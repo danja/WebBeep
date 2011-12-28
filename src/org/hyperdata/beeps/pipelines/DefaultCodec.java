@@ -5,7 +5,10 @@ package org.hyperdata.beeps.pipelines;
 
 import java.util.List;
 
-import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.config.Debug;
+import org.hyperdata.beeps.parameters.DefaultParameterList;
+import org.hyperdata.beeps.parameters.Parameter;
+import org.hyperdata.beeps.parameters.ParameterFactory;
 import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
@@ -16,6 +19,8 @@ import org.hyperdata.beeps.util.Tone;
  */
 public abstract class DefaultCodec implements Codec {
 
+	public ParameterList parameters = new DefaultParameterList();
+	
 	private Pipeline preProcessors;
 	private Pipeline postProcessors;
 	private String name = null;
@@ -25,6 +30,13 @@ public abstract class DefaultCodec implements Codec {
 		// initProcessors();
 		preProcessors = new DefaultPipeline(name);
 		postProcessors = new DefaultPipeline(name);
+	}
+	
+	protected void createParameter(ParameterList component, String name) {
+		Parameter parameter = ParameterFactory.createParameter(component, name);
+		component.setParameter(parameter);
+		Debug.debug("Created : " + parameter);
+		parameters.add(parameter);
 	}
 
 	/**

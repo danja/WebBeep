@@ -5,6 +5,7 @@ package org.hyperdata.beeps;
 
 import java.util.List;
 
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.parameters.ParameterListFile;
 import org.hyperdata.beeps.pipelines.DefaultPipeline;
@@ -34,7 +35,7 @@ public class ParameterizedCodecTest {
 			Debug.inform("Input : " + input);
 			Debug.inform(input.length() + " characters\n");
 
-			ParameterizedEncoder encoder = new ParameterizedEncoder("Encoder");
+			DefaultEncoder encoder = new DefaultEncoder("Encoder");
 			ParameterizedDecoderGoertzel decoder = new ParameterizedDecoderGoertzel("Decoder");
 			
 			ParameterListFile plf = new ParameterListFile();
@@ -50,7 +51,7 @@ public class ParameterizedCodecTest {
 			encoder.initFromParameters();
 			decoder.initFromParameters();
 			
-			Debug.debug(((ParameterizedEncoder) encoder));
+			Debug.debug(((Encoder) encoder));
 
 			
 //			System.out.println("Encoder prams "

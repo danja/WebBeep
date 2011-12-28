@@ -1,10 +1,11 @@
 /**
  * sadly I had to lose the interface PitchFinderGeneral
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.old;
 
 import java.net.IDN;
 
+import org.hyperdata.beeps.ASCIICodec;
 import org.hyperdata.beeps.pipelines.DefaultCodec;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
@@ -24,7 +25,7 @@ import org.hyperdata.beeps.util.Tone;
  * 
  * Sequence of processors and the their parameters are hardcoded
  */
-public class FFTDecoder  extends DefaultDecoder {
+public class FFTDecoder  extends FixedDecoder {
 
 	public FFTDecoder() {
 		super();
@@ -39,7 +40,7 @@ public class FFTDecoder  extends DefaultDecoder {
 	}
 
 	public static void main(String[] args) {
-		Encoder encoder = new Encoder();
+		FixedEncoder encoder = new FixedEncoder();
 		Tone tones = encoder
 				.encode("http://danbri.org/foaf.rdf#danbri"); // "http://danbri.org/foaf.rdf#danbri"
 		FFTDecoder decoder = new FFTDecoder();

@@ -1,10 +1,13 @@
 /**
  * 
  */
-package org.hyperdata.beeps;
+package org.hyperdata.beeps.old;
 
 import java.util.List;
 
+import org.hyperdata.beeps.ASCIICodec;
+import org.hyperdata.beeps.GoertzelDecoder;
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
@@ -37,7 +40,7 @@ public class FixedCodecTest {
 
 		long startTime = System.currentTimeMillis();
 
-		Encoder encoder = new Encoder();
+		FixedEncoder encoder = new FixedEncoder();
 
 		List<Double> outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 

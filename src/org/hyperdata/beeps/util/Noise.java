@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.config.Constants;
 
 /**
  * @author danny

@@ -6,8 +6,8 @@ package org.hyperdata.beeps.processors;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hyperdata.beeps.Constants;
-import org.hyperdata.beeps.Encoder;
+import org.hyperdata.beeps.config.Constants;
+import org.hyperdata.beeps.old.FixedEncoder;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
 import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.util.Chunks;
@@ -44,7 +44,7 @@ public class Chunker extends DefaultParameterList implements SplittingProcessor 
 	static String filename = "/home/danny/workspace/UTone/data/filtered.wav";
 
 	public static void main(String[] args) {
-		Encoder encoder = new Encoder();
+		FixedEncoder encoder = new FixedEncoder();
 		List<Double> tones = encoder.encode(IRI);
 		Cropper cropper = new Cropper("test");
 		int start = cropper.findStart(tones, 0.75);

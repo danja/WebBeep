@@ -3,7 +3,7 @@
  */
 package org.hyperdata.beeps.processors;
 
-import org.hyperdata.beeps.Constants;
+import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.pipelines.DefaultProcessor;
 import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.util.Tone;

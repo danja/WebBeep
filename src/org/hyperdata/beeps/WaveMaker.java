@@ -2,6 +2,7 @@ package org.hyperdata.beeps;
 
 import java.util.*;
 
+import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;

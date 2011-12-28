@@ -6,6 +6,7 @@ package org.hyperdata.beeps;
 import org.hyperdata.beeps.util.Plotter;
 import java.util.List;
 
+import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.go.DefaultOrganism;
 import org.hyperdata.beeps.go.Organism;
 import org.hyperdata.beeps.parameters.DefaultParameterList;
@@ -34,7 +35,7 @@ public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 		this.maxCharacters = maxCharacters;
 	}
 
-	ParameterizedEncoder encoder;
+	DefaultEncoder encoder;
 	ParameterizedDecoderGoertzel decoder;
 	DefaultPipeline line;
 	public ParameterizedCodecGoertzel() {
@@ -46,7 +47,7 @@ public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 	 */
 
 	public void init() {
-		encoder = new ParameterizedEncoder("Encoder");
+		encoder = new DefaultEncoder("Encoder");
 		decoder = new ParameterizedDecoderGoertzel("Decoder");
 		line = new Line();
 	}
@@ -70,7 +71,7 @@ public class ParameterizedCodecGoertzel extends DefaultOrganism  {
 		Debug.inform("Input : " + input);
 		Debug.inform(input.length() + " characters\n");
 
-		Debug.debug(((ParameterizedEncoder) encoder));
+		Debug.debug(((Encoder) encoder));
 
 		long startTime = System.currentTimeMillis();
 		Tone outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"

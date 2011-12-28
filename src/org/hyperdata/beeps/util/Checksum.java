@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.IDN;
 import java.util.zip.CRC32;
 
-import org.hyperdata.beeps.Debug;
+import org.hyperdata.beeps.config.Debug;
 
 /**
  * @author danny
