@@ -16,10 +16,10 @@ import org.hyperdata.common.Describer;
  */
 public class Go {
 
-	static int populationSize = 16; // must be multiple of 8
-	static int generations = 2;
-	static int minCharacters = 5;
-	static int maxCharacters = 40;
+	static int populationSize = 64; // must be multiple of 8
+	static int generations = 100;
+	static int minCharacters = 4;
+	static int maxCharacters = 25;
 	
 	/**
 	 * @param args
@@ -38,7 +38,7 @@ public class Go {
 
 			codec.init();
 			codec.initRandom();
-			System.out.println("initrandom SIZE = "+codec.parametersSize());
+		//	System.out.println("initrandom SIZE = "+codec.parametersSize());
 			//codec.initFromParameters();
 		//	System.out.println(codec);
 			population.add(codec);
@@ -55,10 +55,8 @@ public class Go {
 				targetParameters.consume(config);
 				population.get(r).setParameters(targetParameters); // probably not necessary, by-reference etc.
 			//	population.get(r).initFromParameters();
-				System.out.println("seed SIZE = "+   (((GoCodec) (population.get(r)    )).parametersSize()));
+			//	System.out.println("seed SIZE = "+   (((GoCodec) (population.get(r)    )).parametersSize()));
 			}
-			
-
 			
 		System.out.println();
 		for (int generation = 0; generation < Go.generations; generation++) {
@@ -67,7 +65,7 @@ public class Go {
 			System.out.println("Testing organism :");
 			for (int i = 0; i < Go.populationSize; i++) {
 				System.out.print(i + " ");
-				System.out.println("SIZE = "+((GoCodec) population.get(i)).parametersSize());
+			//	System.out.println("SIZE = "+((GoCodec) population.get(i)).parametersSize());
 				population.get(i).run();
 			}
 			population.sort();
@@ -94,7 +92,7 @@ public class Go {
 					"/home/danny/workspace/WebBeep/data/fittest.xml");
 			
 		/////////////////////////	System.out.println(fittest.getParameters());
-			System.out.println("SIZE = "+fittest.getParameters().size());
+	//		System.out.println("SIZE = "+fittest.getParameters().size());
 			System.out.println("------^^^^^----------------");
 
 			if (generation % 10 == 0) {

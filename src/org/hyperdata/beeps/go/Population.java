@@ -84,6 +84,7 @@ public class Population {
 		for (int i = 0; i < Go.populationSize/8; i++) {
 			GoCodec codec = new GoCodec();
 			codec.init();
+			codec.initRandom();
 			nextGeneration.add(codec);
 		}
 		organisms = nextGeneration;
@@ -95,9 +96,10 @@ public class Population {
 	private Organism mutate(Organism target) {
 		GoCodec mutant = new GoCodec();
 		mutant.init();
-		ParameterList pl = new DefaultParameterList(mutant.getParameters());
+		ParameterList pl = new DefaultParameterList(target.getParameters());
 		int r = (int)((double)pl.size() * Math.random());
 		pl.get(r).initRandom();
+		mutant.setParameters(pl);
 		return mutant;
 	}
 
