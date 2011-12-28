@@ -11,6 +11,9 @@ public class DefaultNamed implements Named {
 
 	private String name = null;
 	
+	public DefaultNamed(){ // necessary for reflection-based instantiation
+	}
+	
 	public DefaultNamed(String name){
 		this.name = name;
 	}

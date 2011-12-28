@@ -114,6 +114,8 @@ public class Population {
 // System.out.println("crossoverPoint = "+crossoverPoint);
 		ParameterList childParameters = new DefaultParameterList("Children");
 
+	//	System.out.println("childParameters = "+childParameters);
+		
 		for (int j = 0; j < crossoverPoint; j++) {
 			childParameters.add(pl1.get(j));
 		}
@@ -128,6 +130,7 @@ public class Population {
 		GoCodec child = new GoCodec();
 		child.init();
 		child.setParameters(childParameters);
+		
 		
 //		System.out.println(child.getParameters());
 //		System.out.println("**** END CHILD ****");

@@ -14,9 +14,9 @@ import org.hyperdata.beeps.util.Plotter;
  */
 public class EnvelopeParameter extends DefaultParameter {
 	
-//	public EnvelopeParameter(){
-//		
-//	}
+	public EnvelopeParameter(){ // necessary for reflection-based instantiation
+		
+	}
 	
 	public EnvelopeParameter(ParameterList processor, String name){
 		super(processor, name);

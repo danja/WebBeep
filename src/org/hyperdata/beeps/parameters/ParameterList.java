@@ -15,6 +15,7 @@ public interface ParameterList extends Named {
 	public Object getValue(String name) throws Exception;
 	
 	public Parameter getParameter(String name);
+	public Object getLocal(String key);
 	/**
 	 * @param chunkEnv
 	 */

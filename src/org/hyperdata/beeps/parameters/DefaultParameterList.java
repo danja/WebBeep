@@ -24,7 +24,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	}
 
 	public Object getLocal(String key) { // i.e. get("Encoder.pre.HP.window")
-		System.out.println(getName() + "." + key);
+		// System.out.println(getName() + "." + key);
 		return getValue(getName() + "." + key);
 	}
 
@@ -73,8 +73,11 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	public void consume(ParameterList incoming) {
 //		System.out.println("EXISTING:\n"+parameters);
 //		System.out.println("INCOMING:\n"+incoming);
+		
 		for (int i = 0; i < incoming.size(); i++) {
 			Parameter parameter = incoming.get(i);
+			if(parameter.getName().startsWith(getName())){
+				
 			int index = findParameter(parameter.getName());
 //			System.out.println("Incoming parameter = \n"+parameter);
 //			System.out.println(index);
@@ -84,6 +87,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 			} else {
 			//	System.out.println("^^^^^^^^^^^^^^^^adding "+parameter);
 				parameters.add(parameter);
+			}
 			}
 		}
 	//	System.out.println("AFTER CONSUME:\n"+parameters);
@@ -194,7 +198,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 			if (parameters.get(i).getName().equals(name))
 				return parameters.get(i).getValue();
 		}
-		System.out.println("*** Dodgy parameters :\n" + this);
+	//	System.out.println("*** Dodgy parameters :\n" + this);
 		// throw new Exception("Parameter named " + name + " not found.");
 		return null;
 	}

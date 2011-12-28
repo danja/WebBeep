@@ -16,9 +16,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class FrequencyParameter extends DefaultParameter {
 
-//	public FrequencyParameter(){
-//		
-//	}
+	public FrequencyParameter(){ // // necessary for reflection-based instantiation
+		
+	}
 	
 	public FrequencyParameter(ParameterList processor, String name) {
 		super(processor, name);
@@ -34,7 +34,7 @@ public class FrequencyParameter extends DefaultParameter {
 		// System.out.println(getProcessor());
 		String shape = null;
 		try {
-			shape = (String)getProcessor().getValue("shape");
+			shape = (String)getProcessor().getLocal("shape");
 		} catch (Exception exception) {
 			// TODO Auto-generated catch block
 			exception.printStackTrace();

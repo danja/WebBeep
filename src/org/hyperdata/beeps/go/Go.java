@@ -16,8 +16,8 @@ import org.hyperdata.common.Describer;
  */
 public class Go {
 
-	static int populationSize = 128; // must be multiple of 8
-	static int generations = 50;
+	static int populationSize = 16; // must be multiple of 8
+	static int generations = 2;
 	static int minCharacters = 5;
 	static int maxCharacters = 40;
 	
@@ -37,6 +37,9 @@ public class Go {
 					Go.maxCharacters);
 
 			codec.init();
+			codec.initRandom();
+			System.out.println("initrandom SIZE = "+codec.parametersSize());
+			//codec.initFromParameters();
 		//	System.out.println(codec);
 			population.add(codec);
 		}
@@ -51,6 +54,8 @@ public class Go {
 				ParameterList targetParameters = population.get(r).getParameters();
 				targetParameters.consume(config);
 				population.get(r).setParameters(targetParameters); // probably not necessary, by-reference etc.
+			//	population.get(r).initFromParameters();
+				System.out.println("seed SIZE = "+   (((GoCodec) (population.get(r)    )).parametersSize()));
 			}
 			
 
@@ -62,6 +67,7 @@ public class Go {
 			System.out.println("Testing organism :");
 			for (int i = 0; i < Go.populationSize; i++) {
 				System.out.print(i + " ");
+				System.out.println("SIZE = "+((GoCodec) population.get(i)).parametersSize());
 				population.get(i).run();
 			}
 			population.sort();
@@ -87,7 +93,8 @@ public class Go {
 			plf.save(fittest.getParameters(),
 					"/home/danny/workspace/WebBeep/data/fittest.xml");
 			
-			System.out.println(fittest.getParameters());
+		/////////////////////////	System.out.println(fittest.getParameters());
+			System.out.println("SIZE = "+fittest.getParameters().size());
 			System.out.println("------^^^^^----------------");
 
 			if (generation % 10 == 0) {
@@ -114,8 +121,8 @@ public class Go {
 										.getAccuracy(), 2));
 		fittest.getParameters().add(new TimeStampParameter());
  
-		System.out.println(fittest.getParameters());
-		System.out.println(fittest);	
+	//	System.out.println(fittest.getParameters());
+	//	System.out.println(fittest);	
 
 	}
 

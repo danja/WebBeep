@@ -14,9 +14,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class NormalParameter extends DefaultParameter {
 
-//	public NormalParameter(){
-//		
-//	}
+	public NormalParameter(){ // necessary for reflection-based instantiation
+		
+	}
 	/**
 	 * @param processor
 	 * @param name

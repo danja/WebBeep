@@ -12,9 +12,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class BooleanParameter extends DefaultParameter {
 	
-//	public BooleanParameter(){
-//		
-//	}
+	public BooleanParameter(){// necessary for reflection-based instantiation
+		
+	}
 	
 	public BooleanParameter(ParameterList processor, String name){
 		super(processor, name);

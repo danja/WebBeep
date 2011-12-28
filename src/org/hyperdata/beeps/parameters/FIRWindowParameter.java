@@ -12,9 +12,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class FIRWindowParameter extends DefaultParameter {
 
-//	public FIRWindowParameter(){
-//		
-//	}
+	public FIRWindowParameter(){ // necessary for reflection-based instantiation
+		
+	}
 	
 	public FIRWindowParameter(ParameterList processor, String name){
 		super(processor, name);

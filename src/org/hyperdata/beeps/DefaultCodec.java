@@ -60,15 +60,21 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	//	System.out.println("PRAMS"+parameters);
 		// TODO make these consistent consume/update
 		coreComponents.consume(parameters);
-		preProcessors.updateParameters(parameters);
+		preProcessors.updateParameters(parameters); // was update
 		postProcessors.updateParameters(parameters);
-	//	System.out.println("PREEEEEEEEEEEEEEEEEE"+preProcessors);
 	}
 	
 	public void initFromParameters() {
 		coreComponents.initFromParameters();
 		preProcessors.initFromParameters();
 		postProcessors.initFromParameters();
+	}
+	
+	public void initRandom(){
+		ParameterList all = getParameters();
+		for(int i=0;i<all.size();i++){
+			all.get(i).initRandom();
+		}
 	}
 
 	public ParameterList getParameters() {
@@ -185,6 +191,7 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	}
 
 	public String toString() {
+		
 		String string = "Codec : " + this.getClass().toString();
 		string += "\nPreProcessors:\n" + preProcessors.toString();
 		string += "\nPostProcessors:\n" + postProcessors.toString();

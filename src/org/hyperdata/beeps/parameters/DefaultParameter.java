@@ -17,6 +17,9 @@ public abstract class DefaultParameter extends DefaultNamed implements Parameter
 	private ParameterList processor;
 	// private String datatype = "";
 	
+	public DefaultParameter(){
+	}
+	
 	public DefaultParameter(String name){
 		super(name);
 	}

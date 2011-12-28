@@ -141,6 +141,8 @@ public class DefaultDecoder extends DefaultCodec {
 //	}
 
 	public void createParameters() { 
+		createParameter(norm, "Decoder.core.normalise.on");
+		
 		createParameter(pitchFinder, "Decoder.core.pitchFinder.gThreshold");
 		
 		createParameter(cropper, "Decoder.core.cropper.silenceThreshold");

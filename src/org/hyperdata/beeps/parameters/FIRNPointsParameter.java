@@ -11,9 +11,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class FIRNPointsParameter extends DefaultParameter {
 
-//	public FIRNPointsParameter(){
-//		
-//	}
+	public FIRNPointsParameter(){ // necessary for reflection-based instantiation
+		
+	}
 	
 	public FIRNPointsParameter(ParameterList processor, String name) {
 		super(processor, name);

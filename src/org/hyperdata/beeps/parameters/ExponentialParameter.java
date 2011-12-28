@@ -20,9 +20,9 @@ public class ExponentialParameter extends DefaultParameter {
 	private double low = 1;
 	private double high = 100;
 
-//	public ExponentialParameter() {
-//
-//	}
+	public ExponentialParameter() { // necessary for reflection-based instantiation
+
+	}
 
 	public ExponentialParameter(ParameterList processor, String name) {
 		super(processor, name);

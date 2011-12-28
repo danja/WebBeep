@@ -23,8 +23,8 @@ import org.hyperdata.beeps.util.WavCodec;
  */
 public class GoCodec extends DefaultOrganism  {
 
-	private int minCharacters = 5;
-	private int maxCharacters = 30;
+	private int minCharacters = 3;
+	private int maxCharacters = 20;
 	/**
 	 * @param characters
 	 *            the characters to set
@@ -55,6 +55,8 @@ public class GoCodec extends DefaultOrganism  {
 	public void run() {
 		super.run(); // ages it
 		// String input = "http://dannyayers.com";
+		initFromParameters();
+		
 		String input = ASCIICodec.getRandomASCII(minCharacters, maxCharacters);
 		if (Math.random() > 0.7) {
 			input = ASCIICodec
@@ -72,6 +74,9 @@ public class GoCodec extends DefaultOrganism  {
 		Debug.inform(input.length() + " characters\n");
 
 		Debug.debug(((Encoder) encoder));
+		
+//		encoder.initFromParameters();
+//		decoder.initFromParameters();
 
 		long startTime = System.currentTimeMillis();
 		Tone outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
@@ -130,6 +135,23 @@ public class GoCodec extends DefaultOrganism  {
 
 
 	}
+	
+	public void initFromParameters(){
+		encoder.initFromParameters();
+		decoder.initFromParameters();
+	}
+	
+	public void setParameters(ParameterList parameters) {
+		
+		encoder.setParameters(parameters);
+		decoder.setParameters(parameters);
+	}
+	
+	public int parametersSize(){
+		return encoder.getParameters().size() + decoder.getParameters().size();
+	}
+	
+
 
 	/*
 	 * (non-Javadoc)
@@ -137,22 +159,22 @@ public class GoCodec extends DefaultOrganism  {
 	 * @see org.hyperdata.go.Organism#setParameters(org.hyperdata.go.parameters.
 	 * ParameterSet)
 	 */
-	@Override
-	public void setParameters(ParameterList parameters) { // clunky
-		ParameterList encoderParameters = new DefaultParameterList("Encoder");
-		ParameterList decoderParameters = new DefaultParameterList("Decoder");
-		for (int i = 0; i < parameters.size(); i++) {
-			Parameter parameter = parameters.get(i);
-			if (parameter.getName().startsWith("Encoder")) {
-				encoderParameters.add(parameter);
-			}
-			if (parameter.getName().startsWith("Decoder")) {
-				decoderParameters.add(parameter);
-			}
-		}
-		encoder.setParameters(encoderParameters);
-		decoder.setParameters(decoderParameters);
-	}
+//	@Override
+//	public void setParameters(ParameterList parameters) { // clunky
+//		ParameterList encoderParameters = new DefaultParameterList("Encoder");
+//		ParameterList decoderParameters = new DefaultParameterList("Decoder");
+//		for (int i = 0; i < parameters.size(); i++) {
+//			Parameter parameter = parameters.get(i);
+//			if (parameter.getName().startsWith("Encoder")) {
+//				encoderParameters.add(parameter);
+//			}
+//			if (parameter.getName().startsWith("Decoder")) {
+//				decoderParameters.add(parameter);
+//			}
+//		}
+//		encoder.setParameters(encoderParameters);
+//		decoder.setParameters(decoderParameters);
+//	}
 
 	/*
 	 * (non-Javadoc)
@@ -189,5 +211,13 @@ public class GoCodec extends DefaultOrganism  {
 			fitness = fitness * 10;
 		}
 		return fitness;
+	}
+
+	/**
+	 * 
+	 */
+	public void initRandom() {
+		encoder.initRandom();
+		decoder.initRandom();
 	}
 }

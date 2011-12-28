@@ -12,9 +12,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class RunningAverageWindowLengthParameter extends DefaultParameter {
 
-//	public RunningAverageWindowLengthParameter(){
-//		
-//	}
+	public RunningAverageWindowLengthParameter(){ // necessary for reflection-based instantiation
+		
+	}
 	
 	public RunningAverageWindowLengthParameter(ParameterList processor, String name) {
 		super(processor, name);

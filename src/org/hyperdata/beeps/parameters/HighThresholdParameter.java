@@ -12,9 +12,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class HighThresholdParameter extends DefaultParameter {
 
-//	public HighThresholdParameter(){
-//		
-//	}
+	public HighThresholdParameter(){ // // necessary for reflection-based instantiation
+		
+	}
 	
 	/**
 	 * @param processor
@@ -31,7 +31,7 @@ public class HighThresholdParameter extends DefaultParameter {
 	public void initRandom() {
 		// TODO Auto-generated method stub
 		ParameterList p = getProcessor();
-		Object low = p.getParameter("lowThreshold");
+		Object low = p.getParameter("Decoder.pre.compressor.lowThreshold").getValue();;
 		
 		
 		if(low != null) {

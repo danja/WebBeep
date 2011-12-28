@@ -12,9 +12,9 @@ import org.hyperdata.beeps.pipelines.Processor;
  */
 public class FFTBitsParameter extends DefaultParameter {
 
-//	public FFTBitsParameter(){
-//		
-//	}
+	public FFTBitsParameter(){ // necessary for reflection-based instantiation
+		
+	}
 	/**
 	 * @param processor
 	 * @param name

@@ -60,7 +60,8 @@ public class DefaultComponentList extends DefaultParameterList implements Compon
 	
 	public void updateParameters(ParameterList parameters) {
 		for(int i=0;i<components.size();i++){
-			System.out.println("updating in DefPip"+components.get(i));
+			
+		//	System.out.println("updating in DefPip"+components.get(i));
 			components.get(i).consume(parameters);
 		}
 	}
