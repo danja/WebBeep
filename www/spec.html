@@ -1,47 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-      "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
- xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
- xmlns:owl="http://www.w3.org/2002/07/owl#"
- xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
- xmlns:foaf="http://xmlns.com/foaf/0.1/"
- xmlns:dc="http://purl.org/dc/elements/1.1/">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Web Beeps Specification</title>
-  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+<link rel="shortcut icon" href="/favicon.ico" /><!-- M$ etc -->
+<link rel="apple-touch-icon" href="/apple-icon.png" /><!-- iDespair -->
+ <link rel="icon" sizes="57x57" type="image/png" href="/apple-icon.png" /><!-- HTML5 -->
+  <link rel="stylesheet" href="css/spec.css" type="text/css">
+
 </head>
 
 <body>
-<h1>Web Beeps Specification</h1>
+<h1>Web Beep Specification</h1>
 
 <h2>Status</h2>
 
-<p><strong>First Draft 2011-12-04</strong></p>
+<p><strong>Latest Draft 2011-12-30</strong></p>
 
-<p><em>Currently for guidance only, subject to change following
-testing/experimentation (although it's unlikely to have major impact on
-implementation)</em></p>
+<p>First Draft 2011-12-04</p>
 
-<h2>Introduction</h2>
+<h2>1. Introduction</h2>
 
-<p>This document defines an algorithm for encoding arbitrary text as audio
-data.</p>
+<p>This document defines an algorithm for encoding short sequences of arbitrary
+text as quasi-musical audio data.</p>
 
-<h2>Encoding</h2>
+<p>A Reference Implementation is available and relevant sections of its
+documentation are linked from here with links labeled [RI].</p>
 
-<p>FILTER, DOWNSAMPLE to 22kHz ???</p>
+<h2>2. Conformance</h2>
+
+<p>Everything in this specification is normative unless otherwise stated.</p>
+
+<p>The keywords “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”,
+“SHALL NOT”, “RECOMMENDED”, “MAY” and “OPTIONAL” in this
+document are to be interpreted as described in <a
+href="http://www.ietf.org/rfc/rfc2119">RFC2119</a>.</p>
+
+<h2>3. Encoding Algorithm</h2>
 
 <p>i18n, A checksum character is prepended to the ASCII</p>
 
 <p>The numeric data resulting from the operations above will typically be
 rendered in a audio binary format and subsequently rendered through a media
-player. The choice of audio format is left to the implementor, although for
-signal fidelity a lossless format is recommended (the Reference Implementation
-uses <a href="http://en.wikipedia.org/wiki/WAV">.wav</a> 16 bit PCM format
-mono, 44.1kHz, see Constants.java and WavCodec.java)</p>
+player. The choice of audio format is left to the implementor (the Reference
+Implementation internally generates <a
+href="http://en.wikipedia.org/wiki/WAV">.wav</a> 16 bit PCM format mono,
+22.05kHz, which is converted to mp3 externally using LAME see Constants.java,
+ToMP3.java and WavCodec.java)</p>
 
 <p></p>
 
@@ -110,26 +115,26 @@ as followed:</p>
 
 <h3>Tone Map</h3>
 
+<h2>Decoding</h2>
+
+<p><em>This section is informative.</em></p>
+
 <p></p>
 
 <p>// Implementation</p>
 
 <p></p>
 
-<p></p>
-
-<p style="text-align:right;margin-left:auto;margin-right:0;"><a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/"><img
+<p></p><div id="footer">
+<p>(c) <a href="http://dannyayers.com">Danny Ayers</a> </p>
+<p>This work is licensed for reuse <br/> <a rel="license"href="http://creativecommons.org/licenses/by/3.0/">Creative Commons</a>
+<a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/"><br/><img
 alt="Creative Commons License" style="border-width:0"
-src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />
-This work is licensed under a <a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/"></a></p>
+src="http://i.creativecommons.org/l/by/3.0/88x31.png"></a><br>
+</p>
+</div>
 
-<p style="text-align:right;margin-left:auto;margin-right:0;"><a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
-3.0 Unported License</a>. </p>
 
-<p style="text-align:right;margin-left:auto;margin-right:0;">(c) <a
-href="http://dannyayers.com">Danny Ayers</a> 2011</p>
 </body>
 </html>

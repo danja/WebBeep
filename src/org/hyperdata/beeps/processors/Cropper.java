@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.config.Debug;
-import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.system.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
 
 /**

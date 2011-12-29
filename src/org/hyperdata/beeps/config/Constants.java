@@ -16,6 +16,16 @@ public class Constants {
 	public static final int BYTES_PER_SAMPLE = 2; 
 	public static final double MAX_VALUE = 32767;
 	public static final int SAMPLE_RATE = 22050; // 22050;44100
+	
+	// LAME mp3 encoder
+	// -V n           VBR quality setting  (0=highest quality, 9=lowest)
+	// V7 is 100Kbit/s
+	// or
+	// --abr n turns on encoding with a targeted average bitrate of n kbps, allowing
+	// to use frames of different sizes.  The allowed range of n is 8...320 
+	// kbps, you can use any integer value within that range.
+	public static final String LAME =  "--abr 64"; // mp3 encoder params
+	
 //	public static final int N_SAMPLES = SAMPLE_RATE;
 	// 140 bpm
 	//	0.58333333 barsps

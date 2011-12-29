@@ -1,14 +1,13 @@
 /**
  * 
  */
-package org.hyperdata.beeps.parameters;
+package org.hyperdata.beeps.system;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hyperdata.beeps.pipelines.Processor;
 
 /**
  * @author danny
@@ -62,7 +61,7 @@ public class DefaultComponentList extends DefaultParameterList implements Compon
 		for(int i=0;i<components.size();i++){
 			
 		//	System.out.println("updating in DefPip"+components.get(i));
-			components.get(i).consume(parameters);
+			components.get(i).update(parameters);
 		}
 	}
 	

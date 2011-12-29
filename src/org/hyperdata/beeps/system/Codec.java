@@ -1,9 +1,7 @@
-package org.hyperdata.beeps.pipelines;
+package org.hyperdata.beeps.system;
 
 import java.util.List;
 
-import org.hyperdata.beeps.parameters.Named;
-import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.util.Tone;
 
 

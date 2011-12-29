@@ -1,10 +1,10 @@
 /**
  * 
  */
-package org.hyperdata.beeps.parameters;
+package org.hyperdata.beeps.system;
 
 import org.hyperdata.beeps.config.Debug;
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.parameters.*;
 
 /**
  * @author danny

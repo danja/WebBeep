@@ -3,16 +3,16 @@
  */
 package org.hyperdata.beeps;
 
+import org.hyperdata.beeps.system.DefaultParameterList;
+import org.hyperdata.beeps.system.DefaultPipeline;
+import org.hyperdata.beeps.system.Parameter;
+import org.hyperdata.beeps.system.ParameterList;
 import org.hyperdata.beeps.util.Plotter;
 import java.util.List;
 
 import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.go.DefaultOrganism;
 import org.hyperdata.beeps.go.Organism;
-import org.hyperdata.beeps.parameters.DefaultParameterList;
-import org.hyperdata.beeps.parameters.Parameter;
-import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.pipelines.DefaultPipeline;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
@@ -198,8 +198,9 @@ public class GoCodec extends DefaultOrganism  {
 	 */
 	@Override
 	public double getFitness() {
-		double fitness = (Math.sqrt((double) getAge()) ) * getAccuracy() * getAccuracy()
+		double fitness =  getAccuracy() * getAccuracy()
 				/ (getRunTime() + 1); // need to tweak age bit..?
+		// (Math.sqrt((double) getAge())/10 ) *
 		if (getAccuracy() < 0.02) {
 			fitness = fitness / 2;
 		}

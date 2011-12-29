@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.parameters;
+package org.hyperdata.beeps.system;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.parameters.SimpleParameter;
 
 /**
  * @author danny
@@ -70,7 +70,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	 * 
 	 * @param incoming
 	 */
-	public void consume(ParameterList incoming) {
+	public void update(ParameterList incoming) {
 //		System.out.println("EXISTING:\n"+parameters);
 //		System.out.println("INCOMING:\n"+incoming);
 		

@@ -1,32 +1,49 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-      "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
- xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
- xmlns:owl="http://www.w3.org/2002/07/owl#"
- xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
- xmlns:foaf="http://xmlns.com/foaf/0.1/"
- xmlns:dc="http://purl.org/dc/elements/1.1/">
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>Web Beep Implementation Notes</title>
-  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+  <meta http-equiv="content-type" content="text/html; charset=us-ascii">
+  <title>Web Beep : text to tones and back again</title>
+  <meta name="description" content="Web Beep : text to tones and back again">
+  <meta name="author" content="Danny Ayers">
+<link rel="shortcut icon" href="/favicon.ico" /><!-- M$ etc -->
+<link rel="apple-touch-icon" href="/apple-icon.png" /><!-- iDespair -->
+ <link rel="icon" sizes="57x57" type="image/png" href="/apple-icon.png" /><!-- HTML5 -->
+  <link rel="stylesheet" href="fonts/font.css" type="text/css" media="Screen">
+  <link rel="stylesheet" href="css/tabs.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="css/stuff.css" type="text/css" media="Screen">
+  <script type="text/javascript" src="js/curvycorners.js">
+ </script>
 </head>
 
-<body>
-<h1>Web Beeps Implementation</h1>
+<body id="tab1">
+<ul id="topnav">
+  <li class="xtab1"><a href="/" title="Danny Ayers' Blog">Raw Blog</a> </li>
+  <li class="xtab2"><a href="http://hyperdata.org/danja/"
+    title="my updates on various social sites">Planet Danja</a> </li>
+  <li class="xtab3"><a href="http://hyperdata.org/planet/"
+    title="stuff I'm watching">Planet Raw</a> </li>
+  <li class="xtab4"><a href="http://hyperdata.org/"
+    title="Linked Data related material">hyperdata.org</a> </li>
+  <li class="xtab5"><a href="http://hyperdata.org/wiki/"
+    title="on my personal wiki">Stuff</a> </li>
+  <li class="xtab6"><a href="http://hyperdata.org/xmlns/"
+    title="various namespaces/ontologies">Vocabs</a> </li>
+  <li class="xtab7"><a href="http://dannyayers.com/about.html"
+    title="About">About</a> </li>
+</ul>
+<br>
 
-<h2>Introduction</h2>
 
-<p>I started this write-up just after I had initial rough code running that
-suggested the project was feasible (I wanted notes for myself before I forgot),
-so the writing tense varies. Hopefully it contains enough information (however
-incoherent) to explain how it works. There is some digital signal processing
-jargon, but DSP can be treated as black-box stuff, there's no real need to go
-into the details to build things. (It's been years since I studied this stuff
-and my maths is totally rusted, the revision I did for this was basically
-skimming the corresponding Wikipedia articles).</p>
+<div id="header">
+<h1 id="page-title">Web Beep</h1>
+
+<p id="description">how it works</p>
+</div>
+
+<div class="container">
+
+<div class="sidebar-left">
+<h3>Contents</h3>
 <ul>
   <li><a href="#Design">Design Considerations</a></li>
   <li><a href="#Encoding">Encoding</a></li>
@@ -34,8 +51,48 @@ skimming the corresponding Wikipedia articles).</p>
   <li><a href="#Initial">Reference Implementation</a></li>
   <li><a href="#Notes">Notes</a></li>
 </ul>
+</div>
 
-<h2><a id="Design">Design Considerations</a></h2>
+<div class="container">
+
+<div class="sidebar-right">
+<h3>Nearby</h3>
+<ul>
+  <li><a href="index.html">Home</a> </li>
+  <li><a href="spec.html">Specification</a></li>
+</ul>
+
+<h3>Reference Material</h3>
+<ul>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+</ul>
+
+<h3>Elsewhere</h3>
+<ul>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+</ul>
+</div>
+
+<div class="content">
+<h1>Introduction</h1>
+
+<p>This write-up is rough &amp; ready, mostly I wanted notes for myself,
+offboard memory. But however incoherent, hopefully it contains enough
+information to explain how this thing works. </p>
+
+<p>There is some digital signal processing jargon, but DSP can just be treated
+as black-box stuff, there's really <strong>no need to go into the detailed
+maths to build things</strong>. (It's been years since I studied this stuff and
+my maths is totally rusted, the revision I did for this was basically skimming
+the corresponding Wikipedia articles).</p>
+
+<h1><a id="Design">Design Considerations</a></h1>
 
 <p>The original idea was to encode HTTP URLs as little tunes, with the
 characters in URLs <em>somehow</em> mapping to musical notes. It's essentially
@@ -43,7 +100,7 @@ the same idea as used in <a
 href="http://en.wikipedia.org/wiki/Touch_tone">touch-tone</a> phone signals,
 but tweaked to make the beeps easier on the ear. </p>
 
-<h3>Text Pre-Processing</h3>
+<h2>Text Pre-Processing</h2>
 
 <p>International coverage (i.e. <a
 href="http://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRI</a>s)
@@ -55,13 +112,13 @@ a <em>lot</em> of characters, and mapping from these to musical pitches
 directly is almost certainly unfeasible. However <a
 href="http://en.wikipedia.org/wiki/Punycode">Punycode</a> is an encoding syntax
 by which a string of Unicode characters can be transformed uniquely and
-reversibly into a much smaller character set. Roughly speaking, characters that
-can be expressed in ASCII are expressed that way, but multiple ASCII characters
-are used to represent other individual Unicode characters. In general, the cost
-of reducing the size of the character set is an increase in the resulting
-string length. </p>
+reversibly into a much smaller character set. Basically it's <strong>a mapping
+to ASCII</strong>. Roughly speaking, characters that can be expressed in ASCII
+are expressed that way, but multiple ASCII characters are used to represent
+other individual Unicode characters. In general, the cost of reducing the size
+of the character set is an increase in the resulting string length. </p>
 
-<h3>Phonic Constraints</h3>
+<h2>Phonic Constraints</h2>
 
 <p>To achieve a reasonable compromise between length of (beep) messages,
 musicality and implementation complexity, it was decided that a <strong>maximum
@@ -81,21 +138,21 @@ may appear as half- or whole-length.</p>
 really, most decisions were made during experimentation, based on what sounded
 about right.</p>
 
-<h2><a id="Encoding">Encoding</a></h2>
+<h1><a id="Encoding">Encoding</a></h1>
 
 <p>Generating Web Beeps is relatively straightforward, details of the
 requirements can be found in the <a href="spec.html">specification</a>, there's
 an example of how this may be implemented in Java in the <a
 href="https://github.com/danja/WebBeep">source code</a>.</p>
 
-<h2><a id="Decoding">Decoding</a></h2>
+<h1><a id="Decoding">Decoding</a></h1>
 
 <p>Getting the text back out from the beeps is rather more convoluted
 (<em>literally!</em>), though is based on standard digital signal processing
 (<a href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a>)
 techniques. </p>
 
-<h3>Pre-processing</h3>
+<h2>Pre-processing</h2>
 
 <p>Normalisation (before &amp; after chunking)</p>
 
@@ -105,7 +162,7 @@ techniques. </p>
 
 <p>Although some </p>
 
-<h3>Pitch Detection</h3>
+<h2>Pitch Detection</h2>
 
 <p>Many pitch detection algorithms are available, here are some examples ranked
 in order of guesstimated suitability:</p>
@@ -126,7 +183,7 @@ smartphone, though experimentation needed. For accuracy it'd be nice to have
 (say) 3 parallel decoding algorithms going, let them vote for the best match.
 </p>
 
-<h2><a id="Initial">Reference Implementation</a></h2>
+<h1><a id="Initial">Reference Implementation</a></h1>
 
 <p>The reference implementation has been written in Java. </p>
 
@@ -162,7 +219,7 @@ frequency (300Hz) with enough cycles (23?) that the frequency should be pretty
 obvious. </p>
 
 <p><img alt="test tone plot" src="images/correlation-tone-plot.png" width="800"
-height="200" /></p>
+height="200"></p>
 
 <p>I then set up the code to generate a load of reference waveforms, a series
 that I knew would include the Test Tone frequency - I went from half it's
@@ -171,7 +228,7 @@ frequency to double it, in steps of 1Hz. </p>
 <p></p>
 
 <p><img alt="reference wave" src="images/correlation-reference-plot.png"
-width="800" height="200" /></p>
+width="800" height="200"></p>
 
 <p>The code that did the comparisons is a loop within a loop, moving the
 starting point of the reference through the Test Tone, for each
@@ -189,7 +246,7 @@ big peak followed by a big trough.</p>
 <p></p>
 
 <p><img alt="correlation plot" src="images/correlation-plot.png" width="800"
-height="200" /></p>
+height="200"></p>
 
 <p></p>
 
@@ -224,7 +281,7 @@ behaves with some real data.</p>
 
 <h3>Test Results</h3>
 
-<h2><a id="Notes">Notes</a></h2>
+<h1><a id="Notes">Notes</a></h1>
 
 <h2></h2>
 
@@ -237,38 +294,39 @@ places. <em>Suggestions please...</em></p>
 
 <p></p>
 
-<h3>Prior Art?</h3>
+<h2>Patent Pending?</h2>
 
-<p>I'm sure many variations of this have been done before, though it's hard to
-find out what there is - searches I've tried mostly led to something related to
-mobile/cellphone ringtones (grr, I wanted the name "Web Tone" but it's already
-taken). Whatever, the basic idea is straightforward: what if you had something
-like DTFM tones only not so hard on the ear? Given that, implementations are
-pretty obvious given minimal background knowledge of character encoding, music
-and DSP techniques. Simple matter of guesswork, experimentation &amp; banging
-out the code. The implementation described here is pretty arbitrary, mostly
-based on what seemed like a good idea at the time.</p>
+<p><strong>No. </strong><strong><a
+href="http://en.swpat.org/wiki/Blocking_innovation_and_research">Software
+patents hurt innovation</a>.</strong></p>
 
-<p></p>
+<p>In any case, I'm sure many variations of this have been done before, though
+it's hard to find out what there is. Searches I've tried mostly led to
+something related to mobile/cellphone ringtones (grr, I wanted the name "Web
+Tone" but it's already taken).</p>
 
-<p></p>
+<p>The basic idea is fairly trivial: what if you had something like DTFM tones
+only not so hard on the ear? Given that, implementations are pretty obvious
+given minimal background knowledge of character encoding, music and DSP. Simple
+matter of guesswork, experimentation &amp; banging out the code. The
+implementation described here is pretty arbitrary, mostly based on what seemed
+like a good idea at the time.</p>
 
-<p></p>
+<p><a href="https://github.com/danja/WebBeep">Please clone the project.</a></p>
 
-<p style="text-align:right;margin-left:auto;margin-right:0;"><a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/"><img
-alt="Creative Commons License" style="border-width:0"
-src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />
-This work is licensed under a <a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/"></a></p>
+<div id="footer">
+<p>(c) <a href="http://dannyayers.com">Danny Ayers</a> </p>
 
-<p style="text-align:right;margin-left:auto;margin-right:0;"><a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
-3.0 Unported License</a>. </p>
-
-<p style="text-align:right;margin-left:auto;margin-right:0;">(c) <a
-href="http://dannyayers.com">Danny Ayers</a> 2011</p>
-
-<p></p>
+<p>This work is licensed for reuse <br>
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative
+Commons</a> <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/"><br>
+<img alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by/3.0/88x31.png"></a><br>
+</p>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

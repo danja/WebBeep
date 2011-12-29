@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.parameters;
 
+import org.hyperdata.beeps.system.DefaultParameter;
+
 
 /**
  * @author danny

@@ -6,6 +6,8 @@ package org.hyperdata.beeps.parameters;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.hyperdata.beeps.system.Parameter;
+
 /**
  * @author danny
  *

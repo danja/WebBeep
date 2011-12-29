@@ -1,62 +1,119 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-      "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
- xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
- xmlns:owl="http://www.w3.org/2002/07/owl#"
- xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
- xmlns:foaf="http://xmlns.com/foaf/0.1/"
- xmlns:dc="http://purl.org/dc/elements/1.1/">
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="content-type" content="text/html; charset=us-ascii">
   <title>Web Beep : text to tones and back again</title>
-  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+  <meta name="description" content="Various things from Danny Ayers">
+  <meta name="author" content="Danny Ayers">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- M$ etc -->
+  <link rel="apple-touch-icon" href="/apple-icon.png">
+  <!-- iDespair -->
+  <link rel="icon" type="image/png" href="/apple-icon.png">
+  <!-- HTML5 -->
+  <link rel="stylesheet" href="fonts/font.css" type="text/css" media="Screen">
+  <link rel="stylesheet" href="css/stuff.css" type="text/css" media="Screen">
+
+  <script type="text/javascript" src="js/curvycorners.js">
+ </script>
 </head>
 
 <body>
-<h1>Web Beeps</h1>
 
-<p><strong>Text to (kinda musical) tones and back again.</strong></p>
+<div id="header">
+<h1 id="page-title">Web Beep</h1>
 
-<p></p>
+<p id="logo"><img alt="loudspeakers logo"
+src="images/logo-inverted-120.png" width="120" height="72"></p>
 
-<h2>Try it out! <em>[Alpha]</em></h2>
+<p id="description">text to tones and back again</p>
+</div>
+
+<div class="container">
+
+<div class="sidebar-left">
+<h3>Documentation</h3>
+<ul>
+  <li><a href="spec.html">Specification</a></li>
+  <li><a href="implementation.html">How It Works</a></li>
+  <li><a href="https://github.com/danja/WebBeep">Source Code</a></li>
+</ul>
+</div>
+
+<div class="container">
+
+<div class="sidebar-right">
+<h3>Links - nearby</h3>
+<ul>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+  <li><a href="#">Link</a> </li>
+</ul>
+
+<h3>Elsewhere</h3>
+
+
+<ul>
+  <li><a href="http://dannyayers.com" title="Danny Ayers' Blog">Raw Blog</a> </li>
+  <li><a href="http://hyperdata.org/"
+    title="Linked Data related material">hyperdata.org</a> </li>
+
+  <li><a href="http://dannyayers.com/stuff/"
+    title="various things">Stuff</a> </li>
+  <li><a href="http://twitter.com/danja"><img src="/images/twitter.png" alt="Twitter" width="24" height="24" /></a></li>
+    <li><a href="http://www.facebook.com/danny.ayers"><img src="/images/fb.png" alt="Facebook" width="24" height="24" /></a></li>
+ <li><a href="https://plus.google.com/112609322932428633493?rel=author"
+            rel="author"><img src="/images/plus.png" alt="Google Plus" width="24" height="24" /></a></li>
+</ul>
+</div>
+
+<div class="content">
+
 
 <h3>Make Beeps</h3>
 
-<p></p>
+<p>Enter any text (up to 63 characters) and click the <strong>Make
+Beeps</strong> button to get the download. </p>
 
-<p></p>
+<form action="http://localhost:8888/encode" method="post">
+  <p><input type="text" id="inputText"> 
+  <input type="submit" value="Make Beeps"> </p>
+</form>
+
+<p>Web addresses (URLs) work well - now you can <a
+href="http://dig.csail.mit.edu/breadcrumbs/node/71">give yourself a URI</a> you
+can hear!</p>
 
 <p></p>
 
 <h3>Decode Beeps</h3>
 
-<p>[upload]</p>
+<p>Click <strong>Browse</strong> to locate a Web Beep mp3 file on your
+computer, then click <strong>Decode</strong> to see the text it contains. </p>
 
-<p></p>
-
-<h2>Documentation</h2>
-<ul>
-  <li><a href="spec.html">Web Beep Specification</a></li>
-  <li><a href="implementation.html">Implementation Notes</a></li>
-  <li><a href="https://github.com/danja/WebBeep">Source Code</a></li>
-</ul>
-<p style="text-align:right;margin-left:auto;margin-right:0;"><a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/"><img
-alt="Creative Commons License" style="border-width:0"
-src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />
-This work is licensed under a <a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/"></a></p>
-
-<p style="text-align:right;margin-left:auto;margin-right:0;"><a rel="license"
-href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
-3.0 Unported License</a>. </p>
-
-<p style="text-align:right;margin-left:auto;margin-right:0;">(c) <a
-href="http://dannyayers.com">Danny Ayers</a> 2011</p>
+<form name="decode" action="http://localhost:8888/decode" method="post"
+enctype="multipart/form-data">
+  <input type="file" name="decode"> 
+  <input type="submit" value="Decode"> </form>
 
 
+<p>This is a new <em><strong>alpha</strong></em> service, any problems, <a
+href="mailto:danny.ayers@gmail.com">let me know</a>.</p>
+
+<div id="footer">
+<p>(c) <a href="http://dannyayers.com">Danny Ayers</a> </p>
+
+<p>This work is licensed for reuse <br>
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative
+Commons</a> <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/"><br>
+<img alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by/3.0/88x31.png"></a><br>
+</p>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

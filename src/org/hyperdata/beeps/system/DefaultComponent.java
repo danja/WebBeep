@@ -1,12 +1,8 @@
 /**
  * 
  */
-package org.hyperdata.beeps.pipelines;
+package org.hyperdata.beeps.system;
 
-import org.hyperdata.beeps.parameters.DefaultNamed;
-import org.hyperdata.beeps.parameters.DefaultParameterList;
-import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.parameters.Component;
 
 /**
  * @author danny

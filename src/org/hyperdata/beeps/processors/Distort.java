@@ -3,7 +3,7 @@
  */
 package org.hyperdata.beeps.processors;
 
-import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.system.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
 
@@ -39,7 +39,7 @@ public class Distort extends DefaultProcessor {
 	/**
 	 * non-linear distortion (valve-like?)
 	 * 
-	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
+	 * @see org.hyperdata.beeps.system.Processor#process(org.hyperdata.beeps.util.Tone)
 	 */
 	@Override
 	public Tone process(Tone input) {

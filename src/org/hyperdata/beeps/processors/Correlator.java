@@ -16,7 +16,7 @@ import org.hyperdata.beeps.WaveMaker;
 import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.correlate.ReferenceTones;
 import org.hyperdata.beeps.old.FixedEncoder;
-import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.system.DefaultProcessor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;

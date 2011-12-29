@@ -6,12 +6,7 @@ package org.hyperdata.beeps;
 import java.net.IDN;
 
 import org.hyperdata.beeps.config.Debug;
-import org.hyperdata.beeps.parameters.DefaultParameterList;
-import org.hyperdata.beeps.parameters.Parameter;
-import org.hyperdata.beeps.parameters.ParameterFactory;
-import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.parameters.SimpleParameter;
-import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder;
 import org.hyperdata.beeps.processors.Chunker;
 import org.hyperdata.beeps.processors.Compressor;
@@ -19,6 +14,11 @@ import org.hyperdata.beeps.processors.Cropper;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.FIRProcessor;
 import org.hyperdata.beeps.processors.Normalise;
+import org.hyperdata.beeps.system.DefaultParameterList;
+import org.hyperdata.beeps.system.Parameter;
+import org.hyperdata.beeps.system.ParameterFactory;
+import org.hyperdata.beeps.system.ParameterList;
+import org.hyperdata.beeps.system.Processor;
 import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
@@ -120,25 +120,6 @@ public class DefaultDecoder extends DefaultCodec {
 
 		createParameters();
 	}
-
-//	public void initFromParameters() {
-//		try {
-//			cropper.initFromParameters();
-//			hp.initFromParameters();
-//			lp1.initFromParameters();
-//			lp2.initFromParameters();
-//			compressor.initFromParameters();
-//				
-//			// *** Chunker - applied in main path ***
-//			chunker.initFromParameters();
-//			
-//			chunkNorm.initFromParameters();
-//			chunkEnv.initFromParameters();
-//			pitchFinder.initFromParameters();
-//		} catch (Exception exception) {
-//			exception.printStackTrace();
-//		}
-//	}
 
 	public void createParameters() { 
 		createParameter(norm, "Decoder.core.normalise.on");

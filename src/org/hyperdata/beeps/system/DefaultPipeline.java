@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.pipelines;
+package org.hyperdata.beeps.system;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,11 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.hyperdata.beeps.config.Debug;
-import org.hyperdata.beeps.parameters.Component;
-import org.hyperdata.beeps.parameters.DefaultParameterList;
-import org.hyperdata.beeps.parameters.DefaultComponentList;
-import org.hyperdata.beeps.parameters.Parameter;
-import org.hyperdata.beeps.parameters.ParameterList;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 

@@ -5,7 +5,9 @@ package org.hyperdata.beeps.parameters;
 
 import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.config.Debug;
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.system.DefaultParameter;
+import org.hyperdata.beeps.system.ParameterList;
+import org.hyperdata.beeps.system.Processor;
 
 /**
  * @author danny

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hyperdata.beeps.config.Maps;
-import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.system.DefaultProcessor;
 import org.hyperdata.beeps.util.Tone;
 
 /**

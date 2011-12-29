@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.old.FixedEncoder;
-import org.hyperdata.beeps.parameters.DefaultParameterList;
-import org.hyperdata.beeps.pipelines.SplittingProcessor;
+import org.hyperdata.beeps.system.DefaultParameterList;
+import org.hyperdata.beeps.system.SplittingProcessor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;

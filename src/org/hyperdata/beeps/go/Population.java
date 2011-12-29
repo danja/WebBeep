@@ -6,8 +6,8 @@ package org.hyperdata.beeps.go;
 import java.util.*;
 
 import org.hyperdata.beeps.GoCodec;
-import org.hyperdata.beeps.parameters.DefaultParameterList;
-import org.hyperdata.beeps.parameters.ParameterList;
+import org.hyperdata.beeps.system.DefaultParameterList;
+import org.hyperdata.beeps.system.ParameterList;
 
 /**
  * @author danny

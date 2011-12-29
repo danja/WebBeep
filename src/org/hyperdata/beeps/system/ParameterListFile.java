@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.hyperdata.beeps.parameters;
+package org.hyperdata.beeps.system;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +16,7 @@ import java.util.Set;
 
 
 import org.hyperdata.beeps.GoCodec;
+import org.hyperdata.beeps.parameters.SimpleParameter;
 
 /**
  * example:

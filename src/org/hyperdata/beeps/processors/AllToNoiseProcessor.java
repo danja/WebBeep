@@ -5,7 +5,7 @@ package org.hyperdata.beeps.processors;
 
 import java.util.List;
 
-import org.hyperdata.beeps.pipelines.DefaultProcessor;
+import org.hyperdata.beeps.system.DefaultProcessor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Noise;
 import org.hyperdata.beeps.util.Tone;

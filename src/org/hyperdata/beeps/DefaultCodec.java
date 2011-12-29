@@ -6,18 +6,7 @@ package org.hyperdata.beeps;
 import java.util.List;
 
 import org.hyperdata.beeps.config.Debug;
-import org.hyperdata.beeps.parameters.ComponentList;
-import org.hyperdata.beeps.parameters.DefaultComponentList;
-import org.hyperdata.beeps.parameters.DefaultNamed;
-import org.hyperdata.beeps.parameters.DefaultParameterList;
-import org.hyperdata.beeps.parameters.Parameter;
-import org.hyperdata.beeps.parameters.ParameterFactory;
-import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.pipelines.Codec;
-import org.hyperdata.beeps.pipelines.DefaultComponent;
-import org.hyperdata.beeps.pipelines.DefaultPipeline;
-import org.hyperdata.beeps.pipelines.Pipeline;
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.system.*;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 
@@ -59,7 +48,7 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	public void setParameters(ParameterList parameters) {
 	//	System.out.println("PRAMS"+parameters);
 		// TODO make these consistent consume/update
-		coreComponents.consume(parameters);
+		coreComponents.updateParameters(parameters);
 		preProcessors.updateParameters(parameters); // was update
 		postProcessors.updateParameters(parameters);
 	}
@@ -80,6 +69,7 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	public ParameterList getParameters() {
 		ParameterList parameters = new DefaultParameterList("All");
 		parameters.addAll(coreComponents);
+		System.out.println("CORE:\n"+coreComponents);
 		parameters.addAll(preProcessors.getParameters());
 		parameters.addAll(postProcessors.getParameters());
 		return parameters;
@@ -95,7 +85,8 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	 */
 	@Override
 	public void addCoreComponent(ParameterList component) {
-		coreComponents.consume(component);
+		coreComponents.updateParameters(component); // UPDATE
+		// consume(component);
 	}
 	
 	/*
@@ -193,8 +184,9 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	public String toString() {
 		
 		String string = "Codec : " + this.getClass().toString();
-		string += "\nPreProcessors:\n" + preProcessors.toString();
-		string += "\nPostProcessors:\n" + postProcessors.toString();
+		string += "\n$$$CoreComponents:\n" + coreComponents.toString();
+		string += "\n$$$PreProcessors:\n" + preProcessors.toString();
+		string += "\n$$$PostProcessors:\n" + postProcessors.toString();
 		return string;
 	}
 

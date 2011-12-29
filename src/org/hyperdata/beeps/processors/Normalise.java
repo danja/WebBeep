@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.config.Debug;
-import org.hyperdata.beeps.pipelines.DefaultProcessor;
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.system.DefaultProcessor;
+import org.hyperdata.beeps.system.Processor;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 

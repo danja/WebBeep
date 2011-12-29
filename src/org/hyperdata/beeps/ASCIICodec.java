@@ -4,8 +4,8 @@
 package org.hyperdata.beeps;
 
 import org.hyperdata.beeps.config.Constants;
-import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pitchfinders.PitchFinderGeneral;
+import org.hyperdata.beeps.system.Processor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 

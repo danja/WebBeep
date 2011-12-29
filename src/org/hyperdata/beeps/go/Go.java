@@ -5,9 +5,9 @@ package org.hyperdata.beeps.go;
 
 import org.hyperdata.beeps.ASCIICodec;
 import org.hyperdata.beeps.GoCodec;
-import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.parameters.ParameterListFile;
 import org.hyperdata.beeps.parameters.TimeStampParameter;
+import org.hyperdata.beeps.system.ParameterList;
+import org.hyperdata.beeps.system.ParameterListFile;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.common.Describer;
 
@@ -17,10 +17,10 @@ import org.hyperdata.common.Describer;
  */
 public class Go {
 
-	static int populationSize = 256; // must be multiple of 8
-	static int generations = 256;
+	static int populationSize = 128; // must be multiple of 8
+	static int generations = 128;
 	static int minCharacters = 5;
-	static int maxCharacters = 30;
+	static int maxCharacters = 25;
 	
 	/**
 	 * @param args
@@ -49,11 +49,11 @@ public class Go {
 		 String configFilename = "/home/danny/workspace/WebBeep/data/config.xml";
 			ParameterListFile plf = new ParameterListFile();
 			ParameterList config = plf.load(configFilename);
-			System.out.println("==============PLF = \n"+plf);
+			System.out.println("=== SEEDING ===\n"+plf);
 			for(int i=0;i<population.size()/8;i++){
 				int r =(int)( Math.random()*(double)population.size());
 				ParameterList targetParameters = population.get(r).getParameters();
-				targetParameters.consume(config);
+				targetParameters.update(config);
 				population.get(r).setParameters(targetParameters); // probably not necessary, by-reference etc.
 			//	population.get(r).initFromParameters();
 			//	System.out.println("seed SIZE = "+   (((GoCodec) (population.get(r)    )).parametersSize()));
@@ -81,9 +81,13 @@ public class Go {
 				}else {
 					System.out.print(" - ");
 				}
+				
+				GoCodec instance = ((GoCodec) population.get(i));
+				System.out.print(" "+Plotter.roundToSignificantFigures(instance.getFitness(), 2));
+				System.out.print(" "+Plotter.roundToSignificantFigures(instance.getMeanFitness(), 2)+" ");
 			//	System.out.println("SIZE = "+((GoCodec) population.get(i)).parametersSize());
-				((GoCodec)population.get(i)).setInput(input);
-				((GoCodec)population.get(i)).setDistort(distort);
+				instance.setInput(input);
+				instance.setDistort(distort);
 				population.get(i).run();
 			}
 			population.sort();

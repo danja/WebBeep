@@ -9,10 +9,10 @@ import java.util.Set;
 
 import org.hyperdata.beeps.WaveMaker;
 import org.hyperdata.beeps.config.Constants;
-import org.hyperdata.beeps.parameters.DefaultParameterList;
-import org.hyperdata.beeps.parameters.Parameter;
-import org.hyperdata.beeps.pipelines.DefaultProcessor;
-import org.hyperdata.beeps.pipelines.MergingProcessor;
+import org.hyperdata.beeps.system.DefaultParameterList;
+import org.hyperdata.beeps.system.DefaultProcessor;
+import org.hyperdata.beeps.system.MergingProcessor;
+import org.hyperdata.beeps.system.Parameter;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 

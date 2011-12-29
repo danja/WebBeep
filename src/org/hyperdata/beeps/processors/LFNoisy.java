@@ -3,8 +3,8 @@
  */
 package org.hyperdata.beeps.processors;
 
-import org.hyperdata.beeps.pipelines.DefaultProcessor;
-import org.hyperdata.beeps.pipelines.Processor;
+import org.hyperdata.beeps.system.DefaultProcessor;
+import org.hyperdata.beeps.system.Processor;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
@@ -45,7 +45,7 @@ public class LFNoisy extends DefaultProcessor {
 	 * 
 	 * (non-Javadoc)
 	 * 
-	 * @see org.hyperdata.beeps.pipelines.Processor#process(org.hyperdata.beeps.util.Tone)
+	 * @see org.hyperdata.beeps.system.Processor#process(org.hyperdata.beeps.util.Tone)
 	 */
 	@Override
 	public Tone process(Tone input) { // inefficient, but ok for testing purpose

@@ -7,14 +7,14 @@ import java.net.IDN;
 
 import org.hyperdata.beeps.old.FixedDecoder;
 import org.hyperdata.beeps.old.FixedEncoder;
-import org.hyperdata.beeps.pipelines.Processor;
-import org.hyperdata.beeps.pipelines.SplittingProcessor;
 import org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder;
 import org.hyperdata.beeps.processors.Chunker;
 import org.hyperdata.beeps.processors.Correlator;
 import org.hyperdata.beeps.processors.Cropper;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.Normalise;
+import org.hyperdata.beeps.system.Processor;
+import org.hyperdata.beeps.system.SplittingProcessor;
 import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;

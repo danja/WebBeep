@@ -6,9 +6,9 @@ package org.hyperdata.beeps;
 import java.util.List;
 
 import org.hyperdata.beeps.config.Debug;
-import org.hyperdata.beeps.parameters.ParameterList;
-import org.hyperdata.beeps.parameters.ParameterListFile;
-import org.hyperdata.beeps.pipelines.DefaultPipeline;
+import org.hyperdata.beeps.system.DefaultPipeline;
+import org.hyperdata.beeps.system.ParameterList;
+import org.hyperdata.beeps.system.ParameterListFile;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
@@ -58,6 +58,8 @@ public class CodecTest {
 			
 			Debug.debug(((Encoder) encoder));
 
+			System.out.println(encoder);
+			System.out.println(decoder);
 			
 //			System.out.println("Encoder prams "
 //					+ ((ParameterizedEncoder) encoder).parameters);

@@ -23,7 +23,7 @@
 	<property name="zipfile" value="${name}_${DATETIME}.zip" />
 
 	<path id="classpath">
-		<fileset dir="${lib.dir}" includes="*.jar" />
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
 	</path>
 
 	<!-- CLEAN -->
@@ -57,7 +57,7 @@
 	</target>
 
 	<!-- BUILD -->
-	<target name="build" depends="clean" />
+	<target name="build" depends="clean, compile" />
 
 	<!-- ALL -->
 	<target name="all" depends="build, javadoc" />

@@ -3,7 +3,7 @@
  */
 package org.hyperdata.beeps.go;
 
-import org.hyperdata.beeps.parameters.ParameterList;
+import org.hyperdata.beeps.system.ParameterList;
 
 
 /**

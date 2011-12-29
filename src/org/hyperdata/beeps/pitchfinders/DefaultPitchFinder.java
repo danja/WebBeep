@@ -5,7 +5,7 @@ package org.hyperdata.beeps.pitchfinders;
 
 import java.util.List;
 
-import org.hyperdata.beeps.parameters.DefaultParameterList;
+import org.hyperdata.beeps.system.DefaultParameterList;
 import org.hyperdata.beeps.util.Tone;
 
 /**

@@ -1,9 +1,8 @@
 /**
  * 
  */
-package org.hyperdata.beeps.parameters;
+package org.hyperdata.beeps.system;
  
-import org.hyperdata.beeps.pipelines.Processor;
 
 /**
  * @author danny
@@ -39,7 +38,7 @@ public interface ParameterList extends Named {
 	 * 
 	 * @param incoming
 	 */
-	public void consume(ParameterList incoming);
+	public void update(ParameterList incoming);
 	
 	public void setParameter(Parameter parameter);
 

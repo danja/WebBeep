@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.processors;
 
+import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
 
@@ -31,8 +32,7 @@ public class ThroughMP3 extends ShellProcess {
 		if(!isEnabled()) return input;
 		WavCodec.save(getWavFilename(), input);;
 		
-		// V7 is 100Kbit/s
-		setShellCommand("lame -V7 "+getWavFilename() + " " + getMp3Filename());
+		setShellCommand("lame "+Constants.LAME+" "+getWavFilename() + " " + getMp3Filename());
 		doShell();
 		
 		setShellCommand("lame --decode "+getMp3Filename() + " " + getWavFilename());

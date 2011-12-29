@@ -23,10 +23,10 @@ public class FitnessComparator implements Comparator<Organism> {
 		double f1 = o1.getMeanFitness();
 		double f2 = o2.getMeanFitness();
 		if(f1==0){
-			f1 = o1.getFitness()/2.0;
+			f1 = o1.getFitness();
 		}
 		if(f2==0){
-			f2 = o2.getFitness()/2.0;
+			f2 = o2.getFitness();
 		}
 		if(f1 == f2) return 0;
 		if(f1 < f2){

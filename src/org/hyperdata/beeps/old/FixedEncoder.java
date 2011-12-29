@@ -8,12 +8,12 @@ import java.util.*;
 
 import org.hyperdata.beeps.ASCIICodec;
 import org.hyperdata.beeps.DefaultCodec;
-import org.hyperdata.beeps.pipelines.Processor;
 import org.hyperdata.beeps.pitchfinders.FFT;
 import org.hyperdata.beeps.pitchfinders.PeakDetector;
 import org.hyperdata.beeps.processors.EnvelopeShaper;
 import org.hyperdata.beeps.processors.Merger;
 import org.hyperdata.beeps.processors.Normalise;
+import org.hyperdata.beeps.system.Processor;
 import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
