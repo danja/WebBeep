@@ -3,28 +3,76 @@
  */
 package org.hyperdata.beeps.system;
 
+import org.hyperdata.beeps.parameters.SimpleParameter;
+
 
 /**
  * @author danny
  *
  */
-public class DefaultComponent extends DefaultParameterList implements Component {
+public abstract class DefaultComponent extends DefaultNamed implements Component {
 
+	ParameterList parameters;
 	/**
 	 * @param name
 	 */
 	public DefaultComponent(String name) {
 		super(name);
+	//	System.out.println("constructing "+name);
+		parameters = new DefaultParameterList(name);
+	}
+	
+	public void setParameter(String name, String valueString){
+		Parameter parameter = parameters.getParameter(name);
+		if(parameter == null){
+			parameter = new SimpleParameter();
+			parameter.setName(name);
+			parameters.add(parameter);
+		}
+		parameter.setValue(valueString);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.system.Processor#setParameter(org.hyperdata.beeps.system.Parameter)
+	 */
+	@Override
+	public void setParameter(Parameter parameter) {
+		parameters.setParameter(parameter);
+		
+	}
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.system.Processor#setParameter(java.lang.String, java.lang.String)
+	 */
+//	@Override
+//	public void setParameter(String string, String string2) {
+//		parameters.se
+//	}
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.system.Component#update(org.hyperdata.beeps.system.ParameterList)
+	 */
+	@Override
+	public void update(ParameterList incoming) {
+		parameters.update(incoming);
+	}
+	
+	public Object getLocal(String localName){
+		try {
+			return parameters.getLocal(localName);
+		} catch (NotFoundException exception) {
+			// TODO Auto-generated catch block
+			exception.printStackTrace();
+		}
+		return null;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.parameters.Parameterized#initFromParameters()
 	 */
-	@Override
-	public void initFromParameters() {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void initFromParameters() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.common.Described#describe()
@@ -34,14 +82,19 @@ public class DefaultComponent extends DefaultParameterList implements Component 
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.beeps.system.Component#getParameters()
+	 */
+	@Override
+	public ParameterList getParameters() {
+		return parameters;
+	}
 
-//	private ParameterList parameters = new DefaultParameterList();
-//	
-//	public void initFromParameters() {
-//		
-//		for(int i=0;i<size();i++){
-//			get(i).initFromParameters();
-//		}
-//	}
+	public String toString(){
+		String string = "Component : "+getName()+" = "+this.getClass().toString()+"\n";
+		string +=  parameters.toString();
+		return string;
+	}
 
 }

@@ -25,10 +25,15 @@ public interface Processor extends Component {
 	 * @param parameter
 	 */
 	public void setParameter(Parameter parameter);
+	/**
+	 * @param string
+	 * @param string2
+	 */
+
 
 	/**
 	 * @param string
 	 * @param string2
 	 */
-	public void setParameter(String string, String string2);
+	// public void setParameter(String string, String string2);
 }

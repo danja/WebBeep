@@ -49,7 +49,9 @@ public class GoCodec extends DefaultOrganism  {
 
 	public void init() {
 		encoder = new DefaultEncoder("Encoder");
+		encoder.init();
 		decoder = new DefaultDecoder("Decoder");
+		decoder.init();
 		line = new Line();
 	}
 

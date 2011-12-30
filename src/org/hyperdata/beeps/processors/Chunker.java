@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.old.FixedEncoder;
+import org.hyperdata.beeps.system.DefaultComponent;
 import org.hyperdata.beeps.system.DefaultComponentList;
 import org.hyperdata.beeps.system.DefaultParameterList;
 import org.hyperdata.beeps.system.SplittingProcessor;
@@ -19,7 +20,7 @@ import org.hyperdata.beeps.util.WavCodec;
  * @author danny
  * 
  */
-public class Chunker extends DefaultComponentList implements SplittingProcessor {
+public class Chunker extends DefaultComponent implements SplittingProcessor {
 	
 	public Chunker(String name){
 		super(name);

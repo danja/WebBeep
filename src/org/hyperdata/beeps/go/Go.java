@@ -17,7 +17,7 @@ import org.hyperdata.common.Describer;
  */
 public class Go {
 
-	static int populationSize = 128; // must be multiple of 8
+	static int populationSize = 16; // must be multiple of 8
 	static int generations = 128;
 	static int minCharacters = 5;
 	static int maxCharacters = 25;

@@ -37,11 +37,7 @@ public abstract class DefaultProcessor extends DefaultComponent implements Proce
 		return output;
 	}
 	
-	public String toString(){
-		String string = "Processor : "+getName()+" = "+this.getClass().toString();
-		string += "\n" + super.toString();
-		return string;
-	}
+
 
 	/**
 	 * @return the enabled

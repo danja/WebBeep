@@ -16,7 +16,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  * 
  */
-public class DefaultPipeline extends DefaultComponentList implements Pipeline, Processor { // extends DefaultProcessor 
+public class DefaultPipeline extends DefaultComponentList implements Pipeline { // extends DefaultProcessor 
 
 	/**
 	 * @param name
@@ -112,20 +112,21 @@ public class DefaultPipeline extends DefaultComponentList implements Pipeline, P
 //		
 //	}
 
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.pipelines.Processor#setEnabled(boolean)
-	 */
-	@Override
+
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.pipelines.Processor#isEnabled()
-	 */
-	@Override
 	public boolean isEnabled() {
 		return enabled;
 	}
+
+
+
+
+
+
+
+	
 
 }

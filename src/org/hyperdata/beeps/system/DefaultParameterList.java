@@ -18,10 +18,15 @@ import org.hyperdata.beeps.parameters.SimpleParameter;
 public class DefaultParameterList extends DefaultNamed implements ParameterList {
 
 	private List<Parameter> parameters = new ArrayList<Parameter>();
+	
+	 //private List<Component> components = new ArrayList<Component>();
+//		List<Processor> components = new ArrayList<Processor>();
+	//	Map<String, Parameter> parameterNames = new HashMap<String, Component>(); // yuck...
 
 	public DefaultParameterList(String name) {
 		super(name);
 	}
+	
 	
 	/*
 	 * (non-Javadoc)
@@ -57,10 +62,13 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	}
 
 	public int size() {
+	//	System.out.println("HERElistsize"+parameters.size());
 		return parameters.size();
 	}
 
 	public Parameter get(int i) {
+	//	System.out.println("listsize"+size());
+	//	System.out.println("listsize"+parameters.size());
 		return parameters.get(i);
 	}
 
@@ -76,9 +84,11 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 		parameters.add(param);
 	}
 
-	public void addAll(ParameterList parameters) {
-		for (int i = 0; i < parameters.size(); i++) {
-			this.parameters.add(parameters.get(i));
+	public void addAll(ParameterList incoming) {
+//		System.out.println("incoming="+incoming);
+//		System.out.println(incoming.size());
+		for (int i = 0; i < incoming.size(); i++) {
+			this.parameters.add(incoming.get(i));
 		}
 	}
 
@@ -184,6 +194,9 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 
 	public Parameter getParameter(String name) {
 		int index = findParameter(name);
+		if(index == -1){
+			return null;
+		}
 		return parameters.get(index);
 	}
 
@@ -213,5 +226,19 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 			string += "\t\t"+parameters.get(i).toString() + "\n";
 		}
 		return string;
+	}
+
+
+	/**
+	 * @param name
+	 * @return
+	 */
+	public Parameter get(String name) {
+		for(int i=0;i<parameters.size();i++){
+			if(get(i).getName().equals(name)){
+				return get(i);
+			}
+		}
+		return null;
 	}
 }

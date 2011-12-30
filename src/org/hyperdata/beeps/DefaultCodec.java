@@ -27,10 +27,19 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 		postProcessors = new DefaultPipeline(name+".post");
 	}
 	
-	protected void createParameter(ParameterList component, String name) {
-		Parameter parameter = ParameterFactory.createParameter(component, name);
+	protected void createParameter(Component component, String name) {
+		Parameter parameter = ParameterFactory.createParameter(component.getParameters(), name);
 		component.setParameter(parameter);
 	}
+	
+	/**
+	 * @param lp12
+	 * @param name
+	 */
+//	private void createParameter(Processor processor, String name) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	/**
 	 * @param parameters
@@ -59,8 +68,8 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 
 	public ParameterList getParameters() {
 		ParameterList parameters = new DefaultParameterList("All");
-		parameters.addAll(coreComponents);
-		System.out.println("CORE:\n"+coreComponents);
+		parameters.addAll(coreComponents.getParameters());
+		// System.out.println("PRE:\n"+preProcessors);
 		parameters.addAll(preProcessors.getParameters());
 		parameters.addAll(postProcessors.getParameters());
 		return parameters;

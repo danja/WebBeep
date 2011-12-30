@@ -13,12 +13,26 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public interface Pipeline extends Processor, ComponentList {
+public interface Pipeline extends  ComponentList {
 
 	public void addProcessor(Processor processor);
 //	public List<Double> applyProcessors(List<Double> input);
 
-	public int size();
+	
+
+	/**
+	 * @param input
+	 * @return
+	 */
+	public Tone process(Tone input);
+
+
+
+	/**
+	 * @param chunks
+	 * @return
+	 */
+	public Chunks process(Chunks chunks);
 	
 //	public Processor get(int i);
 	
@@ -27,7 +41,7 @@ public interface Pipeline extends Processor, ComponentList {
 	/**
 	 * @return
 	 */
-	public ParameterList getParameters();
+	
 	
 
 }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hyperdata.beeps.system.DefaultProcessor;
+import org.hyperdata.beeps.system.Parameter;
+import org.hyperdata.beeps.system.ParameterList;
 import org.hyperdata.beeps.util.Tone;
 
 /**
@@ -41,6 +43,8 @@ public class Rectifier extends DefaultProcessor {
 		}
 		return rectified;
 	}
+
+
 	
 	/*
 	 * (non-Javadoc)
