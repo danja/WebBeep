@@ -26,6 +26,15 @@ public class DefaultComponent extends DefaultParameterList implements Component 
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 //	private ParameterList parameters = new DefaultParameterList();
 //	
 //	public void initFromParameters() {

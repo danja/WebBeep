@@ -2,6 +2,22 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>testing</comment>
+
+<entry key="Decoder.core.cropper.on">true</entry>
+<entry key="Decoder.core.cropper.on^^datatype">java.lang.Boolean</entry>
+<entry key="Decoder.core.chunker.on">true</entry>
+<entry key="Decoder.core.chunker.on^^datatype">java.lang.Boolean</entry>
+<entry key="Decoder.core.pitchFinder.on">true</entry>
+<entry key="Decoder.core.pitchFinder.on^^datatype">java.lang.Boolean</entry>
+
+<entry key="Decoder.core.pitchFinder.gThreshold">10000</entry>
+<entry key="Decoder.core.pitchFinder.gThreshold^^datatype">java.lang.Double</entry>
+<entry key="Decoder.core.cropper.silenceThreshold">0.5</entry>
+<entry key="Decoder.core.cropper.silenceThreshold^^datatype">java.lang.Double</entry>
+<entry key="Decoder.core.chunker.cropProportion">0.5</entry>
+<entry key="Decoder.core.chunker.cropProportion^^datatype">java.lang.Double</entry>
+
+
 <entry key="Encoder.pre.chunkEnv.decayProportion">0.15</entry>
 <entry key="Decoder.pre.compressor.highThreshold^^datatype">java.lang.Double</entry>
 <entry key="Decoder.post.chunkNorm.on">true</entry>

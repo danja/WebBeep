@@ -5,9 +5,12 @@
   <title>Web Beep : text to tones and back again</title>
   <meta name="description" content="Web Beep : text to tones and back again">
   <meta name="author" content="Danny Ayers">
-<link rel="shortcut icon" href="/favicon.ico" /><!-- M$ etc -->
-<link rel="apple-touch-icon" href="/apple-icon.png" /><!-- iDespair -->
- <link rel="icon" sizes="57x57" type="image/png" href="/apple-icon.png" /><!-- HTML5 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- M$ etc -->
+  <link rel="apple-touch-icon" href="/apple-icon.png">
+  <!-- iDespair -->
+  <link rel="icon" type="image/png" href="/apple-icon.png">
+  <!-- HTML5 -->
   <link rel="stylesheet" href="fonts/font.css" type="text/css" media="Screen">
   <link rel="stylesheet" href="css/tabs.css" type="text/css" media="screen">
   <link rel="stylesheet" href="css/stuff.css" type="text/css" media="Screen">
@@ -35,7 +38,7 @@
 
 
 <div id="header">
-<h1 id="page-title">Web Beep</h1>
+<h1 id="page-title"><a href="index.html">Web Beep</a></h1>
 
 <p id="description">how it works</p>
 </div>
@@ -45,10 +48,10 @@
 <div class="sidebar-left">
 <h3>Contents</h3>
 <ul>
-  <li><a href="#Design">Design Considerations</a></li>
+  <li><a href="#Design">Design</a></li>
   <li><a href="#Encoding">Encoding</a></li>
   <li><a href="#Decoding">Decoding</a></li>
-  <li><a href="#Initial">Reference Implementation</a></li>
+  <li><a href="#Initial">Implementation</a></li>
   <li><a href="#Notes">Notes</a></li>
 </ul>
 </div>
@@ -62,7 +65,7 @@
   <li><a href="spec.html">Specification</a></li>
 </ul>
 
-<h3>Reference Material</h3>
+<h3><a name="Reference" id="Reference">Reference</a></h3>
 <ul>
   <li><a href="#">Link</a> </li>
   <li><a href="#">Link</a> </li>
@@ -88,9 +91,9 @@ information to explain how this thing works. </p>
 
 <p>There is some digital signal processing jargon, but DSP can just be treated
 as black-box stuff, there's really <strong>no need to go into the detailed
-maths to build things</strong>. (It's been years since I studied this stuff and
-my maths is totally rusted, the revision I did for this was basically skimming
-the corresponding Wikipedia articles).</p>
+maths to build things</strong>. (It's been many years since I last worked on
+stuff like this and my maths is totally rusted, the revision I did for this was
+mostly skimming Wikipedia - see <a href="#Reference">Reference</a> links). </p>
 
 <h1><a id="Design">Design Considerations</a></h1>
 
@@ -100,7 +103,7 @@ the same idea as used in <a
 href="http://en.wikipedia.org/wiki/Touch_tone">touch-tone</a> phone signals,
 but tweaked to make the beeps easier on the ear. </p>
 
-<h2>Text Pre-Processing</h2>
+<h2>Text Processing</h2>
 
 <p>International coverage (i.e. <a
 href="http://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRI</a>s)
@@ -128,11 +131,11 @@ href="http://en.wikipedia.org/wiki/Pentatonic">pentatonic scale</a></strong>,
 arbitrary combinations of notes could be used without major dissonance. Another
 consideration was that generic hardware should be able to transmit and receive
 the beeps, so a range of pitches was chosen that should be suitable for common
-acoustic transducers, i.e. nothing too low or too high (approx. 250-1500Hz,
-which is around female speech range and a bit higher, or an extended soprano
-singer). The restriction to the notes of the pentatonic scale (i.e. 5 per
-octave) meant a little more space for data was desirable, so the treble notes
-may appear as half- or whole-length.</p>
+electroacoustic transducers, i.e. nothing too low or too high (approx.
+250-1500Hz, which is around female speech range and a bit higher, or an
+extended soprano singer). The restriction to the notes of the pentatonic scale
+(i.e. 5 per octave) meant a little more space for data was desirable, so the
+treble notes may appear as half- or whole-length.</p>
 
 <p>This may give the impression a lot of planning went into this aspect : not
 really, most decisions were made during experimentation, based on what sounded
@@ -147,20 +150,16 @@ href="https://github.com/danja/WebBeep">source code</a>.</p>
 
 <h1><a id="Decoding">Decoding</a></h1>
 
-<p>Getting the text back out from the beeps is rather more convoluted
-(<em>literally!</em>), though is based on standard digital signal processing
-(<a href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a>)
+<p>Getting the text back out from the beeps is rather more convoluted (<em>hee
+hee</em>), though is based on standard digital signal processing (<a
+href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a>)
 techniques. </p>
 
-<h2>Pre-processing</h2>
+<h2>block diagram</h2>
 
-<p>Normalisation (before &amp; after chunking)</p>
+<h2>Pitch Detection</h2>
 
-<p>Filtering (before &amp; after chunking)</p>
-
-<p>reduce harmonic distorion artifacts and out-of-band noise</p>
-
-<p>Although some </p>
+<p>A crucial step in getting data back from mixed-up tones.</p>
 
 <h2>Pitch Detection</h2>
 
@@ -183,17 +182,71 @@ smartphone, though experimentation needed. For accuracy it'd be nice to have
 (say) 3 parallel decoding algorithms going, let them vote for the best match.
 </p>
 
-<h1><a id="Initial">Reference Implementation</a></h1>
+<h1><a id="Initial">Implementation</a></h1>
 
 <p>The reference implementation has been written in Java. </p>
 
-<p></p>
+<p>Generating signals is pretty easy, but manipulating them can get hard. So I
+assumed I'd need to use a piece of kit like Octave (very like Matlab, only open
+source). But as I got into it, it turned out to be straightforward, given the
+material available on the Web. </p>
 
-<p>The decoder was initially developed using FFT pitch detection - a suitable
-FFT class was easily found online (a port of a C version), then a
-cross-correlation approach was tried.</p>
+<p>For an internal representation of signals I started with a
+<code>List&lt;Double&gt;</code>, expecting to have to turn everything over to
+arrays at some point for performance (arrays give me a headache, always
+out-by-one). That point didn't arrive, although I've had to translate to/from
+arrays here and there for interfacing with libs. Long live Collections!</p>
+
+<h2>Visualization</h2>
+
+<p>I started by playing with generated tones in Audacity, passing them to and
+from code as .wav files. Very clunky - it quickly became obvious there was
+something I needed above anything else: a simple way of visualizing signals.</p>
+
+<p>Scales and offsets are always a pain, but it didn't take that long to get
+something together that was usable: </p>
+
+<p><img alt="test tone plot" src="images/correlation-tone-plot.png" width="800"
+height="200"></p>
+
+<p>Plotter.java - a little bit of Swing which takes a List&lt;Double&gt; and
+jams it in the window.</p>
 
 <h4>FFT Detection</h4>
+
+<p>The decoder was first developed using FFT for pitch detection - a suitable
+FFT class was easily found online (a direct port of a C version). A peak
+detector (to identify the peaks in the power spectrum delivered by the FFT) was
+also needed. After several unsatisfying experiments I found a public domain
+peak detector. The FFT+peak detector setup basically worked but proved very
+sensitive to noise and distortion. The code for this is still in the
+repository, it's handy having FFT around for spectrum analysis.</p>
+
+<h4>Pre- and Post-Processing</h4>
+
+<p>Normalisation (before &amp; after chunking)</p>
+
+<p>Filtering (before &amp; after chunking)</p>
+
+<p>reduce harmonic distorion artifacts and out-of-band noise</p>
+
+<p>Although some </p>
+
+<h4>Cross-correlation Blind Alley</h4>
+
+<p>So I tried a second approach, experimenting with cross-correlation. My
+intuition said there <em>must</em> be some way of correlating individual
+reference tone sine waves with the Beep signals. Rather than run through every
+frequency, as in FFT, just pick the ones of interest, the ones known to have
+been used in generating the signal. </p>
+
+<p><strong>Goertzel</strong></p>
+
+<p>After wasting loads of time of this, I remembered the close similarity
+between the encoding here and the encoding of DTFM signals. How's that usually
+done? Turns out that there's an algorithm that in effect does the kind of
+known-freq correlation thing I was looking for. It goes by the name of
+Goertzel. What's more it's remarkable simple - </p>
 
 <p>plus peak detection</p>
 
@@ -206,80 +259,6 @@ idea being to have reference tones corresponding to all the note frequencies
 that are likely to be present, and comparing each of these with a given chunk
 in the Web Beep. Intuitively, this should rock - it's totally targetted and so
 should be very accurate and efficient.</p>
-
-<p>Correlation is essentially comparing two signals point-by-point. The only
-problem with that for the current problem is that the phase may vary.
-Cross-correlation addresses this by sliding the values of one signal against
-another and doing comparisons for each step. I'm sure plenty of libraries exist
-for this, but none jumped out at me and the principle seems simple enough, so I
-hacked it. </p>
-
-<p>As a trial I started with a sampled sinewave signal (aka Test Tone) of known
-frequency (300Hz) with enough cycles (23?) that the frequency should be pretty
-obvious. </p>
-
-<p><img alt="test tone plot" src="images/correlation-tone-plot.png" width="800"
-height="200"></p>
-
-<p>I then set up the code to generate a load of reference waveforms, a series
-that I knew would include the Test Tone frequency - I went from half it's
-frequency to double it, in steps of 1Hz. </p>
-
-<p></p>
-
-<p><img alt="reference wave" src="images/correlation-reference-plot.png"
-width="800" height="200"></p>
-
-<p>The code that did the comparisons is a loop within a loop, moving the
-starting point of the reference through the Test Tone, for each
-signal/reference comparison the reference values being shunted along as many
-times as necessary to cover the whole test tone (to give the same effect as
-calculating a reference signal of the same length as the Test Tone - this way
-might be marginally quicker).</p>
-
-<p>Assuming I've understood cross-correlation correctly, the comparisons are
-simply point-by-point multiplications. These are summed for each reference
-frequency across all steps through the Test Tone. This produced a result as
-below. As well as a bit of low amplitude oscillation, in the middle there's a
-big peak followed by a big trough.</p>
-
-<p></p>
-
-<p><img alt="correlation plot" src="images/correlation-plot.png" width="800"
-height="200"></p>
-
-<p></p>
-
-<p>Pulling out the values (rounded here), the top of the peak corresponds to
-294Hz, the bottom of the trough 304Hz. Taking the mean of these gives a value
-of 299Hz, not a bad estimate for the target frequency of 300Hz - it's about
-0.33% out.</p>
-
-<p>This is a brilliant result, only not the one called for by this application.
-I don't want to have to sweep through reference tones in 1Hz steps, I want to
-give it just a handful of known reference frequencies (e.g. the note A at
-440HZ) and see if they're present or not.</p>
-
-<p>So I pulled out the point corresponding to the target frequency (it's the
-red dot on the plot above), here it is compared with the "visible" values:</p>
-
-<p><strong>peak point</strong> : (294, 50000)</p>
-
-<p><strong>trough point</strong> : (304, -67000)</p>
-
-<p><strong>target freq point</strong> : (300, -57000)</p>
-
-<p><strong>mean of abs(y) values</strong> : 4900</p>
-
-<p>- so the point corresponding to the frequency in question does seem to be
-significantly away from the background noise. It's a bit worrying that it's
-close to a zero-crossing point, but this seems promising enough to glue
-together the rest of the pitch detection implementation and see how well it
-behaves with some real data.</p>
-
-<p></p>
-
-<h3>Test Results</h3>
 
 <h1><a id="Notes">Notes</a></h1>
 

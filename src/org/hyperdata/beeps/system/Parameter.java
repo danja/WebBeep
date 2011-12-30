@@ -12,18 +12,14 @@ package org.hyperdata.beeps.system;
  */
 public interface Parameter extends Named {
 
-//	public void setName(String name);
-//	public String getName();
-	// public void init();
-	public void initRandom();
+	public void setValue(Object value);
 	public Object getValue();
+	
+	public void initRandom();
+
 	public ParameterList getProcessor();
-//	public void setDatatype(String datatype);
-//	public String getDatatype();
-	/**
-	 * @param d
-	 */
-	public void setValue(Object object);
+
+	
 	/**
 	 * @return
 	 */
@@ -32,5 +28,9 @@ public interface Parameter extends Named {
 	 * @param processor
 	 */
 	public void setProcessor(ParameterList processor);
+	/**
+	 * @param value
+	 */
+	public void setValue(String value);
 
 }

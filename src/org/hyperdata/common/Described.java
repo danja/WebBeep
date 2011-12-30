@@ -12,11 +12,6 @@ package org.hyperdata.common;
 public interface Described {
 
 	/**
-	 * @return human-readable description
-	 */
-	public String getDescription();
-
-	/**
 	 * @return machine-readable (Turtle/RDF) description
 	 */
 	public String describe();

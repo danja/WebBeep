@@ -17,4 +17,13 @@ public abstract class DefaultPitchFinder extends DefaultParameterList implements
 	public DefaultPitchFinder(String name){
 		super(name);
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

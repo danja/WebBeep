@@ -5,16 +5,46 @@ package org.hyperdata.beeps.system;
  
 
 /**
+ * An ordered list of Parameters
+ * 
  * @author danny
  *
  */
 public interface ParameterList extends Named {
-	public void add(Parameter param);
 	
+	/**
+	 * Add parameter to the list
+	 *
+	 * @param parameter the parameter to add
+	 */
+	public void add(Parameter parameter);
+	
+	/**
+	 * Get the value of the named parameter
+	 * 
+	 * @param name name of the parameter
+	 * @return value of the parameter
+	 * 
+	 * @throws Exception if the parameter is not found
+	 */
 	public Object getValue(String name) throws Exception;
 	
+	/**
+	 * Get the named parameter
+	 * 
+	 * @param name name of Parameter
+	 * @return the Parameter named
+	 */
 	public Parameter getParameter(String name);
-	public Object getLocal(String key);
+	
+	
+	/**
+	 * Get the 
+	 * @param key
+	 * @return
+	 * @throws NotFoundException 
+	 */
+	public Object getLocal(String localName) throws NotFoundException;
 	/**
 	 * @param chunkEnv
 	 */

@@ -22,10 +22,28 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	public DefaultParameterList(String name) {
 		super(name);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.hyperdata.beeps.optimize.ParameterSet#getValue(java.lang.String)
+	 */
+	@Override
+	public Object getValue(String name) throws NotFoundException {
+		for (int i = 0; i < parameters.size(); i++) {
+			if (parameters.get(i).getName().equals(name))
+				return parameters.get(i).getValue();
+		}
+		throw new NotFoundException("Parameter named " + name + " not found in "+this);
+	}
 
-	public Object getLocal(String key) { // i.e. get("Encoder.pre.HP.window")
-		// System.out.println(getName() + "." + key);
-		return getValue(getName() + "." + key);
+	public Object getLocal(String localName) { // i.e. get("Encoder.pre.HP.window")
+				try {
+					return getValue(getName() + "." + localName);
+				} catch (NotFoundException exception) {
+					exception.printStackTrace();
+				}
+				return null;
 	}
 
 	/**
@@ -187,26 +205,12 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	// }
 	// }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.hyperdata.beeps.optimize.ParameterSet#getValue(java.lang.String)
-	 */
-	@Override
-	public Object getValue(String name) {
-		for (int i = 0; i < parameters.size(); i++) {
-			if (parameters.get(i).getName().equals(name))
-				return parameters.get(i).getValue();
-		}
-	//	System.out.println("*** Dodgy parameters :\n" + this);
-		// throw new Exception("Parameter named " + name + " not found.");
-		return null;
-	}
+
 
 	public String toString() {
-		String string = "*** Parameter Set ***\n";
+		String string = ""; // *** Parameter Set ***\n
 		for (int i = 0; i < parameters.size(); i++) {
-			string += parameters.get(i).toString() + "\n";
+			string += "\t\t"+parameters.get(i).toString() + "\n";
 		}
 		return string;
 	}

@@ -84,4 +84,13 @@ public class DefaultComponentList extends DefaultParameterList implements Compon
 		}
 		return string;
 	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

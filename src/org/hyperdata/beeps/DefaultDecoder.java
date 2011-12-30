@@ -66,6 +66,7 @@ public class DefaultDecoder extends DefaultCodec {
 		init();
 	}
 
+	// components/processors
 	private Chunker chunker;
 	private Cropper cropper;
 	private GoertzelPitchFinder pitchFinder;

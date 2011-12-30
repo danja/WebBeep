@@ -3,9 +3,6 @@
  */
 package org.hyperdata.beeps.system;
 
-
-
-
 /**
  * @author danny
  *
@@ -35,6 +32,10 @@ public abstract class DefaultParameter extends DefaultNamed implements Parameter
 	
 	public DefaultParameter(String name, Object value){
 		this(null, name, value);
+	}
+	
+	public void setValue(String value){
+		this.value = value;
 	}
 	
 	/**

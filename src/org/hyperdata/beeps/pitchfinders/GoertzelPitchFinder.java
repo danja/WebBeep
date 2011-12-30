@@ -71,8 +71,4 @@ public class GoertzelPitchFinder extends DefaultPitchFinder {
 	public void setThreshold(double threshold) {
 		this.threshold = threshold;
 	}
-
-
-
-
 }

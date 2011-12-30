@@ -12,7 +12,6 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public interface MergingProcessor extends ParameterList {
-	// public List<Double> process(List<List<Double>> input);
+public interface MergingProcessor extends ParameterList, Converter {
 	public Tone process(Chunks input);
 }

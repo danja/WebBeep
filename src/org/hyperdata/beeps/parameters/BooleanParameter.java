@@ -44,6 +44,4 @@ public class BooleanParameter extends DefaultParameter {
 			value = false;
 		}
 	}
-	
-	
 }

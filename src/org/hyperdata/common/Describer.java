@@ -97,7 +97,6 @@ public abstract class Describer implements Described {
 				+ "> a <http://purl.org/stuff/java/Class> ;\n";
 		description += "   foaf:name \"" + described.getClass().getSimpleName()
 				+ "\" ; \n";
-		description += "   dc:description \"" + described.getDescription() + "\" . \n";
 		return description;
 	}
 }

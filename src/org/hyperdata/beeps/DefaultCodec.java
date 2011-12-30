@@ -15,20 +15,14 @@ import org.hyperdata.beeps.util.Tone;
  * 
  */
 public abstract class DefaultCodec extends DefaultNamed implements Codec {
-
-	//private ParameterList parameters;
 	
 	private ComponentList coreComponents;
-	
 	private Pipeline preProcessors;
 	private Pipeline postProcessors;
-	private String name = null;
 
 	public DefaultCodec(String name) {
 		super(name);
-		// = new DefaultParameterList("DefaultCodec");
 		coreComponents = new DefaultComponentList(name+".core");
-		
 		preProcessors = new DefaultPipeline(name+".pre");
 		postProcessors = new DefaultPipeline(name+".post");
 	}
@@ -36,9 +30,6 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	protected void createParameter(ParameterList component, String name) {
 		Parameter parameter = ParameterFactory.createParameter(component, name);
 		component.setParameter(parameter);
-//		System.out.println("PARAMETER="+parameter);
-//System.out.println("COMPONENT="+component);
-	//	parameters.add(parameter);
 	}
 
 	/**
@@ -84,8 +75,9 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	 * org.hyperdata.beeps.Codec#addPreProcessor(org.hyperdata.beeps.Processor)
 	 */
 	@Override
-	public void addCoreComponent(ParameterList component) {
-		coreComponents.updateParameters(component); // UPDATE
+	public void addCoreComponent(Component component) {
+	//	coreComponents.updateParameters(component); // UPDATE
+		coreComponents.addComponent(component);
 		// consume(component);
 	}
 	
@@ -184,9 +176,9 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	public String toString() {
 		
 		String string = "Codec : " + this.getClass().toString();
-		string += "\n$$$CoreComponents:\n" + coreComponents.toString();
-		string += "\n$$$PreProcessors:\n" + preProcessors.toString();
-		string += "\n$$$PostProcessors:\n" + postProcessors.toString();
+		string += coreComponents.toString();
+		string += preProcessors.toString();
+		string += postProcessors.toString();
 		return string;
 	}
 

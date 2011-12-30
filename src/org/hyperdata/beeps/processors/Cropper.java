@@ -8,6 +8,7 @@ import java.util.List;
 import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.system.DefaultProcessor;
+import org.hyperdata.beeps.system.NotFoundException;
 import org.hyperdata.beeps.util.Tone;
 
 /**
@@ -26,7 +27,7 @@ public class Cropper extends DefaultProcessor {
 	 * @see org.hyperdata.beeps.pipelines.Parameterized#initFromParameters()
 	 */
 	@Override
-	public void initFromParameters() { 
+	public void initFromParameters()  { 
 	//	System.out.println("THIS="+this);
 		setEnabled((Boolean)getLocal("on"));
 		

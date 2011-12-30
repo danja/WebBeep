@@ -5,6 +5,7 @@ package org.hyperdata.beeps.pitchfinders;
 
 import java.util.Set;
 
+import org.hyperdata.beeps.system.Component;
 import org.hyperdata.beeps.util.Tone;
 
 /**
@@ -19,7 +20,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public interface PitchFinderGeneral {
+public interface PitchFinderGeneral extends Component{
 	/**
 	 * @param tone audio sample
 	 * @return frequencies of contained pitches

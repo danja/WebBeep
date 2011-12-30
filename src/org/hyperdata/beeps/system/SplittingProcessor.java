@@ -12,7 +12,7 @@ import org.hyperdata.beeps.util.Tone;
  * @author danny
  *
  */
-public interface SplittingProcessor {
+public interface SplittingProcessor extends Converter {
 	// public List<List<Double>> process(List<Double> input);
 	public Chunks process(Tone input);
 }

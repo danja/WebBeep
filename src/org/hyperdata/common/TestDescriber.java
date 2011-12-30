@@ -21,13 +21,4 @@ public class TestDescriber extends Describer {
 	//	Describer.turtleFromVariable("d", d);
 
 	}
-
-	/* (non-Javadoc)
-	 * @see org.hyperdata.common.Described#getDescription()
-	 */
-	@Override
-	public String getDescription() {
-		return "Just a test.";
-	}
-
 }
