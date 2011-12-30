@@ -27,7 +27,7 @@ public class CodecTest {
 			String input = ASCIICodec.getRandomASCII();
 			input =  "http://danbri.org/foaf.rdf#danbri";
 			
-			// String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
+			 String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
 
 			 String configFilename = "/home/danny/workspace/WebBeep/data/config.xml";
 			
@@ -66,7 +66,10 @@ public class CodecTest {
 
 			long startTime = System.currentTimeMillis();
 			Tone outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
-			// WavCodec.save(filename, outTones); // SAVE
+			
+			WavCodec.save(filename, outTones); // SAVE
+			
+			
 			long encodeTime = System.currentTimeMillis() - startTime;
 			
 
@@ -83,7 +86,7 @@ public class CodecTest {
 					+ " mS per char");
 
 			// line will be the Real World between systems
-			Line line = new Line();;
+		//	Line line = new Line();;
 			// Tone inTones = line.process(outTones); // skip saving
 			Tone 	inTones = outTones;
 			// List<Double> inTones = WavCodec.read(filename);

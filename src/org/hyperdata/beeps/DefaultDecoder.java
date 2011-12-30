@@ -32,7 +32,7 @@ import org.hyperdata.beeps.util.Tone;
  * 
  */
 public class DefaultDecoder extends DefaultCodec {
-
+	
 	public String decode(Tone tones) {
 		Debug.inform("Decoding");
 

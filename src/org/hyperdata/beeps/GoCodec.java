@@ -200,7 +200,7 @@ public class GoCodec extends DefaultOrganism  {
 	 */
 	@Override
 	public double getFitness() {
-		double fitness =  getAccuracy() * getAccuracy()
+		double fitness =  (1.0 + Math.sqrt((double) getAge())/10 ) * getAccuracy() * getAccuracy()
 				/ (getRunTime() + 1); // need to tweak age bit..?
 		// (Math.sqrt((double) getAge())/10 ) *
 		if (getAccuracy() < 0.02) {

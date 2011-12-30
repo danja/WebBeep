@@ -17,10 +17,10 @@ import org.hyperdata.common.Describer;
  */
 public class Go {
 
-	static int populationSize = 16; // must be multiple of 8
+	static int populationSize = 128; // must be multiple of 8
 	static int generations = 128;
 	static int minCharacters = 5;
-	static int maxCharacters = 25;
+	static int maxCharacters = 40;
 	
 	/**
 	 * @param args
@@ -67,7 +67,7 @@ public class Go {
 						.getRandomWebbyASCII(minCharacters, maxCharacters);
 			}
 			
-			boolean distort = Math.random()>0.25;
+			boolean distort = Math.random()> 0.5;
 			
 			System.out.println("Input: "+input+" ("+input.length()+" chars)");
 			

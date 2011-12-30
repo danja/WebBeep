@@ -2,41 +2,27 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>testing</comment>
-
-<entry key="Decoder.core.cropper.on">true</entry>
-<entry key="Decoder.core.cropper.on^^datatype">java.lang.Boolean</entry>
-<entry key="Decoder.core.chunker.on">true</entry>
-<entry key="Decoder.core.chunker.on^^datatype">java.lang.Boolean</entry>
-<entry key="Decoder.core.pitchFinder.on">true</entry>
-<entry key="Decoder.core.pitchFinder.on^^datatype">java.lang.Boolean</entry>
-
-<entry key="Decoder.core.pitchFinder.gThreshold">10000</entry>
-<entry key="Decoder.core.pitchFinder.gThreshold^^datatype">java.lang.Double</entry>
-<entry key="Decoder.core.cropper.silenceThreshold">0.5</entry>
-<entry key="Decoder.core.cropper.silenceThreshold^^datatype">java.lang.Double</entry>
-<entry key="Decoder.core.chunker.cropProportion">0.5</entry>
-<entry key="Decoder.core.chunker.cropProportion^^datatype">java.lang.Double</entry>
-
-
-<entry key="Encoder.pre.chunkEnv.decayProportion">0.15</entry>
+<entry key="Encoder.pre.chunkEnv.decayProportion">0.13</entry>
 <entry key="Decoder.pre.compressor.highThreshold^^datatype">java.lang.Double</entry>
-<entry key="Decoder.post.chunkNorm.on">true</entry>
+<entry key="Decoder.post.chunkNorm.on">false</entry>
+<entry key="Decoder.core.chunker.on">true</entry>
 <entry key="Decoder.pre.compressor.windowLength^^datatype">java.lang.Integer</entry>
-<entry key="Decoder.pre.compressor.highThreshold">0.979676754476463</entry>
-<entry key="Decoder.pre.HP_FIR.cutoff">129.6512638058897</entry>
-<entry key="Decoder.pre.LP_FIR1.cutoff">1305.4969266406242</entry>
-<entry key="Decoder.post.chunkEnv.decayProportion">0.077</entry>
+<entry key="Decoder.pre.compressor.highThreshold">0.760342929650305</entry>
+<entry key="Decoder.pre.HP_FIR.cutoff">100.94422117466493</entry>
+<entry key="Decoder.pre.LP_FIR1.cutoff">10285.082818002804</entry>
+<entry key="Decoder.core.pitchFinder.gThreshold^^datatype">java.lang.Double</entry>
+<entry key="Decoder.post.chunkEnv.decayProportion">0.091</entry>
 <entry key="Decoder.core.normalise.on^^datatype">java.lang.Boolean</entry>
-<entry key="Encoder.pre.chunkNorm.on">true</entry>
+<entry key="Encoder.pre.chunkNorm.on">false</entry>
 <entry key="Decoder.pre.compressor.lowThreshold^^datatype">java.lang.Double</entry>
-<entry key="Decoder.pre.LP_FIR2.npoints">59</entry>
+<entry key="Decoder.pre.LP_FIR2.npoints">89</entry>
 <entry key="Decoder.pre.LP_FIR2.cutoff^^datatype">java.lang.Double</entry>
 <entry key="Decoder.pre.LP_FIR1.on^^datatype">java.lang.Boolean</entry>
-<entry key="Decoder.pre.LP_FIR2.cutoff">11257.79400095818</entry>
+<entry key="Decoder.pre.LP_FIR2.cutoff">1125.173350363232</entry>
 <entry key="Decoder.pre.LP_FIR2.window^^datatype">java.lang.String</entry>
 <entry key="Decoder.pre.HP_FIR.npoints^^datatype">java.lang.Integer</entry>
 <entry key="Decoder.pre.LP_FIR1.npoints^^datatype">java.lang.Integer</entry>
-<entry key="Decoder.post.chunkEnv.on">false</entry>
+<entry key="Decoder.post.chunkEnv.on">true</entry>
 <entry key="Decoder.pre.HP_FIR.cutoff^^datatype">java.lang.Double</entry>
 <entry key="Decoder.post.chunkEnv.attackProportion^^datatype">java.lang.Double</entry>
 <entry key="Decoder.post.chunkNorm.on^^datatype">java.lang.Boolean</entry>
@@ -45,33 +31,41 @@
 <entry key="Encoder.pre.chunkNorm.on^^datatype">java.lang.Boolean</entry>
 <entry key="Decoder.post.chunkEnv.decayProportion^^datatype">java.lang.Double</entry>
 <entry key="Decoder.pre.HP_FIR.window^^datatype">java.lang.String</entry>
-<entry key="Decoder.pre.compressor.windowLength">412</entry>
-<entry key="Decoder.pre.HP_FIR.npoints">562</entry>
+<entry key="Decoder.core.pitchFinder.gThreshold">4194.939772585178</entry>
+<entry key="Decoder.pre.compressor.windowLength">464</entry>
+<entry key="Decoder.pre.HP_FIR.npoints">1228</entry>
 <entry key="Encoder.pre.chunkEnv.attackProportion^^datatype">java.lang.Double</entry>
 <entry key="Decoder.pre.HP_FIR.window">Hamming</entry>
-<entry key="Decoder.pre.LP_FIR1.window">Hamming</entry>
+<entry key="Decoder.pre.LP_FIR1.window">Hanning</entry>
+<entry key="Decoder.core.cropper.on">true</entry>
+<entry key="Decoder.core.cropper.on^^datatype">java.lang.Boolean</entry>
 <entry key="Decoder.pre.HP_FIR.on^^datatype">java.lang.Boolean</entry>
+<entry key="Decoder.core.cropper.silenceThreshold">0.39328963702325803</entry>
 <entry key="Decoder.pre.HP_FIR.shape^^datatype">java.lang.String</entry>
-<entry key="Decoder.pre.LP_FIR2.window">Hamming</entry>
-<entry key="Decoder.post.chunkEnv.attackProportion">0.087</entry>
+<entry key="Decoder.core.chunker.cropProportion^^datatype">java.lang.Double</entry>
+<entry key="Decoder.pre.LP_FIR2.window">Hanning</entry>
+<entry key="Decoder.post.chunkEnv.attackProportion">0.14</entry>
 <entry key="Decoder.pre.HP_FIR.shape">HP</entry>
 <entry key="Decoder.pre.LP_FIR1.shape">LP</entry>
+<entry key="Decoder.core.chunker.cropProportion">0.6337724901356069</entry>
 <entry key="Decoder.pre.LP_FIR2.shape">LP</entry>
+<entry key="Decoder.core.cropper.silenceThreshold^^datatype">java.lang.Double</entry>
 <entry key="Encoder.pre.chunkEnv.on^^datatype">java.lang.Boolean</entry>
 <entry key="Decoder.pre.LP_FIR2.shape^^datatype">java.lang.String</entry>
 <entry key="Decoder.post.chunkEnv.on^^datatype">java.lang.Boolean</entry>
-<entry key="Decoder.pre.LP_FIR2.on">true</entry>
-<entry key="Decoder.pre.LP_FIR1.npoints">359</entry>
+<entry key="Decoder.pre.LP_FIR2.on">false</entry>
+<entry key="Decoder.pre.LP_FIR1.npoints">3795</entry>
 <entry key="Decoder.pre.LP_FIR1.cutoff^^datatype">java.lang.Double</entry>
 <entry key="Encoder.pre.chunkEnv.on">false</entry>
 <entry key="Decoder.core.normalise.on">false</entry>
 <entry key="Decoder.pre.LP_FIR2.npoints^^datatype">java.lang.Integer</entry>
 <entry key="Decoder.pre.LP_FIR1.window^^datatype">java.lang.String</entry>
-<entry key="Encoder.pre.chunkEnv.attackProportion">0.026</entry>
+<entry key="Encoder.pre.chunkEnv.attackProportion">0.06</entry>
 <entry key="Decoder.pre.LP_FIR1.shape^^datatype">java.lang.String</entry>
-<entry key="Decoder.pre.compressor.lowThreshold">0.7887652240669468</entry>
-<entry key="Decoder.pre.HP_FIR.on">true</entry>
+<entry key="Decoder.pre.compressor.lowThreshold">0.6343658962166174</entry>
+<entry key="Decoder.pre.HP_FIR.on">false</entry>
 <entry key="Decoder.pre.LP_FIR2.on^^datatype">java.lang.Boolean</entry>
 <entry key="Encoder.pre.chunkEnv.decayProportion^^datatype">java.lang.Double</entry>
 <entry key="Decoder.pre.compressor.on^^datatype">java.lang.Boolean</entry>
+<entry key="Decoder.core.chunker.on^^datatype">java.lang.Boolean</entry>
 </properties>

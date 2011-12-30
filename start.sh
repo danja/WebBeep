@@ -20,5 +20,5 @@ echo $CP
 ## scalac -d ../classes/ -classpath $CP -sourcepath ../src/
 # scalac -cp $CP -d ../classes ../src/*.scala
 
-java -cp $CP org.hyperdata.server.FileServer 8888 www
+java -cp $CP org.hyperdata.beeps.server.BeepServer 8888 www
 

@@ -38,6 +38,16 @@ public class WavCodec {
 		return d;
 	}
 	
+	public static double[] readFromBytes(byte[] data) { // added for web service
+		int N = data.length;
+		double[] d = new double[N / 2];
+		for (int i = 0; i < N / 2; i++) {
+			d[i] = ((short) (((data[2 * i + 1] & 0xFF) << 8) + (data[2 * i] & 0xFF)))
+					/ ((double) Constants.MAX_VALUE);
+		}
+		return d;
+	}
+	
 	/**
 	 * 
 	 * Read audio samples from a .wav file and return them as
@@ -54,6 +64,16 @@ public class WavCodec {
 		}
 		return signal;
 	}
+	
+	public static  Tone arrayToTone(double[] data){ // for web service
+		List<Double> signal = new ArrayList<Double>();
+		for(int i=0;i< data.length;i++){
+			signal.add(data[i]);
+		}
+		return new Tone(signal);
+	}
+	
+	
 
 	// return data as a byte array
 	static byte[] readByte(String filename) {

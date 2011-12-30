@@ -32,11 +32,11 @@ public class Line extends DefaultPipeline {
 		addProcessor(distort);
 		
 		Noisy noisy = new Noisy("Line.noisy");
-		noisy.setNoiseProportion(Math.random()*.4); // 0.3
+		noisy.setNoiseProportion(Math.random()*.2); // 0.3
 		addProcessor(noisy);
 		
 		LFNoisy lfNoisy = new LFNoisy("Line.lfNoisy");
-		lfNoisy.setNoiseProportion(Math.random()*.2); // 0.2
+		lfNoisy.setNoiseProportion(Math.random()*.1); // 0.2
 		addProcessor(lfNoisy);
 		
 		Reverb reverb = new Reverb("Line.reverb");

@@ -26,5 +26,7 @@
 	<classpathentry kind="lib" path="lib/jetty/jetty-xml-8.0.4.v20111024.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/servlet-api-3.0.jar"/>
 	<classpathentry kind="lib" path="lib/sun/tools.jar"/>
+	<classpathentry kind="lib" path="lib/apache/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/apache/commons-io-2.1.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

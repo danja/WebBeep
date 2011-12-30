@@ -94,8 +94,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 height="100" align="left">Enter any text (up to 63 characters) and click the
 <strong>Make Beeps</strong> button to get the download. </p>
 
-<form action="http://localhost:8888/encode" method="post">
-  <p><input type="text" id="inputText"> 
+<form action="encode" method="post" charset="UTF-8">
+  <p><input type="text" id="inputText" name="inputText" /> 
   <input type="submit" value="Make Beeps"> </p>
 </form>
 
@@ -118,9 +118,9 @@ height="100" align="left">Click <strong>Browse</strong> to locate a Web Beep
 mp3 file on your computer, then click <strong>Decode</strong> to see the text
 it contains. </p>
 
-<form name="decode" action="http://localhost:8888/decode" method="post"
+<form name="decode" action="decode" method="post"
 enctype="multipart/form-data">
-  <input type="file" name="decode"> 
+  <input type="file" name="decode" id="decode" /> 
   <input type="submit" value="Decode"> </form>
 
 <p>This is a new <em><strong>alpha</strong></em> service, any problems, <a
