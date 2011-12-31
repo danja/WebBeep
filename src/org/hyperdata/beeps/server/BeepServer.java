@@ -24,7 +24,7 @@ public class BeepServer {
 			host = args[0];
 			port = Integer.parseInt(args[1]);
 		}
-		Server server = new Server(8080);
+		Server server = new Server(port);
 
 		ResourceHandler fileServerHandler = new ResourceHandler();
 		fileServerHandler.setDirectoriesListed(true);
@@ -57,6 +57,7 @@ public class BeepServer {
 
 		Connector[] connectors = server.getConnectors();
 		for (int i = 0; i < connectors.length; i++) {
+			System.out.println("Host set to : "+host);
 			connectors[i].setHost(host);
 		}
 
