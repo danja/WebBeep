@@ -55,13 +55,15 @@ public class BeepServer {
 
 		server.setHandler(handlers);
 
+		System.out.println("\n\n\n\n");
 		Connector[] connectors = server.getConnectors();
 		for (int i = 0; i < connectors.length; i++) {
 			System.out.println("Host set to : "+host);
 			connectors[i].setHost(host);
 		}
-
+		System.out.println("\n\n\n\n");
 		server.start();
 		server.join();
+		System.out.println("\n\n\n\n");
 	}
 }
