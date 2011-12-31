@@ -4,6 +4,8 @@
 
 package org.hyperdata.beeps.server;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -20,59 +22,91 @@ import org.hyperdata.beeps.system.ParameterListFile;
 import org.hyperdata.beeps.util.Tone;
 
 public class EncodeHandler extends AbstractHandler {
-    
-	String path = "/home/danny/workspace/WebBeep/";
-	String configFilename = path+"data/config.xml";
-	String audioDir = path+"www/audio/";
+
+	String pageName = "www/index.html";
+	String replaceMe = "<p>Here's a sample: <a href=\"audio/Example\\.mp3\">Example\\.mp3</a></p>";
+	String originalPage;
+
+	String path = "./";
+	// "/home/danny/workspace/WebBeep/";
+	String configFilename = path + "data/config.xml";
+	String audioDir = path + "www/audio/";
 	String audioPath = "audio/";
-	
+
 	DefaultEncoder encoder;
-	
-	public EncodeHandler(){
-        encoder = new DefaultEncoder("Encoder");
+
+	public EncodeHandler() {
+		encoder = new DefaultEncoder("Encoder");
 		ParameterListFile plf = new ParameterListFile();
 		ParameterList config = plf.load(configFilename);
 		encoder.setParameters(config);
 		encoder.initFromParameters();
+
+		try {
+			originalPage = readFileAsString(pageName);
+		} catch (IOException exception) {
+			exception.printStackTrace();
+		}
 	}
-	
-    public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    	// System.out.println("METHOD="+request.getMethod());
-    	
-    	if(!request.getMethod().equalsIgnoreCase("POST")) return;
-    	 if(!target.equals("/encode")) return;
-    	 
-        response.setContentType("text/html;charset=utf-8");
-        response.setStatus(HttpServletResponse.SC_OK);
-        baseRequest.setHandled(true);
-        String inputText = request.getParameter("inputText");
-        if(inputText.length()>63){ // too long
-        	
-        }
-        if(inputText.length()<1){ // too short
-        	
-        }
-       // System.out.println(inputText);
-        
+
+	public void handle(String target, Request baseRequest,
+			HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		// System.out.println("METHOD="+request.getMethod());
+
+		if (!request.getMethod().equalsIgnoreCase("POST"))
+			return;
+		if (!target.equals("/encode"))
+			return;
+
+		response.setContentType("text/html;charset=utf-8");
+		response.setStatus(HttpServletResponse.SC_OK);
+		baseRequest.setHandled(true);
+		String inputText = request.getParameter("inputText");
+		if (inputText.length() > 63) { // too long
+
+		}
+		if (inputText.length() < 1) { // too short
+
+		}
+		// System.out.println(inputText);
+
 		long startTime = System.currentTimeMillis();
 		Tone outTones = encoder.encode(inputText); // "http://danbri.org/foaf.rdf#danbri"
 
 		long encodeTime = System.currentTimeMillis() - startTime;
-        
+
 		String filename = URLEncoder.encode(inputText, "UTF-8");
-        
-		// /home/danny/workspace/WebBeep/audio/qwe.wav (No such file or directory)
-		String wavFilename = audioDir + filename+".wav";
-		String mp3Filename = audioDir + filename+".mp3";
+
+		String wavFilename = audioDir + filename + ".wav";
+		String mp3Filename = audioDir + filename + ".mp3";
 		// System.out.println("wavFilename="+wavFilename);
 		// WavCodec.save(wavFilename, outTones); // SAVE
-		
+
 		MP3 converter = new MP3();
 		converter.setWavFilename(wavFilename);
 		converter.setMp3Filename(mp3Filename);
 		converter.mp3(outTones);
-		
-        response.getWriter().println("<h1>Here are the beeps : </h1>");
-        response.getWriter().println("<a href=\""+audioPath+filename+".mp3\">Download</a>");
-    }
+
+		String newPage = originalPage;
+		String replacement = "<p><strong>Here are your beeps : <a href=\""
+				+ audioPath + filename + ".mp3\">Download</a></p>";
+		newPage = newPage.replaceAll(replaceMe, replacement);
+		response.getWriter().println(newPage);
+	}
+
+	private static String readFileAsString(String filePath)
+			throws java.io.IOException {
+		StringBuffer fileData = new StringBuffer(1000);
+		BufferedReader reader = new BufferedReader(new FileReader(filePath));
+		char[] buf = new char[1024];
+		int numRead = 0;
+		while ((numRead = reader.read(buf)) != -1) {
+			String readData = String.valueOf(buf, 0, numRead);
+			fileData.append(readData);
+			buf = new char[1024];
+		}
+		reader.close();
+		return fileData.toString();
+	}
 }

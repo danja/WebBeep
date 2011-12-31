@@ -71,7 +71,7 @@ public class FixedEncoder {
 		if (args.length > 0) {
 			iri = args[0];
 		}
-		String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
+		String filename = "./data/beeps.wav";
 		FixedEncoder encoder = new FixedEncoder();
 		List<Double> tones = encoder.encode(iri);
 		Plotter.plot(tones, "Tones");

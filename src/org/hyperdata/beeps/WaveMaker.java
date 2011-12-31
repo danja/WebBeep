@@ -105,7 +105,7 @@ public final class WaveMaker {
 
 	public static void main(String[] args) {
 
-		String filename = "/home/danny/workspace/UTone/data/beep.wav";
+		String filename = "./data/beep.wav";
 		int noteLow = 3;
 		int noteHigh = 6;
 		List<Double> data = makeDualtone(noteLow, noteHigh, 1);

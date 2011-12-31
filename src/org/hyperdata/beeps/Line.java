@@ -58,8 +58,8 @@ public class Line extends DefaultPipeline {
 	}
 	
 	public static void main(String[] args){
-		String infile = "/home/danny/workspace/WebBeep/data/testin.wav";
-		String outfile = "/home/danny/workspace/WebBeep/data/line.wav";
+		String infile = "./data/testin.wav";
+		String outfile = "./data/line.wav";
 		Tone inTones = WavCodec.readTone(infile);
 		Line line = new Line();
 		

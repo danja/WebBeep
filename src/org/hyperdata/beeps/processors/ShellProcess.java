@@ -24,8 +24,8 @@ public class ShellProcess extends DefaultProcessor {
 		super(name);
 	}
 
-	private String wavFilename = "/home/danny/workspace/WebBeep/data/beeps.wav";
-	private String mp3Filename = "/home/danny/workspace/WebBeep/data/beeps.mp3";
+	private String wavFilename = "./data/beeps.wav";
+	private String mp3Filename = "./data/beeps.mp3";
 	private String shellCommand = "ls";
 
 	/*

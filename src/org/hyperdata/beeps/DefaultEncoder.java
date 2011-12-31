@@ -51,8 +51,11 @@ public class DefaultEncoder extends DefaultCodec implements Encoder {
 		Tone tones = merger.process(chunks);
 		
 		tones = applyPostProcessors(tones);
+		Tone padded = new Tone(WaveMaker.makeSilence(1.0));
+		padded.addAll(tones);
+		padded.addAll(new Tone(WaveMaker.makeSilence(1.0)));
 		
-		return tones;
+		return padded;
 	}
 
 	private Processor chunkEnv;

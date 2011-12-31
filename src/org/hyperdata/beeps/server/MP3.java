@@ -29,7 +29,7 @@ public class MP3 extends Shelley {
 	
 	public Tone fromMp3() {
 		setShellCommand("lame --decode "+getMp3Filename() + " " + getWavFilename());
-		System.out.println("DOING SHELL : \n"+getShellCommand());
+		// System.out.println("DOING SHELL : \n"+getShellCommand());
 		doShell();
 		return new Tone(WavCodec.read(getWavFilename()));
 	}

@@ -64,8 +64,8 @@ public class Noisy extends DefaultProcessor {
 	}
 	
 	public static void main(String[] args){
-		String infile = "/home/danny/workspace/WebBeep/data/testin.wav";
-		String outfile = "/home/danny/workspace/WebBeep/data/noisy.wav";
+		String infile = "./data/testin.wav";
+		String outfile = "./data/noisy.wav";
 		Tone inTones = WavCodec.readTone(infile);
 		Noisy noisy = new Noisy("test");
 		Tone outTones = noisy.process(inTones);

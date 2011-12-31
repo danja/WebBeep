@@ -111,7 +111,7 @@ public static void main(String[] args){
 	GoCodec codec = new GoCodec();
 	codec.init();
 	ParameterListFile file = new ParameterListFile();
-	String filename = "/home/danny/workspace/WebBeep/data/props.xml";
+	String filename = "./data/props.xml";
 	file.save(codec.getParameters(), filename);
 	ParameterListFile infile = new ParameterListFile();
 	ParameterList parameters = infile.load(filename);

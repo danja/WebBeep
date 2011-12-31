@@ -68,8 +68,8 @@ public class Clip extends DefaultProcessor {
 	}
 
 	public static void main(String[] args){
-		String infile = "/home/danny/workspace/WebBeep/data/testin.wav";
-		String outfile = "/home/danny/workspace/WebBeep/data/clippy.wav";
+		String infile = "./data/testin.wav";
+		String outfile = "./data/clippy.wav";
 		Tone inTones = WavCodec.readTone(infile);
 		Clip distort  = new Clip("test");
 		distort.setClipLevel(0.6);

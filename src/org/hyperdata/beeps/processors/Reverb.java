@@ -153,8 +153,8 @@ public class Reverb extends DefaultProcessor {
 	}
 	
 	public static void main(String[] args){
-		String infile = "/home/danny/workspace/WebBeep/data/testin.wav";
-		String outfile = "/home/danny/workspace/WebBeep/data/reverby.wav";
+		String infile = "./data/testin.wav";
+		String outfile = "./data/reverby.wav";
 		Tone inTones = WavCodec.readTone(infile);
 		Reverb reverb = new Reverb("test");
 		Tone outTones = reverb.process(inTones);

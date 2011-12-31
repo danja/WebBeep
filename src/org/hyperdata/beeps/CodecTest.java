@@ -27,9 +27,9 @@ public class CodecTest {
 			String input = ASCIICodec.getRandomASCII();
 			input =  "http://danbri.org/foaf.rdf#danbri";
 			
-			 String filename = "/home/danny/workspace/WebBeep/data/beeps.wav";
+			 String filename = "./data/beeps.wav";
 
-			 String configFilename = "/home/danny/workspace/WebBeep/data/config.xml";
+			 String configFilename = "./data/config.xml";
 			
 			System.out.println("Input : " + input);
 			Debug.inform("Input : " + input);

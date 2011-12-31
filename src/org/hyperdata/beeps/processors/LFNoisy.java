@@ -91,8 +91,8 @@ public class LFNoisy extends DefaultProcessor {
 	}
 
 	public static void main(String[] args) {
-		String infile = "/home/danny/workspace/WebBeep/data/testin.wav";
-		String outfile = "/home/danny/workspace/WebBeep/data/rumbly.wav";
+		String infile = "./data/testin.wav";
+		String outfile = "./data/rumbly.wav";
 		Tone inTones = WavCodec.readTone(infile);
 		LFNoisy noisy = new LFNoisy("test");
 		Tone outTones = noisy.process(inTones);

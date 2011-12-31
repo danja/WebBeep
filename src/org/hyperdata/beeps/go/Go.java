@@ -46,7 +46,7 @@ public class Go {
 		}
 		
 		////////////// seed 
-		 String configFilename = "/home/danny/workspace/WebBeep/data/config.xml";
+		 String configFilename = "./data/config.xml";
 			ParameterListFile plf = new ParameterListFile();
 			ParameterList config = plf.load(configFilename);
 			System.out.println("=== SEEDING ===\n"+plf);
@@ -112,7 +112,7 @@ public class Go {
 				System.out.println("Saving. \n"+fittest.getParameters());
 			plf = new ParameterListFile();
 			plf.save(fittest.getParameters(),
-					"/home/danny/workspace/WebBeep/data/fittest.xml");
+					"./data/fittest.xml");
 			}
 			
 		/////////////////////////	System.out.println(fittest.getParameters());

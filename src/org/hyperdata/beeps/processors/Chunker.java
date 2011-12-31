@@ -39,7 +39,7 @@ public class Chunker extends DefaultComponent implements SplittingProcessor {
 	}
 	
 	static String IRI = "http://dannyayers.com/stuff"; // "OK" is good!
-	static String filename = "/home/danny/workspace/UTone/data/filtered.wav";
+	static String filename = "./data/filtered.wav";
 
 	public static void main(String[] args) {
 		FixedEncoder encoder = new FixedEncoder();

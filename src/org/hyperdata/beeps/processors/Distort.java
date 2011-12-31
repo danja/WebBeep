@@ -62,8 +62,8 @@ public class Distort extends DefaultProcessor {
 	}
 
 	public static void main(String[] args){
-		String infile = "/home/danny/workspace/WebBeep/data/testin.wav";
-		String outfile = "/home/danny/workspace/WebBeep/data/distorty.wav";
+		String infile = "./data/testin.wav";
+		String outfile = "./data/distorty.wav";
 		Tone inTones = WavCodec.readTone(infile);
 		Distort distort  = new Distort("test");
 		Tone outTones = distort.process(inTones);
