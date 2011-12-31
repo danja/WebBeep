@@ -90,7 +90,7 @@ public class EncodeHandler extends AbstractHandler {
 
 		String newPage = originalPage;
 		String replacement = "<p><strong>Here are your beeps : <a href=\""
-				+ audioPath + filename + ".mp3\">Download</a></p>";
+				+ audioPath + filename + ".mp3\">Download</a></strong></p>";
 		newPage = newPage.replaceAll(replaceMe, replacement);
 		response.getWriter().println(newPage);
 	}

@@ -1,4 +1,7 @@
 #!/bin/bash
+#########################
+### Starts the server ###
+#########################
 
 # change to ';' for Cygwin
 SEP=':'

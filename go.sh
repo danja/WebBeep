@@ -1,4 +1,8 @@
 #!/bin/bash
+#######################################
+### Runs the Genetic Optimizer      ###
+### result goes in data/fittest.xml ###
+#######################################
 
 # change to ';' for Cygwin
 SEP=':'

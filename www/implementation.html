@@ -54,17 +54,17 @@
   <li><a href="#Initial">Implementation</a></li>
   <li><a href="#Notes">Notes</a></li>
 </ul>
-</div>
 
-<div class="container">
-
-<div class="sidebar-right">
 <h3>Nearby</h3>
 <ul>
   <li><a href="index.html">Home</a> </li>
   <li><a href="spec.html">Specification</a></li>
 </ul>
+</div>
 
+<div class="container">
+
+<div class="sidebar-right">
 <h3><a name="Reference" id="Reference">Reference</a></h3>
 <ul>
   <li><a href="#">Link</a> </li>
@@ -83,7 +83,26 @@
 </div>
 
 <div class="content">
-<h1>Introduction</h1>
+<h1>Short Version</h1>
+
+<h2>Encode</h2>
+<ul>
+  <li>text input is converted into ASCII (Punycode with a checksum)</li>
+  <li>each character is mapped to a high note, low note and duration (notes
+    taken from a pentatonic scale)</li>
+  <li>pure tones are generated and shaped according to the mapping</li>
+</ul>
+
+<h2>Decode</h2>
+<ul>
+  <li>incoming tone is trimmed</li>
+  <li>tone is split into chunks, each corresponding to one character</li>
+  <li>each chunk is analysed to find tones present and durations</li>
+  <li>tones mapped to ASCII characters</li>
+  <li>text reassembled and converted back</li>
+</ul>
+
+<h1>Long Version : Introduction</h1>
 
 <p>This write-up is rough &amp; ready, mostly I wanted notes for myself,
 offboard memory. But however incoherent, hopefully it contains enough
