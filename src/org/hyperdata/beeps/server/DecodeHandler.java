@@ -104,6 +104,6 @@ public class DecodeHandler extends AbstractHandler {
 		baseRequest.setHandled(true);
 
 		response.getWriter().println("<h1>" + output + "</h1>");
-		response.getWriter().println("<p><a href=\"/\">Home</a></p>");
+		response.getWriter().println("<p><a href=\"/\">Back</a></p>");
 	}
 }
