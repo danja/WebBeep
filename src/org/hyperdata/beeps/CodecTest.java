@@ -25,7 +25,7 @@ public class CodecTest {
 	public static void main(String[] args) {
 			
 			String input = ASCIICodec.getRandomASCII();
-			input =  "http://danbri.org/foaf.rdf#danbri";
+			input =  "abc"; // "http://danbri.org/foaf.rdf#danbri"
 			
 			 String filename = "./data/beeps.wav";
 
@@ -66,6 +66,7 @@ public class CodecTest {
 
 			long startTime = System.currentTimeMillis();
 			Tone outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
+			
 			
 			WavCodec.save(filename, outTones); // SAVE
 			

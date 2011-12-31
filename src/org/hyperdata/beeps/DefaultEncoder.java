@@ -21,6 +21,7 @@ import org.hyperdata.beeps.system.ParameterList;
 import org.hyperdata.beeps.system.Processor;
 import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
+import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 
 /**
@@ -51,6 +52,7 @@ public class DefaultEncoder extends DefaultCodec implements Encoder {
 		Tone tones = merger.process(chunks);
 		
 		tones = applyPostProcessors(tones);
+	//	Plotter.plot(tones, "Encoding for the string \"abc\"");
 		Tone padded = new Tone(WaveMaker.makeSilence(1.0));
 		padded.addAll(tones);
 		padded.addAll(new Tone(WaveMaker.makeSilence(1.0)));

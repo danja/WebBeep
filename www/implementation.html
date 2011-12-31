@@ -83,6 +83,9 @@
 </div>
 
 <div class="content">
+<p>/* this page is still Under Construction - my priority was making the
+service live in 2011 */</p>
+
 <h1>Short Version</h1>
 
 <h2>Encode</h2>
@@ -92,6 +95,11 @@
     taken from a pentatonic scale)</li>
   <li>pure tones are generated and shaped according to the mapping</li>
 </ul>
+
+<p><img alt="Waveform of encoded &quot;abc&quot;" src="images/abc-wave.png"
+width="800" height="200"></p>
+
+<p><em>four pairs of tone bursts : checksum and the three characters</em></p>
 
 <h2>Decode</h2>
 <ul>
@@ -113,6 +121,25 @@ as black-box stuff, there's really <strong>no need to go into the detailed
 maths to build things</strong>. (It's been many years since I last worked on
 stuff like this and my maths is totally rusted, the revision I did for this was
 mostly skimming Wikipedia - see <a href="#Reference">Reference</a> links). </p>
+
+<h1>Facets of Beep</h1>
+<ul>
+  <li><strong>Beeps and the Web</strong> : see <a
+    href="http://wiki.foaf-project.org/w/DanBri/ChirpChirp">ChirpChirp</a>
+    <em>[and <a href="#PS">PS below</a>] </em></li>
+  <li><strong>DSP Optimization using a Genetic Algorithm</strong> : the first
+    version of the system was sensitive to noise and distortion so I added some
+    filters etc. for pre- and post-processing. There were a lot of parameters
+    to tweak so I hooked up a genetic algorithm to optimize the thing
+    automatically.</li>
+  <li><strong>DSP Representation on the Web of Data</strong> : to be able to
+    change configuration and parameters easily, a systematic representation was
+    needed. I hacked up the current internal representation as I went along,
+    but it's crying out to be done in a standard fashion. RDF is the obvious
+    choice, so I've started a <a href="http://hyperdata.org/xmlns/dsp/">DSP
+    vocabulary/ontology</a>. I know exactly how to proceed with this, see <a
+    href="#Future">Future Directions</a>.</li>
+</ul>
 
 <h1><a id="Design">Design Considerations</a></h1>
 
@@ -167,6 +194,22 @@ requirements can be found in the <a href="spec.html">specification</a>, there's
 an example of how this may be implemented in Java in the <a
 href="https://github.com/danja/WebBeep">source code</a>.</p>
 
+<p><img alt="encoder block diagram" src="images/encoder-block1.png" width="862"
+height="177"></p>
+
+<p><em>sorry messy diagram - will tidy later</em></p>
+
+<p>This is the generalized form of the setup - experimentation showed that
+virtually no pre- or post-processing was needed.</p>
+
+<p>The Chars to Chunks block is the most interesting bit. Each chunk,
+corresponding to a single ASCII character, has a high frequency and a low
+frequency component (high and low bits of the char) of duration 1 or 2 units.
+</p>
+
+<p>Lookup tables are used to determine appropriate frequencies for the low tone
+and high tone, then the corresponding sine waves are generated and summed.</p>
+
 <h1><a id="Decoding">Decoding</a></h1>
 
 <p>Getting the text back out from the beeps is rather more convoluted (<em>hee
@@ -174,16 +217,20 @@ hee</em>), though is based on standard digital signal processing (<a
 href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a>)
 techniques. </p>
 
-<h2>block diagram</h2>
+<p><img alt="decoder block diagram" src="images/decoder-block1.png" width="857"
+height="165"></p>
+
+<p>Again, generalized version. Chunks to Chars is the interesting bit here. The
+decoder has to find what tone (if any) occurs in each half of the chunk. Some
+kind of a pitch detector is needed.</p>
 
 <h2>Pitch Detection</h2>
 
 <p>A crucial step in getting data back from mixed-up tones.</p>
 
 <h2>Pitch Detection</h2>
-
-<p>Many pitch detection algorithms are available, here are some examples ranked
-in order of guesstimated suitability:</p>
+<del><p>Many pitch detection algorithms are available, here are some examples
+ranked in order of guesstimated suitability:</p>
 <ol>
   <li>Cross-correlation (against reference waves) : should be the most accurate
     and efficient</li>
@@ -200,6 +247,7 @@ in order of guesstimated suitability:</p>
 smartphone, though experimentation needed. For accuracy it'd be nice to have
 (say) 3 parallel decoding algorithms going, let them vote for the best match.
 </p>
+</del>
 
 <h1><a id="Initial">Implementation</a></h1>
 
@@ -214,7 +262,8 @@ material available on the Web. </p>
 <code>List&lt;Double&gt;</code>, expecting to have to turn everything over to
 arrays at some point for performance (arrays give me a headache, always
 out-by-one). That point didn't arrive, although I've had to translate to/from
-arrays here and there for interfacing with libs. Long live Collections!</p>
+arrays here and there for interfacing with libs. <em>Long live
+Collections!</em></p>
 
 <h2>Visualization</h2>
 
@@ -243,13 +292,10 @@ repository, it's handy having FFT around for spectrum analysis.</p>
 
 <h4>Pre- and Post-Processing</h4>
 
-<p>Normalisation (before &amp; after chunking)</p>
-
-<p>Filtering (before &amp; after chunking)</p>
-
-<p>reduce harmonic distorion artifacts and out-of-band noise</p>
-
-<p>Although some </p>
+<p>Because of the robustness problem, I hooked up a series of processing blocks
+at various points in the pipeline to help reduce harmonic distorion artifacts
+and out-of-band noise. Basically filters plus simple envelope shapers and
+normalizers.</p>
 
 <h4>Cross-correlation Blind Alley</h4>
 
@@ -259,38 +305,143 @@ reference tone sine waves with the Beep signals. Rather than run through every
 frequency, as in FFT, just pick the ones of interest, the ones known to have
 been used in generating the signal. </p>
 
-<p><strong>Goertzel</strong></p>
+<h2>Parameters, Parameters, Parameters</h2>
 
-<p>After wasting loads of time of this, I remembered the close similarity
-between the encoding here and the encoding of DTFM signals. How's that usually
-done? Turns out that there's an algorithm that in effect does the kind of
-known-freq correlation thing I was looking for. It goes by the name of
-Goertzel. What's more it's remarkable simple - </p>
+<p>So with the FFT setup I had a bunch of different pipeline modules, each
+needing two or three parameters. This was a problem, especially since at least
+some of them would interact with each other.</p>
 
-<p>plus peak detection</p>
+<p>So I got coding again :</p>
+<ul>
+  <li>refactored the code to allow a systematic way of passing parameters to
+    each of the modules</li>
+  <li>set up a simulation of a noisy line between encoder and decoder</li>
+  <li>decided on a fitness measure based on accuracy, performance etc.</li>
+  <li>set up a genetic algorithm to make lots of little simulations and breed
+    them</li>
+</ul>
 
-<p><em>timing</em></p>
+<h3>Some Parameters</h3>
 
-<h4>Cross-Correlation</h4>
+<p>This is the current setup. Note that many of the parameters have the value
+<strong>.on = false</strong>. It turned out that given a better pitch detection
+algorithm, most of these were redundant.</p>
+<pre><code>
+Codec : class org.hyperdata.beeps.DefaultEncoder        
+   Empty Pipeline
+   Encoder.pre
+        Component : Encoder.pre.chunkEnv = class org.hyperdata.beeps.processors.EnvelopeShaper
+                Encoder.pre.chunkEnv.on = false
+                Encoder.pre.chunkEnv.attackProportion = 0.06
+                Encoder.pre.chunkEnv.decayProportion = 0.13
+        Component : Encoder.pre.chunkNorm = class org.hyperdata.beeps.processors.Normalise
+                Encoder.pre.chunkNorm.on = false
+        Empty Pipeline
+class org.hyperdata.beeps.DefaultDecoderCodec : class org.hyperdata.beeps.DefaultDecoderDecoder.core
+        Component : Decoder.core.cropper = class org.hyperdata.beeps.processors.Cropper
+                Decoder.core.cropper.silenceThreshold = 0.39328963702325803
+                Decoder.core.cropper.on = true
+        Component : Decoder.core.normalise = class org.hyperdata.beeps.processors.Normalise
+                Decoder.core.normalise.on = false
+        Component : Decoder.core.chunker = class org.hyperdata.beeps.processors.Chunker
+                Decoder.core.chunker.cropProportion = 0.6337724901356069
+                Decoder.core.chunker.on = true
+        Component : Decoder.core.pitchFinder = class org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder
+                Decoder.core.pitchFinder.gThreshold = 4194.939772585178
+Decoder.pre
+        Component : Decoder.pre.compressor = class org.hyperdata.beeps.processors.Compressor
+                Decoder.pre.compressor.on = false
+                Decoder.pre.compressor.windowLength = 464
+                Decoder.pre.compressor.lowThreshold = 0.6343658962166174
+                Decoder.pre.compressor.highThreshold = 0.760342929650305
+        Component : Decoder.pre.HP_FIR = class org.hyperdata.beeps.processors.FIRProcessor
+                Decoder.pre.HP_FIR.shape = HP
+                Decoder.pre.HP_FIR.on = false
+                Decoder.pre.HP_FIR.window = Hamming
+                Decoder.pre.HP_FIR.cutoff = 100.94422117466493
+                Decoder.pre.HP_FIR.npoints = 1228
+        Component : Decoder.core.normalise = class org.hyperdata.beeps.processors.Normalise
+                Decoder.core.normalise.on = false
+        Component : Decoder.pre.LP_FIR1 = class org.hyperdata.beeps.processors.FIRProcessor
+                Decoder.pre.LP_FIR1.shape = LP
+                Decoder.pre.LP_FIR1.on = false
+                Decoder.pre.LP_FIR1.window = Hanning
+                Decoder.pre.LP_FIR1.cutoff = 10285.082818002804
+                Decoder.pre.LP_FIR1.npoints = 3795
+        Component : Decoder.core.normalise = class org.hyperdata.beeps.processors.Normalise
+                Decoder.core.normalise.on = false
+        Component : Decoder.pre.LP_FIR2 = class org.hyperdata.beeps.processors.FIRProcessor
+                Decoder.pre.LP_FIR2.shape = LP
+                Decoder.pre.LP_FIR2.on = false
+                Decoder.pre.LP_FIR2.window = Hanning
+                Decoder.pre.LP_FIR2.cutoff = 1125.173350363232
+                Decoder.pre.LP_FIR2.npoints = 89
+        Component : Decoder.core.normalise = class org.hyperdata.beeps.processors.Normalise
+                Decoder.core.normalise.on = false
+Decoder.post
+        Component : Decoder.post.chunkNorm = class org.hyperdata.beeps.processors.Normalise
+                Decoder.post.chunkNorm.on = false
+        Component : Decoder.post.chunkEnv = class org.hyperdata.beeps.processors.EnvelopeShaper
+                Decoder.post.chunkEnv.on = true
+                Decoder.post.chunkEnv.attackProportion = 0.14
+                Decoder.post.chunkEnv.decayProportion = 0.091</code></pre>
 
-<p>The second approach to pitch detection I tried was cross-correlation, the
-idea being to have reference tones corresponding to all the note frequencies
-that are likely to be present, and comparing each of these with a given chunk
-in the Web Beep. Intuitively, this should rock - it's totally targetted and so
-should be very accurate and efficient.</p>
+<p><strong>Goertzel to the Rescue</strong></p>
+
+<p>After spending loads of time on the FFT then Danny's Own Correlation
+versions, I remembered the close similarity between the encoding here and the
+encoding of DTFM signals. How's that usually done? Turns out that there's an
+algorithm that in effect does the kind of known-freq correlation thing I was
+looking for. It goes by the name of Goertzel. What's more it's remarkable
+simple - from Wikipedia:</p>
+<pre><code>
+s_prev = 0
+s_prev2 = 0
+normalized_frequency = target_frequency / sample_rate;
+coeff = 2*cos(2*PI*normalized_frequency);
+for each sample, x[n],
+  s = x[n] + coeff*s_prev - s_prev2;
+  s_prev2 = s_prev;
+  s_prev = s;
+end
+power = s_prev2*s_prev2 + s_prev*s_prev - coeff*s_prev*s_prev2;</code></pre>
 
 <h1><a id="Notes">Notes</a></h1>
 
-<h2></h2>
+<h2><a name="Future" id="Future">Future Directions</a></h2>
 
-<h3>Applications</h3>
+<p>An in-browser Javascript implementation seems like a good step.</p>
+
+<h3>Applications for Web Beep</h3>
+
+<p>Dunno really, but see <a
+href="http://wiki.foaf-project.org/w/DanBri/ChirpChirp">ChirpChirp</a> <em>[and
+<a href="#PS">PS below</a>]</em></p>
 
 <p>As a kind of QR Code for the ear, Web Beeps should be useful in a lot of
 places. <em>Suggestions please...</em></p>
 
-<p>Ring Tone - use your email, Home Page or personal URI.</p>
+<p>Ring Tone - use your email, Home Page or personal URI. </p>
 
-<p></p>
+<h3>Application for the DSP bits</h3>
+
+<p>Take it from me, pluggable, modular, parameterized,
+declaratively-configurable DSP systems should have plenty of applications.
+Making such things Web-friendly would almost certainly be very advantageous. So
+I've started a <a href="http://hyperdata.org/xmlns/dsp/">DSP
+vocab/ontology</a>.</p>
+
+<p>The Java representation contains the important structural information needed
+for described DSP systems, so my plan is to add a variant on the
+<code>toString()</code> method in the classes of the code
+(<code>describe()</code>) to deliver RDF/Turtle and use a bit of reflection to
+get the code to describe itself.</p>
+
+<p>To enhance this a bit there's David Huyn's RDFizer Javadoc thingy, which I
+plan to tweak to use HTTP URLs (rather than its current URNs).</p>
+
+<p>Now if someone will please suggest applications for Web-friendly pluggable,
+modular, parameterized, declaratively-configurable DSP systems...</p>
 
 <h2>Patent Pending?</h2>
 
@@ -300,8 +451,8 @@ patents hurt innovation</a>.</strong></p>
 
 <p>In any case, I'm sure many variations of this have been done before, though
 it's hard to find out what there is. Searches I've tried mostly led to
-something related to mobile/cellphone ringtones (grr, I wanted the name "Web
-Tone" but it's already taken).</p>
+something related to mobile/cellphone ringtones (I wanted the name "Web Tone"
+but it's already taken).</p>
 
 <p>The basic idea is fairly trivial: what if you had something like DTFM tones
 only not so hard on the ear? Given that, implementations are pretty obvious
@@ -311,6 +462,18 @@ implementation described here is pretty arbitrary, mostly based on what seemed
 like a good idea at the time.</p>
 
 <p><a href="https://github.com/danja/WebBeep">Please clone the project.</a></p>
+
+<p></p>
+
+<p><a name="PS" id="PS">PS</a>. I already held <a
+href="http://danbri.org/">Danbri</a> responsible for the idea as he'd been
+talking about something vaguely similar recently. What I'd completely forgotten
+was that he'd suggested exactly this idea - and even done a write-up: <a
+href="http://wiki.foaf-project.org/w/DanBri/ChirpChirp">ChirpChirp</a>. </p>
+
+<p>OMG, I have become Danbri's personal LazyWeb...</p>
+
+<p></p>
 
 <div id="footer">
 <p>(c) <a href="http://dannyayers.com">Danny Ayers</a> </p>
