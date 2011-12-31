@@ -74,8 +74,8 @@ color: #666;
 /* list-style-type: none; */
 }
 
-.sidebar-right ul {
-/* list-style-type: none; */
+.nobullets ul {
+list-style-type: none; 
 }
 
 .ads {
