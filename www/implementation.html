@@ -16,9 +16,27 @@
   <link rel="stylesheet" href="css/stuff.css" type="text/css" media="Screen">
   <script type="text/javascript" src="js/curvycorners.js">
  </script>
+  <script type="text/javascript">
+<!-- Google Plus -->
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script>
 </head>
 
 <body id="tab1">
+
+<div id="fb-root">
+</div>
+<script type="text/javascript">
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <ul id="topnav">
   <li class="xtab1"><a href="/" title="Danny Ayers' Blog">Raw Blog</a> </li>
   <li class="xtab2"><a href="http://hyperdata.org/danja/"
@@ -46,6 +64,13 @@
 <div class="container">
 
 <div class="sidebar-left">
+
+<h3>Nearby</h3>
+<ul>
+  <li><a href="index.html">Home</a> </li>
+  <li><a href="spec.html">Specification</a></li>
+</ul>
+
 <h3>Contents</h3>
 <ul>
   <li><a href="#Design">Design</a></li>
@@ -54,32 +79,52 @@
   <li><a href="#Initial">Implementation</a></li>
   <li><a href="#Notes">Notes</a></li>
 </ul>
-
-<h3>Nearby</h3>
-<ul>
-  <li><a href="index.html">Home</a> </li>
-  <li><a href="spec.html">Specification</a></li>
-</ul>
 </div>
+
 
 <div class="container">
 
 <div class="sidebar-right">
 <h3><a name="Reference" id="Reference">Reference</a></h3>
 <ul>
-  <li><a href="#">Link</a> </li>
-  <li><a href="#">Link</a> </li>
-  <li><a href="#">Link</a> </li>
-  <li><a href="#">Link</a> </li>
+  <li><a href="http://en.wikipedia.org/wiki/Digital_audio">Digital Audio</a> </li>
+  <li><a href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a> </li>
+  <li><a href="http://en.wikipedia.org/wiki/Fft">FFT</a> </li>
+  <li><a href="http://en.wikipedia.org/wiki/Goertzel_algorithm">Goertzel Algorithm</a> </li>
 </ul>
 
-<h3>Elsewhere</h3>
+<h3>Fanclub</h3>
+<div class="nobullets">
 <ul>
-  <li><a href="#">Link</a> </li>
-  <li><a href="#">Link</a> </li>
-  <li><a href="#">Link</a> </li>
-  <li><a href="#">Link</a> </li>
+  <li><div class="fb-like" data-href="http://webbeep.it" data-send="true" data-width="140" data-show-faces="false" data-font="trebuchet ms"></div></li>
+  <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://webbeep.it" data-text="Web Beep" data-via="danja">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+
+  <li><g:plusone annotation="inline" width="140" href="http://webbeep.it"></g:plusone> </li>
 </ul>
+</div>
+<h3>Elsewhere</h3>
+
+<ul>
+  <li><a href="http://dannyayers.com" title="Danny Ayers' Blog">Raw Blog</a>
+  </li>
+  <li><a href="http://hyperdata.org/"
+    title="Linked Data related material">hyperdata.org</a> </li>
+  <li><a href="http://dannyayers.com/stuff/" title="various things">Stuff</a>
+  </li>
+<li><a href="http://spikeandwave.com" title="my music">Spike &amp; Wave</a>  </li>
+</ul>
+<div class="nobullets">
+<ul>
+  <li><a href="http://twitter.com/danja"><img src="/images/twitter.png"
+    alt="Twitter" width="24" height="24"></a></li>
+  <li><a href="http://www.facebook.com/danny.ayers"><img src="/images/fb.png"
+    alt="Facebook" width="24" height="24"></a></li>
+  <li><a href="https://plus.google.com/112609322932428633493?rel=author"
+    rel="author"><img src="/images/plus.png" alt="Google Plus" width="24"
+    height="24"></a></li>
+</ul>
+</div>
 </div>
 
 <div class="content">
@@ -87,6 +132,12 @@
 service live in 2011 */</p>
 
 <h1>Short Version</h1>
+
+<p>It took me about a month part-time to put this together, but making another
+implementation would take <em>much</em> less time. My early attempts used a
+fairly suboptimal system configuration and most of the time was spent trying to
+optimize it. Now a usable configuration has been arrived at, the optimization
+overhead is no longer necessary.</p>
 
 <h2>Encode</h2>
 <ul>
