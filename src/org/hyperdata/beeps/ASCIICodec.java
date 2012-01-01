@@ -26,7 +26,7 @@ public class ASCIICodec {
 			int val = (int) ascii.charAt(i);
 			int lsVal = val % 16; // least significant hex digit of val is for
 									// high tone
-			int msVal = (val - val % 16) / 16;
+			int msVal = (val - val % 16) / 16; // I've forgotten how to do EXOR in Java...
 
 			Tone chunk = WaveMaker.makeDualTone(msVal, lsVal,
 					Constants.TONE_DURATION);

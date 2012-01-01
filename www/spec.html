@@ -29,40 +29,63 @@ service live in 2011 */</p>
 <h2>1. Introduction</h2>
 
 <p>This document defines an algorithm for encoding short sequences of arbitrary
-text as quasi-musical audio data.</p>
+text as quasi-musical audio data. The algorithm was developed as part of the <a
+href="http://webbeep.it">Web Beep</a> service and is provided here to
+facilitate development of, and interoperability with, related services and
+applications.</p>
 
-<p>A Reference Implementation is available and relevant sections of its
-documentation are linked from here with links labeled [RI].</p>
+<p></p>
 
-<h2>2. Conformance</h2>
+<h2>2. Terminology</h2>
+<ul>
+  <li><a name="L849" id="L849">"Web Beep"</a> and "Beeps" are used here to
+    refer to the results of applying the algorithm described here to text.</li>
+  <li><a name="L852" id="L852">"Chunk"</a> is used to describe the audio data
+    corresponding to a single ASCII character.</li>
+</ul>
 
-<p>Everything in this specification is normative unless otherwise stated.</p>
+<p>An open source <a href="#Reference">Reference Implementation</a> is
+available and relevant sections of its documentation are linked from here with
+links labeled [RI].</p>
 
 <p>The keywords “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”,
 “SHALL NOT”, “RECOMMENDED”, “MAY” and “OPTIONAL” in this
 document are to be interpreted as described in <a
 href="http://www.ietf.org/rfc/rfc2119">RFC2119</a>.</p>
 
-<h2>3. Encoding Algorithm</h2>
-
-<p>i18n, A checksum character is prepended to the ASCII</p>
-
-<p>The numeric data resulting from the operations above will typically be
-rendered in a audio binary format and subsequently rendered through a media
-player. The choice of audio format is left to the implementor (the Reference
-Implementation internally generates <a
-href="http://en.wikipedia.org/wiki/WAV">.wav</a> 16 bit PCM format mono,
-22.05kHz, which is converted to mp3 externally using LAME see Constants.java,
-ToMP3.java and WavCodec.java)</p>
+<p><strong>Everything in this specification is normative unless otherwise
+stated.</strong></p>
 
 <p></p>
 
-<h3>Internationalization</h3>
+<h2>3. Encoding Algorithm</h2>
+
+<p>The algorithm has three distinct stages:</p>
+<ul>
+  <li>3.1 <a href="#Text">Text Preprocessing</a> : <em>Unicode text input is
+    converted into an ASCII string </em></li>
+  <li>3.2 <a href="#Character">Character Mapping</a> : <em>each character from
+    3.1 is mapped to a high note, low note and duration</em></li>
+  <li>3.3 <a href="#Tone">Tone Generation</a> : <em>tones are generated and
+    mixed according to the mapping from 3.2</em></li>
+</ul>
+
+<p></p>
+
+<h3>3.1 <a name="Text" id="Text">Text Preprocessing</a></h3>
+
+<p>The input of the Web Beep algorithm is a Unicode text string. Preprocessing
+of that string involves converting it to an ASCII representation and generating
+and prepending a checksum character. The string resulting from this
+preprocessing is passed to the next stage, <a href="#Character">Character
+Mapping</a>.</p>
+
+<h4>ToASCII</h4>
 
 <p>The Unicode characters in the source string are initially encoded in ASCII
-using the full algorithm of <a
-href="http://docs.oracle.com/javase/6/docs/api/java/net/IDN.html#toASCII(java.lang.String)">java.net.IDN.toASCII</a>
-(the no-flags version), which is as follows:</p>
+using the full (no-flags) algorithm as described in <a
+href="http://docs.oracle.com/javase/6/docs/api/java/net/IDN.html#toASCII(java.lang.String)">java.net.IDN.toASCII</a>,
+summarised as follows :</p>
 
 <blockquote>
   Internationalized domain names are defined in <a
@@ -85,7 +108,18 @@ href="http://docs.oracle.com/javase/6/docs/api/java/net/IDN.html#toASCII(java.la
   \u002E (full stop) in output translated string.</p>
 </blockquote>
 
-<h3>Checksum</h3>
+<p>The clauses above (and RFC 3490) are used normatively in Web Beep, with the
+exception that the Unicode input string is subject to the following
+condition:</p>
+<ul>
+  <li>the Unicode input text SHOULD be no longer that 63 characters</li>
+</ul>
+
+<p>Where encoding of a sequence longer than 63 characters is required, it is
+RECOMMENDED that it is created from a sequence of shorter sequences as defined
+here, although no algorithm is provided here for such multiple encodings.</p>
+
+<h4>Checksum</h4>
 
 <p>The checksum character to prepend to the ASCII representation is determined
 as followed:</p>
@@ -99,9 +133,11 @@ as followed:</p>
 
 <h4>Example</h4>
 
+<p><em>Informative</em></p>
+
 <p>If the ASCII input string is "abc" :</p>
 <ul>
-  <li>the numeric codes for these characters are 97, 98, 99</li>
+  <li>the decimal numeric codes for these characters are 97, 98, 99</li>
   <li>the sum of these values is 294 </li>
   <li>the lower 7 bits of the sum is (294 % 128 =) 38, which is ASCII
   '&amp;'</li>
@@ -120,7 +156,249 @@ as followed:</p>
 
 <p></p>
 
-<h3>Tone Map</h3>
+<h3>3.2 <a name="Character" id="Character">Character Mapping</a></h3>
+
+<p>The Character Mapping stage of the algorithm takes the string produced by <a
+href="#Text">Text Preprocessing</a> and for each character in turn looks up
+entries in the mapping tables which will determine the required tones. </p>
+
+<p>The numeric value of each 7-bit ASCII character is split into two values
+corresponding to the most significant 3 bits and lower 4 bits. <em></em></p>
+
+<p>These values are used as indexes in the tables below to yield two frequency
+values each with a corresponding "Beats" value which give the duration of the
+tone (in <a href="#Tone1">duration units</a>, multiples of 48.6111...
+milliseconds).</p>
+
+<p>The mapping tables are as follows <em>:</em></p>
+
+<p></p>
+
+<p><strong>Most Significant Bits</strong></p>
+
+<table border="2">
+  <tbody>
+    <tr>
+      <th>Index</th>
+      <th>Note</th>
+      <th>Freq</th>
+      <th>Beats</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>C</td>
+      <td>261.63</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>D</td>
+      <td>293.66</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>E</td>
+      <td>329.63</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>G</td>
+      <td>392</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>A</td>
+      <td>440</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>C</td>
+      <td>261.63</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>D</td>
+      <td>293.66</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>G</td>
+      <td>392</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<strong>Least Significant Bits</strong><br>
+
+
+<table border="2">
+  <tbody>
+    <tr>
+      <th>Index</th>
+      <th>Note</th>
+      <th>Freq</th>
+      <th>Beats</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>c</td>
+      <td>523.25</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>d</td>
+      <td>587.33</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>e</td>
+      <td>659.26</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>g</td>
+      <td>783.99</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>a</td>
+      <td>880</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>c</td>
+      <td>523.25</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>d</td>
+      <td>587.33</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>e</td>
+      <td>659.26</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>g</td>
+      <td>783.99</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>a</td>
+      <td>880</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>c'</td>
+      <td>1046.5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>d'</td>
+      <td>1174.66</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>e'</td>
+      <td>1318.51</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>g'</td>
+      <td>1567.98</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>a'</td>
+      <td>1760</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>g'</td>
+      <td>1567.98</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The frequency values are given here with an accuracy of two decimal places.
+No specific accuracy is REQUIRED, though implementations SHOULD use an
+appropriate approximation of values from the Western <a
+href="http://en.wikipedia.org/wiki/Equal_temperament">equally tempered
+scale</a> with A = 440Hz.</p>
+
+<p><em>The "Note"columns are informative, the <a
+href="http://abcnotation.com/">ABC notation</a> for the note corresponding to
+the frequency</em></p>
+
+<p><em>Informative : the frequencies occur in a "black key" <a
+href="http://en.wikipedia.org/wiki/Pentatonic_scale">pentatonic scale</a>, <a
+href="http://en.wikipedia.org/wiki/Concert_pitch">concert pitch</a></em></p>
+
+<p></p>
+
+<h2>3.3 <a name="Tone" id="Tone">Tone Generation</a></h2>
+
+<p>The values found via 3.2 <a href="#Character">Character Mapping</a> will be
+used to set parameters in the Tone Generation stage of the algorithm.</p>
+
+<p>Because the internal representation of audio signals varies across
+platforms...</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<h4><a name="Tone1" id="Tone1">Tone Duration</a></h4>
+
+<p>The duration of individual tones SHOULD be 48.6111... ( = 140 / (60 * 48))
+milliseconds.</p>
+
+<p><em>Informative : listening tests suggested an approximate value for this,
+the exact value chosen so Beeps will be in sync with music at 140bpm in 3/4 or
+4/4 time.</em></p>
+
+<p></p>
+
+<p>EXAMPLE</p>
+
+<h4>Exchange Format</h4>
+
+<p>The numeric data resulting from the operations above will typically be
+rendered in an audio binary format and subsequently rendered through a media
+player. The choice of audio format is left to the implementor (the <a
+href="#Reference">Reference Implementation</a> internally generates <a
+href="http://en.wikipedia.org/wiki/WAV">.wav</a> 16 bit PCM format mono,
+22.05kHz, which is converted to mp3 externally using LAME see Constants.java,
+ToMP3.java and WavCodec.java)</p>
+
+<p></p>
 
 <h2>Decoding</h2>
 
@@ -128,9 +406,12 @@ as followed:</p>
 
 <p></p>
 
-<p>// Implementation</p>
+<h2><a name="Reference" id="Reference">Reference Implementation</a></h2>
 
-<p></p>
+<p>A reference implementation of this algorithm is available as part of the <a
+href="http://webbeep.it/">Web Beep</a> application : <a
+href="https://github.com/danja/WebBeep">source repository</a> (also includes
+this documentation).</p>
 
 <p></p>
 

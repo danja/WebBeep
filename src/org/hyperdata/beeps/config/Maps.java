@@ -81,6 +81,15 @@ public class Maps {
 		for (int i = 0; i < ALL_FREQS.length; i++) {
 			System.out.println(ALL_FREQS[i]);
 		}
+		
+		System.out.println("\n\n\n");
+		System.out.println("Index,   Note,  Freq, Beats");
+		for (int i = 0; i < LOW_FREQ.length; i++) {
+			System.out.println(i+",   "+LOW_ABC[i]+",   "+LOW_FREQ[i]+",   "+LOW_BEATS[i]);
+		}
+		for (int i = 0; i < HIGH_FREQ.length; i++) {
+			System.out.println(i+",   "+HIGH_ABC[i]+",   "+HIGH_FREQ[i]+",   "+HIGH_BEATS[i]);
+		}
 
 	}
 
