@@ -19,20 +19,21 @@
 
 <h2>Status</h2>
 
-<p>/* this page is still Under Construction - my priority was making the
-service live in 2011 */</p>
-
-<p><strong>Latest Draft 2011-12-30</strong></p>
+<p><strong>Latest Draft 2012-01-01</strong></p>
 
 <p>First Draft 2011-12-04</p>
 
 <h2>1. Introduction</h2>
 
 <p>This document defines an algorithm for encoding short sequences of arbitrary
-text as quasi-musical audio data. The algorithm was developed as part of the <a
-href="http://webbeep.it">Web Beep</a> service and is provided here to
-facilitate development of, and interoperability with, related services and
-applications.</p>
+text as quasi-musical audio data. </p>
+
+<p>The input will be a Unicode text string, the output a signal expressed as an
+array of numeric values. </p>
+
+<p>The algorithm was developed as part of the <a href="http://webbeep.it">Web
+Beep</a> service and is provided here to facilitate development of, and
+interoperability with, related services and applications.</p>
 
 <p></p>
 
@@ -65,9 +66,10 @@ stated.</strong></p>
   <li>3.1 <a href="#Text">Text Preprocessing</a> : <em>Unicode text input is
     converted into an ASCII string </em></li>
   <li>3.2 <a href="#Character">Character Mapping</a> : <em>each character from
-    3.1 is mapped to a high note, low note and duration</em></li>
+    3.1 is mapped to frequency values for a high note, low note and their
+    durations</em></li>
   <li>3.3 <a href="#Tone">Tone Generation</a> : <em>tones are generated and
-    mixed according to the mapping from 3.2</em></li>
+    mixed according to the yielded by 3.2</em></li>
 </ul>
 
 <p></p>
@@ -131,7 +133,7 @@ as followed:</p>
   character</li>
 </ol>
 
-<h4>Example</h4>
+<h4><a name="Example" id="Example">Example</a></h4>
 
 <p><em>Informative</em></p>
 
@@ -359,6 +361,66 @@ the frequency</em></p>
 href="http://en.wikipedia.org/wiki/Pentatonic_scale">pentatonic scale</a>, <a
 href="http://en.wikipedia.org/wiki/Concert_pitch">concert pitch</a></em></p>
 
+<p>The results of these mappings will be the tuples:</p>
+<ul>
+  <li>noteLow = (frequency, beats)</li>
+  <li>noteHigh = (frequency, beats)</li>
+</ul>
+
+<p></p>
+
+<p>are passed on to <a href="#Tone">3.3 Tone Generation</a></p>
+
+<h4>Example</h4>
+
+<p><em>Informative</em></p>
+
+<p>Starting from the <a href="#Example">previous example</a>, the input to this
+stage will be "&amp;abc". Looking these characters up in the tables yields the
+following:</p>
+
+<p></p>
+
+<p><strong>&amp;</strong> ASCII hex 26</p>
+
+<p>Low index=2, beats=1, freq=329.63</p>
+
+<p>High index=6, beats=2, freq=587.33</p>
+
+<p></p>
+
+<p><strong>a</strong> ASCII hex 61 </p>
+
+<p>Low index=6, beats=2, freq=293.66</p>
+
+<p>High index=1, beats=1, freq=587.33</p>
+
+<p></p>
+
+<p><strong>b</strong> ASCII hex 62</p>
+
+<p>Low index=6, beats=2, freq=293.66</p>
+
+<p>High index=2, beats=1, freq=659.26</p>
+
+<p></p>
+
+<p><strong>c</strong> ASCII hex 63</p>
+
+<p>Low index=6, beats=2, freq=293.66</p>
+
+<p>High index=3, beats=1, freq=783.99</p>
+
+<p></p>
+
+<p>Hence the values passed forward will be the sequence :</p>
+<ul>
+  <li>noteLow = (329.63, 1), noteHigh = (587.33, 2)</li>
+  <li>noteLow = (293.66, 2), noteHigh = (587.33, 1)</li>
+  <li>noteLow = (293.66, 2), noteHigh = (659.26, 1)</li>
+  <li>noteLow = (293.66, 2), noteHigh = (783.99, 1)</li>
+</ul>
+
 <p></p>
 
 <h2>3.3 <a name="Tone" id="Tone">Tone Generation</a></h2>
@@ -366,27 +428,61 @@ href="http://en.wikipedia.org/wiki/Concert_pitch">concert pitch</a></em></p>
 <p>The values found via 3.2 <a href="#Character">Character Mapping</a> will be
 used to set parameters in the Tone Generation stage of the algorithm.</p>
 
-<p>Because the internal representation of audio signals varies across
-platforms...</p>
+<h4><a name="Tone1" id="Tone1">Duration</a></h4>
 
-<p></p>
-
-<p></p>
-
-<p></p>
-
-<h4><a name="Tone1" id="Tone1">Tone Duration</a></h4>
-
-<p>The duration of individual tones SHOULD be 48.6111... ( = 140 / (60 * 48))
-milliseconds.</p>
+<p>The duration of individual tones SHOULD be
+<strong><code>toneDuration</code></strong><strong>= 48.6111...</strong> ( = 140
+/ (60 * 48)) milliseconds.</p>
 
 <p><em>Informative : listening tests suggested an approximate value for this,
-the exact value chosen so Beeps will be in sync with music at 140bpm in 3/4 or
+the exact value chosen so Beeps could be in sync with music at 140bpm in 3/4 or
 4/4 time.</em></p>
 
 <p></p>
 
-<p>EXAMPLE</p>
+<h4>Generation</h4>
+Start with an empty waveform, then: 
+
+<p><strong>for each set of values</strong> <code>noteLow =
+(<em>frequencyL</em>, <em>beatsL</em>), noteHigh = (<em>frequencyH</em>,
+<em>beats</em>H)</code> </p>
+<ul>
+  <li><p>generate waveforms:</p>
+    <ul>
+      <li><em></em>sine wave <em>waveLow</em>, with frequency
+        <em>frequencyL</em> and duration <em>beatsL</em> *
+        <strong>toneDuration</strong> 
+        <p>and if <em>beatsL</em> = 1, pad with silence (zero values) for
+        <strong>toneDuration</strong></p>
+      </li>
+    </ul>
+    <ul>
+      <li><em>sine wave waveHigh</em>, with frequency <em>frequencyH</em> and
+        duration <em>beatsH</em> *<strong>toneDuration</strong> 
+        <p>and if <em>beatsH</em> = 1, pad with silence (zero values) for
+        <strong>toneDuration</strong></p>
+      </li>
+    </ul>
+  </li>
+  <li><p>then sample-wise sum (mix) the two waveforms</p>
+  </li>
+  <li>then system MAY apply amplitude envelope shaping to each chunk, but this
+    SHOULD NOT apply to more than the first 1/4 and/or last 1/4 of each
+  chunk</li>
+  <li><p>append result to waveform</p>
+  </li>
+</ul>
+
+<p>The waveform SHOULD then be padded by silence at least of
+<strong>toneDuration</strong> at the start and end.</p>
+
+<h4>Example</h4>
+
+<p></p>
+
+<p><img alt="abc tone" src="images/abc-wave.png" width="800" height="200"></p>
+
+<p></p>
 
 <h4>Exchange Format</h4>
 
@@ -404,6 +500,8 @@ ToMP3.java and WavCodec.java)</p>
 
 <p><em>This section is informative.</em></p>
 
+<p>// TODO, see <a href="implementation.html">How It Works</a> of Web Beep</p>
+
 <p></p>
 
 <h2><a name="Reference" id="Reference">Reference Implementation</a></h2>
@@ -413,12 +511,14 @@ href="http://webbeep.it/">Web Beep</a> application : <a
 href="https://github.com/danja/WebBeep">source repository</a> (also includes
 this documentation).</p>
 
-<p></p>
+<p style="text-align:right;margin-left:auto;margin-right:0;"></p>
 
 <div id="footer">
-<p>(c) <a href="http://dannyayers.com">Danny Ayers</a> </p>
+<p style="text-align:right;margin-left:auto;margin-right:0;">(c) <a
+href="http://dannyayers.com">Danny Ayers</a> 2011-2012</p>
 
-<p>This work is licensed for reuse <br>
+<p style="text-align:right;margin-left:auto;margin-right:0;">This work is
+licensed for reuse <br>
 <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative
 Commons</a> <a rel="license"
 href="http://creativecommons.org/licenses/by/3.0/"><br>

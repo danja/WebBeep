@@ -67,9 +67,7 @@ public class CodecTest {
 			long startTime = System.currentTimeMillis();
 			Tone outTones = encoder.encode(input); // "http://danbri.org/foaf.rdf#danbri"
 			
-			
 			WavCodec.save(filename, outTones); // SAVE
-			
 			
 			long encodeTime = System.currentTimeMillis() - startTime;
 			

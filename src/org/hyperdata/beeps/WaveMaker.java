@@ -37,7 +37,9 @@ public final class WaveMaker {
 	
 	public static Tone makeDualtone(int noteLow, int noteHigh,
 			double duration) {
-
+//System.out.println("Low index="+noteLow+" beats="+Maps.LOW_BEATS[noteLow]+" freq="+Maps.LOW_FREQ[noteLow]);
+//System.out.println("High index"+noteHigh+" beats"+Maps.HIGH_BEATS[noteHigh]+" freq="+Maps.HIGH_FREQ[noteHigh]);
+//System.out.println();
 //		System.out.println("WaveMaker freqlow = "+Maps.LOW_FREQ[noteLow]);
 //		System.out.println("WaveMaker freqhigh = "+Maps.HIGH_FREQ[noteHigh]);
 		Tone dataLow = null;

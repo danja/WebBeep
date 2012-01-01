@@ -24,6 +24,7 @@ public class ASCIICodec {
 		for (int i = 0; i < ascii.length(); i++) {
 
 			int val = (int) ascii.charAt(i);
+			System.out.println("val = "+val);
 			int lsVal = val % 16; // least significant hex digit of val is for
 									// high tone
 			int msVal = (val - val % 16) / 16; // I've forgotten how to do EXOR in Java...
