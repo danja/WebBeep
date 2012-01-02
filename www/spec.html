@@ -72,9 +72,17 @@ stated.</strong></p>
     mixed according to the yielded by 3.2</em></li>
 </ul>
 
+<h3>3.1 Block Diagram</h3>
+
+<p><em>Informative</em></p>
+
+<p><img alt="encoding" src="images/encoding.png" width="862" height="595"></p>
+
 <p></p>
 
-<h3>3.1 <a name="Text" id="Text">Text Preprocessing</a></h3>
+<p></p>
+
+<h3>3.2 <a name="Text" id="Text">Text Preprocessing</a></h3>
 
 <p>The input of the Web Beep algorithm is a Unicode text string. Preprocessing
 of that string involves converting it to an ASCII representation and generating
@@ -158,7 +166,7 @@ as followed:</p>
 
 <p></p>
 
-<h3>3.2 <a name="Character" id="Character">Character Mapping</a></h3>
+<h3>3.3 <a name="Character" id="Character">Character Mapping</a></h3>
 
 <p>The Character Mapping stage of the algorithm takes the string produced by <a
 href="#Text">Text Preprocessing</a> and for each character in turn looks up
@@ -423,7 +431,7 @@ following:</p>
 
 <p></p>
 
-<h2>3.3 <a name="Tone" id="Tone">Tone Generation</a></h2>
+<h2>3.4 <a name="Tone" id="Tone">Tone Generation</a></h2>
 
 <p>The values found via 3.2 <a href="#Character">Character Mapping</a> will be
 used to set parameters in the Tone Generation stage of the algorithm.</p>
@@ -496,7 +504,7 @@ ToMP3.java and WavCodec.java)</p>
 
 <p></p>
 
-<h2>Decoding</h2>
+<h2>4 Decoding</h2>
 
 <p><em>This section is informative.</em></p>
 
@@ -504,12 +512,33 @@ ToMP3.java and WavCodec.java)</p>
 
 <p></p>
 
-<h2><a name="Reference" id="Reference">Reference Implementation</a></h2>
+<h2><a name="Reference" id="Reference">5 Reference Implementation</a></h2>
 
 <p>A reference implementation of this algorithm is available as part of the <a
 href="http://webbeep.it/">Web Beep</a> application : <a
 href="https://github.com/danja/WebBeep">source repository</a> (also includes
 this documentation).</p>
+
+<p></p>
+
+<h2>6 Notes</h2>
+
+<h3>6.1 Idents</h3>
+
+<p>There may be a need for Web Beep signals to contain an identifying block or
+"Ident". In a particularly noisy environment, the robustness of Web Beep
+communications could be significantly improved by the use of an marker signal
+to indicate the start of a transmission. Additionally, in broadcast
+communications it's often desirable for the originator of the message to
+identify themselves, for example radio station Channel Ids or WiFi SSIDs.
+Neither of these scenarios are covered by Web Beep at present, however both are
+potentially supported by using the current algorithm over multiple messages.
+For example, a marker and/or broadcaster ID could be formed by sending a short
+string (e.g. "WB") a fixed time before the message proper.</p>
+
+<p></p>
+
+<p></p>
 
 <p style="text-align:right;margin-left:auto;margin-right:0;"></p>
 

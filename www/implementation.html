@@ -64,7 +64,6 @@
 <div class="container">
 
 <div class="sidebar-left">
-
 <h3>Nearby</h3>
 <ul>
   <li><a href="index.html">Home</a> </li>
@@ -81,30 +80,39 @@
 </ul>
 </div>
 
-
 <div class="container">
 
 <div class="sidebar-right">
 <h3><a name="Reference" id="Reference">Reference</a></h3>
 <ul>
-  <li><a href="http://en.wikipedia.org/wiki/Digital_audio">Digital Audio</a> </li>
-  <li><a href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a> </li>
+  <li><a href="http://en.wikipedia.org/wiki/Digital_audio">Digital Audio</a>
+  </li>
+  <li><a href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a>
+  </li>
   <li><a href="http://en.wikipedia.org/wiki/Fft">FFT</a> </li>
-  <li><a href="http://en.wikipedia.org/wiki/Goertzel_algorithm">Goertzel Algorithm</a> </li>
+  <li><a href="http://en.wikipedia.org/wiki/Goertzel_algorithm">Goertzel
+    Algorithm</a> </li>
 </ul>
 
 <h3>Fanclub</h3>
+
 <div class="nobullets">
 <ul>
-  <li><div class="fb-like" data-href="http://webbeep.it" data-send="true" data-width="140" data-show-faces="false" data-font="trebuchet ms"></div></li>
-  <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://webbeep.it" data-text="Web Beep" data-via="danja">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-
-  <li><g:plusone annotation="inline" width="140" href="http://webbeep.it"></g:plusone> </li>
+  <li>
+    <div class="fb-like">
+    </div>
+  </li>
+  <li><a href="https://twitter.com/share"
+    class="twitter-share-button">Tweet</a> <script type="text/javascript">
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </li>
+  <li><           g:plusone annotation="inline" width="140"
+    href="http://webbeep.it"></                                        
+    g:plusone></li>
 </ul>
 </div>
-<h3>Elsewhere</h3>
 
+<h3>Elsewhere</h3>
 <ul>
   <li><a href="http://dannyayers.com" title="Danny Ayers' Blog">Raw Blog</a>
   </li>
@@ -112,8 +120,10 @@
     title="Linked Data related material">hyperdata.org</a> </li>
   <li><a href="http://dannyayers.com/stuff/" title="various things">Stuff</a>
   </li>
-<li><a href="http://spikeandwave.com" title="my music">Spike &amp; Wave</a>  </li>
+  <li><a href="http://spikeandwave.com" title="my music">Spike &amp; Wave</a>
+  </li>
 </ul>
+
 <div class="nobullets">
 <ul>
   <li><a href="http://twitter.com/danja"><img src="/images/twitter.png"
@@ -245,13 +255,25 @@ requirements can be found in the <a href="spec.html">specification</a>, there's
 an example of how this may be implemented in Java in the <a
 href="https://github.com/danja/WebBeep">source code</a>.</p>
 
+<p>This is how it's done:</p>
+
+<p></p>
+
+<p><img alt="encoding" src="images/encoding.png" width="862" height="595"></p>
+
+<h2>DSP Blocks</h2>
+
+<p>To play around with processing the audio signals both as individual
+character chunks and the combined signal, the following pipeline was set up:</p>
+
 <p><img alt="encoder block diagram" src="images/encoder-block1.png" width="862"
 height="177"></p>
 
 <p><em>sorry messy diagram - will tidy later</em></p>
 
-<p>This is the generalized form of the setup - experimentation showed that
-virtually no pre- or post-processing was needed.</p>
+<p>This is the generalized form of the setup - in practice not really needed,
+experimentation showed that <strong>virtually no pre- or post-processing was
+required</strong>.</p>
 
 <p>The Chars to Chunks block is the most interesting bit. Each chunk,
 corresponding to a single ASCII character, has a high frequency and a low
@@ -268,39 +290,21 @@ hee</em>), though is based on standard digital signal processing (<a
 href="http://en.wikipedia.org/wiki/Digital_signal_processing">DSP</a>)
 techniques. </p>
 
+<p>Again, a generalized pipeline was set up. Here pre- and post-processing was
+more of a consideration.</p>
+
 <p><img alt="decoder block diagram" src="images/decoder-block1.png" width="857"
 height="165"></p>
 
-<p>Again, generalized version. Chunks to Chars is the interesting bit here. The
-decoder has to find what tone (if any) occurs in each half of the chunk. Some
-kind of a pitch detector is needed.</p>
+<p><strong>Split</strong> is done simplify by locating the start of the tone
+and then chopping it into equal-sized lengths correcponding to the duration of
+individual tones.</p>
 
-<h2>Pitch Detection</h2>
+<p><strong>Chunks to Chars</strong> is the interesting bit here. The decoder
+has to find what tone (if any) occurs in each half of the chunk. Some kind of a
+pitch detector is needed.</p>
 
-<p>A crucial step in getting data back from mixed-up tones.</p>
-
-<h2>Pitch Detection</h2>
-<del><p>Many pitch detection algorithms are available, here are some examples
-ranked in order of guesstimated suitability:</p>
-<ol>
-  <li>Cross-correlation (against reference waves) : should be the most accurate
-    and efficient</li>
-  <li>Pisarenko decomposition : can take advantage of prior knowledge (there
-    are max 2 tones)</li>
-  <li>FFT : brute force, computationally expensive (lots of irrelevant
-    cross-correlation) but very well known and easy to see what's going on</li>
-  <li>Bandpass filters (one per note) : could maybe be good, as a variation of
-    1, need to figure out what to convolve</li>
-  <li>Zero-crossing detection/timing : likely to be unreliable</li>
-</ol>
-
-<p>Performance shouldn't really be a problem on a PC-like machine or even a
-smartphone, though experimentation needed. For accuracy it'd be nice to have
-(say) 3 parallel decoding algorithms going, let them vote for the best match.
-</p>
-</del>
-
-<h1><a id="Initial">Implementation</a></h1>
+<h1><a id="Initial" name="Initial">Implementation</a></h1>
 
 <p>The reference implementation has been written in Java. </p>
 
@@ -457,13 +461,23 @@ for each sample, x[n],
 end
 power = s_prev2*s_prev2 + s_prev*s_prev - coeff*s_prev*s_prev2;</code></pre>
 
-<h1><a id="Notes">Notes</a></h1>
+<p></p>
 
-<h2><a name="Future" id="Future">Future Directions</a></h2>
+<p>In Web Beep, the frequencies known to have been used in the creation of
+Beeps (in the Character Mapping tables) are passed to the Goertzel algorithm in
+turn, to test each chunk in turn. </p>
+
+<p>The values obtained are used for a reverse-lookup of the characters from the
+frequency/duration combinations.</p>
+
+<h1><a id="Notes" name="Notes">Notes</a><a name="Future" id="Future">/ Future
+Directions</a></h1>
+
+<h2></h2>
 
 <p>An in-browser Javascript implementation seems like a good step.</p>
 
-<h3>Applications for Web Beep</h3>
+<h2>Applications for Web Beep</h2>
 
 <p>Dunno really, but see <a
 href="http://wiki.foaf-project.org/w/DanBri/ChirpChirp">ChirpChirp</a> <em>[and
@@ -474,7 +488,7 @@ places. <em>Suggestions please...</em></p>
 
 <p>Ring Tone - use your email, Home Page or personal URI. </p>
 
-<h3>Application for the DSP bits</h3>
+<h2>Application for the DSP bits</h2>
 
 <p>Take it from me, pluggable, modular, parameterized,
 declaratively-configurable DSP systems should have plenty of applications.
