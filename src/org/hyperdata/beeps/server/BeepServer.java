@@ -26,10 +26,10 @@ public class BeepServer {
 		}
 		Server server = new Server(port);
 
-		ResourceHandler fileServerHandler = new ResourceHandler();
-		fileServerHandler.setDirectoriesListed(true);
-		fileServerHandler.setWelcomeFiles(new String[] { "index.html" });
-		fileServerHandler.setResourceBase("www");
+		FileServerHandler fileServerHandler = new FileServerHandler();
+//		fileServerHandler.setDirectoriesListed(true);
+//		fileServerHandler.setWelcomeFiles(new String[] { "index.html" });
+//		fileServerHandler.setResourceBase("www");
 
 		// Handler param = new ParamHandler();
 		Handler encodeHandler = new EncodeHandler();

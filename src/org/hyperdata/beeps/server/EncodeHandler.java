@@ -63,6 +63,7 @@ public class EncodeHandler extends AbstractHandler {
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
 		String inputText = request.getParameter("inputText");
+		
 		if (inputText.length() > 63) { // too long
 
 		}
@@ -76,7 +77,8 @@ public class EncodeHandler extends AbstractHandler {
 
 		long encodeTime = System.currentTimeMillis() - startTime;
 
-		String filename = URLEncoder.encode(inputText, "UTF-8");
+		String filename = FileServerHandler.escapeSlashes(inputText);
+		// filename = 	URLEncoder.encode(filename, "UTF-8");
 
 		String wavFilename = audioDir + filename + ".wav";
 		String mp3Filename = audioDir + filename + ".mp3";
