@@ -40,8 +40,11 @@ public class FileServerHandler extends ResourceHandler{
 	 * @param substring
 	 * @return
 	 */
-	public static String escapeSlashes(String string) {
-		string = string.replaceAll("/", "SLASH");
+	public static String escapees(String string) {
+		string = string.replaceAll("/", "S_");
+		string = string.replaceAll("#", "H_");
+	// 	string = string.replaceAll("?", "%_Q%"); regexes not strings!
+	//	string = string.replaceAll("&", "%_A%");
 		return string;
 	}
 

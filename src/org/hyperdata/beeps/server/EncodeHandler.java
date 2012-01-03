@@ -77,8 +77,10 @@ public class EncodeHandler extends AbstractHandler {
 
 		long encodeTime = System.currentTimeMillis() - startTime;
 
-		String filename = FileServerHandler.escapeSlashes(inputText);
-		// filename = 	URLEncoder.encode(filename, "UTF-8");
+		// belt
+		String filename = FileServerHandler.escapees(inputText);
+		// no braces
+	 //   filename = 	URLEncoder.encode(filename, "UTF-8");
 
 		String wavFilename = audioDir + filename + ".wav";
 		String mp3Filename = audioDir + filename + ".mp3";

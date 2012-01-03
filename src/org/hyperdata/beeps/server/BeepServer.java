@@ -18,7 +18,7 @@ public class BeepServer {
 	public static void main(String[] args) throws Exception {
 
 		String host = "localhost";
-		int port = 8080;
+		int port = 8088;
 
 		if (args.length > 0) {
 			host = args[0];
