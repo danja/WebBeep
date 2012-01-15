@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
-<html itemscope itemtype="http://schema.org/Service">
+<html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=us-ascii">
   <title>Web Beep : text to tones and back again</title>
-  <meta name="description" content="Turns text into quasi-musical tones, and back again">
+  <meta name="description"
+  content="Turns text into quasi-musical tones, and back again">
   <meta name="author" content="Danny Ayers">
   <link rel="shortcut icon" href="/favicon.ico">
   <!-- M$ etc -->
@@ -13,32 +14,30 @@
   <!-- HTML5 -->
   <link rel="stylesheet" href="fonts/font.css" type="text/css" media="Screen">
   <link rel="stylesheet" href="css/stuff.css" type="text/css" media="Screen">
-
-<meta itemprop="name" content="Web Beeps" />
-<meta itemprop="description" content="text to tones and back again"/>
-<meta itemprop="image" content="http://webbeep.it/images/logo-plus.png"/>
-
   <script type="text/javascript" src="js/curvycorners.js">
  </script>
-
-<script type="text/javascript"><!-- Google Plus -->
+  <script type="text/javascript">
+<!-- Google Plus -->
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
     po.src = 'https://apis.google.com/js/plusone.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
+  })();</script>
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
+
+<div id="fb-root">
+</div>
+<script type="text/javascript">
+(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
 <div id="header">
 <h1 id="page-title">Web Beep</h1>
 
@@ -53,6 +52,7 @@ width="120" height="72"></p>
 <div class="sidebar-left">
 <h3>Documentation</h3>
 <ul>
+  <li><a href="applications.html">Using Beeps</a></li>
   <li><a href="implementation.html">How It Works</a></li>
   <li><a href="spec.html">Specification</a></li>
   <li><a href="https://github.com/danja/WebBeep">Source Code</a></li>
@@ -73,24 +73,30 @@ google_ad_height = 240;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 </div>
-
 </div>
 
 <div class="container">
 
 <div class="sidebar-right">
 <h3>Fanclub</h3>
+
 <div class="nobullets">
 <ul>
-  <li><div class="fb-like" data-href="http://webbeep.it" data-send="true" data-width="140" data-show-faces="false" data-font="trebuchet ms"></div></li>
-  <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://webbeep.it" data-text="Web Beep" data-via="danja">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
-
-  <li><g:plusone annotation="inline" width="140" href="http://webbeep.it"></g:plusone> </li>
+  <li>
+    <div class="fb-like">
+    </div>
+  </li>
+  <li><a href="https://twitter.com/share"
+    class="twitter-share-button">Tweet</a> <script type="text/javascript">
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
+  </li>
+  <li>&lt; g:plusone annotation=inline width=140 href=http://webbeep.it&gt;</  
+                                          g:plusone></li>
 </ul>
 </div>
-<h3>Elsewhere</h3>
 
+<h3>Elsewhere</h3>
 <ul>
   <li><a href="http://dannyayers.com" title="Danny Ayers' Blog">Raw Blog</a>
   </li>
@@ -98,8 +104,10 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     title="Linked Data related material">hyperdata.org</a> </li>
   <li><a href="http://dannyayers.com/stuff/" title="various things">Stuff</a>
   </li>
-<li><a href="http://spikeandwave.com" title="my music">Spike &amp; Wave</a>  </li>
+  <li><a href="http://spikeandwave.com" title="my music">Spike &amp; Wave</a>
+  </li>
 </ul>
+
 <div class="nobullets">
 <ul>
   <li><a href="http://twitter.com/danja"><img src="/images/twitter.png"
@@ -114,9 +122,50 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </div>
 
 <div class="content">
-<p><a href="audio/Example.mp3" title="Sample Beeps"></a></p>
+<p><strong>Web Beeps are short, quasi-musical sounds which encode text. They
+can be used to create audio representation of Web links and identify things
+with tones. They are easy to <a href="#Make">create</a>, <a
+href="#Decode">decode</a> and <a href="implementation.html">use</a> and backed
+by an <a href="spec.html">open specification</a> together with an <a
+href="https://github.com/danja/WebBeep">open source implementation</a>.
+</strong></p>
 
-<h3>Make Beeps</h3>
+<p>Use a Web Beep as your personal cell phone ring tone and let people know who
+you are!</p>
+
+<p><strong>Get Beeping!</strong></p>
+
+<h2>Radio Broadcasters and Podcasters</h2>
+
+<p>Add Web Beeps to your recording to provide channel/station identification
+and to supplement the inclusion of unreliable spoken links. </p>
+
+<p><a href="applications.html#broadcast">Read more...</a></p>
+
+<h2>Musicians</h2>
+
+<p>Tag the releases you put on the Web to link listeners back to your site.</p>
+
+<p><a href="applications.html">Read more... </a></p>
+
+<h2>Web Designers</h2>
+
+<p>Create Web Beeps for your sites, identifying the pages, people and any other
+things relevant to each site.</p>
+
+<p><a href="applications.html#web">Read more...</a></p>
+
+<h2>Developers and Inventors</h2>
+
+<p>Use Web Beeps to send messages between devices, as access passcodes, to tag
+real-world objects...the possibilities are endless. This Web Site offers one
+API, why not build your own?</p>
+
+<p><a href="applications.html#develop">Read More...</a></p>
+
+<p></p>
+
+<h3><a name="Make" id="Make">Make Beeps</a></h3>
 
 <div class="block">
 <p><img alt="speaker button" src="images/button-right-100.png" width="100"
@@ -124,7 +173,7 @@ height="100" align="left">Enter any text (up to 63 characters) and click the
 <strong>Make Beeps</strong> button to get the download. </p>
 
 <form action="encode" method="post" charset="UTF-8">
-  <p><input type="text" id="inputText" name="inputText" size="30"/> 
+  <p><input type="text" id="inputText" name="inputText" size="30"> 
   <input type="submit" value="Make Beeps"> </p>
 </form>
 
@@ -139,7 +188,7 @@ can hear!</p>
 
 <p></p>
 
-<h3>Decode Beeps</h3>
+<h3><a name="Decode" id="Decode">Decode Beeps</a></h3>
 
 <div class="block">
 <p><img alt="speaker button" src="images/button-left-100.png" width="100"
@@ -147,9 +196,8 @@ height="100" align="left">Click <strong>Browse</strong> to locate a Web Beep
 mp3 file on your computer, then click <strong>Decode</strong> to see the text
 it contains. </p>
 
-<form name="decode" action="decode" method="post"
-enctype="multipart/form-data">
-  <input type="file" name="decode" id="decode" /> 
+<form name="decode" action="decode" method="post" enctype="multipart/form-data">
+  <input type="file" name="decode" id="decode"> 
   <input type="submit" value="Decode"> </form>
 
 <p>This is a new <em><strong>alpha</strong></em> service, any problems, <a

@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=us-ascii">
+  <title>Web Beep : text to tones and back again</title>
+  <meta name="description"
+  content="Turns text into quasi-musical tones, and back again">
+  <meta name="author" content="Danny Ayers">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- M$ etc -->
+  <link rel="apple-touch-icon" href="/apple-icon.png">
+  <!-- iDespair -->
+  <link rel="icon" type="image/png" href="/apple-icon.png">
+  <!-- HTML5 -->
+  <link rel="stylesheet" href="fonts/font.css" type="text/css" media="Screen">
+  <link rel="stylesheet" href="css/stuff.css" type="text/css" media="Screen">
+  <script type="text/javascript" src="js/curvycorners.js">
+ </script>
+  <script type="text/javascript">
+<!-- Google Plus -->
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();</script>
+</head>
+
+<body>
+
+<div id="fb-root">
+</div>
+<script type="text/javascript">
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="header">
+<h1 id="page-title">Web Beep</h1>
+
+<p id="logo"><img alt="loudspeakers logo" src="images/logo-inverted-120.png"
+width="120" height="72"></p>
+
+<p id="description">text to tones and back again</p>
+</div>
+
+<div class="container">
+
+<div class="sidebar-left">
+<h3>Nearby</h3>
+<ul>
+  <li><a href="index.html">Home</a> </li>
+  <li><a href="implementation.html">How It Works</a></li>
+  <li><a href="spec.html">Specification</a></li>
+  <li><a href="https://github.com/danja/WebBeep">Source Code</a></li>
+</ul>
+
+<h3>Funding</h3>
+
+<div class="ads">
+<script type="text/javascript">
+<!--
+google_ad_client = "ca-pub-4871389596811552";
+/* Web Beep */
+google_ad_slot = "2017206201";
+google_ad_width = 120;
+google_ad_height = 240;
+//--></script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>
+
+<div class="container">
+
+<div class="sidebar-right">
+<h3>Fanclub</h3>
+
+<div class="nobullets">
+<ul>
+  <li>
+    <div class="fb-like">
+    </div>
+  </li>
+  <li><a href="https://twitter.com/share"
+    class="twitter-share-button">Tweet</a> <script type="text/javascript">
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
+  </li>
+  <li>&lt; g:plusone annotation=inline width=140 href=http://webbeep.it&gt;</  
+                                          g:plusone></li>
+</ul>
+</div>
+
+<h3>Elsewhere</h3>
+<ul>
+  <li><a href="http://dannyayers.com" title="Danny Ayers' Blog">Raw Blog</a>
+  </li>
+  <li><a href="http://hyperdata.org/"
+    title="Linked Data related material">hyperdata.org</a> </li>
+  <li><a href="http://dannyayers.com/stuff/" title="various things">Stuff</a>
+  </li>
+  <li><a href="http://spikeandwave.com" title="my music">Spike &amp; Wave</a>
+  </li>
+</ul>
+
+<div class="nobullets">
+<ul>
+  <li><a href="http://twitter.com/danja"><img src="/images/twitter.png"
+    alt="Twitter" width="24" height="24"></a></li>
+  <li><a href="http://www.facebook.com/danny.ayers"><img src="/images/fb.png"
+    alt="Facebook" width="24" height="24"></a></li>
+  <li><a href="https://plus.google.com/112609322932428633493?rel=author"
+    rel="author"><img src="/images/plus.png" alt="Google Plus" width="24"
+    height="24"></a></li>
+</ul>
+</div>
+</div>
+
+<div class="content">
+<p></p>
+
+<h3><a name="broadcast" id="broadcast">Using Web Beeps in Broadcast
+Recordings</a></h3>
+
+<p>Simply use the form on the home page to enter the text or URL you require to
+turn it into tones. Use your audio editing software to paste it wherever you
+like. The generated tones are already padded with a little silence, that should
+be left in place. To make it easier for client applications to extract the
+tones, it's recommended that they appear near natural breaks in your recording,
+e.g. a good place for a channel ident would be in the first or last few seconds
+of a broadcast.</p>
+
+<p>Web Beeps may be used freely without charge, there are no additional
+copyright/trademark restrictions.</p>
+
+<h3><a name="web" id="web">Adding Web Beeps to Web Pages</a></h3>
+
+<p>Once you've created your beep file and uploaded it to your server you can
+link it in like so:</p>
+
+<p></p>
+<pre><code>&lt;a href="url_of_your_beeps.mp3"&gt;Web Beep&lt;img src="http://webbeep.it/images/webbeep-26x16.png" alt="web beep icon" /&gt;&lt;/a&gt;</code></pre>
+
+<p></p>
+
+<p>There are various icons/logos you can use, <a href="#Logos">see
+below</a>.</p>
+
+<p>But you can add a player and/or more metadata to make it more discoverable,
+for example using microdata :</p>
+<pre><code>
+&lt;div itemscope itemtype="http://schema.org/AudioObject"&gt;
+   &lt;span itemprop="name"&gt;Web Beep&lt;/span&gt;
+
+   &lt;script type="text/javascript"&gt;&lt;!-- optional Flash player --&gt;
+      var fo = new FlashObject("http://google.com/flash/preview-player.swf", 
+      "flashPlayer_719", "358", "16", "6",
+      "#FFFFFF");fo.addVariable("url","<strong>http://dannyayers.com/beep.mp3</strong>");fo.addVariable("autostart",
+"0");fo.write("flashcontent_719");
+   &lt;/script&gt;
+
+   &lt;meta itemprop="encodingFormat" content="mp3" /&gt;
+   &lt;meta itemprop="contentURL" content="<strong>http://dannyayers.com/beep.mp3</strong>"/&gt;
+
+or like this:
+
+&lt;span class="description"&gt;
+
+&lt;span itemprop="description"&gt;Web Beep for &lt;a
+href="http://dannyayers.com"&gt;http://dannyayers.com&lt;/a&gt;&lt;/span&gt;
+
+&lt;a href="url_of_your_beeps.mp3"&gt;Web Beep&lt;img src="http://webbeep.it/images/webbeep-26x16.png" alt="web beep icon" /&gt;&lt;/a&gt;
+
+&lt;/span&gt;
+
+&lt;/div&gt;</code></pre>
+
+<p></p>
+
+<h4>Using Open Graph Protocol</h4>
+<pre><code>&lt;html prefix="og: http://ogp.me/ns#"&gt;
+   &lt;head&gt;
+ ...
+      &lt;meta property="og:audio" content="http://dannyayers.com/beep.mp3" /&gt;
+      &lt;meta property="og:audio:description" content="Web Beep for this page's URL" /&gt;
+      &lt;meta property="og:audio:type" content="audio/mpeg" /&gt;
+ ...</code></pre>
+
+<h3><a name="develop" id="develop"></a> Develop</h3>
+
+<p>The system here is built as a Web service, but you may wish to build your
+own system, e.g. as a little mobile application. If you don't want to implement
+the encoding/decoding yourself, feel free to use this service.</p>
+
+<h2>API</h2>
+
+<p><a
+href="http://blog.whatfettle.com/2007/01/11/good-web-apis-are-just-web-sites/">The
+Best Web APIs are just Web Sites</a>, and this site isn't anything fancy, the
+API is as follows:</p>
+
+<p><strong>Encode</strong> : HTTP POST a named parameter
+<strong>inputText</strong> with the string to encode to the URL
+http://webbeep.it/encode which accepts UTF-8, form-encoded data, 63 characters
+or less.</p>
+
+<p><strong>Decode</strong> : HTTP POST the audio in mono mp3 format to URL
+http://webbeep.it/decode as multipart/form-data. An audio file will be created
+with a URL based on the resulting string, with characters escaped as
+follows:</p>
+
+<p>"/" is replaced with "S_"</p>
+
+<p>"#" is replaced with "H_"</p>
+
+<p>For further information view source of the <a href="index.html">home
+page</a> and <a
+href="https://github.com/danja/WebBeep/tree/master/src/org/hyperdata/beeps/server">server-side
+source code</a>.</p>
+
+<h2>Implementing Web Beep Yourself</h2>
+
+<p>The easiest way is to <a href="https://github.com/danja/WebBeep">clone the
+code</a>. It's open source. There are no hard-and-fast restrictions on its use,
+although I would very much appreciate a link back to this site somewhere,
+especially to the <a href="spec.html">specification</a>.</p>
+
+<p>If you want to build a different version, see <a
+href="implementation.html">How It Works</a>. It's not rocket science.</p>
+
+<p></p>
+
+<h3><a name="Logos" id="Logos">Logos</a></h3>
+
+<p><a href="images/webbeep-26x16.png">26x16</a> <img alt="very small logo"
+src="images/webbeep-26x16.png" width="26" height="16"></p>
+
+<p><a href="images/webbeep-48x30.png">48x30</a><img alt="small logo"
+src="images/webbeep-48x30.png" width="48" height="30"></p>
+
+<p><a href="images/webbeep-48x30-inverted.png">48x30 inverted</a> (for dark
+backgrounds)</p>
+
+<p><a href="images/webbeep-57x57.png">57x57</a><img alt="logo small"
+src="images/webbeep-57x57.png" width="57" height="57"></p>
+
+<p><a href="images/webbeep-100x60.png">100x60</a><img alt="logo medium"
+src="images/webbeep-100x60.png" width="100" height="60"></p>
+
+<p><a href="images/webbeep-120x72.png">120x172</a><img alt="logo medium"
+src="images/webbeep-120x72.png" width="120" height="72"></p>
+
+<p><a href="images/webbeep-858x512.png">858x512</a> (for editing, creating your
+own version)</p>
+
+<p></p>
+
+<div id="footer">
+<p>&copy; <a href="http://dannyayers.com">Danny Ayers</a> 2011-2012 </p>
+
+<p>This work is licensed for reuse <br>
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative
+Commons</a> <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/"><br>
+<img alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by/3.0/88x31.png"></a><br>
+</p>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="http://webplayer.yahooapis.com/player.js">
+</script>
+</body>
+</html>
