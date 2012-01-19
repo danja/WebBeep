@@ -3,6 +3,7 @@ package org.hyperdata.beeps.system;
 import java.util.List;
 
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.Named;
 
 
 /**

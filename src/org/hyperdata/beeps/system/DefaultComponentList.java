@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hyperdata.common.Described;
+import org.hyperdata.common.describe.Described;
 
 
 /**

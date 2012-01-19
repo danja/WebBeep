@@ -3,7 +3,8 @@
  */
 package org.hyperdata.beeps.system;
 
-import org.hyperdata.common.Described;
+import org.hyperdata.common.describe.Described;
+import org.hyperdata.common.describe.Named;
 
 
 /**

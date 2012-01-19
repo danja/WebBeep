@@ -28,5 +28,6 @@
 	<classpathentry kind="lib" path="lib/sun/tools.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-fileupload-1.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/apache/commons-io-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/dork/dork.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

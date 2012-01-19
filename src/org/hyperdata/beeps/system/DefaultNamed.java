@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.system;
 
+import org.hyperdata.common.describe.Named;
+
 
 /**
  * @author danny
