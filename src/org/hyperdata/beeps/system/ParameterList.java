@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.system;
 
+import org.hyperdata.common.describe.Described;
 import org.hyperdata.common.describe.Named;
  
 
@@ -12,7 +13,7 @@ import org.hyperdata.common.describe.Named;
  * @author danny
  *
  */
-public interface ParameterList extends Named {
+public interface ParameterList extends Named, Described {
 	
 	/**
 	 * Add parameter to the list

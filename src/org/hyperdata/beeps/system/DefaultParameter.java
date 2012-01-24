@@ -71,6 +71,10 @@ public abstract class DefaultParameter extends DefaultNamed implements Parameter
 		return getName() + " = " + value;
 	}
 	
+	public String describe(){
+		return "beep:"+getName()+" x:value \""+ value + "\" .\n";
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.optimize.Parameter#getValue()

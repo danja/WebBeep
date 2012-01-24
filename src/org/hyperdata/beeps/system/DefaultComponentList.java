@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hyperdata.common.describe.Described;
+import org.hyperdata.common.describe.Describer;
 
 
 /**
@@ -102,8 +103,16 @@ public class DefaultComponentList extends DefaultNamed implements ComponentList 
 	 */
 	@Override
 	public String describe() {
-		// TODO Auto-generated method stub
-		return null;
+		String description = Describer.getDescription(this);
+		
+		if (components.size() == 0) {
+			// return "\tEmpty Pipeline";
+			// TODO flag this?
+		}
+		for (int i = 0; i < components.size(); i++) {
+			description += components.get(i).describe();
+		}
+		return description;
 	}
 	
 	

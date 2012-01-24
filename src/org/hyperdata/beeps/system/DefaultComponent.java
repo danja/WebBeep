@@ -4,6 +4,7 @@
 package org.hyperdata.beeps.system;
 
 import org.hyperdata.beeps.parameters.SimpleParameter;
+import org.hyperdata.common.describe.Describer;
 
 
 /**
@@ -64,24 +65,6 @@ public abstract class DefaultComponent extends DefaultNamed implements Component
 		}
 		return null;
 	}
-
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.parameters.Parameterized#initFromParameters()
-	 */
-//	@Override
-//	public void initFromParameters() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-	/* (non-Javadoc)
-	 * @see org.hyperdata.common.Described#describe()
-	 */
-	@Override
-	public String describe() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.system.Component#getParameters()
@@ -95,6 +78,16 @@ public abstract class DefaultComponent extends DefaultNamed implements Component
 		String string = "Component : "+getName()+" = "+this.getClass().toString()+"\n";
 		string +=  parameters.toString();
 		return string;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		String description = Describer.getDescription(this);
+		description += parameters.describe();
+		return description;
 	}
 
 }

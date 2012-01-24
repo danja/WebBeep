@@ -9,6 +9,7 @@ import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.system.*;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.Describer;
 
 /**
  * @author danny
@@ -31,15 +32,6 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 		Parameter parameter = ParameterFactory.createParameter(component.getParameters(), name);
 		component.setParameter(parameter);
 	}
-	
-	/**
-	 * @param lp12
-	 * @param name
-	 */
-//	private void createParameter(Processor processor, String name) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 	/**
 	 * @param parameters
@@ -116,33 +108,6 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.hyperdata.beeps.Codec#applyPreProcessors(java.util.List)
-	 */
-	// @Override
-	// public List<Double> applyPreProcessors(List<Double> input) {
-	// if(preprocessors.size() == 0) return input;
-	// Debug.verbose("Preprocessing...");
-	// return preprocessors.applyProcessors(input);
-	// }
-
-	
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.hyperdata.beeps.Codec#applyPostProcessors(java.util.List)
-	 */
-	// @Override
-	// public List<Double> applyPostProcessors(List<Double> input) {
-	// if(postprocessors.size() == 0) return input;
-	// Debug.verbose("Postprocessing...");
-	// return postprocessors.applyProcessors(input);
-	// }
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.hyperdata.beeps.pipelines.Codec#applyPreProcessors(org.hyperdata.
 	 * beeps.util.Tone)
@@ -191,4 +156,11 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 		return string;
 	}
 
+	public String describe(){
+		String description = Describer.getDescription(this);
+		description += coreComponents.describe();
+		description += preProcessors.describe();
+		description += postProcessors.describe();
+		return description;
+	}
 }

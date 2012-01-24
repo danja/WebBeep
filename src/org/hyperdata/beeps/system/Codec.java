@@ -3,6 +3,7 @@ package org.hyperdata.beeps.system;
 import java.util.List;
 
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.Described;
 import org.hyperdata.common.describe.Named;
 
 
@@ -15,7 +16,7 @@ import org.hyperdata.common.describe.Named;
  * 
  *
  */
-public interface Codec extends Named {
+public interface Codec extends Named, Described {
 	
 	
 	/**
