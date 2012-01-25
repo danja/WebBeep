@@ -231,9 +231,11 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	
 	public String describe(){
 		String description = Describer.getDescription(this);
+		String list = "";
 		for (int i = 0; i < parameters.size(); i++) {
-			description += parameters.get(i).describe();
+			list += "\t"+parameters.get(i).describe();
 		}
+		description += getName()+ " beep:parameters (\n"+ list+ " ).\n";
 		return description;
 	}
 

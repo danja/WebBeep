@@ -3,6 +3,8 @@
  */
 package org.hyperdata.beeps.config;
 
+import org.hyperdata.common.describe.Describer;
+
 /**
  * @author danny
  *
@@ -68,4 +70,6 @@ public class Constants {
 		public static double LP_HIGH = 12000;
 		public static double HP_LOW = 60;
 		public static double HP_HIGH = 300;
+		
+		public static String NAMESPACES = Describer.namespaces + "@prefix beep:       <http://purl.org/stuff/beep/> .\n";
 }

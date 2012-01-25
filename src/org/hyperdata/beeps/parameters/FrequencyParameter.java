@@ -36,7 +36,7 @@ public class FrequencyParameter extends DefaultParameter {
 		// System.out.println(getProcessor());
 		String shape = null;
 		try {
-			shape = (String)getProcessor().getLocal("shape");
+			shape = (String)getParameterList().getLocal("shape");
 		} catch (Exception exception) {
 			// TODO Auto-generated catch block
 			exception.printStackTrace();

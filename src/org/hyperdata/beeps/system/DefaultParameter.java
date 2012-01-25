@@ -3,53 +3,58 @@
  */
 package org.hyperdata.beeps.system;
 
+import org.hyperdata.common.describe.Describer;
+
 /**
  * @author danny
- *
+ * 
  */
-public abstract class DefaultParameter extends DefaultNamed implements Parameter {
+public abstract class DefaultParameter extends DefaultNamed implements
+		Parameter {
 
 	protected Object value;
-	private ParameterList processor;
+	private ParameterList parameterList;
+
 	// private String datatype = "";
-	
-	public DefaultParameter(){
+
+	public DefaultParameter() {
 	}
-	
-	public DefaultParameter(String name){
+
+	public DefaultParameter(String name) {
 		super(name);
 	}
-	
-	public DefaultParameter(ParameterList processor, String name){
+
+	public DefaultParameter(ParameterList processor, String name) {
 		super(name);
-		setProcessor(processor);
+		setParameterList(processor);
 	}
-	
-	public DefaultParameter(ParameterList processor, String name, Object value){
+
+	public DefaultParameter(ParameterList processor, String name, Object value) {
 		this(processor, name);
 		setValue(value);
 	}
-	
-	public DefaultParameter(String name, Object value){
+
+	public DefaultParameter(String name, Object value) {
 		this(null, name, value);
 	}
-	
-	public void setValue(String value){
+
+	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
 	/**
-	 * @param processor the processor to set
+	 * @param processor
+	 *            the processor to set
 	 */
-	public void setProcessor(ParameterList processor) {
-		this.processor = processor;
+	public void setParameterList(ParameterList processor) {
+		this.parameterList = processor;
 	}
-	
-	public Parameter clone(){
+
+	public Parameter clone() {
 		Parameter clone = null;
 		try {
 			clone = this.getClass().newInstance();
-			clone.setProcessor(processor);
+			clone.setParameterList(parameterList);
 			clone.setName(getName());
 			clone.setValue(value);
 		} catch (InstantiationException exception) {
@@ -60,37 +65,43 @@ public abstract class DefaultParameter extends DefaultNamed implements Parameter
 		return clone;
 		// Parameter clone = new DefaultParameter(this.processor, this.name);
 	}
+
 	/**
 	 * @return the processor
 	 */
-	public ParameterList getProcessor() {
-		return this.processor;
+	public ParameterList getParameterList() {
+		return this.parameterList;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return getName() + " = " + value;
 	}
-	
-	public String describe(){
-		return "beep:"+getName()+" x:value \""+ value + "\" .\n";
-	}
-	
 
-	/* (non-Javadoc)
+	public String describe() {
+		return "[ a beep:Parameter; beep:name \"" + getName()
+				+ "\"; beep:value \"" + value + "\"; java:datatype \""
+				+ Describer.getJavaDatatype(value) + "\" ]\n";
+		// return "beep:"+getName()+" x:value \""+ value + "\" .\n";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.hyperdata.beeps.optimize.Parameter#getValue()
 	 */
 	@Override
 	public Object getValue() {
 		return value;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.hyperdata.beeps.optimize.Parameter#getValue()
 	 */
 	@Override
 	public void setValue(Object value) {
 		this.value = value;
 	}
-
 
 }

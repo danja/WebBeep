@@ -32,7 +32,7 @@ public class HighThresholdParameter extends DefaultParameter {
 	@Override
 	public void initRandom() {
 		// TODO Auto-generated method stub
-		ParameterList p = getProcessor();
+		ParameterList p = getParameterList();
 		Object low = p.getParameter("Decoder.pre.compressor.lowThreshold").getValue();;
 		
 		

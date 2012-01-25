@@ -10,6 +10,8 @@ import org.hyperdata.common.describe.Named;
 /**
  * An ordered list of Parameters
  * 
+ * The order is arbitrary but fixed, only there to simplify optimization algorithms (e.g. GA)
+ * 
  * @author danny
  *
  */

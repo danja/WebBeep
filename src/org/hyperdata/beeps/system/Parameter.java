@@ -20,7 +20,7 @@ public interface Parameter extends Named, Described {
 	
 	public void initRandom();
 
-	public ParameterList getProcessor();
+	public ParameterList getParameterList();
 
 	
 	/**
@@ -30,7 +30,7 @@ public interface Parameter extends Named, Described {
 	/**
 	 * @param processor
 	 */
-	public void setProcessor(ParameterList processor);
+	public void setParameterList(ParameterList parameterList);
 	/**
 	 * @param value
 	 */

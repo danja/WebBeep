@@ -5,6 +5,7 @@ package org.hyperdata.beeps;
 
 import java.util.List;
 
+import org.hyperdata.beeps.config.Constants;
 import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.system.DefaultPipeline;
 import org.hyperdata.beeps.system.ParameterList;
@@ -166,7 +167,7 @@ public class CodecTest implements Described, Named {
 	@Override
 	public String describe() {
 		// namespace prefixes as header
-		String description = Describer.namespaces;
+		String description = Constants.NAMESPACES;
 
 		// gives properties labels
 		description += Describer.vocab;
