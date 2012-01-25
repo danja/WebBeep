@@ -135,6 +135,41 @@ you are!</p>
 
 <p><strong><a href="#Make">Get Beeping!</a></strong></p>
 
+<h3><a name="Make" id="Make">Make Beeps</a></h3>
+
+<div class="block">
+<p><img alt="speaker button" src="images/button-right-100.png" width="100"
+height="100" align="left">Enter any text (up to 63 characters) and click the
+<strong>Make Beeps</strong> button to get the download. </p>
+
+<form action="encode" method="post" charset="UTF-8">
+  <p><input type="text" id="inputText" name="inputText" size="30"> 
+  <input type="submit" value="Make Beeps"> </p>
+</form>
+
+<p>Web addresses (URLs) work well - now you can <a
+href="http://dig.csail.mit.edu/breadcrumbs/node/71">give yourself a URI</a> you
+can hear!</p>
+</div>
+
+
+<p></p>
+
+<h3><a name="Decode" id="Decode">Decode Beeps</a></h3>
+
+<div class="block">
+<p><img alt="speaker button" src="images/button-left-100.png" width="100"
+height="100" align="left">Click <strong>Browse</strong> to locate a Web Beep
+mp3 file on your computer, then click <strong>Decode</strong> to see the text
+it contains. </p>
+
+<form name="decode" action="decode" method="post" enctype="multipart/form-data">
+  <input type="file" name="decode" id="decode"> 
+  <input type="submit" value="Decode"> </form>
+
+<p>This is a new <em><strong>alpha</strong></em> service, any problems, <a
+href="mailto:danny.ayers@gmail.com">let me know</a>.</p>
+
 <h2>Radio Broadcasters and Podcasters</h2>
 
 <p>Add Web Beeps to your recording to provide channel/station identification
@@ -164,45 +199,9 @@ API, why not build your own?</p>
 <p><a href="applications.html#develop">Read More...</a></p>
 
 <p></p>
-
-<h3><a name="Make" id="Make">Make Beeps</a></h3>
-
-<div class="block">
-<p><img alt="speaker button" src="images/button-right-100.png" width="100"
-height="100" align="left">Enter any text (up to 63 characters) and click the
-<strong>Make Beeps</strong> button to get the download. </p>
-
-<form action="encode" method="post" charset="UTF-8">
-  <p><input type="text" id="inputText" name="inputText" size="30"> 
-  <input type="submit" value="Make Beeps"> </p>
-</form>
-
-<p>Web addresses (URLs) work well - now you can <a
-href="http://dig.csail.mit.edu/breadcrumbs/node/71">give yourself a URI</a> you
-can hear!</p>
 </div>
 
-<p></p>
 
-<p>Here's a sample: <a href="audio/Example.mp3">Example.mp3</a></p>
-
-<p></p>
-
-<h3><a name="Decode" id="Decode">Decode Beeps</a></h3>
-
-<div class="block">
-<p><img alt="speaker button" src="images/button-left-100.png" width="100"
-height="100" align="left">Click <strong>Browse</strong> to locate a Web Beep
-mp3 file on your computer, then click <strong>Decode</strong> to see the text
-it contains. </p>
-
-<form name="decode" action="decode" method="post" enctype="multipart/form-data">
-  <input type="file" name="decode" id="decode"> 
-  <input type="submit" value="Decode"> </form>
-
-<p>This is a new <em><strong>alpha</strong></em> service, any problems, <a
-href="mailto:danny.ayers@gmail.com">let me know</a>.</p>
-</div>
 
 <div id="footer">
 <p>&copy; <a href="http://dannyayers.com">Danny Ayers</a> 2011-2012 </p>

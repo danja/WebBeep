@@ -93,8 +93,8 @@ public class EncodeHandler extends AbstractHandler {
 		converter.mp3(outTones);
 
 		String newPage = originalPage;
-		String replacement = "<p><strong>Here are your beeps : <a href=\""
-				+ audioPath + filename + ".mp3\">Download</a></strong></p>";
+		String replacement = "<p><strong>Here are your  <a href=\""
+				+ audioPath + filename + ".mp3\">Beeps</a></strong> (click to play, right-click to download)</p>";
 		newPage = newPage.replaceAll(replaceMe, replacement);
 		response.getWriter().println(newPage);
 	}
