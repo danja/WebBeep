@@ -24,7 +24,7 @@ import org.hyperdata.beeps.util.Tone;
 public class EncodeHandler extends AbstractHandler {
 
 	String pageName = "www/index.html";
-	String replaceMe = "<p>Here's a sample: <a href=\"audio/Example\\.mp3\">Example\\.mp3</a></p>";
+	String replaceMe = "<p>Try it out</p>";
 	String originalPage;
 
 	String path = "./";
