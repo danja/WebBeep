@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hyperdata.beeps.parameters.SimpleParameter;
+import org.hyperdata.common.describe.DefaultDescriber;
 import org.hyperdata.common.describe.Describer;
 
 /**
@@ -230,7 +231,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	}
 	
 	public String describe(){
-		String description = Describer.getDescription(this);
+		String description = DefaultDescriber.getDescription(this);
 		String list = "";
 		for (int i = 0; i < parameters.size(); i++) {
 			list += "\t"+parameters.get(i).describe();

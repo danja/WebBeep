@@ -4,6 +4,7 @@
 package org.hyperdata.beeps.system;
 
 import org.hyperdata.beeps.parameters.SimpleParameter;
+import org.hyperdata.common.describe.DefaultDescriber;
 import org.hyperdata.common.describe.Describer;
 
 
@@ -85,7 +86,7 @@ public abstract class DefaultComponent extends DefaultNamed implements Component
 	 */
 	@Override
 	public String describe() {
-		String description = Describer.getDescription(this);
+		String description = DefaultDescriber.getDescription(this);
 		description += parameters.describe();
 		return description;
 	}

@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.util;
 
+import org.hyperdata.common.describe.DefaultDescriber;
 import org.hyperdata.common.describe.Described;
 import org.hyperdata.common.describe.Describer;
 import org.hyperdata.common.describe.ExampleUnrelatedClass;
@@ -23,8 +24,8 @@ import org.hyperdata.common.describe.TestDescriber;
 public class DorkExample extends TestDescriber implements Described, Named {
 
 	public String describe(){
-		String description = Describer.getDescription(this);
-		String uri = Describer.getURI(this);
+		String description = DefaultDescriber.getDescription(this);
+		String uri = DefaultDescriber.getURI(this);
 		description += "<"+uri+"> dc:description \"An example program\" .\n";
 		return description;
 	}
@@ -43,12 +44,12 @@ public class DorkExample extends TestDescriber implements Described, Named {
 		description += example.describe();
 		
 		// get td's description by introspection
-		description += Describer.getDescription(td);
+		description += DefaultDescriber.getDescription(td);
 		
 		// get unrelated class's description by introspection
-		description += Describer.getDescription(ExampleUnrelatedClass.class);
+		description += DefaultDescriber.getDescription(ExampleUnrelatedClass.class);
 		System.out.println(description);
-		Describer.save("./example.ttl", description);
+		DefaultDescriber.save("./example.ttl", description);
 	}
 
 	/* (non-Javadoc)

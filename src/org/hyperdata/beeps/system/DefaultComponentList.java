@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hyperdata.common.describe.DefaultDescriber;
 import org.hyperdata.common.describe.Described;
 import org.hyperdata.common.describe.Describer;
 
@@ -103,7 +104,7 @@ public class DefaultComponentList extends DefaultNamed implements ComponentList 
 	 */
 	@Override
 	public String describe() {
-		String description = Describer.getDescription(this);
+		String description = DefaultDescriber.getDescription(this);
 		
 		if (components.size() == 0) {
 			// return "\tEmpty Pipeline";

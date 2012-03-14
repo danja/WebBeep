@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps.system;
 
+import org.hyperdata.common.describe.DefaultDescriber;
 import org.hyperdata.common.describe.Describer;
 
 /**
@@ -78,9 +79,10 @@ public abstract class DefaultParameter extends DefaultNamed implements
 	}
 
 	public String describe() {
-		return "[ a beep:Parameter; beep:name \"" + getName()
+		String description = "<"+DefaultDescriber.getURI(this)+"> ";
+		return description + "[ a beep:Parameter; beep:name \"" + getName()
 				+ "\"; beep:value \"" + value + "\"; java:datatype \""
-				+ Describer.getJavaDatatype(value) + "\" ]\n";
+				+ DefaultDescriber.getJavaDatatype(value) + "\" ]\n";
 		// return "beep:"+getName()+" x:value \""+ value + "\" .\n";
 	}
 

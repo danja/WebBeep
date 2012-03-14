@@ -9,6 +9,7 @@ import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.system.*;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.DefaultDescriber;
 import org.hyperdata.common.describe.Describer;
 
 /**
@@ -157,7 +158,7 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	}
 
 	public String describe(){
-		String description = Describer.getDescription(this);
+		String description = DefaultDescriber.getDescription(this);
 		description += coreComponents.describe();
 		description += preProcessors.describe();
 		description += postProcessors.describe();

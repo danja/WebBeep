@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -64,17 +65,25 @@ public class EncodeHandler extends AbstractHandler {
 		baseRequest.setHandled(true);
 		String inputText = request.getParameter("inputText");
 		
-		if (inputText.length() > 63) { // too long
 
-		}
 		if (inputText.length() < 1) { // too short
 
 		}
 		// System.out.println(inputText);
 
 		long startTime = System.currentTimeMillis();
-		Tone outTones = encoder.encode(inputText); // "http://danbri.org/foaf.rdf#danbri"
-
+		
+		Tone outTones;
+		
+		if (inputText.length() > 63) { // too long
+			List<String> split = TextSplitter.splitText(inputText);
+			outTones = encoder.encode(split.get(0));
+			for(int i=1;i<split.size();i++){
+				outTones.addAll(encoder.encode(split.get(i)));
+			}
+		} else {
+			outTones = encoder.encode(inputText); // "http://danbri.org/foaf.rdf#danbri"
+		}
 		long encodeTime = System.currentTimeMillis() - startTime;
 
 		// belt
