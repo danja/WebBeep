@@ -43,6 +43,7 @@ public class FileServerHandler extends ResourceHandler{
 	public static String escapees(String string) {
 		string = string.replaceAll("/", "S_");
 		string = string.replaceAll("#", "H_");
+		string = string.replaceAll(" ", "SP_");
 	// 	string = string.replaceAll("?", "%_Q%"); regexes not strings!
 	//	string = string.replaceAll("&", "%_A%");
 		return string;
