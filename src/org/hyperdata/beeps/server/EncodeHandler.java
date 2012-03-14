@@ -81,7 +81,7 @@ public class EncodeHandler extends AbstractHandler {
 			for(int i=1;i<split.size();i++){
 				outTones.addAll(encoder.encode(split.get(i)));
 			}
-			inputText = inputText.substring(10); // for filename - slightly risky!
+			inputText = inputText.substring(0,10); // for filename - slightly risky!
 		} else {
 			outTones = encoder.encode(inputText); // "http://danbri.org/foaf.rdf#danbri"
 		}
