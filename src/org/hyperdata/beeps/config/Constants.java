@@ -71,5 +71,7 @@ public class Constants {
 		public static double HP_LOW = 60;
 		public static double HP_HIGH = 300;
 		
-		public static String NAMESPACES = Describer.namespaces + "@prefix beep:       <http://purl.org/stuff/beep/> .\n";
+		public static String NAMESPACES = Describer.namespaces + 
+				"@prefix beep:       <http://purl.org/stuff/beep/> .\n" +
+				"@prefix jtype:       <http://purl.org/stuff/javatypes/> .\n";
 }

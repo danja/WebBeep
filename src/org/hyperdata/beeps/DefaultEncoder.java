@@ -23,6 +23,7 @@ import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.DefaultDescriber;
 
 /**
  * @author danny
@@ -73,16 +74,22 @@ public class DefaultEncoder extends DefaultCodec implements Encoder {
 		createParameters();
 	}
 
-//	public void initFromParameters() {
-//			chunkEnv.initFromParameters();
-//			chunkNorm.initFromParameters();
-//	}
-
 	public void createParameters() {
 		createParameter(chunkEnv, "Encoder.pre.chunkEnv.on");
 		createParameter(chunkEnv, "Encoder.pre.chunkEnv.attackProportion");
 		createParameter(chunkEnv, "Encoder.pre.chunkEnv.decayProportion");
 		
 		createParameter(chunkNorm, "Encoder.pre.chunkNorm.on");
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:Encoder .";
+		description += super.describe();
+		return description;
 	}
 }

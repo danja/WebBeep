@@ -15,6 +15,7 @@ import org.hyperdata.beeps.system.SplittingProcessor;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
+import org.hyperdata.common.describe.DefaultDescriber;
 
 /**
  * @author danny
@@ -96,6 +97,20 @@ public class Chunker extends DefaultComponent implements SplittingProcessor {
 	public void setCropProportion(double cropProportion) {
 		this.cropProportion = cropProportion;
 	}
+	
+	public String getURI(){
+		return "http://hyperdata.org/beeps/HACK/"+getName();
+	}
 
-
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:SplittingProcessor .\n";
+		description += "<"+getURI()+"> a beep:Chunker .\n";
+		// description += super.describe();
+		return description;
+	}
 }

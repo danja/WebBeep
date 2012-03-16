@@ -156,6 +156,13 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 		string += postProcessors.toString();
 		return string;
 	}
+	
+	/**
+	 * TODO needs making more systematic
+	 */
+	public String getURI(){
+		return "http://hyperdata.org/beeps/HACK/"+getName();
+	}
 
 	public String describe(){
 		String description = DefaultDescriber.getDescription(this);

@@ -13,6 +13,7 @@ import org.hyperdata.beeps.system.ParameterListFile;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.beeps.util.WavCodec;
+import org.hyperdata.common.describe.DefaultDescriber;
 import org.hyperdata.common.describe.Described;
 import org.hyperdata.common.describe.Describer;
 import org.hyperdata.common.describe.Named;
@@ -25,6 +26,7 @@ public class CodecTest implements Described, Named {
 
 	private static DefaultEncoder encoder;
 	private static DefaultDecoder decoder;
+	private String uri = "http://webbeep.it/code/CodecTest";
 
 	/**
 	 * @param args
@@ -136,6 +138,7 @@ public class CodecTest implements Described, Named {
 		}
 		// Debug.log(encoder.parameters +"\n\n"+decoder.parameters);
 		System.out.println(describe());
+		DefaultDescriber.save("beepy.ttl", describe());
 	}
 	/*
 	 * (non-Javadoc)
@@ -175,5 +178,22 @@ public class CodecTest implements Described, Named {
 		description += encoder.describe();
 		description += decoder.describe();
 		return description;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.describe.Named#setURI(java.lang.String)
+	 */
+	@Override
+	public void setURI(String uri) {
+		this.uri = uri;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.describe.Named#getURI()
+	 */
+	@Override
+	public String getURI() {
+		return uri;
 	}
 }

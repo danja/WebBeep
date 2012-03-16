@@ -13,6 +13,7 @@ import org.hyperdata.common.describe.Named;
 public class DefaultNamed implements Named {
 
 	private String name = null;
+	private String uri = null;
 	
 	public DefaultNamed(){ // necessary for reflection-based instantiation
 	}
@@ -35,6 +36,23 @@ public class DefaultNamed implements Named {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.describe.Named#setURI(java.lang.String)
+	 */
+	@Override
+	public void setURI(String uri) {
+		this.uri = uri;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.describe.Named#getURI()
+	 */
+	@Override
+	public String getURI() {
+		return this.uri;
 	}
 
 }

@@ -23,6 +23,7 @@ import org.hyperdata.beeps.util.Checksum;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.DefaultDescriber;
 
 /**
  * @author danny
@@ -158,13 +159,20 @@ public class DefaultDecoder extends DefaultCodec {
 		createParameter(chunkEnv, "Decoder.post.chunkEnv.decayProportion");
 	}
 
-
-
-
-
 	public String toString() {
 		String string = this.getClass().toString();
 		string += super.toString();
 		return string;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:Decoder .";
+		description += super.describe();
+		return description;
 	}
 }

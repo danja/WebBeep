@@ -15,6 +15,7 @@ import org.hyperdata.beeps.system.MergingProcessor;
 import org.hyperdata.beeps.system.Parameter;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.DefaultDescriber;
 
 /**
  * @author danny
@@ -50,5 +51,20 @@ public class Merger extends DefaultParameterList implements MergingProcessor {
 		}
 		output.addAll(WaveMaker.makeSilence(Constants.END_PAD_DURATION));
 		return output;
+	}
+	
+	public String getURI(){
+		return "http://hyperdata.org/beeps/HACK/"+getName();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:MergingProcessor .";
+		// description += super.describe();
+		return description;
 	}
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.DefaultDescriber;
 
 /**
  * @author danny
@@ -51,5 +52,16 @@ public abstract class DefaultProcessor extends DefaultComponent implements Proce
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:Processor .";
+		description += super.describe();
+		return description;
 	}
 }

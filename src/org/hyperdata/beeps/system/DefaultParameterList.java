@@ -20,10 +20,6 @@ import org.hyperdata.common.describe.Describer;
 public class DefaultParameterList extends DefaultNamed implements ParameterList {
 
 	private List<Parameter> parameters = new ArrayList<Parameter>();
-	
-	 //private List<Component> components = new ArrayList<Component>();
-//		List<Processor> components = new ArrayList<Processor>();
-	//	Map<String, Parameter> parameterNames = new HashMap<String, Component>(); // yuck...
 
 	public DefaultParameterList(String name) {
 		super(name);
@@ -123,34 +119,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	//	System.out.println("AFTER CONSUME:\n"+parameters);
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.hyperdata.beeps.pipelines.Pipeline#setParameters(org.hyperdata.beeps
-	 * .parameters.ParameterList)
-	 * 
-	 * this is horrible!
-	 */
-
-//	public void updateParameters(ParameterList parameters) {
-//
-//		for (int i = 0; i < parameters.size(); i++) {
-//			String name = parameters.get(i).getName();
-
-//			String[] split = name.split("\\.");
-//			// System.out.println("PIPENAME=" + getName());
-//			Processor processor = getProcessor(split[0] + "." + split[1]);
-//
-//			// System.out.println("Processor=" + processor);
-//			Parameter parameter = parameters.get(i);
-//			if (split[0].equals(getName()) && getProcessor(split[1]) != null) { // Decoder.LP_FIR1.window
-//				parameter.setProcessor(processor);
-//				processor.setParameter(parameter);
-//				// System.out.println("Processor=" + processor);
-//			}
-//		}
-//	}
+	
 
 	public int findParameter(String parameterName) {
 		for (int i = 0; i < parameters.size(); i++) {
@@ -208,20 +177,6 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 		}
 	}
 
-	// public void copyParametersToProcessor(Processor processor){
-	// Iterator<String> nameIterator = processor.parameterNames().iterator();
-	// while(nameIterator.hasNext()){
-	// String name = nameIterator.next();
-	// try {
-	// processor.setParameter(name, getValue(name));
-	// } catch (Exception exception) {
-	// exception.printStackTrace();
-	// }
-	// }
-	// }
-
-
-
 	public String toString() {
 		String string = ""; // *** Parameter Set ***\n
 		for (int i = 0; i < parameters.size(); i++) {
@@ -230,15 +185,7 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 		return string;
 	}
 	
-	public String describe(){
-		String description = DefaultDescriber.getDescription(this);
-		String list = "";
-		for (int i = 0; i < parameters.size(); i++) {
-			list += "\t"+parameters.get(i).describe();
-		}
-		description += getName()+ " beep:parameters (\n"+ list+ " ).\n";
-		return description;
-	}
+
 
 
 	/**
@@ -252,5 +199,20 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 			}
 		}
 		return null;
+	}
+	
+	public String getURI(){
+		return "http://hyperdata.org/beeps/HACK/"+getName();
+	}
+	
+	public String describe(){
+		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:ParameterList .";
+		String list = "";
+		for (int i = 0; i < parameters.size(); i++) {
+			description +=	"<"+getURI()+"> beep:parameter <"+parameters.get(i).getURI() +"> .\n";
+			description +=	parameters.get(i).describe()+"\n";
+		}
+		return description;
 	}
 }

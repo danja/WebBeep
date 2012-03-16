@@ -42,13 +42,7 @@ public abstract class DefaultComponent extends DefaultNamed implements Component
 		parameters.setParameter(parameter);
 		
 	}
-	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.system.Processor#setParameter(java.lang.String, java.lang.String)
-	 */
-//	@Override
-//	public void setParameter(String string, String string2) {
-//		parameters.se
-//	}
+
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.system.Component#update(org.hyperdata.beeps.system.ParameterList)
 	 */
@@ -81,12 +75,20 @@ public abstract class DefaultComponent extends DefaultNamed implements Component
 		return string;
 	}
 	
+	/**
+	 * TODO needs making more systematic
+	 */
+	public String getURI(){
+		return "http://hyperdata.org/beeps/HACK/"+getName();
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.hyperdata.common.Described#describe()
 	 */
 	@Override
 	public String describe() {
 		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:Component .";
 		description += parameters.describe();
 		return description;
 	}

@@ -23,6 +23,9 @@ public class Debug {
 
 	public static char level = 0;
 	public static boolean showPlots = false;
+	
+	public static boolean DESCRIBE_JAVA = false;
+	public static boolean DESCRIBE_ABSTRACT = true;
 
 	/*
 	 * SEVERE (highest) WARNING INFO CONFIG FINE FINER FINEST

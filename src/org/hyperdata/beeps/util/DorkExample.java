@@ -66,4 +66,22 @@ public class DorkExample extends TestDescriber implements Described, Named {
 	public String getName() {
 		return "This Example";
 	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.describe.Named#setURI(java.lang.String)
+	 */
+	@Override
+	public void setURI(String uri) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.describe.Named#getURI()
+	 */
+	@Override
+	public String getURI() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

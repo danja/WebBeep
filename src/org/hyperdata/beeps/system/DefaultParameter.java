@@ -77,14 +77,14 @@ public abstract class DefaultParameter extends DefaultNamed implements
 	public String toString() {
 		return getName() + " = " + value;
 	}
-
-	public String describe() {
-		String description = "<"+DefaultDescriber.getURI(this)+"> ";
-		return description + "[ a beep:Parameter; beep:name \"" + getName()
-				+ "\"; beep:value \"" + value + "\"; java:datatype \""
-				+ DefaultDescriber.getJavaDatatype(value) + "\" ]\n";
-		// return "beep:"+getName()+" x:value \""+ value + "\" .\n";
+	
+	/**
+	 * TODO needs making more systematic
+	 */
+	public String getURI(){
+		return "http://hyperdata.org/beeps/HACK/"+getName();
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -105,5 +105,11 @@ public abstract class DefaultParameter extends DefaultNamed implements
 	public void setValue(Object value) {
 		this.value = value;
 	}
+	
 
+	public String describe() {
+		String description = "<"+getURI()+">";
+		description += " "+DefaultDescriber.getJavaDatatypeAsProperty(value)+" \""+value+"\" .\n";
+		return description;
+	}
 }

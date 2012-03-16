@@ -11,13 +11,16 @@ import java.util.Map;
 import org.hyperdata.beeps.config.Debug;
 import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.DefaultDescriber;
 
 /**
  * @author danny
  * 
  */
-public class DefaultPipeline extends DefaultComponentList implements Pipeline { // extends DefaultProcessor 
+public class DefaultPipeline extends DefaultComponentList implements Pipeline { 
 
+	private boolean enabled = true;
+	
 	/**
 	 * @param name
 	 */
@@ -25,19 +28,9 @@ public class DefaultPipeline extends DefaultComponentList implements Pipeline { 
 		super(name);
 	}
 
-//	List<Processor> processors = new ArrayList<Processor>();
-//	Map<String, Processor> processorNames = new HashMap<String, Processor>(); // yuck...
-	private boolean enabled = true;
-
-
-	// public Processor get(int i){
-	// return processors.get(i);
-	// }
 
 	public void addProcessor(Processor processor) {
 		super.addComponent(processor);;
-//		processors.add(processor);
-//		processorNames.put(processor.getName(), processor);
 	}
 	
 	
@@ -52,7 +45,6 @@ public class DefaultPipeline extends DefaultComponentList implements Pipeline { 
 		if (size() == 0)
 			return tone;
 		Debug.verbose("Applying " + size() + " processors");
-		// Tone output = input;
 		for (int i = 0; i < size(); i++) {
 			Processor processor = (Processor)getComponent(i);
 			//Debug.verbose("Applying process : " + processor);
@@ -67,9 +59,8 @@ public class DefaultPipeline extends DefaultComponentList implements Pipeline { 
 		if (size() == 0)
 			return chunks;
 		Debug.verbose("Applying " + size() + " processors");
-		// Tone output = input;
+
 		for (int i = 0; i < size(); i++) {
-			//Processor processor = processors.get(i);
 			Processor processor = (Processor)getComponent(i);
 			Debug.verbose("Applying process : " + processor);
 			chunks = processor.process(chunks);
@@ -86,33 +77,6 @@ public class DefaultPipeline extends DefaultComponentList implements Pipeline { 
 		return chunks;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.hyperdata.go.parameters.Parameterized#initFromParameters()
-	 */
-
-//	public void initFromParameters() {
-//		
-////		for(int i=0;i<processors.size();i++){
-////			processors.get(i).initFromParameters();
-////		}
-//	}
-
-
-	
-
-
-//	/* (non-Javadoc)
-//	 * @see org.hyperdata.beeps.parameters.ComponentList#addComponent(org.hyperdata.beeps.parameters.Component)
-//	 */
-//	@Override
-//	public void addComponent(Component component) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
@@ -121,7 +85,17 @@ public class DefaultPipeline extends DefaultComponentList implements Pipeline { 
 		return enabled;
 	}
 
-
+	/* (non-Javadoc)
+	 * @see org.hyperdata.common.Described#describe()
+	 */
+	@Override
+	public String describe() {
+		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:Pipeline .";
+	//	description += "# PIPELINE\n";
+		description += super.describe();
+		return description;
+	}
 
 
 

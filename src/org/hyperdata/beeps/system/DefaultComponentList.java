@@ -21,8 +21,6 @@ public class DefaultComponentList extends DefaultNamed implements ComponentList 
 
 	
  private List<Component> components = new ArrayList<Component>();
-////	List<Processor> components = new ArrayList<Processor>();
-//	Map<String, Component> componentNames = new HashMap<String, Component>(); // yuck...
 	
  public int size(){
 	 return components.size();
@@ -47,18 +45,12 @@ public class DefaultComponentList extends DefaultNamed implements ComponentList 
 		 return components.get(i);
 	}
 	
-//	public int size() {
-//		return components.size();
-//	}
-	
 	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.parameters.ComponentList#addComponent(org.hyperdata.beeps.parameters.Parameterized)
 	 */
 	@Override
 	public void addComponent(Component component) {
-		// super.add(component.);
 		components.add(component);
-//		componentNames.put(component.getName(), component);
 	}
 
 	/* (non-Javadoc)
@@ -100,27 +92,6 @@ public class DefaultComponentList extends DefaultNamed implements ComponentList 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.hyperdata.common.Described#describe()
-	 */
-	@Override
-	public String describe() {
-		String description = DefaultDescriber.getDescription(this);
-		
-		if (components.size() == 0) {
-			// return "\tEmpty Pipeline";
-			// TODO flag this?
-		}
-		for (int i = 0; i < components.size(); i++) {
-			description += components.get(i).describe();
-		}
-		return description;
-	}
-	
-	
-
-
-
-	/* (non-Javadoc)
 	 * @see org.hyperdata.beeps.system.Component#update(org.hyperdata.beeps.system.ParameterList)
 	 */
 	public void update(ParameterList parameters) {
@@ -129,14 +100,35 @@ public class DefaultComponentList extends DefaultNamed implements ComponentList 
 		}
 		
 	}
-
+	
+	/**
+	 * TODO needs making more systematic
+	 */
+	public String getURI(){
+		return "http://hyperdata.org/beeps/HACK/"+getName();
+	}
 
 	/* (non-Javadoc)
-	 * @see org.hyperdata.beeps.system.ParameterList#add(org.hyperdata.beeps.system.Parameter)
+	 * @see org.hyperdata.common.Described#describe()
 	 */
-//	@Override
-//	public void add(Parameter parameter) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	@Override
+	public String describe() {
+		String description = DefaultDescriber.getDescription(this);
+		description += "<"+getURI()+"> a beep:ComponentList .";
+		
+		if (components.size() == 0) {
+			return "# Empty Pipeline";
+		}
+		// description += "# COMPONENTLIST\n";
+		
+		description +="<"+getURI()+"> beep:components ( \n";
+		for (int i = 0; i < components.size(); i++) {
+			description += "<"+components.get(i).getURI()+"> \n";
+		}
+		description += ") . \n";
+		for (int i = 0; i < components.size(); i++) {
+			description += components.get(i).describe();
+		}
+		return description;
+	}
 }
