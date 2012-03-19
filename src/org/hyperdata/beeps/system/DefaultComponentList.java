@@ -113,17 +113,16 @@ public class DefaultComponentList extends DefaultNamed implements ComponentList 
 	 */
 	@Override
 	public String describe() {
-		String description = DefaultDescriber.getDescription(this);
-		description += "<"+getURI()+"> a beep:ComponentList .";
-		
+		String description = DefaultDescriber.getTypedDescription(this,"proc:ComponentList");
+//		description += "<"+getURI()+"> a beep:ComponentList .";
 		if (components.size() == 0) {
 			return "# Empty Pipeline";
 		}
 		// description += "# COMPONENTLIST\n";
 		
-		description +="<"+getURI()+"> beep:components ( \n";
+		description +="\n<"+getURI()+"> proc:components ( \n";
 		for (int i = 0; i < components.size(); i++) {
-			description += "<"+components.get(i).getURI()+"> \n";
+			description += "\t<"+components.get(i).getURI()+"> \n";
 		}
 		description += ") . \n";
 		for (int i = 0; i < components.size(); i++) {

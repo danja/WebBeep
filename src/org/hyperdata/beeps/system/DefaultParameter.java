@@ -78,12 +78,7 @@ public abstract class DefaultParameter extends DefaultNamed implements
 		return getName() + " = " + value;
 	}
 	
-	/**
-	 * TODO needs making more systematic
-	 */
-	public String getURI(){
-		return "http://hyperdata.org/beeps/HACK/"+getName();
-	}
+
 
 
 	/*
@@ -106,10 +101,18 @@ public abstract class DefaultParameter extends DefaultNamed implements
 		this.value = value;
 	}
 	
+	/**
+	 * TODO needs making more systematic
+	 */
+	public String getURI(){
+		return "http://hyperdata.org/beeps/HACK/"+getName();
+	}
 
 	public String describe() {
 		String description = "<"+getURI()+">";
-		description += " "+DefaultDescriber.getJavaDatatypeAsProperty(value)+" \""+value+"\" .\n";
+	//	description += " "+DefaultDescriber.getJavaDatatypeAsProperty(value)+" \""+value+"\" .\n";
+		description += " rdfs:label \""+getName()+"\" ;\n";
+		description += "\t rdf:value \""+value+"\""+ DefaultDescriber.getDatatypeSuffix(value)+" .\n";
 		return description;
 	}
 }

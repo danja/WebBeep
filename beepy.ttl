@@ -8,6 +8,7 @@
 @prefix stuff:       <http://purl.org/stuff/> .
 
 @prefix beep:       <http://purl.org/stuff/beep/> .
+@prefix proc:       <http://purl.org/stuff/proc/> .
 @prefix jtype:       <http://purl.org/stuff/javatypes/> .
 java:implements a rdf:Property ;
     rdfs:label "implements" .
@@ -15,651 +16,332 @@ java:extends a rdf:Property ;
     rdfs:label "extends" .
 
 ### describing instance of org.hyperdata.beeps.DefaultEncoder
-
-### describing Class org.hyperdata.beeps.DefaultEncoder
-<http://hyperdata.org/code/beeps/DefaultEncoder> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/Encoder> ;
-java:extends <http://hyperdata.org/code/beeps/DefaultCodec> .
-
-<http://hyperdata.org/code/beeps/DefaultEncoder> rdfs:label "DefaultEncoder" .
-<http://hyperdata.org/code/beeps/Encoder> rdfs:label "Encoder" .
-<http://hyperdata.org/code/beeps/DefaultCodec> rdfs:label "DefaultCodec" .
+##############
 <http://hyperdata.org/beeps/HACK/Encoder> a beep:Encoder .
 ### describing instance of org.hyperdata.beeps.DefaultEncoder
-
-### describing Class org.hyperdata.beeps.DefaultEncoder
-<http://hyperdata.org/code/beeps/DefaultEncoder> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/Encoder> ;
-java:extends <http://hyperdata.org/code/beeps/DefaultCodec> .
-
-<http://hyperdata.org/code/beeps/DefaultEncoder> rdfs:label "DefaultEncoder" .
-<http://hyperdata.org/code/beeps/Encoder> rdfs:label "Encoder" .
-<http://hyperdata.org/code/beeps/DefaultCodec> rdfs:label "DefaultCodec" .
+##############
 # Empty Pipeline
 ### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-
-### describing Class org.hyperdata.beeps.system.DefaultPipeline
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/Pipeline> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultComponentList> .
-
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> rdfs:label "DefaultPipeline" .
-<http://hyperdata.org/code/beeps/system/Pipeline> rdfs:label "Pipeline" .
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> rdfs:label "DefaultComponentList" .
-<http://hyperdata.org/beeps/HACK/Encoder.pre> a beep:Pipeline .
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-
-### describing Class org.hyperdata.beeps.system.DefaultPipeline
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/Pipeline> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultComponentList> .
-
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> rdfs:label "DefaultPipeline" .
-<http://hyperdata.org/code/beeps/system/Pipeline> rdfs:label "Pipeline" .
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> rdfs:label "DefaultComponentList" .
-<http://hyperdata.org/beeps/HACK/Encoder.pre> a beep:ComponentList .<http://hyperdata.org/beeps/HACK/Encoder.pre> beep:components ( 
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> 
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> 
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.pre> a proc:ComponentList .
+<http://hyperdata.org/beeps/HACK/Encoder.pre> proc:components ( 
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> 
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> 
 ) . 
 
 ### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:Component .
+### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.on> .
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.on> rdfs:label "Encoder.pre.chunkEnv.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
-### describing Class org.hyperdata.beeps.processors.EnvelopeShaper
-<http://hyperdata.org/code/beeps/processors/EnvelopeShaper> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.attackProportion> .
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.attackProportion> rdfs:label "Encoder.pre.chunkEnv.attackProportion" ;
+	 rdf:value "0.06"^^xsd:double .
 
-<http://hyperdata.org/code/beeps/processors/EnvelopeShaper> rdfs:label "EnvelopeShaper" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a beep:Processor .
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.decayProportion> .
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.decayProportion> rdfs:label "Encoder.pre.chunkEnv.decayProportion" ;
+	 rdf:value "0.13"^^xsd:double .
+
+
 ### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
-
-### describing Class org.hyperdata.beeps.processors.EnvelopeShaper
-<http://hyperdata.org/code/beeps/processors/EnvelopeShaper> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/EnvelopeShaper> rdfs:label "EnvelopeShaper" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a beep:Component .
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:Processor .
+### describing instance of org.hyperdata.beeps.processors.Normalise
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:Component .
 ### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> beep:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.on> .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.on> jtype:boolean "false" .
-
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> beep:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.attackProportion> .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.attackProportion> jtype:double "0.06" .
-
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> beep:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.decayProportion> .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.decayProportion> jtype:double "0.13" .
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> proc:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm.on> .
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm.on> rdfs:label "Encoder.pre.chunkNorm.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
 
 ### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a beep:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a beep:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> beep:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm.on> .
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm.on> jtype:boolean "false" .
-
-
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:Processor .
 ### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-
-### describing Class org.hyperdata.beeps.system.DefaultPipeline
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/Pipeline> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultComponentList> .
-
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> rdfs:label "DefaultPipeline" .
-<http://hyperdata.org/code/beeps/system/Pipeline> rdfs:label "Pipeline" .
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> rdfs:label "DefaultComponentList" .
-<http://hyperdata.org/beeps/HACK/Encoder.post> a beep:Pipeline .# Empty Pipeline
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.pre> a proc:Pipeline .# Empty Pipeline
+### describing instance of org.hyperdata.beeps.system.DefaultPipeline
+##############
+<http://hyperdata.org/beeps/HACK/Encoder.post> a proc:Pipeline .
 ### describing instance of org.hyperdata.beeps.DefaultDecoder
-
-### describing Class org.hyperdata.beeps.DefaultDecoder
-<http://hyperdata.org/code/beeps/DefaultDecoder> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/DefaultCodec> .
-
-<http://hyperdata.org/code/beeps/DefaultDecoder> rdfs:label "DefaultDecoder" .
-<http://hyperdata.org/code/beeps/DefaultCodec> rdfs:label "DefaultCodec" .
+##############
 <http://hyperdata.org/beeps/HACK/Decoder> a beep:Decoder .
 ### describing instance of org.hyperdata.beeps.DefaultDecoder
-
-### describing Class org.hyperdata.beeps.DefaultDecoder
-<http://hyperdata.org/code/beeps/DefaultDecoder> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/DefaultCodec> .
-
-<http://hyperdata.org/code/beeps/DefaultDecoder> rdfs:label "DefaultDecoder" .
-<http://hyperdata.org/code/beeps/DefaultCodec> rdfs:label "DefaultCodec" .
+##############
 
 ### describing instance of org.hyperdata.beeps.system.DefaultComponentList
-
-### describing Class org.hyperdata.beeps.system.DefaultComponentList
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ComponentList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> rdfs:label "DefaultComponentList" .
-<http://hyperdata.org/code/beeps/system/ComponentList> rdfs:label "ComponentList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.core> a beep:ComponentList .<http://hyperdata.org/beeps/HACK/Decoder.core> beep:components ( 
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> 
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
-<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> 
-<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> 
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core> a proc:ComponentList .
+<http://hyperdata.org/beeps/HACK/Decoder.core> proc:components ( 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> 
 ) . 
 
 ### describing instance of org.hyperdata.beeps.processors.Cropper
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:Component .
+### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.cropper.silenceThreshold> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper.silenceThreshold> rdfs:label "Decoder.core.cropper.silenceThreshold" ;
+	 rdf:value "0.39328963702325803"^^xsd:double .
 
-### describing Class org.hyperdata.beeps.processors.Cropper
-<http://hyperdata.org/code/beeps/processors/Cropper> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.cropper.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper.on> rdfs:label "Decoder.core.cropper.on" ;
+	 rdf:value "true"^^xsd:boolean .
 
-<http://hyperdata.org/code/beeps/processors/Cropper> rdfs:label "Cropper" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a beep:Processor .
+
 ### describing instance of org.hyperdata.beeps.processors.Cropper
-
-### describing Class org.hyperdata.beeps.processors.Cropper
-<http://hyperdata.org/code/beeps/processors/Cropper> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Cropper> rdfs:label "Cropper" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a beep:Component .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:Processor .
+### describing instance of org.hyperdata.beeps.processors.Normalise
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component .
 ### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.cropper.silenceThreshold> .
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper.silenceThreshold> jtype:double "0.39328963702325803" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.cropper.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper.on> jtype:boolean "true" .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
 
 ### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> jtype:boolean "false" .
-
-
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor .
 ### describing instance of org.hyperdata.beeps.processors.Chunker
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a beep:SplittingProcessor .
+<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a beep:Chunker .
 
-### describing Class org.hyperdata.beeps.processors.Chunker
-<http://hyperdata.org/code/beeps/processors/Chunker> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/SplittingProcessor> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultComponent> .
+### describing instance of org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a proc:Component .
+### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder.gThreshold> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder.gThreshold> rdfs:label "Decoder.core.pitchFinder.gThreshold" ;
+	 rdf:value "4194.939772585178"^^xsd:double .
 
-<http://hyperdata.org/code/beeps/processors/Chunker> rdfs:label "Chunker" .
-<http://hyperdata.org/code/beeps/system/SplittingProcessor> rdfs:label "SplittingProcessor" .
-<http://hyperdata.org/code/beeps/system/DefaultComponent> rdfs:label "DefaultComponent" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a beep:SplittingProcessor .<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a beep:Chunker .null
+
+### describing instance of org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a beep:PitchFinder .
 ### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-
-### describing Class org.hyperdata.beeps.system.DefaultPipeline
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/Pipeline> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultComponentList> .
-
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> rdfs:label "DefaultPipeline" .
-<http://hyperdata.org/code/beeps/system/Pipeline> rdfs:label "Pipeline" .
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> rdfs:label "DefaultComponentList" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre> a beep:Pipeline .
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-
-### describing Class org.hyperdata.beeps.system.DefaultPipeline
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/Pipeline> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultComponentList> .
-
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> rdfs:label "DefaultPipeline" .
-<http://hyperdata.org/code/beeps/system/Pipeline> rdfs:label "Pipeline" .
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> rdfs:label "DefaultComponentList" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre> a beep:ComponentList .<http://hyperdata.org/beeps/HACK/Decoder.pre> beep:components ( 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> 
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> 
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> 
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre> a proc:ComponentList .
+<http://hyperdata.org/beeps/HACK/Decoder.pre> proc:components ( 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
 ) . 
 
 ### describing instance of org.hyperdata.beeps.processors.Compressor
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:Component .
+### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.on> rdfs:label "Decoder.pre.compressor.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
-### describing Class org.hyperdata.beeps.processors.Compressor
-<http://hyperdata.org/code/beeps/processors/Compressor> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.windowLength> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.windowLength> rdfs:label "Decoder.pre.compressor.windowLength" ;
+	 rdf:value "464"^^xsd:int .
 
-<http://hyperdata.org/code/beeps/processors/Compressor> rdfs:label "Compressor" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a beep:Processor .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.lowThreshold> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.lowThreshold> rdfs:label "Decoder.pre.compressor.lowThreshold" ;
+	 rdf:value "0.6343658962166174"^^xsd:double .
+
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.highThreshold> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.highThreshold> rdfs:label "Decoder.pre.compressor.highThreshold" ;
+	 rdf:value "0.760342929650305"^^xsd:double .
+
+
 ### describing instance of org.hyperdata.beeps.processors.Compressor
-
-### describing Class org.hyperdata.beeps.processors.Compressor
-<http://hyperdata.org/code/beeps/processors/Compressor> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Compressor> rdfs:label "Compressor" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a beep:Component .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:Processor .
+### describing instance of org.hyperdata.beeps.processors.FIRProcessor
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:Component .
 ### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.shape> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.shape> rdfs:label "Decoder.pre.HP_FIR.shape" ;
+	 rdf:value "HP" .
 
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.on> rdfs:label "Decoder.pre.HP_FIR.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.on> jtype:boolean "false" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.window> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.window> rdfs:label "Decoder.pre.HP_FIR.window" ;
+	 rdf:value "Hamming" .
 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.windowLength> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.windowLength> jtype:integer "464" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.cutoff> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.cutoff> rdfs:label "Decoder.pre.HP_FIR.cutoff" ;
+	 rdf:value "100.94422117466493"^^xsd:double .
 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.lowThreshold> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.lowThreshold> jtype:double "0.6343658962166174" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.highThreshold> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.highThreshold> jtype:double "0.760342929650305" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.npoints> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.npoints> rdfs:label "Decoder.pre.HP_FIR.npoints" ;
+	 rdf:value "1228"^^xsd:int .
 
 
 ### describing instance of org.hyperdata.beeps.processors.FIRProcessor
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:Processor .
+### describing instance of org.hyperdata.beeps.processors.Normalise
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component .
+### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
-### describing Class org.hyperdata.beeps.processors.FIRProcessor
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/filters/FIRFilter> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
 
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> rdfs:label "FIRProcessor" .
-<http://hyperdata.org/code/beeps/filters/FIRFilter> rdfs:label "FIRFilter" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a beep:Processor .
+### describing instance of org.hyperdata.beeps.processors.Normalise
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor .
 ### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-
-### describing Class org.hyperdata.beeps.processors.FIRProcessor
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/filters/FIRFilter> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> rdfs:label "FIRProcessor" .
-<http://hyperdata.org/code/beeps/filters/FIRFilter> rdfs:label "FIRFilter" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a beep:Component .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:Component .
 ### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.shape> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.shape> rdfs:label "Decoder.pre.LP_FIR1.shape" ;
+	 rdf:value "LP" .
 
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.on> rdfs:label "Decoder.pre.LP_FIR1.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.shape> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.shape> jtype:string "HP" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.window> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.window> rdfs:label "Decoder.pre.LP_FIR1.window" ;
+	 rdf:value "Hanning" .
 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.on> jtype:boolean "false" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.cutoff> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.cutoff> rdfs:label "Decoder.pre.LP_FIR1.cutoff" ;
+	 rdf:value "10285.082818002804"^^xsd:double .
 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.window> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.window> jtype:string "Hamming" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.cutoff> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.cutoff> jtype:double "100.94422117466493" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.npoints> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.npoints> jtype:integer "1228" .
-
-
-### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> jtype:boolean "false" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.npoints> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.npoints> rdfs:label "Decoder.pre.LP_FIR1.npoints" ;
+	 rdf:value "3795"^^xsd:int .
 
 
 ### describing instance of org.hyperdata.beeps.processors.FIRProcessor
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:Processor .
+### describing instance of org.hyperdata.beeps.processors.Normalise
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component .
+### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
-### describing Class org.hyperdata.beeps.processors.FIRProcessor
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/filters/FIRFilter> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
 
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> rdfs:label "FIRProcessor" .
-<http://hyperdata.org/code/beeps/filters/FIRFilter> rdfs:label "FIRFilter" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a beep:Processor .
+### describing instance of org.hyperdata.beeps.processors.Normalise
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor .
 ### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-
-### describing Class org.hyperdata.beeps.processors.FIRProcessor
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/filters/FIRFilter> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> rdfs:label "FIRProcessor" .
-<http://hyperdata.org/code/beeps/filters/FIRFilter> rdfs:label "FIRFilter" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a beep:Component .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:Component .
 ### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.shape> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.shape> rdfs:label "Decoder.pre.LP_FIR2.shape" ;
+	 rdf:value "LP" .
 
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.on> rdfs:label "Decoder.pre.LP_FIR2.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.shape> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.shape> jtype:string "LP" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.window> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.window> rdfs:label "Decoder.pre.LP_FIR2.window" ;
+	 rdf:value "Hanning" .
 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.on> jtype:boolean "false" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.cutoff> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.cutoff> rdfs:label "Decoder.pre.LP_FIR2.cutoff" ;
+	 rdf:value "1125.173350363232"^^xsd:double .
 
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.window> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.window> jtype:string "Hanning" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.cutoff> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.cutoff> jtype:double "10285.082818002804" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.npoints> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.npoints> jtype:integer "3795" .
-
-
-### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> jtype:boolean "false" .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.npoints> .
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.npoints> rdfs:label "Decoder.pre.LP_FIR2.npoints" ;
+	 rdf:value "89"^^xsd:int .
 
 
 ### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-
-### describing Class org.hyperdata.beeps.processors.FIRProcessor
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/filters/FIRFilter> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> rdfs:label "FIRProcessor" .
-<http://hyperdata.org/code/beeps/filters/FIRFilter> rdfs:label "FIRFilter" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a beep:Processor .
-### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-
-### describing Class org.hyperdata.beeps.processors.FIRProcessor
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/filters/FIRFilter> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/FIRProcessor> rdfs:label "FIRProcessor" .
-<http://hyperdata.org/code/beeps/filters/FIRFilter> rdfs:label "FIRFilter" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a beep:Component .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:Processor .
+### describing instance of org.hyperdata.beeps.processors.Normalise
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component .
 ### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.shape> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.shape> jtype:string "LP" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.on> jtype:boolean "false" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.window> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.window> jtype:string "Hanning" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.cutoff> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.cutoff> jtype:double "1125.173350363232" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.npoints> .
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.npoints> jtype:integer "89" .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
 
 ### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> jtype:boolean "false" .
-
-
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor .
 ### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-
-### describing Class org.hyperdata.beeps.system.DefaultPipeline
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/Pipeline> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultComponentList> .
-
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> rdfs:label "DefaultPipeline" .
-<http://hyperdata.org/code/beeps/system/Pipeline> rdfs:label "Pipeline" .
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> rdfs:label "DefaultComponentList" .
-<http://hyperdata.org/beeps/HACK/Decoder.post> a beep:Pipeline .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.pre> a proc:Pipeline .
 ### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-
-### describing Class org.hyperdata.beeps.system.DefaultPipeline
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/Pipeline> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultComponentList> .
-
-<http://hyperdata.org/code/beeps/system/DefaultPipeline> rdfs:label "DefaultPipeline" .
-<http://hyperdata.org/code/beeps/system/Pipeline> rdfs:label "Pipeline" .
-<http://hyperdata.org/code/beeps/system/DefaultComponentList> rdfs:label "DefaultComponentList" .
-<http://hyperdata.org/beeps/HACK/Decoder.post> a beep:ComponentList .<http://hyperdata.org/beeps/HACK/Decoder.post> beep:components ( 
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> 
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> 
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.post> a proc:ComponentList .
+<http://hyperdata.org/beeps/HACK/Decoder.post> proc:components ( 
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> 
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> 
 ) . 
 
 ### describing instance of org.hyperdata.beeps.processors.Normalise
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:Component .
+### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm.on> rdfs:label "Decoder.post.chunkNorm.on" ;
+	 rdf:value "false"^^xsd:boolean .
 
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
 
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a beep:Processor .
 ### describing instance of org.hyperdata.beeps.processors.Normalise
-
-### describing Class org.hyperdata.beeps.processors.Normalise
-<http://hyperdata.org/code/beeps/processors/Normalise> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/Normalise> rdfs:label "Normalise" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a beep:Component .
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:Processor .
+### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:Component .
 ### describing instance of org.hyperdata.beeps.system.DefaultParameterList
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.on> rdfs:label "Decoder.post.chunkEnv.on" ;
+	 rdf:value "true"^^xsd:boolean .
 
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.attackProportion> .
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.attackProportion> rdfs:label "Decoder.post.chunkEnv.attackProportion" ;
+	 rdf:value "0.14"^^xsd:double .
 
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm.on> jtype:boolean "false" .
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.decayProportion> .
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.decayProportion> rdfs:label "Decoder.post.chunkEnv.decayProportion" ;
+	 rdf:value "0.091"^^xsd:double .
 
 
 ### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
-
-### describing Class org.hyperdata.beeps.processors.EnvelopeShaper
-<http://hyperdata.org/code/beeps/processors/EnvelopeShaper> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/EnvelopeShaper> rdfs:label "EnvelopeShaper" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a beep:Processor .
-### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
-
-### describing Class org.hyperdata.beeps.processors.EnvelopeShaper
-<http://hyperdata.org/code/beeps/processors/EnvelopeShaper> a java:Class ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultProcessor> .
-
-<http://hyperdata.org/code/beeps/processors/EnvelopeShaper> rdfs:label "EnvelopeShaper" .
-<http://hyperdata.org/code/beeps/system/DefaultProcessor> rdfs:label "DefaultProcessor" .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a beep:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-
-### describing Class org.hyperdata.beeps.system.DefaultParameterList
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> a java:Class ;
-java:implements <http://hyperdata.org/code/beeps/system/ParameterList> ;
-java:extends <http://hyperdata.org/code/beeps/system/DefaultNamed> .
-
-<http://hyperdata.org/code/beeps/system/DefaultParameterList> rdfs:label "DefaultParameterList" .
-<http://hyperdata.org/code/beeps/system/ParameterList> rdfs:label "ParameterList" .
-<http://hyperdata.org/code/beeps/system/DefaultNamed> rdfs:label "DefaultNamed" .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a beep:ParameterList .<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.on> .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.on> jtype:boolean "true" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.attackProportion> .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.attackProportion> jtype:double "0.14" .
-
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> beep:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.decayProportion> .
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.decayProportion> jtype:double "0.091" .
-
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:Processor .
+### describing instance of org.hyperdata.beeps.system.DefaultPipeline
+##############
+<http://hyperdata.org/beeps/HACK/Decoder.post> a proc:Pipeline .

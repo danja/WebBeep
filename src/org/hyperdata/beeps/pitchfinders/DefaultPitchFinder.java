@@ -8,6 +8,8 @@ import java.util.List;
 import org.hyperdata.beeps.system.DefaultComponent;
 import org.hyperdata.beeps.system.DefaultParameterList;
 import org.hyperdata.beeps.util.Tone;
+import org.hyperdata.common.describe.DefaultDescriber;
+import org.hyperdata.common.describe.Named;
 
 /**
  * @author danny
@@ -24,7 +26,8 @@ public abstract class DefaultPitchFinder extends DefaultComponent implements Pit
 	 */
 	@Override
 	public String describe() {
-		// TODO Auto-generated method stub
-		return null;
+		String description = super.describe();
+		description += DefaultDescriber.getTypedDescription(this, "beep:PitchFinder");
+		return description;
 	}
 }

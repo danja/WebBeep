@@ -206,12 +206,11 @@ public class DefaultParameterList extends DefaultNamed implements ParameterList 
 	}
 	
 	public String describe(){
-		String description = DefaultDescriber.getDescription(this);
-		description += "<"+getURI()+"> a beep:ParameterList .";
-		String list = "";
+		String description = DefaultDescriber.getTypedDescription(this, "proc:ParameterList");
+		String list = "\n";
 		for (int i = 0; i < parameters.size(); i++) {
-			description +=	"<"+getURI()+"> beep:parameter <"+parameters.get(i).getURI() +"> .\n";
-			description +=	parameters.get(i).describe()+"\n";
+			description +=	"\t<"+getURI()+"> proc:parameter <"+parameters.get(i).getURI() +"> .\n";
+			description +=	"\t"+parameters.get(i).describe()+"\n";
 		}
 		return description;
 	}

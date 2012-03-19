@@ -59,9 +59,10 @@ public abstract class DefaultProcessor extends DefaultComponent implements Proce
 	 */
 	@Override
 	public String describe() {
-		String description = DefaultDescriber.getDescription(this);
-		description += "<"+getURI()+"> a beep:Processor .";
-		description += super.describe();
+		String description = super.describe();
+		description += DefaultDescriber.getTypedDescription(this,"proc:Processor");
+//		description += "<"+getURI()+"> a beep:Processor .";
+//		description += super.describe();
 		return description;
 	}
 }

@@ -87,8 +87,7 @@ public abstract class DefaultComponent extends DefaultNamed implements Component
 	 */
 	@Override
 	public String describe() {
-		String description = DefaultDescriber.getDescription(this);
-		description += "<"+getURI()+"> a beep:Component .";
+		String description = DefaultDescriber.getTypedDescription(this, "proc:Component");
 		description += parameters.describe();
 		return description;
 	}

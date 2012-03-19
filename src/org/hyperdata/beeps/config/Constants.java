@@ -73,5 +73,6 @@ public class Constants {
 		
 		public static String NAMESPACES = Describer.namespaces + 
 				"@prefix beep:       <http://purl.org/stuff/beep/> .\n" +
+				"@prefix proc:       <http://purl.org/stuff/proc/> .\n" +
 				"@prefix jtype:       <http://purl.org/stuff/javatypes/> .\n";
 }
