@@ -37,8 +37,10 @@ public class Population {
 	// int mutateEvery = 8;
 	
 	/*
-	 * Decides the next generation from the current
-	 * the organisms have previously been sorted according to fitness
+	 * [Sum] Calculate sum of all chromosome fitnesses in population - sum S.
+	 * [Select] Generate random number from interval (0,S) - r. [Loop] Go
+	 * through the population and sum fitnesses from 0 - sum s. When the sum s
+	 * is greater then r, stop and return the chromosome where you are.
 	 */
 	public void breed() {
 		List<Organism> nextGeneration = new ArrayList<Organism>();
