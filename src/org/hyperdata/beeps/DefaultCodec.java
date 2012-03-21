@@ -165,9 +165,16 @@ public abstract class DefaultCodec extends DefaultNamed implements Codec {
 	}
 
 	public String describe(){
-		String description = DefaultDescriber.getDescription(this);
-		description += coreComponents.describe();
+		String description = DefaultDescriber.getDescription(this); // hardcoded - FIXME
+		description += DefaultDescriber.getTypedDescription(this,
+				"proc:Pipeline");
+		description += "\n<" + getURI() + "> proc:components ( \n";
+		description += "\t<" + preProcessors.getURI() + "> \n";
+		description += "\t<" + coreComponents.getURI() + "> \n";
+		description += "\t<" + postProcessors.getURI() + "> \n";
+		description += ") . \n";
 		description += preProcessors.describe();
+		description += coreComponents.describe();
 		description += postProcessors.describe();
 		return description;
 	}

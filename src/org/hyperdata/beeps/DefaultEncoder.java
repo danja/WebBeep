@@ -24,6 +24,7 @@ import org.hyperdata.beeps.util.Chunks;
 import org.hyperdata.beeps.util.Plotter;
 import org.hyperdata.beeps.util.Tone;
 import org.hyperdata.common.describe.DefaultDescriber;
+import org.hyperdata.common.describe.Named;
 
 /**
  * @author danny
@@ -31,11 +32,20 @@ import org.hyperdata.common.describe.DefaultDescriber;
  *         preprocessors in Encoder are applied to individual dual-tone chunks
  *         postprocessors are applied to the whole outgoing constructed waveform
  */
-public class DefaultEncoder extends DefaultCodec implements Encoder {
+public class DefaultEncoder extends DefaultCodec implements Encoder{
 
 	public DefaultEncoder(String name) {
 		super(name);
 		init();
+	}
+
+	/**
+	 * @param string
+	 * @param string2
+	 */
+	public DefaultEncoder(String name, String uri) {
+		this(name);
+		setURI(uri);
 	}
 
 	/* (non-Javadoc)
@@ -87,9 +97,13 @@ public class DefaultEncoder extends DefaultCodec implements Encoder {
 	 */
 	@Override
 	public String describe() {
-		String description = DefaultDescriber.getDescription(this);
+		String description =super.describe();
+				// DefaultDescriber.getDescription(this);
+	//	System.out.println("************\n"+description+"\n8888888888\n");
+		// description += super.describe();
 		description += "<"+getURI()+"> a beep:Encoder .";
-		description += super.describe();
+		description += "<"+getURI()+"> a proc:Processor .";
+	//	description += super.describe();
 		return description;
 	}
 }

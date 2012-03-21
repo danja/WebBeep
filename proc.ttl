@@ -1,0 +1,128 @@
+# Processing vocabulary
+
+# latest 2012-03-19
+# first draft 2011-12-30
+# basic abstract components only so far
+
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc:      <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix proc:       <http://purl.org/stuff/proc/> .
+
+<http://purl.org/stuff/proc/>
+    dc:creator <http://danny.ayers.name/index.rdf>, "Danny Ayers"^^xsd:string ;
+    dc:date "2012-03-19T22:30:52+01:00"^^xsd:dateTime ;
+    dc:description """Processing Vocabulary"""@en ;
+    dc:title "Processing Vocabulary"@en ;
+    a owl:Ontology ;
+#    owl:imports <http://purl.org/dc/elements/1.1/>, <http://www.w3.org/2003/06/sw-vocab-status/ns> ;
+    owl:versionInfo 0.1 .
+
+#
+# top-level constructs
+#
+proc:System 
+    a rdfs:Class, owl:Class ;
+    rdfs:isDefinedBy <http://purl.org/stuff/proc/> ;
+	rdfs:label "System"@en ;
+    rdfs:comment "A processing system."@en ;
+   dc:description "A processing system"@en .
+
+proc:Component 
+	rdfs:label "Component" ;
+    a rdfs:Class, owl:Class ;
+    rdfs:comment "A component of a processing system."@en ;
+   dc:description "A part of a processing system"@en .
+
+proc:Signal
+	rdfs:label "Signal" ;
+    a rdfs:Class, owl:Class ;
+    rdfs:comment "An ordered set of numeric data."@en ;
+   dc:description "An ordered set of numeric data."@en .
+
+#
+# processors
+#
+proc:Processor
+    a rdfs:Class, owl:Class ;
+	rdfs:label "Processor" ;
+   rdfs:subClassOf proc:Component ;
+   rdfs:subClassOf proc:DataSource ;
+   rdfs:subClassOf proc:DataSink ;
+    rdfs:comment "A component which applies a process to an input to produce an output."@en ;
+   dc:description "A component which applies a process to an input to produce an output"@en .
+
+proc:DataSource
+    a rdfs:Class, owl:Class ;
+	rdfs:label "DataSource" ;
+   rdfs:subClassOf proc:Component ;
+    rdfs:comment "A component which produces data."@en ;
+   dc:description "A component which produces data."@en .
+
+proc:DataSink
+    a rdfs:Class, owl:Class ;
+	rdfs:label "DataSink" ;
+   rdfs:subClassOf proc:Component ;
+    rdfs:comment "A component which consumes data."@en ;
+   dc:description "A component which consumes data."@en .
+
+proc:ComponentList 
+    a rdfs:Class, owl:Class ;
+	rdfs:label "ComponentList" ;
+   rdfs:subClassOf proc:Component ;
+
+    rdfs:comment "An unordered list (set) of components."@en ;
+   dc:description "An unordered list (set) of components"@en .
+
+proc:Pipeline 
+    a rdfs:Class, owl:Class ;
+	rdfs:label "Pipeline" ;
+   rdfs:subClassOf proc:Component ;
+
+    rdfs:comment "An ordered list of processors."@en ;
+   dc:description "An ordered list of processors"@en .
+
+proc:Converter 
+    a rdfs:Class, owl:Class ;
+	rdfs:label "Converter" ;
+   rdfs:subClassOf proc:Processor ;
+    rdfs:comment "A processor with differing input and output data types."@en ;
+   dc:description "A processor with differing input and output data types."@en .
+
+
+
+proc:components
+    a rdf:Property, owl:ObjectProperty ;
+    rdfs:comment "components"@en ;
+	rdfs:label "components"@en .
+
+#
+# parameters
+#
+proc:Parameter 
+    a rdfs:Class, owl:Class ;
+	rdfs:label "Parameter" ;
+    rdfs:comment "A characteristic (named, datatyped value) associated with a component"@en ;
+   dc:description "A characteristic (named, datatyped value) associated with a component"@en .
+
+proc:parameter
+    a rdf:Property, owl:ObjectProperty ;
+    rdfs:comment "parameter"@en ;
+	rdfs:label "parameter"@en .
+
+
+
+# proc:name a rdf:Property ;
+#   dc:description "A simple name" .
+
+# use rdf:value
+# proc:value a rdf:Property ;
+#   dc:description "A value" .
+
+# use XSD datatypes
+# proc:datatype a rdf:Property ;
+#   dc:description "The datatype of a Parameter's value" .

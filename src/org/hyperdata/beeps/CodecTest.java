@@ -3,6 +3,7 @@
  */
 package org.hyperdata.beeps;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hyperdata.beeps.config.Constants;
@@ -26,7 +27,8 @@ public class CodecTest implements Described, Named {
 
 	private static DefaultEncoder encoder;
 	private static DefaultDecoder decoder;
-	private String uri = "http://webbeep.it/code/CodecTest";
+	private String uri = "http://webbeep.it/runtime/CodecTest"; // ???
+	private String name = "CodecTest";
 
 	/**
 	 * @param args
@@ -35,7 +37,8 @@ public class CodecTest implements Described, Named {
 		new CodecTest();
 	}
 
-	public CodecTest(){
+	public CodecTest() {
+		setName("CodecTest");
 		String input = ASCIICodec.getRandomASCII();
 		input = "abc"; // "http://danbri.org/foaf.rdf#danbri"
 
@@ -47,8 +50,10 @@ public class CodecTest implements Described, Named {
 		Debug.inform("Input : " + input);
 		Debug.inform(input.length() + " characters\n");
 
-		encoder = new DefaultEncoder("Encoder");
-		decoder = new DefaultDecoder("Decoder");
+		encoder = new DefaultEncoder("Encoder",
+				"http://hyperdata.org/beeps/Encoder");
+		decoder = new DefaultDecoder("Decoder",
+				"http://hyperdata.org/beeps/Decoder");
 
 		ParameterListFile plf = new ParameterListFile();
 		ParameterList config = plf.load(configFilename);
@@ -137,9 +142,11 @@ public class CodecTest implements Described, Named {
 			Debug.verbose("Bad chars = " + errs);
 		}
 		// Debug.log(encoder.parameters +"\n\n"+decoder.parameters);
+		DefaultDescriber.WITH_JAVA = false;
 		System.out.println(describe());
 		DefaultDescriber.save("beepy.ttl", describe());
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -148,7 +155,7 @@ public class CodecTest implements Described, Named {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	/*
@@ -157,11 +164,31 @@ public class CodecTest implements Described, Named {
 	 * @see org.hyperdata.common.describe.Named#setName(java.lang.String)
 	 */
 	@Override
-	public void setName(String arg0) {
-		// TODO Auto-generated method stub
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.hyperdata.common.describe.Named#setURI(java.lang.String)
+	 */
+	@Override
+	public void setURI(String uri) {
+		this.uri = uri;
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.hyperdata.common.describe.Named#getURI()
+	 */
+	@Override
+	public String getURI() {
+		return uri;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -169,31 +196,34 @@ public class CodecTest implements Described, Named {
 	 */
 	@Override
 	public String describe() {
+		// DefaultDescriber.get
 		// namespace prefixes as header
 		String description = Constants.NAMESPACES;
 
 		// gives properties labels
 		description += Describer.vocab;
 
+		description += DefaultDescriber
+				.getTypedDescription(this, "proc:System");
+
+		description += DefaultDescriber.getTypedDescription(this,
+				"proc:Pipeline");
+		description += "\n<" + getURI() + "> proc:components ( \n";
+		description += "\t<" + encoder.getURI() + "> \n";
+		description += "\t<" + decoder.getURI() + "> \n";
+		description += ") . \n";
+
 		description += encoder.describe();
 		description += decoder.describe();
 		return description;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.hyperdata.common.describe.Named#setURI(java.lang.String)
+	/**
+	 * The system as a whole is a pipeline, but in lieu of extending classes,
+	 * hard-coded description here
+	 * 
+	 * @return
 	 */
-	@Override
-	public void setURI(String uri) {
-		this.uri = uri;
-		
-	}
 
-	/* (non-Javadoc)
-	 * @see org.hyperdata.common.describe.Named#getURI()
-	 */
-	@Override
-	public String getURI() {
-		return uri;
-	}
+
 }

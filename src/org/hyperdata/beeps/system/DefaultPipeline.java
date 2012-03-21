@@ -93,15 +93,8 @@ public class DefaultPipeline extends DefaultComponentList implements Pipeline {
 		String description = super.describe();
 		description += DefaultDescriber.getTypedDescription(this, "proc:Pipeline");
 	//	description += "<"+getURI()+"> a beep:Pipeline .";
-	//	description += "# PIPELINE\n";
+		description += "# PIPELINE\n";
 	//	description += super.describe();
 		return description;
 	}
-
-
-
-
-
-	
-
 }

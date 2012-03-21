@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+  <head>
+    <variable name="s"/>
+    <variable name="p"/>
+    <variable name="o"/>
+  </head>
+  <results>
+    <result>
+      <binding name="s"><uri>http://webbeep.it/code/CodecTest</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/System</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://webbeep.it/code/CodecTest</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/Pipeline</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://webbeep.it/code/CodecTest</uri></binding>
+      <binding name="p"><uri>http://purl.org/stuff/proc/components</uri></binding>
+      <binding name="o"><bnode>genid4</bnode></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Encoder.pre</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/ComponentList</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Encoder.pre</uri></binding>
+      <binding name="p"><uri>http://purl.org/stuff/proc/components</uri></binding>
+      <binding name="o"><bnode>genid6</bnode></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Encoder.pre</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/Pipeline</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Encoder.pre</uri></binding>
+      <binding name="p"><uri>http://purl.org/stuff/proc/components</uri></binding>
+      <binding name="o"><bnode>genid8</bnode></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Encoder.post</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/Pipeline</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Decoder.pre</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/ComponentList</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Decoder.pre</uri></binding>
+      <binding name="p"><uri>http://purl.org/stuff/proc/components</uri></binding>
+      <binding name="o"><bnode>genid19</bnode></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Decoder.pre</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/Pipeline</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Decoder.pre</uri></binding>
+      <binding name="p"><uri>http://purl.org/stuff/proc/components</uri></binding>
+      <binding name="o"><bnode>genid32</bnode></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Decoder.post</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/ComponentList</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Decoder.post</uri></binding>
+      <binding name="p"><uri>http://purl.org/stuff/proc/components</uri></binding>
+      <binding name="o"><bnode>genid21</bnode></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Decoder.post</uri></binding>
+      <binding name="p"><uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri></binding>
+      <binding name="o"><uri>http://purl.org/stuff/proc/Pipeline</uri></binding>
+    </result>
+    <result>
+      <binding name="s"><uri>http://hyperdata.org/beeps/HACK/Decoder.post</uri></binding>
+      <binding name="p"><uri>http://purl.org/stuff/proc/components</uri></binding>
+      <binding name="o"><bnode>genid34</bnode></binding>
+    </result>
+  </results>
+</sparql>

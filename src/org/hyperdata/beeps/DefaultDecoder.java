@@ -67,6 +67,15 @@ public class DefaultDecoder extends DefaultCodec {
 		init();
 	}
 
+	/**
+	 * @param string
+	 * @param string2
+	 */
+	public DefaultDecoder(String name, String uri) {
+		this(name);
+		setURI(uri);
+	}
+
 	// components/processors
 	private Chunker chunker;
 	private Cropper cropper;
@@ -170,9 +179,11 @@ public class DefaultDecoder extends DefaultCodec {
 	 */
 	@Override
 	public String describe() {
-		String description = DefaultDescriber.getDescription(this);
+		String description =super.describe();
+				//DefaultDescriber.getDescription(this);
+		// description += super.describe();
 		description += "<"+getURI()+"> a beep:Decoder .";
-		description += super.describe();
+		description += "<"+getURI()+"> a proc:Processor .";
 		return description;
 	}
 }

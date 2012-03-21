@@ -116,7 +116,7 @@ public class DefaultComponentList extends DefaultNamed implements ComponentList 
 		String description = DefaultDescriber.getTypedDescription(this,"proc:ComponentList");
 //		description += "<"+getURI()+"> a beep:ComponentList .";
 		if (components.size() == 0) {
-			return "# Empty Pipeline";
+			return "# Empty List\n";
 		}
 		// description += "# COMPONENTLIST\n";
 		

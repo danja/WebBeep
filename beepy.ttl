@@ -5,6 +5,7 @@
 @prefix dc:      <http://purl.org/dc/terms/> .
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
 @prefix java:    <http://purl.org/stuff/java/> .
+@prefix proc:    <http://purl.org/stuff/proc/> .
 @prefix stuff:       <http://purl.org/stuff/> .
 
 @prefix beep:       <http://purl.org/stuff/beep/> .
@@ -14,27 +15,43 @@ java:implements a rdf:Property ;
     rdfs:label "implements" .
 java:extends a rdf:Property ;
     rdfs:label "extends" .
+<http://webbeep.it/runtime/CodecTest> a <http://hyperdata.org/code/beeps/CodecTest> ; 
+	 rdfs:label "CodecTest" . 
+<http://webbeep.it/runtime/CodecTest> a proc:System . 
+<http://webbeep.it/runtime/CodecTest> a <http://hyperdata.org/code/beeps/CodecTest> ; 
+	 rdfs:label "CodecTest" . 
+<http://webbeep.it/runtime/CodecTest> a proc:Pipeline . 
 
-### describing instance of org.hyperdata.beeps.DefaultEncoder
-##############
-<http://hyperdata.org/beeps/HACK/Encoder> a beep:Encoder .
-### describing instance of org.hyperdata.beeps.DefaultEncoder
-##############
-# Empty Pipeline
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.pre> a proc:ComponentList .
+<http://webbeep.it/runtime/CodecTest> proc:components ( 
+	<http://hyperdata.org/beeps/HACK/Encoder> 
+	<http://hyperdata.org/beeps/HACK/Decoder> 
+) . 
+<http://hyperdata.org/beeps/HACK/Encoder> a <http://hyperdata.org/code/beeps/DefaultEncoder> ; 
+	 rdfs:label "Encoder" . 
+<http://hyperdata.org/beeps/HACK/Encoder> a <http://hyperdata.org/code/beeps/DefaultEncoder> ; 
+	 rdfs:label "Encoder" . 
+<http://hyperdata.org/beeps/HACK/Encoder> a proc:Pipeline . 
+
+<http://hyperdata.org/beeps/HACK/Encoder> proc:components ( 
+	<http://hyperdata.org/beeps/HACK/Encoder.pre> 
+	<http://hyperdata.org/beeps/HACK/Encoder.core> 
+	<http://hyperdata.org/beeps/HACK/Encoder.post> 
+) . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre> a <http://hyperdata.org/code/beeps/system/DefaultPipeline> ; 
+	 rdfs:label "Encoder.pre" . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre> a proc:ComponentList . 
+
 <http://hyperdata.org/beeps/HACK/Encoder.pre> proc:components ( 
 	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> 
 	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> 
 ) . 
-
-### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.on> .
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a <http://hyperdata.org/code/beeps/processors/EnvelopeShaper> ; 
+	 rdfs:label "Encoder.pre.chunkEnv" . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Encoder.pre.chunkEnv" . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.on> .
 	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.on> rdfs:label "Encoder.pre.chunkEnv.on" ;
 	 rdf:value "false"^^xsd:boolean .
 
@@ -46,96 +63,47 @@ java:extends a rdf:Property ;
 	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv.decayProportion> rdfs:label "Encoder.pre.chunkEnv.decayProportion" ;
 	 rdf:value "0.13"^^xsd:double .
 
-
-### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> proc:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm.on> .
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a <http://hyperdata.org/code/beeps/processors/EnvelopeShaper> ; 
+	 rdfs:label "Encoder.pre.chunkEnv" . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkEnv> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Encoder.pre.chunkNorm" . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Encoder.pre.chunkNorm" . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> proc:parameter <http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm.on> .
 	<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm.on> rdfs:label "Encoder.pre.chunkNorm.on" ;
 	 rdf:value "false"^^xsd:boolean .
 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Encoder.pre.chunkNorm" . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre> a <http://hyperdata.org/code/beeps/system/DefaultPipeline> ; 
+	 rdfs:label "Encoder.pre" . 
+<http://hyperdata.org/beeps/HACK/Encoder.pre> a proc:Pipeline . 
+# PIPELINE
+# Empty List
+# Empty List
+<http://hyperdata.org/beeps/HACK/Encoder.post> a <http://hyperdata.org/code/beeps/system/DefaultPipeline> ; 
+	 rdfs:label "Encoder.post" . 
+<http://hyperdata.org/beeps/HACK/Encoder.post> a proc:Pipeline . 
+# PIPELINE
+<http://hyperdata.org/beeps/HACK/Encoder> a beep:Encoder .<http://hyperdata.org/beeps/HACK/Encoder> a proc:Processor .<http://hyperdata.org/beeps/HACK/Decoder> a <http://hyperdata.org/code/beeps/DefaultDecoder> ; 
+	 rdfs:label "Decoder" . 
+<http://hyperdata.org/beeps/HACK/Decoder> a <http://hyperdata.org/code/beeps/DefaultDecoder> ; 
+	 rdfs:label "Decoder" . 
+<http://hyperdata.org/beeps/HACK/Decoder> a proc:Pipeline . 
 
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.pre.chunkNorm> a proc:Processor .
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.pre> a proc:Pipeline .# Empty Pipeline
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-##############
-<http://hyperdata.org/beeps/HACK/Encoder.post> a proc:Pipeline .
-### describing instance of org.hyperdata.beeps.DefaultDecoder
-##############
-<http://hyperdata.org/beeps/HACK/Decoder> a beep:Decoder .
-### describing instance of org.hyperdata.beeps.DefaultDecoder
-##############
-
-### describing instance of org.hyperdata.beeps.system.DefaultComponentList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core> a proc:ComponentList .
-<http://hyperdata.org/beeps/HACK/Decoder.core> proc:components ( 
-	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> 
-	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
-	<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> 
-	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> 
+<http://hyperdata.org/beeps/HACK/Decoder> proc:components ( 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core> 
+	<http://hyperdata.org/beeps/HACK/Decoder.post> 
 ) . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre> a <http://hyperdata.org/code/beeps/system/DefaultPipeline> ; 
+	 rdfs:label "Decoder.pre" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre> a proc:ComponentList . 
 
-### describing instance of org.hyperdata.beeps.processors.Cropper
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.cropper.silenceThreshold> .
-	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper.silenceThreshold> rdfs:label "Decoder.core.cropper.silenceThreshold" ;
-	 rdf:value "0.39328963702325803"^^xsd:double .
-
-	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.cropper.on> .
-	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper.on> rdfs:label "Decoder.core.cropper.on" ;
-	 rdf:value "true"^^xsd:boolean .
-
-
-### describing instance of org.hyperdata.beeps.processors.Cropper
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
-	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
-	 rdf:value "false"^^xsd:boolean .
-
-
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.Chunker
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a beep:SplittingProcessor .
-<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a beep:Chunker .
-
-### describing instance of org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder.gThreshold> .
-	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder.gThreshold> rdfs:label "Decoder.core.pitchFinder.gThreshold" ;
-	 rdf:value "4194.939772585178"^^xsd:double .
-
-
-### describing instance of org.hyperdata.beeps.pitchfinders.GoertzelPitchFinder
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a beep:PitchFinder .
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre> a proc:ComponentList .
 <http://hyperdata.org/beeps/HACK/Decoder.pre> proc:components ( 
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> 
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> 
@@ -145,13 +113,13 @@ java:extends a rdf:Property ;
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> 
 	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
 ) . 
-
-### describing instance of org.hyperdata.beeps.processors.Compressor
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.on> .
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a <http://hyperdata.org/code/beeps/processors/Compressor> ; 
+	 rdfs:label "Decoder.pre.compressor" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.pre.compressor" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.on> .
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.on> rdfs:label "Decoder.pre.compressor.on" ;
 	 rdf:value "false"^^xsd:boolean .
 
@@ -167,16 +135,16 @@ java:extends a rdf:Property ;
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor.highThreshold> rdfs:label "Decoder.pre.compressor.highThreshold" ;
 	 rdf:value "0.760342929650305"^^xsd:double .
 
-
-### describing instance of org.hyperdata.beeps.processors.Compressor
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.shape> .
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a <http://hyperdata.org/code/beeps/processors/Compressor> ; 
+	 rdfs:label "Decoder.pre.compressor" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.compressor> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a <http://hyperdata.org/code/beeps/processors/FIRProcessor> ; 
+	 rdfs:label "Decoder.pre.HP_FIR" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.pre.HP_FIR" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.shape> .
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.shape> rdfs:label "Decoder.pre.HP_FIR.shape" ;
 	 rdf:value "HP" .
 
@@ -196,29 +164,29 @@ java:extends a rdf:Property ;
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR.npoints> rdfs:label "Decoder.pre.HP_FIR.npoints" ;
 	 rdf:value "1228"^^xsd:int .
 
-
-### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a <http://hyperdata.org/code/beeps/processors/FIRProcessor> ; 
+	 rdfs:label "Decoder.pre.HP_FIR" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.HP_FIR> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
 	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
 	 rdf:value "false"^^xsd:boolean .
 
-
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.shape> .
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a <http://hyperdata.org/code/beeps/processors/FIRProcessor> ; 
+	 rdfs:label "Decoder.pre.LP_FIR1" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.pre.LP_FIR1" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.shape> .
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.shape> rdfs:label "Decoder.pre.LP_FIR1.shape" ;
 	 rdf:value "LP" .
 
@@ -238,29 +206,29 @@ java:extends a rdf:Property ;
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1.npoints> rdfs:label "Decoder.pre.LP_FIR1.npoints" ;
 	 rdf:value "3795"^^xsd:int .
 
-
-### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a <http://hyperdata.org/code/beeps/processors/FIRProcessor> ; 
+	 rdfs:label "Decoder.pre.LP_FIR1" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR1> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
 	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
 	 rdf:value "false"^^xsd:boolean .
 
-
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.shape> .
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a <http://hyperdata.org/code/beeps/processors/FIRProcessor> ; 
+	 rdfs:label "Decoder.pre.LP_FIR2" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.pre.LP_FIR2" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.shape> .
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.shape> rdfs:label "Decoder.pre.LP_FIR2.shape" ;
 	 rdf:value "LP" .
 
@@ -280,53 +248,111 @@ java:extends a rdf:Property ;
 	<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2.npoints> rdfs:label "Decoder.pre.LP_FIR2.npoints" ;
 	 rdf:value "89"^^xsd:int .
 
-
-### describing instance of org.hyperdata.beeps.processors.FIRProcessor
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a <http://hyperdata.org/code/beeps/processors/FIRProcessor> ; 
+	 rdfs:label "Decoder.pre.LP_FIR2" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre.LP_FIR2> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
 	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
 	 rdf:value "false"^^xsd:boolean .
 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre> a <http://hyperdata.org/code/beeps/system/DefaultPipeline> ; 
+	 rdfs:label "Decoder.pre" . 
+<http://hyperdata.org/beeps/HACK/Decoder.pre> a proc:Pipeline . 
+# PIPELINE
+<http://hyperdata.org/beeps/HACK/Decoder.core> a <http://hyperdata.org/code/beeps/system/DefaultComponentList> ; 
+	 rdfs:label "Decoder.core" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core> a proc:ComponentList . 
 
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor .
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.pre> a proc:Pipeline .
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.post> a proc:ComponentList .
+<http://hyperdata.org/beeps/HACK/Decoder.core> proc:components ( 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> 
+) . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a <http://hyperdata.org/code/beeps/processors/Cropper> ; 
+	 rdfs:label "Decoder.core.cropper" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.core.cropper" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.cropper.silenceThreshold> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper.silenceThreshold> rdfs:label "Decoder.core.cropper.silenceThreshold" ;
+	 rdf:value "0.39328963702325803"^^xsd:double .
+
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.cropper.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.cropper.on> rdfs:label "Decoder.core.cropper.on" ;
+	 rdf:value "true"^^xsd:boolean .
+
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a <http://hyperdata.org/code/beeps/processors/Cropper> ; 
+	 rdfs:label "Decoder.core.cropper" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.cropper> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.normalise.on> rdfs:label "Decoder.core.normalise.on" ;
+	 rdf:value "false"^^xsd:boolean .
+
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.core.normalise" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.normalise> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a <http://hyperdata.org/code/beeps/processors/Chunker> ; 
+	 rdfs:label "Decoder.core.chunker" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a beep:SplittingProcessor .
+<http://hyperdata.org/beeps/HACK/Decoder.core.chunker> a beep:Chunker .
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a <http://hyperdata.org/code/beeps/pitchfinders/GoertzelPitchFinder> ; 
+	 rdfs:label "Decoder.core.pitchFinder" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.core.pitchFinder" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder.gThreshold> .
+	<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder.gThreshold> rdfs:label "Decoder.core.pitchFinder.gThreshold" ;
+	 rdf:value "4194.939772585178"^^xsd:double .
+
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a <http://hyperdata.org/code/beeps/pitchfinders/GoertzelPitchFinder> ; 
+	 rdfs:label "Decoder.core.pitchFinder" . 
+<http://hyperdata.org/beeps/HACK/Decoder.core.pitchFinder> a beep:PitchFinder . 
+<http://hyperdata.org/beeps/HACK/Decoder.post> a <http://hyperdata.org/code/beeps/system/DefaultPipeline> ; 
+	 rdfs:label "Decoder.post" . 
+<http://hyperdata.org/beeps/HACK/Decoder.post> a proc:ComponentList . 
+
 <http://hyperdata.org/beeps/HACK/Decoder.post> proc:components ( 
 	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> 
 	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> 
 ) . 
-
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm.on> .
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.post.chunkNorm" . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.post.chunkNorm" . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm.on> .
 	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm.on> rdfs:label "Decoder.post.chunkNorm.on" ;
 	 rdf:value "false"^^xsd:boolean .
 
-
-### describing instance of org.hyperdata.beeps.processors.Normalise
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:Processor .
-### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:Component .
-### describing instance of org.hyperdata.beeps.system.DefaultParameterList
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:ParameterList .	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.on> .
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a <http://hyperdata.org/code/beeps/processors/Normalise> ; 
+	 rdfs:label "Decoder.post.chunkNorm" . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkNorm> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a <http://hyperdata.org/code/beeps/processors/EnvelopeShaper> ; 
+	 rdfs:label "Decoder.post.chunkEnv" . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:Component . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a <http://hyperdata.org/code/beeps/system/DefaultParameterList> ; 
+	 rdfs:label "Decoder.post.chunkEnv" . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:ParameterList . 
+	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> proc:parameter <http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.on> .
 	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.on> rdfs:label "Decoder.post.chunkEnv.on" ;
 	 rdf:value "true"^^xsd:boolean .
 
@@ -338,10 +364,11 @@ java:extends a rdf:Property ;
 	<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv.decayProportion> rdfs:label "Decoder.post.chunkEnv.decayProportion" ;
 	 rdf:value "0.091"^^xsd:double .
 
-
-### describing instance of org.hyperdata.beeps.processors.EnvelopeShaper
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:Processor .
-### describing instance of org.hyperdata.beeps.system.DefaultPipeline
-##############
-<http://hyperdata.org/beeps/HACK/Decoder.post> a proc:Pipeline .
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a <http://hyperdata.org/code/beeps/processors/EnvelopeShaper> ; 
+	 rdfs:label "Decoder.post.chunkEnv" . 
+<http://hyperdata.org/beeps/HACK/Decoder.post.chunkEnv> a proc:Processor . 
+<http://hyperdata.org/beeps/HACK/Decoder.post> a <http://hyperdata.org/code/beeps/system/DefaultPipeline> ; 
+	 rdfs:label "Decoder.post" . 
+<http://hyperdata.org/beeps/HACK/Decoder.post> a proc:Pipeline . 
+# PIPELINE
+<http://hyperdata.org/beeps/HACK/Decoder> a beep:Decoder .<http://hyperdata.org/beeps/HACK/Decoder> a proc:Processor .

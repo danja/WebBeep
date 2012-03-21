@@ -26,8 +26,21 @@
 	<classpathentry kind="lib" path="lib/jetty/jetty-xml-8.0.4.v20111024.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/servlet-api-3.0.jar"/>
 	<classpathentry kind="lib" path="lib/sun/tools.jar"/>
-	<classpathentry kind="lib" path="lib/apache/commons-fileupload-1.2.2.jar"/>
-	<classpathentry kind="lib" path="lib/apache/commons-io-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/dork/dork.jar" sourcepath="/home/danny/workspace/dork/src"/>
+	<classpathentry kind="lib" path="lib/commons/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-io-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jena/commons-codec-1.5.jar"/>
+	<classpathentry kind="lib" path="lib/jena/httpclient-4.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/jena/httpcore-4.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/jena/icu4j-3.4.4.jar"/>
+	<classpathentry kind="lib" path="lib/jena/jena-arq-2.9.0-incubating.jar"/>
+	<classpathentry kind="lib" path="lib/jena/jena-core-2.7.0-incubating.jar"/>
+	<classpathentry kind="lib" path="lib/jena/jena-iri-0.9.0-incubating.jar"/>
+	<classpathentry kind="lib" path="lib/jena/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/jena/slf4j-api-1.6.4.jar"/>
+	<classpathentry kind="lib" path="lib/jena/slf4j-log4j12-1.6.4.jar"/>
+	<classpathentry kind="lib" path="lib/jena/xercesImpl-2.10.0.jar"/>
+	<classpathentry kind="lib" path="lib/jena/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
