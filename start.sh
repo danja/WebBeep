@@ -24,5 +24,6 @@ echo $CP
 # scalac -cp $CP -d ../classes ../src/*.scala
 
 # host port
-java -cp $CP org.hyperdata.beeps.server.BeepServer 67.207.131.83 80
+java -cp $CP org.hyperdata.beeps.server.BeepServer 127.0.0.1 8888
 
+# 67.207.131.83 ???

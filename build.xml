@@ -12,7 +12,7 @@
 	
 	<!-- compiler flags -->
 	<property name="compile.debug" value="false" />
-	<property name="compile.version" value="1.5" />
+	<property name="compile.version" value="1.7" />
 
 	<tstamp>
 		<format property="DATETIME" pattern="yyyy-mm-dd" />
