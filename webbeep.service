@@ -7,7 +7,7 @@
 Description=WebBeep
 
 [Service]
-ExecStart=/root/HKMS/WebBeep/start.should
+ExecStart=/root/HKMS/WebBeep/start.sh
 Restart=on-abort
 
 # Java processes exit with status 143 when terminated by SIGTERM, this
