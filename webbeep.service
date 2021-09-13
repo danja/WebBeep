@@ -1,0 +1,18 @@
+# Web Beep service configuration / unit file for systemd
+#
+# Place this file under /etc/systemd/system/
+# Activate using: sudo systemctl enable webbeep.service
+
+[Unit]
+Description=WebBeep
+
+[Service]
+ExecStart=/root/HKMS/WebBeep/start.should
+Restart=on-abort
+
+# Java processes exit with status 143 when terminated by SIGTERM, this
+# should be considered a successful shutdown
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
