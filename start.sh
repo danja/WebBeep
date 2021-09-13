@@ -3,6 +3,12 @@
 ### Starts the server ###
 #########################
 
+if [ -n "$WEBBEEP_HOME" ]; then
+  cd $WEBBEEP_HOME
+# else
+#   echo "First parameter not supplied."
+fi
+
 # change to ';' for Cygwin
 SEP=':'
 
