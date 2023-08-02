@@ -7,8 +7,8 @@
 Description=WebBeep
 
 [Service]
-Environment=WEBBEEP_HOME=/root/HKMS/WebBeep
-ExecStart=/root/HKMS/WebBeep/start.sh
+Environment=WEBBEEP_HOME=/home/hkms-apps/WebBeep
+ExecStart=/home/hkms-apps/WebBeep/start.sh
 Restart=on-abort
 
 # Java processes exit with status 143 when terminated by SIGTERM, this
